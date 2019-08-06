@@ -4,11 +4,11 @@ import { useField } from '@rocketseat/unform';
 
 import { Container, ButtonToggle, Buttons } from './styles';
 
-export default function Toggle({ options, name, label }) {
+export default function Toggle({ options, name, label, value }) {
   const ref = useRef(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
 
-  const [selected, setSelected] = useState(defaultValue);
+  const [selected, setSelected] = useState(defaultValue || value);
 
   useEffect(() => {
     registerField({

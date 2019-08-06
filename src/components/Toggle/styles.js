@@ -2,6 +2,10 @@ import styled, { css } from 'styled-components';
 import Button from '~/components/Button';
 
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+
+
   label {
     margin-bottom: 7px;
     display: block;
@@ -14,6 +18,7 @@ export const Container = styled.div`
 
 export const Buttons = styled.div`
   display: flex;
+  flex: 1;
 `;
 
 export const ButtonToggle = styled(Button)`
