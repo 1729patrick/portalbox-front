@@ -2,7 +2,12 @@ import React from 'react';
 import ReactPopup from 'reactjs-popup';
 // import { Container } from './styles';
 
-export default function Popup({ component: Component, open, children }) {
+export default function Popup({
+  component: Component,
+  open,
+  children,
+  onClick,
+}) {
   return (
     <ReactPopup
       trigger={children}
@@ -11,7 +16,9 @@ export default function Popup({ component: Component, open, children }) {
       offsetY={5}
       open={open}
     >
-      <Component />
+      <span onClick={onClick}>
+        <Component />
+      </span>
     </ReactPopup>
   );
 }

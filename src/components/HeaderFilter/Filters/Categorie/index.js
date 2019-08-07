@@ -16,7 +16,7 @@ const GreenCheckbox = withStyles({
   checked: {},
 })(props => <Checkbox color="default" {...props} />);
 
-export default function Categories() {
+export default function Categorie() {
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,

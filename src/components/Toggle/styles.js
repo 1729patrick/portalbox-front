@@ -5,7 +5,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
 
-
   label {
     margin-bottom: 7px;
     display: block;
@@ -30,8 +29,8 @@ export const ButtonToggle = styled(Button)`
     !props.active &&
     css`
       background: transparent;
-      border: 1px solid #ccc;
-      color: #555;
+      border: 1.5px solid #cacaca;
+      color: #666;
 
       &:hover {
         border-color: rgb(239, 108, 0);

@@ -8,18 +8,19 @@ export const Container = styled.ul`
   position: fixed;
   background: #fff;
   user-select: none;
-  border-bottom: solid 1px #ddd;
+  /* border-bottom: solid 1px #ddd; */
+  box-shadow: 0px 1px 20px 0px rgba(46, 61, 73, 0.2);
+  z-index: -1;
 
   > li {
-    border: solid 1px #ddd;
-    border-radius: 4px;
+    border: solid 1px #ccc;
+    color: #444;
+    border-radius: 5px;
     display: flex;
     align-items: center;
-    color: #666;
     font-weight: 500;
     font-weight: 500;
     font-size: 14.5px;
-    cursor: pointer;
     margin-right: 13px;
 
     &:hover {
@@ -28,6 +29,12 @@ export const Container = styled.ul`
 
     > span {
       padding: 10px 12px;
+      cursor: pointer;
+      color: #666;
+
+      &:hover {
+        color: rgb(239, 108, 0);
+      }
     }
   }
 `;

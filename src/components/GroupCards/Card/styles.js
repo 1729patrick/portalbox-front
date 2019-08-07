@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   flex: 1;
   border-radius: 5px;
-  box-shadow: 5px 5px 25px 0px rgba(46, 61, 73, 0.2);
+  box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2);
   overflow: hidden;
   cursor: pointer;
   margin: 8px;

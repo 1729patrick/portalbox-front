@@ -8,7 +8,11 @@ export default function Header() {
   const [popupOpen, setPopupOpen] = useState(0);
 
   return (
-    <Container onClickCapture={() => setPopupOpen(0)}>
+    <Container
+      onClickCapture={e => {
+        setPopupOpen(0);
+      }}
+    >
       <div>
         <div>
           <img
@@ -30,7 +34,7 @@ export default function Header() {
         </ul>
       </div>
 
-      <HeaderFilter popupOpen={popupOpen} setPopupOpen={setPopupOpen}/>
+      <HeaderFilter popupOpen={popupOpen} setPopupOpen={setPopupOpen} />
     </Container>
   );
 }

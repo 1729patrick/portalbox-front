@@ -11,7 +11,7 @@ export const Container = styled.header`
     justify-content: space-between;
     padding: 0 30px;
     background: #fff;
-    border-bottom: solid 1px #ddd;
+    /* border-bottom: solid 1px #ddd; */
 
     > div {
       flex: 1;
@@ -57,7 +57,7 @@ export const Container = styled.header`
         height: 75px;
         align-items: center;
         display: flex;
-        border-bottom: solid 1.5px #eee;
+        /* border-bottom: solid 1.5px #eee; */
 
         & + li {
           margin-left: 25px;

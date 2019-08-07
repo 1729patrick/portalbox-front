@@ -7,20 +7,6 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: 10px;
-
-    .MuiFormControlLabel-label {
-      font-size: 14px !important;
-      font-weight: 500;
-       font: 14px 'Product Sans', 'Roboto', sans-serif;
-    }
-
-    .MuiFormControlLabel-root {
-      height: 35px;
-
-      &:hover {
-        color: rgb(239, 108, 0);
-      }
-    }
   }
 
   > span {
