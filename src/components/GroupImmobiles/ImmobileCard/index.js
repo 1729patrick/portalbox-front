@@ -7,7 +7,7 @@ import car from '~/assets/carac/car.svg';
 import move from '~/assets/carac/move.svg';
 import shower from '~/assets/carac/shower.svg';
 
-export default function Place() {
+export default function ImmobileCard() {
   return (
     <Container>
       <Image source="https://a0.muscache.com/im/pictures/515b9882-cb96-4ad1-b1d4-c1f200a359cc.jpg?aki_policy=large" />
@@ -35,7 +35,7 @@ export default function Place() {
           </li>
           <li>
             <img src={move} alt="Área" />
-            <p>150m</p>
+            <p>150m²</p>
           </li>
         </ul>
       </Details>

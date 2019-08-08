@@ -8,7 +8,9 @@ import Button from '~/components/Button';
 export const Background = styled.div`
   height: 100vh;
   width: 100%;
-  background: black url(${background}) center no-repeat;
+  padding: 10px;
+  /* background: black url(${background}) center no-repeat; */
+  background: black url('https://privilegeimobiliaria.com.br/wp-content/uploads/2018/11/zzzzz.jpg') center no-repeat;
   background-size: cover;
   display: flex;
   flex-direction: column;

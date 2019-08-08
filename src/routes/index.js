@@ -1,14 +1,19 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+
+import Route from './Route';
 
 import Main from '~/pages/Main';
-import Places from '~/pages/Places';
+import Immobiles from '~/pages/Immobiles';
+import PlaceDetails from '~/pages/ImmobileDetails';
 
 const Routes = () => {
   return (
     <BrowserRouter>
-      <Route path="/" exact component={Main} />
-      <Route path="/imoveis" exact component={Places} />
+      <Route path="/" exact component={Main} onlyComponent />
+
+      <Route path="/imoveis" exact component={Immobiles} />
+      <Route path="/imoveis/:id" exact component={PlaceDetails} simple />
     </BrowserRouter>
   );
 };

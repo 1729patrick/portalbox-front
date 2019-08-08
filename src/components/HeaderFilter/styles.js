@@ -1,23 +1,21 @@
 import styled from 'styled-components';
 
-export const Container = styled.ul`
+export const Container = styled.form`
+  display: flex;
+  align-items: center;
   height: 50px;
   width: 100%;
-  display: flex;
-  padding: 9px 30px 9px 80px;
-  position: fixed;
   background: #fff;
   user-select: none;
-  /* border-bottom: solid 1px #ddd; */
-  box-shadow: 0px 1px 20px 0px rgba(46, 61, 73, 0.2);
-  z-index: -1;
+  padding-left: 50px;
 
   > li {
-    border: solid 1px #ccc;
-    color: #444;
-    border-radius: 5px;
     display: flex;
     align-items: center;
+    height: 32px;
+    border: solid 1px #c6c6c6;
+    color: #444;
+    border-radius: 25px;
     font-weight: 500;
     font-weight: 500;
     font-size: 14.5px;

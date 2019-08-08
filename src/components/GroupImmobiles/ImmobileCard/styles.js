@@ -31,6 +31,11 @@ export const Details = styled.div`
       text-transform: uppercase;
       font-size: 12.5px;
     }
+
+    > p {
+      color: rgb(239, 108, 0);
+      font-weight: 700;
+    }
   }
 
   > p {

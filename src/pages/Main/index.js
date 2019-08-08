@@ -3,10 +3,10 @@ import { Form } from '@rocketseat/unform';
 
 import Select from '~/components/Select';
 import Toggle from '~/components/Toggle';
-import Header from './Header';
+import Header from '~/components/Header';
 import { Background, Filter, SubmitButton, Content } from './styles';
 
-import GroupPlaces from '~/components/GroupPlaces';
+import GroupPlaces from '~/components/GroupImmobiles';
 import GroupCards from '~/components/GroupCards';
 
 const options = [
@@ -25,7 +25,7 @@ const Main = () => {
   return (
     <>
       <Background>
-        <Header />
+        <Header contranstLight overlay simple searchable={false}  />
 
         <Filter>
           <h1>Reserve lugares únicos para se hospedar e coisas para fazer.</h1>
