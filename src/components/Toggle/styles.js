@@ -24,6 +24,7 @@ export const ButtonToggle = styled(Button)`
   flex: 1;
   transition: 0.2s;
   font-weight: 500;
+  border-radius: 25px;
 
   ${props =>
     !props.active &&
@@ -34,6 +35,7 @@ export const ButtonToggle = styled(Button)`
 
       &:hover {
         border-color: rgb(239, 108, 0);
+        color: rgb(239, 108, 0);
         background: transparent;
       }
     `}
