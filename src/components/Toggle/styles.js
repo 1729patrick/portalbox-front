@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import Button from '~/components/Button';
+import DefaultButton from '~/components/Button';
 
 export const Container = styled.div`
   display: flex;
@@ -20,7 +20,10 @@ export const Buttons = styled.div`
   flex: 1;
 `;
 
-export const ButtonToggle = styled(Button)`
+export const ButtonToggle = styled(DefaultButton).attrs(props => ({
+  background: props.contranstLight ? '#fff' : 'rgb(239, 108, 0)',
+  color: props.contranstLight ? '#444' : '#fff',
+}))`
   flex: 1;
   transition: 0.2s;
   font-weight: 500;

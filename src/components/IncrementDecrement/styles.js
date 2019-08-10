@@ -15,6 +15,7 @@ export const Container = styled.label`
       align-items: center;
       width: 50px;
       font-weight: 500;
+      color: #666;
     }
   }
 `;
@@ -23,11 +24,20 @@ export const Round = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 35px;
-  width: 35px;
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
-  background: rgb(239, 108, 0);
+  border: rgb(239, 108, 0) solid 1px;
   cursor: pointer;
+  transition: 400ms;
+
+  &:hover {
+    background: rgb(239, 108, 0);
+
+    svg path {
+      color: #fff;
+    }
+  }
 
   ${props =>
     props.disabled &&

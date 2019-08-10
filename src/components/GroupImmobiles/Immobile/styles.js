@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  min-width: 290px;
+  min-width: 260px;
   overflow: hidden;
   border-radius: 4px;
   user-select: none;
   cursor: pointer;
   transition: 0.3s;
-  /* box-shadow: 5px 5px 25px 0px rgba(46, 61, 73, 0.2); */
+  background: #fff;
+
   box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2);
 `;
 
@@ -20,7 +21,7 @@ export const Image = styled.div`
 `;
 
 export const Details = styled.div`
-  padding: 10px;
+  padding: 12px 10px;
 
   span {
     display: flex;
@@ -43,8 +44,9 @@ export const Details = styled.div`
   }
 
   ul {
-    margin-top: 11px;
+    margin-top: 12px;
     display: flex;
+    color: #444;
 
     li {
       flex: 1;
@@ -65,6 +67,7 @@ export const Details = styled.div`
         text-overflow: ellipsis;
         white-space: nowrap;
         justify-content: center;
+        font-weight: 500;
       }
     }
   }

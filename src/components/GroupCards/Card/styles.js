@@ -2,11 +2,17 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   flex: 1;
-  border-radius: 5px;
-  box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2);
+  border-radius: 4px;
   overflow: hidden;
   cursor: pointer;
-  margin: 8px;
+  margin: 12px;
+  background: #fff;
+
+  box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2);
+
+  &:first-child {
+    margin-left: 0;
+  }
 
   h3 {
     padding: 10px;

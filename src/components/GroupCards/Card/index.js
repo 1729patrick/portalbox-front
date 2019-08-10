@@ -1,14 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Container, Image } from './styles';
 
-export default function Card() {
+export default function Card({ text, image }) {
   return (
     <Container>
-      <Image source="https://a0.muscache.com/im/pictures/1803b0d5-567a-48c4-9827-2a6deedefcda.jpg?aki_policy=x_large">
-
-      </Image>
-      <h3>Centro</h3>
+      <Image source={image} />
+      <h3>{text}</h3>
     </Container>
   );
 }
+
+Card.propTypes = {
+  text: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+};

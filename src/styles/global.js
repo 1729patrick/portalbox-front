@@ -49,7 +49,7 @@ body {
   }
 
   .slick-prev {
-    left: -6px !important;
+    left: -15px !important;
     z-index: 1;
   }
 
@@ -84,11 +84,13 @@ body {
       font-size: 14.5px !important;
       font-family: 'Product Sans', 'Roboto', sans-serif !important;
       font-weight: 500 !important;
+
     }
 
     .MuiFormControlLabel-root {
       height: 35px;
       margin-right: 0 !important;
+      color: #444;
 
       &:hover {
         color: rgb(239, 108, 0);
@@ -100,4 +102,8 @@ body {
       -webkit-appearance: none;
       margin: 0;
     }
+
+
+
+
 `;

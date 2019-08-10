@@ -1,46 +1,52 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Popup from './Popup';
-import { Container } from './styles';
+import { Container, Option } from './styles';
 
-import { Type, Categorie, Locale, Price, Particulars } from './Filters';
+import {
+  Type,
+  Finality,
+  Locale,
+  Price,
+  Especification,
+  Advanced,
+} from './Filters';
 
 export default function HeaderFilter({ popupOpen, setPopupOpen }) {
   return (
     <Container>
-      <li onClick={() => setPopupOpen(1)}>
+      <Option onClick={() => setPopupOpen(1)} selected>
         <Popup
-          component={Type}
+          component={Finality}
           open={popupOpen === 1}
           onClick={() => setPopupOpen(1)}
         >
           <span>Alugar</span>
         </Popup>
-      </li>
+      </Option>
 
-      <li onClick={() => setPopupOpen(2)}>
+      <Option onClick={() => setPopupOpen(2)} selected>
         <Popup
-          component={Categorie}
+          component={Type}
           open={popupOpen === 2}
           onClick={() => setPopupOpen(2)}
         >
-          <span>Apartamento</span>
+          <span>Tipo</span>
         </Popup>
-      </li>
+      </Option>
 
-      <li onClick={() => setPopupOpen(3)}>
+      <Option onClick={() => setPopupOpen(3)}>
         <Popup
           component={Locale}
           open={popupOpen === 3}
           onClick={() => setPopupOpen(3)}
         >
-          <span>Bairros</span>
+          <span>Bairro</span>
         </Popup>
-      </li>
+      </Option>
 
-      <li onClick={() => setPopupOpen(4)}>
+      <Option onClick={() => setPopupOpen(4)}>
         <Popup
           component={Price}
           open={popupOpen === 4}
@@ -48,23 +54,28 @@ export default function HeaderFilter({ popupOpen, setPopupOpen }) {
         >
           <span>Preço</span>
         </Popup>
-      </li>
+      </Option>
 
-      <li onClick={() => setPopupOpen(5)}>
+      <Option onClick={() => setPopupOpen(5)}>
         <Popup
-          component={Particulars}
+          component={Especification}
           open={popupOpen === 5}
           onClick={() => setPopupOpen(5)}
         >
           <span>Características</span>
         </Popup>
-      </li>
+      </Option>
 
-      <li onClick={() => setPopupOpen(6)}>
-        <Popup component={() => <div>Mais filtros</div>} open={popupOpen === 6}>
+      <Option onClick={() => setPopupOpen(6)}>
+        <Popup component={Advanced} open={popupOpen === 6}>
           <span>Mais filtros</span>
         </Popup>
-      </li>
+      </Option>
     </Container>
   );
 }
+
+HeaderFilter.propTypes = {
+  popupOpen: PropTypes.bool.isRequired,
+  setPopupOpen: PropTypes.func.isRequired,
+};

@@ -13,16 +13,15 @@ import { Background, Filter, SubmitButton, Content } from './styles';
 import GroupPlaces from '~/components/GroupImmobiles';
 import GroupCards from '~/components/GroupCards';
 
-const options = [
-  { id: 1, title: 'Centro' },
-  { id: 2, title: 'São Jorge' },
-  { id: 3, title: 'Agostini' },
-  { id: 4, title: 'Andreatta' },
-  { id: 6, title: 'Estrela' },
-];
+import {
+  listImmobiles,
+  listLocales,
+  optionsLocale,
+  optionsType,
+} from '~/services/fakeData';
 
 const Main = () => {
-  function handleSubmit(data) {
+  function handleSubmit() {
     // console.log(data);
   }
 
@@ -53,7 +52,7 @@ const Main = () => {
 
             <Select
               placeholder="Qualquer tipo"
-              options={options}
+              options={optionsType}
               name="type"
               label="Qual tipo?"
               multiple={false}
@@ -61,7 +60,7 @@ const Main = () => {
 
             <Select
               placeholder="Em qualquer lugar"
-              options={options}
+              options={optionsLocale}
               name="locale"
               label="Onde?"
               multiple={false}
@@ -73,18 +72,20 @@ const Main = () => {
       </Background>
 
       <Content>
-        <GroupCards title="Empreendimentos" />
+        <GroupCards title="Empreendimentos" list={listLocales}/>
         <AdImageBackground
           text="Veja os imóveis mais visualizados na última semana."
           contranstLight
+          textButton={"Ver imóveis"}
           style={{ marginTop: 50 }}
         />
-        <GroupPlaces style={{ marginTop: 50 }} />
+        <GroupPlaces style={{ marginTop: 50 }} list={listImmobiles}/>
         <AdVerticalBackground
-          text="Encontre os empreendimentos com os melhores acabentos de Chapecó."
+          text="Encontre os empreendimentos com os melhores acabentos em Chapecó."
           style={{ marginTop: 50 }}
+          textButton={"Ver empreendimentos"}
         />
-        <GroupCards title="Bairros" style={{ marginTop: 50 }} />
+        <GroupCards title="Bairros" style={{ marginTop: 50 }} list={listLocales}/>
       </Content>
       <Footer />
     </>

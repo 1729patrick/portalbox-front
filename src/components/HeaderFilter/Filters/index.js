@@ -1,8 +1,8 @@
-import Type from './Type/index';
-import Categorie from './Categorie/index';
-import Locale from './Locale/index';
-import Price from './Price/index';
-import Particulars from './Particulars/index';
+import Finality from './Finality';
+import Type from './Type';
+import Locale from './Locale';
+import Price from './Price';
+import Especification from './Especification';
+import Advanced from './Advanced';
 
-
-export { Type, Categorie, Locale, Price, Particulars };
+export { Finality, Type, Locale, Price, Especification, Advanced };

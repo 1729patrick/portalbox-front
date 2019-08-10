@@ -9,7 +9,7 @@ export default function Header({ simple, searchable, ...props }) {
   const [popupOpen, setPopupOpen] = useState(0);
 
   return (
-    <Container {...props} onClickCapture={e => setPopupOpen(0)}>
+    <Container {...props} onClickCapture={() => setPopupOpen(0)}>
       <div>
         <img
           src="http://fotos.sitemidas.com.br/per_corr/logos/logoGeral1221.png"

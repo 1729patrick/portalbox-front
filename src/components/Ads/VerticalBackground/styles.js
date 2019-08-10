@@ -12,9 +12,10 @@ export const Container = styled.div`
   background: #eee;
   border-radius: 6px;
   overflow: hidden;
-  color: ${props => (props.contranstLight ? '#fff' : '#444')};
+  color: ${props => (props.contranstLight ? '#fff' : 'rgb(239, 108, 0)')};
   box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2);
   position: relative;
+  user-select: none;
 
   background: #eee url(${wallpaper}) center no-repeat;
   background-size: cover;
@@ -33,7 +34,10 @@ export const Triangle = styled.div`
   }
 `;
 
-export const Button = styled(DefaultButton)`
+export const Button = styled(DefaultButton).attrs(props => ({
+  background: props.contranstLight ? '#fff' : 'rgb(239, 108, 0)',
+  color: props.contranstLight ? '#444' : '#fff',
+}))`
   width: 225px;
   position: absolute;
   left: 30px;

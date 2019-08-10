@@ -1,11 +1,12 @@
 import React from 'react';
 import Slider from 'react-slick';
+import PropTypes from 'prop-types';
 
 import { Container } from './styles';
 import SliderArrow from '~/components/SliderArrow';
 import Card from './Card';
 
-export default function GroupCards({ title, style }) {
+export default function GroupCards({ title, style, list }) {
   const settings = {
     infinite: false,
     dots: false,
@@ -22,16 +23,25 @@ export default function GroupCards({ title, style }) {
       <h1>{title}</h1>
 
       <Slider {...settings}>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {list.map(card => (
+          <Card {...card} />
+        ))}
       </Slider>
     </Container>
   );
 }
+
+GroupCards.propTypes = {
+  title: PropTypes.string.isRequired,
+  style: PropTypes.shape,
+  list: PropTypes.arrayOf(
+    PropTypes.shape({
+      text: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
+
+GroupCards.defaultProps = {
+  style: {},
+};
