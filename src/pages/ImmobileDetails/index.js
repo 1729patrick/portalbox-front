@@ -9,6 +9,10 @@ import {
   Details,
   Value,
   Images,
+  SimulationButton,
+  Maps,
+  MapsImage,
+  ButtonExplore
 } from './styles';
 
 import bed from '~/assets/carac/bed.svg';
@@ -19,8 +23,8 @@ import shower from '~/assets/carac/shower.svg';
 export default function PlaceDetails() {
   return (
     <Container>
-      <div style={{padding: '0 80px', height: '400px'}}>
-      <Images />
+      <div style={{ padding: '0 80px', height: '400px' }}>
+        <Images />
       </div>
 
       <Infos>
@@ -109,8 +113,46 @@ export default function PlaceDetails() {
         </Value>
       </Infos>
 
+      <Maps>
+        <header>
+          <h2>Conheça o bairro</h2>
+          <p>Rua Maria Lúcia da Paz - Gleba Fazenda Palhano, Londrina - PR</p>
+        </header>
+
+        <MapsImage>
+            <div>
+
+            </div>
+
+            <span></span>
+
+
+
+        <ButtonExplore text="Ver Mapa"></ButtonExplore>
+        </MapsImage>
+      </Maps>
+
       <Simulation>
-        <h2>Simule um financiamento</h2>
+        <h2>Simule seu financiamento</h2>
+
+        <form action="">
+          <span>
+            <label htmlFor="">Valor do imóvel</label>
+            <input type="number" value="6000000" />
+          </span>
+
+          <span>
+            <label htmlFor="">Valor de entrada</label>
+            <input type="number" value="60000" />
+          </span>
+
+          <span>
+            <label htmlFor="">Quantidade de parcelas</label>
+            <input type="number" value="36" />
+          </span>
+
+          <SimulationButton text="Simular" />
+        </form>
       </Simulation>
     </Container>
   );

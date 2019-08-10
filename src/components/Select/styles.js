@@ -2,7 +2,7 @@ const styles = {
   option: (provided, state) => {
     return {
       ...provided,
-      borderBottom: '1px solid #eee',
+      borderBottom: '1px solid #ccc',
       color: state.isSelected ? '#fff' : '#444',
       backgroundColor: state.isSelected
         ? 'rgb(239,108,0)'
@@ -21,7 +21,7 @@ const styles = {
   menu: (provided, state) => ({
     ...provided,
     margin: 0,
-    borderRadius: state.selectProps.menuIsOpen ? '0 0 4px 4px' : 4,
+    borderRadius: state.selectProps.menuIsOpen ? '0 0 6px 6px' : 6,
     boxShadow: '0 15px 40px rgba(0, 0, 0, 0.2)',
   }),
 
@@ -33,15 +33,15 @@ const styles = {
     ...provided,
     margin: 0,
     padding: 0,
-    borderRadius: state.selectProps.menuIsOpen ? '0 0 4px 4px' : 4,
+    borderRadius: state.selectProps.menuIsOpen ? '0 0 6px 6px' : 6,
     border: 'none',
   }),
 
   control: (_, state) => ({
     height: 44,
     display: 'flex',
-    border: '1px solid #ddd',
-    borderRadius: state.selectProps.menuIsOpen ? '4px 4px 0 0' : 4,
+    border: '1px solid #ccc',
+    borderRadius: state.selectProps.menuIsOpen ? '6px 6px 0 0' : 6,
     boxShadow: state.selectProps.menuIsOpen && '0 15px 40px rgba(0, 0, 0, 0.2)',
     cursor: 'pointer',
   }),

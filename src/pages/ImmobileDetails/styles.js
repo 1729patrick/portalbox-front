@@ -4,6 +4,8 @@ import DefaultButton from '~/components/Button';
 
 import DefaultImages from '~/components/Images';
 
+import map from '~/assets/maps.png';
+
 export const Container = styled.section``;
 
 export const Images = styled(DefaultImages)``;
@@ -35,6 +37,7 @@ export const Details = styled.div`
       font-weight: 600;
       margin-left: 15px;
       font-size: 14px;
+      cursor: pointer;
     }
   }
 `;
@@ -90,7 +93,7 @@ export const Particulars = styled.div`
     li {
       display: flex;
       align-items: center;
-      margin-right: 40px;
+      margin-right: 60px;
 
       img {
         height: 30px;
@@ -140,12 +143,102 @@ export const Highlighter = styled.div`
 `;
 
 export const Simulation = styled.div`
-  background: #fff;
-  height: 500px;
+  padding: 50px 80px 70px 80px;
+  /* background: #eee; */
+  color: #444;
 
   h2 {
     font-weight: 500;
-    color: #444;
     font-size: 25px;
   }
+
+  form {
+    margin: 100px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        font-weight: 500;
+        font-size: 15px;
+      }
+
+      input {
+        margin-top: 7px;
+        padding: 0 20px;
+        width: 200px;
+        height: 44px;
+        border-radius: 25px;
+        border: 0;
+        background: #ddd;
+        color: #333;
+      }
+
+      & + span {
+        margin-left: 25px;
+      }
+    }
+  }
+`;
+
+export const SimulationButton = styled(DefaultButton)`
+  width: 200px;
+  margin-top: auto;
+  margin-left: 30px;
+`;
+
+export const Maps = styled.div`
+  position: relative;
+  width: 100%;
+
+  header {
+    padding: 50px 80px;
+    border-top: 1px solid #eaeaea;
+
+    h2 {
+      font-size: 25px;
+      color: #444;
+      font-weight: 500;
+    }
+
+    p {
+      margin-top: 5px;
+      font-size: 16px;
+      color: #666;
+    }
+  }
+`;
+
+export const MapsImage = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  div {
+    background: url(${map}) center no-repeat;
+    background-size: cover;
+    height: 450px;
+    width: 100%;
+  }
+
+  span {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0.5;
+  }
+`;
+
+export const ButtonExplore = styled(Button)`
+  position: absolute;
+  width: 175px;
+  bottom: 50px;
 `;

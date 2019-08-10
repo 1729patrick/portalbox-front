@@ -7,7 +7,7 @@ export const Container = styled.div`
   grid-template-areas:
     'img1 img2 img4'
     'img1 img3 img3';
-  grid-gap: 15px;
+  grid-gap: 10px;
   height: 100%;
   width: 100%;
   overflow: hidden;

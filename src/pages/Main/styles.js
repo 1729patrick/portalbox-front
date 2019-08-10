@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-// import background from '~/assets/0ffd8594.jpg';
-// import background from '~/assets/5d23419e2b0ad.jpg';
 import background from '~/assets/5aec94358cdfb.jpg';
 
 import Button from '~/components/Button';
@@ -57,8 +55,10 @@ export const Filter = styled.div`
 
 export const SubmitButton = styled(Button)`
   margin-top: 15px;
+  width: 130px;
+  margin-left: auto;
 `;
 
 export const Content = styled.div`
-  padding: 30px 80px;
+  padding: 50px 80px;
 `;

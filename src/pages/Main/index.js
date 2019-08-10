@@ -4,6 +4,10 @@ import { Form } from '@rocketseat/unform';
 import Select from '~/components/Select';
 import Toggle from '~/components/Toggle';
 import Header from '~/components/Header';
+import Footer from '~/components/Footer';
+import AdImageBackground from '~/components/Ads/ImageBackground';
+import AdVerticalBackground from '~/components/Ads/VerticalBackground';
+
 import { Background, Filter, SubmitButton, Content } from './styles';
 
 import GroupPlaces from '~/components/GroupImmobiles';
@@ -19,13 +23,13 @@ const options = [
 
 const Main = () => {
   function handleSubmit(data) {
-    console.log(data);
+    // console.log(data);
   }
 
   return (
     <>
       <Background>
-        <Header contranstLight overlay simple searchable={false}  />
+        <Header contranstLight overlay simple searchable={false} />
 
         <Filter>
           <h1>Reserve lugares únicos para se hospedar e coisas para fazer.</h1>
@@ -70,9 +74,19 @@ const Main = () => {
 
       <Content>
         <GroupCards title="Empreendimentos" />
-        <GroupPlaces style={{ marginTop: '30px' }} />
-        <GroupCards title="Bairros" style={{ marginTop: '30px' }} />
+        <AdImageBackground
+          text="Veja os imóveis mais visualizados na última semana."
+          contranstLight
+          style={{ marginTop: 50 }}
+        />
+        <GroupPlaces style={{ marginTop: 50 }} />
+        <AdVerticalBackground
+          text="Encontre os empreendimentos com os melhores acabentos de Chapecó."
+          style={{ marginTop: 50 }}
+        />
+        <GroupCards title="Bairros" style={{ marginTop: 50 }} />
       </Content>
+      <Footer />
     </>
   );
 };

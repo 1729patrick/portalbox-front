@@ -8,8 +8,8 @@ export default function Immobiles() {
   return (
     <Container>
       <GroupCards title="Empreendimentos" />
-      <GroupImmobiles style={{ marginTop: '30px' }} />
-      <GroupCards title="Bairros" style={{ marginTop: '30px' }} />
+      <GroupImmobiles style={{ marginTop: 50 }} />
+      <GroupCards title="Bairros" style={{ marginTop: 50 }} />
     </Container>
   );
 }
