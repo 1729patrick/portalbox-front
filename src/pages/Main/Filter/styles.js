@@ -14,7 +14,7 @@ export const Container = styled.div`
 
   h1 {
     color: #444;
-    font-size: 32px;
+    font-size: 30px;
   }
 
   form {
@@ -38,6 +38,10 @@ export const Container = styled.div`
         color: #888;
       }
     }
+  }
+
+  a {
+    margin-left: auto;
   }
 `;
 

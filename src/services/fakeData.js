@@ -81,7 +81,7 @@ export const listImmobiles = [
   {
     id: 1,
     images:
-      'https://a0.muscache.com/im/pictures/515b9882-cb96-4ad1-b1d4-c1f200a359cc.jpg?aki_policy=large',
+      'https://cdn.cyrela.com.br/Files/Imagens/Imoveis/2235/imovel/132043120495224766-apartamento-moema-by-cyrela-lounge-festas-636x295-.jpg',
     type: 'Apartamento',
     priceFormatted: 'R$ 1720,00/mês',
     address: 'Rua Maria Lúcia da Paz - Gleba Fazenda Palhano, Londrina - PR',
@@ -93,7 +93,7 @@ export const listImmobiles = [
   {
     id: 2,
     images:
-      'https://a0.muscache.com/im/pictures/515b9882-cb96-4ad1-b1d4-c1f200a359cc.jpg?aki_policy=large',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjocCT4RaWTDhVjx6VHwd6ip-Ig86FvyObT7jztIc1oNLYZDXDbg',
     type: 'Apartamento',
     priceFormatted: 'R$ 1720,00/mês',
     address: 'Rua Maria Lúcia da Paz - Gleba Fazenda Palhano, Londrina - PR',
@@ -105,7 +105,7 @@ export const listImmobiles = [
   {
     id: 3,
     images:
-      'https://a0.muscache.com/im/pictures/515b9882-cb96-4ad1-b1d4-c1f200a359cc.jpg?aki_policy=large',
+      'https://resources.aluguetemporada.com.br/info/files/live/sites/br/files/contributed/shared/marketing/imagens/Owner%20Marketing/Posts_Blog_Owner/Novidades_AT/luxury-rentals-big--ts-2015-09-21T16%3A28%3A20_773-05%3A00.jpg',
     type: 'Apartamento',
     priceFormatted: 'R$ 1720,00/mês',
     address: 'Rua Maria Lúcia da Paz - Gleba Fazenda Palhano, Londrina - PR',
@@ -117,7 +117,7 @@ export const listImmobiles = [
   {
     id: 4,
     images:
-      'https://a0.muscache.com/im/pictures/515b9882-cb96-4ad1-b1d4-c1f200a359cc.jpg?aki_policy=large',
+      'https://i2.wp.com/trendy.pt/wp-content/uploads/2019/02/Casas-de-Luxo-Portugal.jpg?resize=657%2C360&ssl=1',
     type: 'Apartamento',
     priceFormatted: 'R$ 1720,00/mês',
     address: 'Rua Maria Lúcia da Paz - Gleba Fazenda Palhano, Londrina - PR',
@@ -129,7 +129,7 @@ export const listImmobiles = [
   {
     id: 5,
     images:
-      'https://a0.muscache.com/im/pictures/515b9882-cb96-4ad1-b1d4-c1f200a359cc.jpg?aki_policy=large',
+      'https://s2.glbimg.com/s2Vf9NNIOux1YO6Ev-x8F7OqEb4=/smart/e.glbimg.com/og/ed/f/original/2018/10/26/gd8_onehaus_c04-piscina_r08.jpg',
     type: 'Apartamento',
     priceFormatted: 'R$ 1720,00/mês',
     address: 'Rua Maria Lúcia da Paz - Gleba Fazenda Palhano, Londrina - PR',
@@ -141,7 +141,7 @@ export const listImmobiles = [
   {
     id: 6,
     images:
-      'https://a0.muscache.com/im/pictures/515b9882-cb96-4ad1-b1d4-c1f200a359cc.jpg?aki_policy=large',
+      'https://permuti.com/wp-content/uploads/2017/09/Mod01-05-1170x586.jpg',
     type: 'Apartamento',
     priceFormatted: 'R$ 1720,00/mês',
     address: 'Rua Maria Lúcia da Paz - Gleba Fazenda Palhano, Londrina - PR',
@@ -153,7 +153,7 @@ export const listImmobiles = [
   {
     id: 7,
     images:
-      'https://a0.muscache.com/im/pictures/515b9882-cb96-4ad1-b1d4-c1f200a359cc.jpg?aki_policy=large',
+      'http://media-room5.trivago.com/wp-content/uploads/2018/02/09112455/hoteis-fazenda-sc-curucaca-bom-retiro-area-externa.jpg',
     type: 'Apartamento',
     priceFormatted: 'R$ 1720,00/mês',
     address: 'Rua Maria Lúcia da Paz - Gleba Fazenda Palhano, Londrina - PR',
@@ -165,7 +165,7 @@ export const listImmobiles = [
   {
     id: 8,
     images:
-      'https://a0.muscache.com/im/pictures/515b9882-cb96-4ad1-b1d4-c1f200a359cc.jpg?aki_policy=large',
+      'http://www.cimentoitambe.com.br/wp-content/uploads/2016/07/Loteamento.jpg',
     type: 'Apartamento',
     priceFormatted: 'R$ 1720,00/mês',
     address: 'Rua Maria Lúcia da Paz - Gleba Fazenda Palhano, Londrina - PR',

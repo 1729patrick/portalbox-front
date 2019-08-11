@@ -13,7 +13,10 @@ export default function Option({
   selected,
 }) {
   return (
-    <Container onClick={() => setPopupOpen(index)} selected={selected}>
+    <Container
+      onClick={() => setPopupOpen(index)}
+      selected={selected || popupOpen === index}
+    >
       <Popup
         component={component}
         open={popupOpen === index}

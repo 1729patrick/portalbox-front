@@ -41,6 +41,7 @@ export const Details = styled.div`
 
   > p {
     margin-top: 4px;
+    color: #444;
   }
 
   ul {

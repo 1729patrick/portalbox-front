@@ -8,35 +8,35 @@ import car from '~/assets/carac/car.svg';
 import move from '~/assets/carac/move.svg';
 import shower from '~/assets/carac/shower.svg';
 
-export default function Immobile({ imobile }) {
+export default function Immobile({ immobile }) {
   return (
     <Container>
-      <Image source={imobile.images} />
+      <Image source={immobile.images} />
 
       <Details>
         <span>
-          <h4>{imobile.type}</h4>
-          <p>{imobile.priceFormatted}</p>
+          <h4>{immobile.type}</h4>
+          <p>{immobile.priceFormatted}</p>
         </span>
 
-        <p>{imobile.address}</p>
+        <p>{immobile.address}</p>
 
         <ul>
           <li>
             <img src={bed} alt="Quartos" />
-            <p>{imobile.roomsFormatted}</p>
+            <p>{immobile.roomsFormatted}</p>
           </li>
           <li>
             <img src={car} alt="Garagem" />
-            <p>{imobile.garagesFormatted}</p>
+            <p>{immobile.garagesFormatted}</p>
           </li>
           <li>
             <img src={shower} alt="Banheiros" />
-            <p>{imobile.bathroomsFormatted}</p>
+            <p>{immobile.bathroomsFormatted}</p>
           </li>
           <li>
             <img src={move} alt="Área" />
-            <p>{imobile.area}m²</p>
+            <p>{immobile.area}m²</p>
           </li>
         </ul>
       </Details>
@@ -45,7 +45,7 @@ export default function Immobile({ imobile }) {
 }
 
 Immobile.propTypes = {
-  imobile: PropTypes.shape({
+  immobile: PropTypes.shape({
     images: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     priceFormatted: PropTypes.string.isRequired,

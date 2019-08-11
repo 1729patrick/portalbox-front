@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form } from '@rocketseat/unform';
+import { Link } from 'react-router-dom';
 
 import Select from '~/components/Select';
 import Toggle from '~/components/Toggle';
@@ -50,7 +51,9 @@ export default function Filter() {
           multiple={false}
         />
 
-        <SubmitButton type="submit" text="Buscar" />
+        <Link to="/imoveis">
+          <SubmitButton type="submit" text="Buscar" />
+        </Link>
       </Form>
     </Container>
   );

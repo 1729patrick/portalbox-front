@@ -1,22 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import { Container } from './styles';
 import ImmobileCard from './Immobile';
 
 const listSize = 165;
-export default function GroupImmobiles({ title, style, list }) {
+export default function GroupImmobiles({ title, style, list, showSize }) {
   return (
     <Container style={style}>
       {title && <h1>{title}</h1>}
 
       <div>
-        {list.map(imobile => (
-          <ImmobileCard imobile={imobile} key={imobile.id} />
+        {list.map(immobile => (
+          <Link
+            to="/imoveis/ADASDN933D29289J9D9"
+            target="__blank"
+            key={immobile.id}
+          >
+            <ImmobileCard immobile={immobile} key={immobile.id} />
+          </Link>
         ))}
       </div>
 
-      <p>Ver todos ({listSize})</p>
+      {showSize && <p>Ver todos ({listSize})</p>}
     </Container>
   );
 }
@@ -24,6 +31,7 @@ export default function GroupImmobiles({ title, style, list }) {
 GroupImmobiles.propTypes = {
   title: PropTypes.string,
   style: PropTypes.shape(),
+  showSize: PropTypes.bool,
   list: PropTypes.arrayOf(
     PropTypes.shape({
       images: PropTypes.string.isRequired,
@@ -41,4 +49,5 @@ GroupImmobiles.propTypes = {
 GroupImmobiles.defaultProps = {
   title: '',
   style: {},
+  showSize: true,
 };

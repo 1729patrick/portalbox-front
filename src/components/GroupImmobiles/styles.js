@@ -2,11 +2,12 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   h1 {
-    font-size: 32px;
+    font-size: 30px;
     color: #444;
   }
 
   > div {
+    overflow: hidden;
     margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));

@@ -3,13 +3,12 @@ import styled, { css } from 'styled-components';
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  height: 32px;
+  height: 30px;
   border-radius: 25px;
-  font-weight: 500;
-  font-weight: 500;
   font-size: 14.5px;
   margin-right: 13px;
-  border: solid 1px #c2c2c2;
+  border: solid 1px #cfcfcf;
+  transition: 200ms;
 
   ${props =>
     props.selected
@@ -19,20 +18,21 @@ export const Container = styled.div`
         `
       : css`
           background: transparent;
+
+          &:hover {
+            background: #eee;
+            border-color: #eee;
+          }
         `};
 
-  &:hover {
-    border-color: rgb(239, 108, 0);
-  }
-
   > span {
-    padding: 10px 12px;
+    padding: 10px 14px;
     cursor: pointer;
 
-    color: ${props => (props.selected ? '#fff' : '#666')};
+    color: ${props => (props.selected ? '#fff' : '#444')};
 
     &:hover {
-      color: ${props => !props.selected && 'rgb(239, 108, 0)'};
+      color: ${props => !props.selected && '#444'};
     }
   }
 `;

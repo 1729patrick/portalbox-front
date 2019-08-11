@@ -25,7 +25,7 @@ const Main = () => {
         <GroupCards title="Tipos" list={listTypes} />
 
         <AdImageBackground
-          title="Explore os imóveis mais visualizados na última semana."
+          title="Veja os imóveis mais visualizados na última semana."
           contranstLight
           textButton="Explorar imóveis"
           style={{ marginTop: 50 }}

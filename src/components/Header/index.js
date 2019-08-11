@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { MdSearch } from 'react-icons/md';
 
@@ -13,10 +14,12 @@ export default function Header({ simple, searchable, ...props }) {
   return (
     <Container {...props} onClickCapture={() => setPopupOpen(-1)}>
       <div>
-        <img
-          src="http://fotos.sitemidas.com.br/per_corr/logos/logoGeral1221.png"
-          alt="Logo"
-        />
+        <Link to="/">
+          <img
+            src="http://fotos.sitemidas.com.br/per_corr/logos/logoGeral1221.png"
+            alt="Logo"
+          />
+        </Link>
 
         {searchable && (
           <Search>
