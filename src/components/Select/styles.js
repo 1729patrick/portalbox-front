@@ -2,7 +2,7 @@ const styles = {
   option: (provided, state) => {
     return {
       ...provided,
-      borderBottom: '1px solid #ccc',
+      borderBottom: '1px solid #eee',
       color: state.isSelected ? '#fff' : '#444',
       backgroundColor: state.isSelected
         ? 'rgb(239,108,0)'

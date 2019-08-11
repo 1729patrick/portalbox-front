@@ -49,7 +49,7 @@ body {
   }
 
   .slick-prev {
-    left: -15px !important;
+    left: -17px !important;
     z-index: 1;
   }
 

@@ -31,6 +31,7 @@ export const Triangle = styled.div`
     left: 30px;
     top: 30px;
     max-width: 40%;
+    font-size: 2em;
   }
 `;
 

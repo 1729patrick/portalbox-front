@@ -5,11 +5,13 @@ import { MdSearch } from 'react-icons/md';
 import { Container, Search } from './styles';
 import HeaderFilter from '~/components/HeaderFilter';
 
+import { links } from '~/services/fakeData';
+
 export default function Header({ simple, searchable, ...props }) {
-  const [popupOpen, setPopupOpen] = useState(0);
+  const [popupOpen, setPopupOpen] = useState(-1);
 
   return (
-    <Container {...props} onClickCapture={() => setPopupOpen(0)}>
+    <Container {...props} onClickCapture={() => setPopupOpen(-1)}>
       <div>
         <img
           src="http://fotos.sitemidas.com.br/per_corr/logos/logoGeral1221.png"
@@ -24,12 +26,9 @@ export default function Header({ simple, searchable, ...props }) {
         )}
 
         <ul>
-          <li>Anunciar meu imóvel</li>
-          <li>Área do cliente</li>
-          <li>Empreendimentos</li>
-          <li>Índices</li>
-          <li>Quem somos</li>
-          <li>Contato</li>
+          {links.map(link => (
+            <li key={link.title}>{link.title}</li>
+          ))}
         </ul>
       </div>
 

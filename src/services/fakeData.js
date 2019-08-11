@@ -1,3 +1,12 @@
+export const links = [
+  { title: 'Alugar imóvel' },
+  { title: 'Comprar imóvel' },
+  { title: 'Anunciar meu imóvel' },
+  { title: 'Área do cliente' },
+  { title: 'Quem somos' },
+  { title: 'Contato' },
+];
+
 export const optionsLocale = [
   { id: 1, title: 'Centro' },
   { id: 2, title: 'São Jorge' },
@@ -9,10 +18,11 @@ export const optionsLocale = [
 export const optionsType = [
   { id: 1, title: 'Apartamento' },
   { id: 2, title: 'Casa' },
+  { id: 4, title: 'Kitnet' },
   { id: 3, title: 'Sala comercial' },
-  { id: 4, title: 'Duplex' },
-  { id: 6, title: 'Armazem' },
-  { id: 7, title: 'Chacará' },
+  { id: 5, title: 'Cobertura' },
+  { id: 6, title: 'Chacará' },
+  { id: 7, title: 'Armazém' },
 ];
 
 export const optionsParticular = [
@@ -23,56 +33,47 @@ export const optionsParticular = [
   { id: 7, title: 'Piscina', type: 'bool' },
 ];
 
-export const listLocales = [
+export const listTypes = [
   {
-    text: 'Centro',
-    image:
-      'https://a0.muscache.com/im/pictures/1803b0d5-567a-48c4-9827-2a6deedefcda.jpg?aki_policy=x_large',
+    id: 1,
+    title: 'Apartamento',
+    image: 'https://d2wpq6lms06dik.cloudfront.net/3212/177978373.jpg',
   },
   {
-    text: 'São Jorge',
+    id: 2,
+    title: 'Casa',
     image:
-      'https://a0.muscache.com/im/pictures/1803b0d5-567a-48c4-9827-2a6deedefcda.jpg?aki_policy=x_large',
+      'https://privilegeimobiliaria.com.br/wp-content/uploads/2018/11/zzzzz.jpg',
   },
   {
-    text: 'Agostini',
+    id: 3,
+    title: 'Kitnet',
     image:
-      'https://a0.muscache.com/im/pictures/1803b0d5-567a-48c4-9827-2a6deedefcda.jpg?aki_policy=x_large',
+      'http://bko.com.br/wp-content/uploads/2016/07/Apartamento-Studio-1080x500.jpg',
   },
   {
-    text: 'Andreatta',
-    image:
-      'https://a0.muscache.com/im/pictures/1803b0d5-567a-48c4-9827-2a6deedefcda.jpg?aki_policy=x_large',
+    id: 4,
+    title: 'Sala comercial',
+    image: 'https://www.seulugaraqui.com/arquivos/fotos/14-10-03_15:42:51.jpg',
   },
   {
-    text: 'Estrela',
+    id: 5,
+    title: 'Cobertura',
     image:
-      'https://a0.muscache.com/im/pictures/1803b0d5-567a-48c4-9827-2a6deedefcda.jpg?aki_policy=x_large',
+      'http://www.borgesi.com.br/wp-content/uploads/2017/04/coberura-luxo-vista.jpg',
+  },
+
+  {
+    id: 6,
+    title: 'Chacará',
+    image:
+      'https://imganuncios.mitula.net/rural_inhumas_6160009540386309339.jpg',
   },
   {
-    text: 'Julho',
+    id: 7,
+    title: 'Armazém',
     image:
-      'https://a0.muscache.com/im/pictures/1803b0d5-567a-48c4-9827-2a6deedefcda.jpg?aki_policy=x_large',
-  },
-  {
-    text: 'Montagna',
-    image:
-      'https://a0.muscache.com/im/pictures/1803b0d5-567a-48c4-9827-2a6deedefcda.jpg?aki_policy=x_large',
-  },
-  {
-    text: 'Brescia',
-    image:
-      'https://a0.muscache.com/im/pictures/1803b0d5-567a-48c4-9827-2a6deedefcda.jpg?aki_policy=x_large',
-  },
-  {
-    text: 'Setíbul',
-    image:
-      'https://a0.muscache.com/im/pictures/1803b0d5-567a-48c4-9827-2a6deedefcda.jpg?aki_policy=x_large',
-  },
-  {
-    text: 'Centro',
-    image:
-      'https://a0.muscache.com/im/pictures/1803b0d5-567a-48c4-9827-2a6deedefcda.jpg?aki_policy=x_large',
+      'https://aglomeradodigital.com.br/wp-content/uploads/2018/05/galpao-velho-casa-de-luxo-18.jpg',
   },
 ];
 

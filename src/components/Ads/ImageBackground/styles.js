@@ -21,6 +21,7 @@ export const Container = styled.div`
 
   h1 {
     max-width: 40%;
+    font-size: 2em;
   }
 `;
 
@@ -28,5 +29,5 @@ export const Button = styled(DefaultButton).attrs(props => ({
   background: props.contranstLight ? '#fff' : 'rgb(239, 108, 0)',
   color: props.contranstLight ? '#444' : '#fff',
 }))`
-  width: 150px;
+  width: 175px;
 `;

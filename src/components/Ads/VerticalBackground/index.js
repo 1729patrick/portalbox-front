@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 import { Container, Triangle, Button } from './styles';
 
-export default function VerticalBackground({ text, textButton, ...rest }) {
+export default function VerticalBackground({ title, textButton, ...rest }) {
   return (
     <Container {...rest}>
       <Triangle>
-        <h1>{text}</h1>
+        <h1>{title}</h1>
         {textButton && <Button text={textButton} />}
       </Triangle>
     </Container>
@@ -15,9 +15,9 @@ export default function VerticalBackground({ text, textButton, ...rest }) {
 }
 
 VerticalBackground.propTypes = {
-  text: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   textButton: PropTypes.string,
-  style: PropTypes.shape,
+  style: PropTypes.shape(),
 };
 
 VerticalBackground.defaultProps = {

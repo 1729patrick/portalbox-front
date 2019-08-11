@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import { Container, Button } from './styles';
 
 export default function ImageBackground({
-  text,
+  title,
   textButton,
   contranstLight,
   ...rest
 }) {
   return (
     <Container {...rest} contranstLight={contranstLight}>
-      <h1>{text}</h1>
+      <h1>{title}</h1>
 
       {textButton && (
         <Button text={textButton} contranstLight={contranstLight} />
@@ -21,10 +21,10 @@ export default function ImageBackground({
 }
 
 ImageBackground.propTypes = {
-  text: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   textButton: PropTypes.string,
   contranstLight: PropTypes.bool,
-  style: PropTypes.shape,
+  style: PropTypes.shape(),
 };
 
 ImageBackground.defaultProps = {

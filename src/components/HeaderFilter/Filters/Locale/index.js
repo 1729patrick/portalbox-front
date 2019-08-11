@@ -4,7 +4,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import { Content } from './styles';
 import Checkbox from '~/components/Checkbox';
-import DefaultPopupLayout from '../_layouts/DefaultPopup';
+import PopupLayout from '../../_layouts/Popup';
 
 import { optionsLocale } from '~/services/fakeData';
 
@@ -21,7 +21,7 @@ export default function Locale() {
   };
 
   return (
-    <DefaultPopupLayout label="Em qual bairro?">
+    <PopupLayout label="Em qual bairro?">
       <Content>
         {optionsLocale.map(locale => (
           <FormControlLabel
@@ -37,6 +37,6 @@ export default function Locale() {
           />
         ))}
       </Content>
-    </DefaultPopupLayout>
+    </PopupLayout>
   );
 }

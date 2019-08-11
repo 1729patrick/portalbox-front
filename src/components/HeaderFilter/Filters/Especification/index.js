@@ -6,7 +6,7 @@ import IncrementDecrement from '~/components/IncrementDecrement';
 import Switch from '~/components/Switch';
 
 import { Content } from './styles';
-import DefaultPopupLayout from '../_layouts/DefaultPopup';
+import PopupLayout from '../../_layouts/Popup';
 
 import { optionsParticular } from '~/services/fakeData';
 
@@ -22,7 +22,7 @@ export default function Especification() {
   };
 
   return (
-    <DefaultPopupLayout label="Com quais características?">
+    <PopupLayout label="Com quais características?">
       <Content>
         {optionsParticular.map(especification => {
           if (especification.type === 'range') {
@@ -51,6 +51,6 @@ export default function Especification() {
           );
         })}
       </Content>
-    </DefaultPopupLayout>
+    </PopupLayout>
   );
 }

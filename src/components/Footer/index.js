@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Container, Copyright } from './styles';
 
+import { links } from '~/services/fakeData';
+
 export default function Footer() {
   return (
     <>
@@ -20,11 +22,9 @@ export default function Footer() {
         </div>
 
         <ul>
-          <li>Anunciar meu imóvel</li>
-          <li>Área do cliente</li>
-          <li>Empreendimentos</li>
-          <li>Índices</li>
-          <li>Quem somos</li>
+          {links.map(link => (
+            <li key={link.title}>{link.title}</li>
+          ))}
         </ul>
       </Container>
 

@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 
 import { Container, Image } from './styles';
 
-export default function Card({ text, image }) {
+export default function Card({ title, image }) {
   return (
     <Container>
       <Image source={image} />
-      <h3>{text}</h3>
+      <h3>{title}</h3>
     </Container>
   );
 }
 
 Card.propTypes = {
-  text: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
 };

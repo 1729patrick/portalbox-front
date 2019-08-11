@@ -5,10 +5,10 @@ import { Container } from './styles';
 import ImmobileCard from './Immobile';
 
 const listSize = 165;
-export default function GroupImmobiles({ style, list }) {
+export default function GroupImmobiles({ title, style, list }) {
   return (
     <Container style={style}>
-      <h1>Destaques</h1>
+      {title && <h1>{title}</h1>}
 
       <div>
         {list.map(imobile => (
@@ -22,7 +22,8 @@ export default function GroupImmobiles({ style, list }) {
 }
 
 GroupImmobiles.propTypes = {
-  style: PropTypes.shape,
+  title: PropTypes.string,
+  style: PropTypes.shape(),
   list: PropTypes.arrayOf(
     PropTypes.shape({
       images: PropTypes.string.isRequired,
@@ -38,5 +39,6 @@ GroupImmobiles.propTypes = {
 };
 
 GroupImmobiles.defaultProps = {
+  title: '',
   style: {},
 };

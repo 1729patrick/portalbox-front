@@ -6,7 +6,7 @@ import { Content } from './styles';
 import Checkbox from '~/components/Checkbox';
 
 import { optionsType } from '~/services/fakeData';
-import DefaultPopupLayout from '../_layouts/DefaultPopup';
+import PopupLayout from '../../_layouts/Popup';
 
 export default function Type() {
   const [state, setState] = React.useState({
@@ -21,10 +21,11 @@ export default function Type() {
   };
 
   return (
-    <DefaultPopupLayout label="Qual tipo?">
+    <PopupLayout label="Qual tipo?">
       <Content>
         {optionsType.map(type => (
           <FormControlLabel
+            key={type.title}
             control={
               <Checkbox
                 checked={state.checkedG}
@@ -36,6 +37,6 @@ export default function Type() {
           />
         ))}
       </Content>
-    </DefaultPopupLayout>
+    </PopupLayout>
   );
 }

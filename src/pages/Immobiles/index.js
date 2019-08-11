@@ -4,19 +4,35 @@ import { Container } from './styles';
 import GroupImmobiles from '~/components/GroupImmobiles';
 import GroupCards from '~/components/GroupCards';
 
-import { listImmobiles, listLocales } from '~/services/fakeData';
+import { AdImageBackground, AdVerticalBackground } from '~/components/Ads';
+
+import { listImmobiles, listTypes } from '~/services/fakeData';
 
 export default function Immobiles() {
   return (
     <Container>
-      <GroupCards title="Empreendimentos" list={listLocales} />
+      <GroupCards title="Tipos" list={listTypes} />
 
-      <GroupImmobiles style={{ marginTop: 50 }} list={listImmobiles} />
-
-      <GroupCards
-        title="Bairros"
+      <AdImageBackground
+        title="Explore os imóveis mais visualizados na última semana."
+        contranstLight
+        textButton="Explorar imóveis"
         style={{ marginTop: 50 }}
-        list={listLocales}
+      />
+      <GroupImmobiles
+        style={{ marginTop: 50 }}
+        list={listImmobiles}
+        title="Destaques"
+      />
+      <AdVerticalBackground
+        title="Encontre os aparamentos com os melhores acabentos em Chapecó."
+        style={{ marginTop: 50 }}
+        textButton="Ver apartamentos"
+      />
+      <GroupImmobiles
+        style={{ marginTop: 50 }}
+        list={listImmobiles}
+        title="Novos"
       />
     </Container>
   );

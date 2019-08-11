@@ -10,7 +10,7 @@ const DefaultLayout = ({ children, simple, searchable }) => {
     <Wrapper simple={simple}>
       <Header simple={simple} searchable={searchable} />
       {children}
-      <Footer></Footer>
+      <Footer />
     </Wrapper>
   );
 };

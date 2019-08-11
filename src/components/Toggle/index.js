@@ -42,7 +42,7 @@ export default function Toggle({ options, name, label, value }) {
 
 Toggle.propTypes = {
   name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.number,
@@ -53,5 +53,6 @@ Toggle.propTypes = {
 };
 
 Toggle.defaultProps = {
+  label: '',
   value: undefined,
 };
