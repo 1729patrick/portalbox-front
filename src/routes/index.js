@@ -7,6 +7,8 @@ import Main from '~/pages/Main';
 import Immobiles from '~/pages/Immobiles';
 import PlaceDetails from '~/pages/ImmobileDetails';
 
+import ImagesSlider from '~/components/ImagesSlider';
+
 const Routes = () => {
   return (
     <BrowserRouter>
@@ -14,6 +16,7 @@ const Routes = () => {
 
       <Route path="/imoveis" exact component={Immobiles} />
       <Route path="/imoveis/:id" exact component={PlaceDetails} simple />
+      <Route path="/imoveisx" exact component={ImagesSlider} onlyComponent />
     </BrowserRouter>
   );
 };

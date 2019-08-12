@@ -175,3 +175,51 @@ export const listImmobiles = [
     area: 150,
   },
 ];
+
+export const images = [
+  {
+    source:
+      'https://www.imovelweb.com.br/noticias/wp-content/uploads/2014/02/imovel-1-1024x584.jpg',
+    description: 'Área de lazer',
+  },
+  {
+    source:
+      'https://resources.aluguetemporada.com.br/info/files/live/sites/br/files/contributed/shared/marketing/imagens/Owner%20Marketing/Posts_Blog_Owner/Novidades_AT/luxury-rentals-big--ts-2015-09-21T16%3A28%3A20_773-05%3A00.jpg',
+    description: 'Sala de jantar',
+  },
+  {
+    source:
+      'https://i2.wp.com/trendy.pt/wp-content/uploads/2019/02/Casas-de-Luxo-Portugal.jpg?resize=657%2C360&ssl=1',
+    description: 'Piscina',
+  },
+  {
+    source:
+      'https://s2.glbimg.com/s2Vf9NNIOux1YO6Ev-x8F7OqEb4=/smart/e.glbimg.com/og/ed/f/original/2018/10/26/gd8_onehaus_c04-piscina_r08.jpg',
+    description: 'Járdim',
+  },
+  {
+    source:
+      'https://permuti.com/wp-content/uploads/2017/09/Mod01-05-1170x586.jpg',
+    description: 'Salão de festas',
+  },
+  {
+    source:
+      'http://hansenimoveis.com/wp-content/uploads/2015/05/Casas-de-luxo-Encontro-das-%C3%81guas.jpg',
+    description: 'Sala de estar',
+  },
+  {
+    source:
+      'http://www.cimentoitambe.com.br/wp-content/uploads/2016/07/Loteamento.jpg',
+    description: 'Localização do terreno',
+  },
+  {
+    source:
+      'http://media-room5.trivago.com/wp-content/uploads/2018/02/09112455/hoteis-fazenda-sc-curucaca-bom-retiro-area-externa.jpg',
+    description: 'Armazém de ferramentas',
+  },
+  {
+    source:
+      'http://imoveis.culturamix.com/blog/wp-content/uploads/sites/1/nggallery/mantenha-a-organizacao/Mantenha-a-Organiza%C3%A7%C3%A3o-1.jpg',
+    description: 'Banheiro para visitas',
+  },
+];

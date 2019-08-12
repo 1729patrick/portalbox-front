@@ -42,5 +42,5 @@ export const Button = styled(DefaultButton).attrs({
   background: '#fff',
 })`
   margin-bottom: 30px;
-  width: 175px;
+  width: 150px;
 `;

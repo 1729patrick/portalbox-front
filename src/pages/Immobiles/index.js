@@ -39,8 +39,8 @@ export default function Immobiles() {
 
     <AdHorizontalBackground style={{ marginTop: 50 }}
       title="O que você precisa?"
-      firstTextButton="Preciso alugar"
-      secondTextButton="Preciso comprar"
+      firstTextButton="Alugar"
+      secondTextButton="Comprar"
     ></AdHorizontalBackground>
 
       <GroupImmobiles
