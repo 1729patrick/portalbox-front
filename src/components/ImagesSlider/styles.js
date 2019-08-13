@@ -5,6 +5,7 @@ export const Container = styled.div`
   display: flex;
   padding: 80px 40px;
   user-select: none;
+  background: #fff;
 
   > svg {
     cursor: pointer;
@@ -84,8 +85,8 @@ export const ImageIcon = styled.div`
 
 export const Description = styled.div`
   p {
-    font-weight: 500;
-    font-size: 17px;
+    font-weight: 600;
+    font-size: 16px;
     color: #555;
     margin-top: 20px;
   }
