@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Container, MapsImage, ButtonExplore } from './styles';
 
-export default function Maps() {
+export default function Maps({ openPreview }) {
   return (
     <Container>
       <header>
@@ -15,7 +15,7 @@ export default function Maps() {
 
         <span />
 
-        <ButtonExplore text="Ver Mapa" />
+        <ButtonExplore text="Ver Mapa" onClick={openPreview} />
       </MapsImage>
     </Container>
   );

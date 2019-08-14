@@ -1,7 +1,7 @@
 import React, { useRef, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
-import { FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 import {
   Container,
@@ -45,8 +45,6 @@ export default function ImagesSlider({ initialSlide }) {
 
   return (
     <Container>
-      <FiX color="#666" size={45} />
-
       <Preview source={imageActive.source}>
         <FiChevronLeft size={60} color="#666" onClick={previous} />
         <div />

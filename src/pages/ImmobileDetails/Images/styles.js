@@ -25,7 +25,7 @@ export const Container = styled.div`
       transition: 300ms;
 
       &:hover {
-        transform: scale(1.15);
+        transform: scale(1.1);
       }
     }
   }

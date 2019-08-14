@@ -223,3 +223,17 @@ export const images = [
     description: 'Banheiro para visitas',
   },
 ];
+
+export const places = [
+  { id: 10, title: 'Escola' },
+  { id: 5, title: 'Hospital' },
+  { id: 9, title: 'Restaurante' },
+  { id: 4, title: 'Acadêmia' },
+  { id: 11, title: 'Supermercado' },
+  { id: 1, title: 'Padaria' },
+  { id: 2, title: 'Banco' },
+  { id: 8, title: 'Farmácia' },
+  { id: 3, title: 'Bar' },
+  { id: 6, title: 'Parque' },
+  { id: 7, title: 'Estacionamento' },
+];

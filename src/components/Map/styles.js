@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const Container = styled.div`
   height: 100%;
   display: flex;
-  padding: 80px 0px 80px 40px;
   background: #fff;
 `;
 
@@ -16,6 +15,43 @@ export const MapWrapper = styled.div`
 `;
 
 export const MarkerList = styled.div`
-  width: 300px;
-  padding: 50px 0;
+  width: 320px;
+  padding: 10px 0 10px 50px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  div {
+    display: flex;
+    flex-direction: column;
+
+    p {
+      font-size: 16px;
+      font-weight: 500;
+      color: #444;
+      margin: 16px 0 12px 0;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #eee;
+
+      span {
+        color: #777;
+        font-size: 13px;
+        font-weight: 400;
+      }
+    }
+
+    .MuiFormControlLabel-label {
+      width: 100%;
+    }
+
+    .MuiFormControlLabel-labelPlacementStart {
+      margin-left: 0 !important;
+    }
+  }
+
+  h4 {
+    font-weight: 500;
+    color: #777;
+  }
 `;

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Container, Button } from './styles';
 
-export default function Images() {
+export default function Images({ openPreview }) {
   return (
     <Container>
       <div className="img1">
@@ -21,7 +21,7 @@ export default function Images() {
         <div />
       </div>
 
-      <Button text="Ver fotos"></Button>
+      <Button text="Ver fotos" onClick={openPreview} />
     </Container>
   );
 }

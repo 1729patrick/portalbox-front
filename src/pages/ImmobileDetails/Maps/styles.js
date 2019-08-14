@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 import DefaultButton from '~/components/Button';
-import map from '~/assets/maps.png';
+import map from '~/assets/map.png';
 
 export const Container = styled.div`
   position: relative;
   width: 100%;
 
   header {
-    padding: 50px 80px;
+    padding: 50px 80px 30px 80px;
     border-top: 1px solid #eaeaea;
 
     h2 {

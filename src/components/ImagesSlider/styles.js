@@ -3,9 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   height: 100%;
   display: flex;
-  padding: 80px 40px;
   user-select: none;
-  background: #fff;
 
   > svg {
     cursor: pointer;
@@ -18,10 +16,10 @@ export const Preview = styled.aside`
   flex: 1;
   display: flex;
   align-items: center;
-  padding-right: 40px;
+  padding-right: 30px;
 
   div {
-    margin: 0 60px;
+    margin: 0 26px;
     background: ${props => props.source && `url(${props.source})`} center
       no-repeat;
     background-size: cover;
@@ -57,7 +55,7 @@ export const SliderWrapper = styled.div`
       border: solid 2px #444;
 
       div {
-        transform: scale(1.15);
+        transform: scale(1.1);
       }
     }
   }
@@ -78,7 +76,7 @@ export const ImageIcon = styled.div`
     transition: 300ms;
 
     &:hover {
-      transform: scale(1.15);
+      transform: scale(1.1);
     }
   }
 `;
