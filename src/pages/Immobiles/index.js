@@ -4,7 +4,11 @@ import { Container } from './styles';
 import GroupImmobiles from '~/components/GroupImmobiles';
 import GroupCards from '~/components/GroupCards';
 
-import { AdImageBackground, AdVerticalBackground, AdHorizontalBackground, } from '~/components/Ads';
+import {
+  AdImageBackground,
+  AdVerticalBackground,
+  AdHorizontalBackground,
+} from '~/components/Ads';
 
 import { listImmobiles, listTypes } from '~/services/fakeData';
 
@@ -27,7 +31,7 @@ export default function Immobiles() {
       />
 
       <AdVerticalBackground
-        title="Encontre os aparamentos com os melhores acabentos em Chapecó."
+        title="Encontre os aparamentos com os melhores acabentos em Florianópolis."
         style={{ marginTop: 50 }}
         textButton="Ver apartamentos"
       />
@@ -37,11 +41,12 @@ export default function Immobiles() {
         title="Novos"
       />
 
-    <AdHorizontalBackground style={{ marginTop: 50 }}
-      title="O que você precisa?"
-      firstTextButton="Alugar"
-      secondTextButton="Comprar"
-    ></AdHorizontalBackground>
+      <AdHorizontalBackground
+        style={{ marginTop: 50 }}
+        title="O que você precisa?"
+        firstTextButton="Alugar"
+        secondTextButton="Comprar"
+      />
 
       <GroupImmobiles
         title="Nossos imóveis"
@@ -50,6 +55,9 @@ export default function Immobiles() {
         showSize={false}
       />
       <GroupImmobiles list={listImmobiles} showSize={false} />
+      <GroupImmobiles list={listImmobiles} />
+      <GroupImmobiles list={listImmobiles} />
+      <GroupImmobiles list={listImmobiles} />
       <GroupImmobiles list={listImmobiles} />
     </Container>
   );

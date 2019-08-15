@@ -8,7 +8,6 @@ export const Container = styled.div`
   cursor: pointer;
   transition: 0.3s;
   background: #fff;
-
   box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2);
 `;
 

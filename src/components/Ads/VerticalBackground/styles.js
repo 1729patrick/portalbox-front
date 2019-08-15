@@ -33,6 +33,25 @@ export const Triangle = styled.div`
     max-width: 40%;
     font-size: 2em;
   }
+
+  @media screen and (max-width: 768px) {
+    border: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      font-size: 1.5rem;
+      max-width: 100%;
+    }
+
+    button {
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
 `;
 
 export const Button = styled(DefaultButton).attrs(props => ({

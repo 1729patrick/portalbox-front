@@ -4,16 +4,19 @@ export const Container = styled.div`
   h1 {
     font-size: 30px;
     color: #444;
+    margin-bottom: 20px;
   }
 
   > div {
-    overflow: hidden;
-    margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     grid-template-rows: repeat(2, 1fr);
-    grid-auto-rows: 0;
+    /* grid-auto-rows: 0; */
+    overflow-y: hidden;
     grid-gap: 15px;
+    z-index: 1;
+    margin: -15px;
+    padding: 15px;
   }
 
   > p {

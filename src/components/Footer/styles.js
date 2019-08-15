@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+export const FooterWrapper = styled.footer``;
+
 export const Container = styled.div`
   display: flex;
   justify-content: space-between;
@@ -48,6 +50,15 @@ export const Container = styled.div`
       }
     }
   }
+
+  @media screen and (max-width: 768px) {
+    padding: 20px;
+    justify-content: center;
+
+    ul {
+      display: none;
+    }
+  }
 `;
 
 export const Copyright = styled.div`
@@ -63,5 +74,17 @@ export const Copyright = styled.div`
 
   p + p {
     margin-top: 5px;
+
+
+    &:active
+  }
+
+  @media screen and (max-width: 768px) {
+    justify-content: center;
+    padding: 15px;
+
+    span {
+      display: none;
+    }
   }
 `;

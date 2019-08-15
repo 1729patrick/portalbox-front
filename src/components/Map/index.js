@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { IoIosFlag } from 'react-icons/io';
 
 import Checkbox from '~/components/Checkbox';
 import { Container, MapWrapper, MarkerList } from './styles';
@@ -8,11 +10,11 @@ import MapContainer from './MapContainer';
 
 import { places } from '~/services/fakeData';
 
-export default function Map() {
+export default function Map({ location }) {
   return (
     <Container>
       <MapWrapper>
-        <MapContainer />
+        <MapContainer location={location} />
       </MapWrapper>
 
       <MarkerList>
@@ -31,7 +33,12 @@ export default function Map() {
                 />
               }
               labelPlacement="start"
-              label={place.title}
+              label={
+                <>
+                  <IoIosFlag size={22} color={place.color} />
+                  {place.title}
+                </>
+              }
             />
           ))}
         </div>
@@ -41,3 +48,10 @@ export default function Map() {
     </Container>
   );
 }
+
+Map.propTypes = {
+  location: PropTypes.shape({
+    lat: PropTypes.number.isRequired,
+    lng: PropTypes.number.isRequired,
+  }).isRequired,
+};

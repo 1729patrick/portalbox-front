@@ -8,31 +8,52 @@ import Images from './Images';
 import Financing from './Financing';
 import Details from './Details';
 
-import Previews from './Previews';
+import Preview from './Preview';
 
 export default function PlaceDetails() {
-  const [previewsIsOpen, setPreviewsIsOpen] = useState(false);
-  const [page, setPage] = useState('');
+  const [preview, setPreview] = useState({});
 
-  const handlePreviewOpen = page => {
-    setPreviewsIsOpen(true);
-    setPage(page);
+  const handlePreviewOpen = (page, args) => {
+    setPreview({
+      isOpen: true,
+      page,
+      args,
+    });
   };
-  return previewsIsOpen ? (
-    <Previews onClose={() => setPreviewsIsOpen(false)} page={page} />
-  ) : (
-    <Container>
+
+  const openImage = imageIndex =>
+    handlePreviewOpen(
+      'images',
+      typeof imageIndex === 'number'
+        ? {
+            initialImage: imageIndex,
+            location: { lat: -26.724933, lng: -53.532206 },
+          }
+        : { location: { lat: -26.724933, lng: -53.532206 } }
+    );
+
+  const openMap = location =>
+    handlePreviewOpen('map', {
+      location: { lat: -26.724933, lng: -53.532206 },
+    });
+
+  return (
+    <Container scrollDisabled={preview.isOpen}>
       <ImagesWrapper>
-        <Images openPreview={() => handlePreviewOpen('images')} />
+        <Images openPreview={openImage} />
       </ImagesWrapper>
 
       <Infos>
-        <Details />
+        <Details openPreview={openMap} />
         <Price />
       </Infos>
 
-      <Maps openPreview={() => handlePreviewOpen('maps')} />
+      <Maps openPreview={openMap} />
       <Financing />
+
+      {preview.isOpen && (
+        <Preview onClose={() => setPreview({})} {...preview} />
+      )}
     </Container>
   );
 }

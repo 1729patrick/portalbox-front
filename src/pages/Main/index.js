@@ -1,4 +1,5 @@
 import React from 'react';
+import { IoIosArrowDown } from 'react-icons/io';
 
 import Header from '~/components/Header';
 import Footer from '~/components/Footer';
@@ -19,6 +20,10 @@ const Main = () => {
       <Background>
         <Header contranstLight overlay simple searchable={false} />
         <Filter />
+
+        <span>
+          <IoIosArrowDown size={35} color="#fff" />
+        </span>
       </Background>
 
       <Content>
@@ -36,7 +41,7 @@ const Main = () => {
           title="Destaques"
         />
         <AdVerticalBackground
-          title="Encontre os aparamentos com os melhores acabentos em Chapecó."
+          title="Encontre os aparamentos com os melhores acabentos em Florianópolis."
           style={{ marginTop: 50 }}
           textButton="Ver apartamentos"
         />

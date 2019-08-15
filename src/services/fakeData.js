@@ -89,6 +89,7 @@ export const listImmobiles = [
     garagesFormatted: '1 vaga',
     bathroomsFormatted: '2 banheiros',
     area: 150,
+    location: { lat: -26.724933, lng: -53.532206 },
   },
   {
     id: 2,
@@ -101,6 +102,7 @@ export const listImmobiles = [
     garagesFormatted: '1 vaga',
     bathroomsFormatted: '2 banheiros',
     area: 150,
+    location: { lat: -26.724933, lng: -53.532206 },
   },
   {
     id: 3,
@@ -113,6 +115,7 @@ export const listImmobiles = [
     garagesFormatted: '1 vaga',
     bathroomsFormatted: '2 banheiros',
     area: 150,
+    location: { lat: -26.724933, lng: -53.532206 },
   },
   {
     id: 4,
@@ -125,6 +128,7 @@ export const listImmobiles = [
     garagesFormatted: '1 vaga',
     bathroomsFormatted: '2 banheiros',
     area: 150,
+    location: { lat: -26.724933, lng: -53.532206 },
   },
   {
     id: 5,
@@ -137,6 +141,7 @@ export const listImmobiles = [
     garagesFormatted: '1 vaga',
     bathroomsFormatted: '2 banheiros',
     area: 150,
+    location: { lat: -26.724933, lng: -53.532206 },
   },
   {
     id: 6,
@@ -149,6 +154,7 @@ export const listImmobiles = [
     garagesFormatted: '1 vaga',
     bathroomsFormatted: '2 banheiros',
     area: 150,
+    location: { lat: -26.724933, lng: -53.532206 },
   },
   {
     id: 7,
@@ -161,6 +167,7 @@ export const listImmobiles = [
     garagesFormatted: '1 vaga',
     bathroomsFormatted: '2 banheiros',
     area: 150,
+    location: { lat: -26.724933, lng: -53.532206 },
   },
   {
     id: 8,
@@ -173,6 +180,7 @@ export const listImmobiles = [
     garagesFormatted: '1 vaga',
     bathroomsFormatted: '2 banheiros',
     area: 150,
+    location: { lat: -26.724933, lng: -53.532206 },
   },
 ];
 
@@ -225,15 +233,15 @@ export const images = [
 ];
 
 export const places = [
-  { id: 10, title: 'Escola' },
-  { id: 5, title: 'Hospital' },
-  { id: 9, title: 'Restaurante' },
-  { id: 4, title: 'Acadêmia' },
-  { id: 11, title: 'Supermercado' },
-  { id: 1, title: 'Padaria' },
-  { id: 2, title: 'Banco' },
-  { id: 8, title: 'Farmácia' },
-  { id: 3, title: 'Bar' },
-  { id: 6, title: 'Parque' },
-  { id: 7, title: 'Estacionamento' },
+  { id: 10, title: 'Escola', color: '#8E24AA' },
+  { id: 5, title: 'Hospital', color: '#0B8043' },
+  { id: 9, title: 'Restaurante', color: '#E4C441' },
+  { id: 4, title: 'Acadêmia', color: '#D50000' },
+  { id: 11, title: 'Supermercado', color: '#9E69AF' },
+  { id: 2, title: 'Banco', color: '#AD1457"' },
+  { id: 1, title: 'Padaria', color: '#3F51B5' },
+  { id: 8, title: 'Farmácia', color: '#795548' },
+  { id: 3, title: 'Bar', color: '#7986CB' },
+  { id: 6, title: 'Parque', color: '#F09300' },
+  { id: 7, title: 'Estacionamento', color: '#D81B60' },
 ];

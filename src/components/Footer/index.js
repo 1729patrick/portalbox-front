@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { Container, Copyright } from './styles';
+import { Container, Copyright, FooterWrapper } from './styles';
 
 import { links } from '~/services/fakeData';
 
 export default function Footer() {
   return (
-    <>
+    <FooterWrapper>
       <Container>
         <div>
           <img
@@ -40,6 +40,6 @@ export default function Footer() {
           DESENVOLVIDO POR: <b>PATRICK BATTISTI</b>
         </p>
       </Copyright>
-    </>
+    </FooterWrapper>
   );
 }

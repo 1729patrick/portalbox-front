@@ -23,6 +23,17 @@ export const Container = styled.div`
     max-width: 40%;
     font-size: 2em;
   }
+
+  @media screen and (max-width: 768px) {
+    padding: 30px 20px;
+    background-position: right;
+    align-items: center;
+
+    h1 {
+      font-size: 1.5rem;
+      max-width: 100%;
+    }
+  }
 `;
 
 export const Button = styled(DefaultButton).attrs(props => ({

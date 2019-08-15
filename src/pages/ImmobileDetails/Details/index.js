@@ -7,14 +7,14 @@ import car from '~/assets/carac/car.svg';
 import move from '~/assets/carac/move.svg';
 import shower from '~/assets/carac/shower.svg';
 
-export default function Details() {
+export default function Details({ openPreview }) {
   return (
     <Container>
       <h2>Apartamento com 3 quartos para Alugar, 153 m² por R$ 6.000/Mês</h2>
 
       <h3>
         Rua Maria Lúcia da Paz - Gleba Fazenda Palhano, Londrina - PR
-        <span>Ver no mapa</span>
+        <span onClick={openPreview}>Ver no mapa</span>
       </h3>
 
       <Particulars>

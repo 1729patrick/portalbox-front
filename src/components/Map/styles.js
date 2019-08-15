@@ -27,7 +27,7 @@ export const MarkerList = styled.div`
     flex-direction: column;
 
     p {
-      font-size: 16px;
+      font-size: 15.5px;
       font-weight: 500;
       color: #444;
       margin: 16px 0 12px 0;
@@ -43,6 +43,12 @@ export const MarkerList = styled.div`
 
     .MuiFormControlLabel-label {
       width: 100%;
+      display: flex;
+      align-items: center;
+
+      svg {
+        margin-right: 7px;
+      }
     }
 
     .MuiFormControlLabel-labelPlacementStart {

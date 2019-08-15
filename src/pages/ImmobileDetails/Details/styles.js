@@ -38,12 +38,11 @@ export const Particulars = styled.div`
   ul {
     margin-top: 30px;
     display: flex;
-    flex: 1;
 
     li {
       display: flex;
       align-items: center;
-      margin-right: 60px;
+      width: 25%;
 
       img {
         height: 30px;
@@ -60,10 +59,10 @@ export const Particulars = styled.div`
   div {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 30px;
+    margin-top: 15px;
 
     p {
-      width: 33%;
+      width: 25%;
       display: flex;
       align-items: center;
       height: 40px;

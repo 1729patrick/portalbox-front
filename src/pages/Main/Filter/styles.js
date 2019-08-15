@@ -43,6 +43,10 @@ export const Container = styled.div`
   a {
     margin-left: auto;
   }
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const SubmitButton = styled(DefaultButton).attrs({

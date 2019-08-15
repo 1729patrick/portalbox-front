@@ -62,6 +62,10 @@ export const Container = styled.header`
       }
     }
   }
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const Search = styled.div`

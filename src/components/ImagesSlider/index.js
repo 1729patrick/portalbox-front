@@ -13,14 +13,14 @@ import {
 
 import { images } from '~/services/fakeData';
 
-export default function ImagesSlider({ initialSlide }) {
-  const [activeSlide, setActiveSlide] = useState(initialSlide);
+export default function ImagesSlider({ initialImage }) {
+  const [activeImage, setActiveImage] = useState(initialImage);
 
-  const imageActive = useMemo(() => images[activeSlide], [activeSlide]);
+  const imageActive = useMemo(() => images[activeImage], [activeImage]);
 
   const imageIndicator = useMemo(
-    () => `${activeSlide + 1} / ${images.length}`,
-    [activeSlide]
+    () => `${activeImage + 1} / ${images.length}`,
+    [activeImage]
   );
 
   const settings = {
@@ -30,8 +30,8 @@ export default function ImagesSlider({ initialSlide }) {
     speed: 300,
     focusOnSelect: true,
     arrows: false,
-    initialSlide,
-    beforeChange: (_, next) => setActiveSlide(next),
+    initialSlide: initialImage,
+    beforeChange: (_, next) => setActiveImage(next),
   };
 
   const sliderRef = useRef(null);
@@ -70,9 +70,9 @@ export default function ImagesSlider({ initialSlide }) {
 }
 
 ImagesSlider.propTypes = {
-  initialSlide: PropTypes.number,
+  initialImage: PropTypes.number,
 };
 
 ImagesSlider.defaultProps = {
-  initialSlide: 0,
+  initialImage: 0,
 };
