@@ -27,10 +27,10 @@ export const Container = styled.div`
     cursor: pointer;
     width: max-content;
     padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
 
     &:hover {
-      padding-bottom: 4px;
-      border-bottom: 1px solid #555;
+      border-color: #555;
     }
   }
 `;

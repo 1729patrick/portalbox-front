@@ -20,13 +20,16 @@ const theme = {
     },
     popup: {
       saveButton: {
-        color: 'rgb(239, 108, 0)',
+        color: '#162962',
       },
     },
   },
   checkbox: {
     color: '#777',
-    checkedColor: 'rgb(239, 108, 0)',
+    checkedColor: '#162962',
+  },
+  incrementDecrement: {
+    borderColor: '#162962',
   },
   ads: {
     horizontalBackground: {
@@ -53,12 +56,25 @@ const theme = {
     verticalBackground: {
       backgroundColor: '#eee',
       title: {
-        color: 'rgb(239, 108, 0)',
+        color: '#162962',
       },
       button: {
         color: '#fff',
-        backgroundColor: 'rgb(239, 108, 0)',
+        backgroundColor: '#162962',
       },
+    },
+  },
+  cards: {
+    immobile: {
+      price: {
+        color: 'blue',
+      },
+    },
+  },
+  map: {
+    circle: {
+      fillColor: '#162962',
+      strokeColor: '#162962',
     },
   },
 };

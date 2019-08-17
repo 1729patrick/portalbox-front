@@ -8,8 +8,10 @@ import {
   Marker,
   Circle,
 } from 'react-google-maps';
+import { withTheme } from 'styled-components';
+
 import styles from './GoogleMapStyles.json';
-import iconMarker from '~/assets/marker.png';
+import iconMarker from '~/assets/marker.svg';
 
 const token = 'AIzaSyDwaVUBJv9_DE3Sr-C_gyu-B_uVWfIK9x4';
 const MapContainer = compose(
@@ -35,7 +37,6 @@ const MapContainer = compose(
 
       fetchPlaces: () => {
         if (refs.results) {
-
           return;
         }
 
@@ -47,7 +48,7 @@ const MapContainer = compose(
         const service = new google.maps.places.PlacesService(
           refs.map.context.__SECRET_MAP_DO_NOT_USE_OR_YOU_WILL_BE_FIRED
         );
-        
+
         const request = {
           location,
           radius: 750,
@@ -65,7 +66,14 @@ const MapContainer = compose(
   withScriptjs,
   withGoogleMap
 )(props => {
-  console.log(props);
+  const icon = new window.google.maps.MarkerImage(
+    iconMarker,
+    null /* size is determined at runtime */,
+    null /* origin is 0,0 */,
+    null /* anchor is bottom center of the scaled image */,
+    new window.google.maps.Size(40, 40)
+  );
+
   return (
     <GoogleMap
       defaultZoom={15}
@@ -84,18 +92,15 @@ const MapContainer = compose(
         styles,
       }}
     >
-      <Marker position={props.location} icon={iconMarker} />
+      <Marker position={props.location} icon={icon} />
 
       <Circle
         radius={750}
-        options={{
-          fillColor: 'rgb(239, 108, 0)',
-          strokeColor: 'rgb(239, 108, 0)',
-        }}
+        options={props.theme.map.circle}
         defaultCenter={props.location}
       />
     </GoogleMap>
   );
 });
 
-export default MapContainer;
+export default withTheme(MapContainer);

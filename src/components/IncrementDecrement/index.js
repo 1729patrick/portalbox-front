@@ -1,23 +1,24 @@
 import React from 'react';
 import { IoIosRemove, IoMdAdd } from 'react-icons/io';
 import PropTypes from 'prop-types';
+import { withTheme } from 'styled-components';
 
 import { Container, Round } from './styles';
 
-export default function IncrementDecrement({ title, valueToChange }) {
+function IncrementDecrement({ title, valueToChange, theme }) {
   return (
     <Container>
       <label>{title}</label>
 
       <div>
         <Round>
-          <IoIosRemove color="rgb(239, 108, 0)" size={22} />
+          <IoIosRemove color={theme.incrementDecrement.borderColor} size={22} />
         </Round>
 
         <h3>{valueToChange}+</h3>
 
         <Round>
-          <IoMdAdd color="rgb(239, 108, 0)" size={19} />
+          <IoMdAdd color={theme.incrementDecrement.borderColor} size={19} />
         </Round>
       </div>
     </Container>
@@ -27,7 +28,14 @@ export default function IncrementDecrement({ title, valueToChange }) {
 IncrementDecrement.propTypes = {
   title: PropTypes.string.isRequired,
   valueToChange: PropTypes.number,
+  theme: PropTypes.shape({
+    incrementDecrement: {
+      borderColor: PropTypes.string,
+    },
+  }).isRequired,
 };
 IncrementDecrement.defaultProps = {
   valueToChange: 1,
 };
+
+export default withTheme(IncrementDecrement);

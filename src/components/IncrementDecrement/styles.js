@@ -27,12 +27,12 @@ export const Round = styled.div`
   height: 30px;
   width: 30px;
   border-radius: 50%;
-  border: rgb(239, 108, 0) solid 1px;
+  border: ${props => `${props.theme.incrementDecrement.borderColor} solid 1px`};
   cursor: pointer;
   transition: 400ms;
 
   &:hover {
-    background: rgb(239, 108, 0);
+    background: ${props => props.theme.incrementDecrement.borderColor};
 
     svg path {
       color: #fff;

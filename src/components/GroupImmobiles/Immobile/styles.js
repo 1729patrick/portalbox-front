@@ -33,7 +33,7 @@ export const Details = styled.div`
     }
 
     > p {
-      color: rgb(239, 108, 0);
+      color: ${props => props.theme.cards.immobile.price.color};
       font-weight: 700;
     }
   }
