@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { lighten } from 'polished';
 
 export const Container = styled.header`
   width: 100%;
@@ -11,7 +12,7 @@ export const Container = styled.header`
           background: transparent;
         `
       : css`
-          background: #fff;
+          background: ${props.theme.header.backgroundColor};
           box-shadow: 0px 1px 20px 0px rgba(46, 61, 73, 0.2);
           position: fixed;
         `};
@@ -30,24 +31,27 @@ export const Container = styled.header`
     ul {
       display: flex;
       flex-direction: row;
+      overflow-x: auto;
 
       li {
+        white-space: nowrap;
+
         ${props =>
           props.contranstLight
             ? css`
-                color: #fff;
+                color: ${props.theme.header.color};
 
                 &:hover {
                   padding-bottom: 5.5px;
-                  border-bottom: solid 1.5px #fff;
+                  border-bottom: solid 1.5px ${props.theme.header.color};
                 }
               `
             : css`
-                color: #444;
+                color: ${props.theme.header.colorDark};
 
                 &:hover {
                   padding-bottom: 5.5px;
-                  border-bottom: solid 1.5px #888;
+                  border-bottom: solid 1.5px ${props.theme.header.colorDark};
                 }
               `};
 
@@ -64,7 +68,20 @@ export const Container = styled.header`
   }
 
   @media screen and (max-width: 768px) {
-    display: none;
+    padding: 0 10px 0 0;
+
+    ul {
+      padding-left: 10px;
+
+      li  + li {
+          margin-left: 15px !important;
+        }
+      }
+    }
+
+    > div img {
+      max-width: 90px;
+    }
   }
 `;
 
@@ -80,13 +97,13 @@ export const Search = styled.div`
     flex: 1;
     padding: 0 45px 0 20px;
     border-radius: 30px;
-    background: #eee;
+    background: ${props => props.theme.header.search.backgroundColor};
     border: 0;
-    color: #444;
+    color: ${props => props.theme.header.search.color};
     font-size: 15px;
 
     ::placeholder {
-      color: #555;
+      color: ${props => lighten(0.07, props.theme.header.search.color)};
       font-size: 14.5px;
       font-weight: 500;
     }
@@ -94,5 +111,9 @@ export const Search = styled.div`
 
   svg {
     margin-left: -40px;
+  }
+
+  @media screen and (max-width: 768px) {
+      display: none;
   }
 `;

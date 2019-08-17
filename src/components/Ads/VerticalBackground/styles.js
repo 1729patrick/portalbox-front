@@ -9,10 +9,9 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   height: 300px;
-  background: #eee;
   border-radius: 6px;
   overflow: hidden;
-  color: ${props => (props.contranstLight ? '#fff' : 'rgb(239, 108, 0)')};
+  color: ${props => props.theme.ads.verticalBackground.title.color};
   box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2);
   position: relative;
   user-select: none;
@@ -24,7 +23,8 @@ export const Container = styled.div`
 export const Triangle = styled.div`
   border-style: solid;
   border-width: 0 0 calc(100vw / 2.3) calc(100vw / 2);
-  border-color: transparent transparent transparent #eee;
+  border-color: ${props =>
+    `transparent transparent transparent ${props.theme.ads.verticalBackground.backgroundColor}`};
 
   h1 {
     position: absolute;
@@ -55,8 +55,8 @@ export const Triangle = styled.div`
 `;
 
 export const Button = styled(DefaultButton).attrs(props => ({
-  background: props.contranstLight ? '#fff' : 'rgb(239, 108, 0)',
-  color: props.contranstLight ? '#444' : '#fff',
+  background: props.theme.ads.verticalBackground.button.backgroundColor,
+  color: props.theme.ads.verticalBackground.button.color,
 }))`
   width: 225px;
   position: absolute;

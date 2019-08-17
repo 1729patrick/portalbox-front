@@ -68,6 +68,20 @@ export const Container = styled.div`
       background-size: cover;
     }
   }
+
+  @media screen and (max-width: 768px) {
+    grid-template-areas:
+      'img1 img3 img3'
+      'img2 img3 img3';
+
+    button {
+      right: 15px;
+    }
+
+    .img4 {
+      display: none;
+    }
+  }
 `;
 
 export const Button = styled(DefaultButton).attrs({

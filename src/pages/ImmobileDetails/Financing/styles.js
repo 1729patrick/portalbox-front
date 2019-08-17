@@ -44,6 +44,34 @@ export const Container = styled.div`
       }
     }
   }
+
+  @media screen and (max-width: 768px) {
+    padding: 30px 20px;
+
+    form {
+      flex-direction: column;
+      padding: 0 30px;
+
+      span {
+        margin-left: 0 !important;
+        width: 100%;
+
+        input {
+          width: 100%;
+        }
+
+        & + span {
+          margin-top: 20px;
+        }
+      }
+
+      button {
+        margin-top: 60px;
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+  }
 `;
 
 export const Button = styled(DefaultButton).attrs({

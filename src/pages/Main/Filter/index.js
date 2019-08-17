@@ -33,7 +33,7 @@ export default function Filter() {
             { value: 2, name: 'Comprar' },
           ]}
           value={1}
-        />
+                />
 
         <Select
           placeholder="Qualquer tipo"
@@ -41,6 +41,7 @@ export default function Filter() {
           name="type"
           label="Qual tipo?"
           multiple={false}
+          isSearchable={false}
         />
 
         <Select
@@ -49,6 +50,7 @@ export default function Filter() {
           name="locale"
           label="Onde?"
           multiple={false}
+          isSearchable={false}
         />
 
         <Link to="/imoveis">

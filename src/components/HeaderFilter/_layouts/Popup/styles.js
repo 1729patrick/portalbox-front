@@ -32,10 +32,11 @@ export const Footer = styled.footer`
     }
 
     & + button {
-      color: rgb(239, 108, 0);
+      color: ${props => props.theme.headerFilter.popup.saveButton.color};
 
       &:hover {
-        border-color: rgb(239, 108, 0);
+        border-color: ${props =>
+          props.theme.headerFilter.popup.saveButton.color};
       }
     }
   }

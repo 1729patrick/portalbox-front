@@ -5,13 +5,11 @@ export const Container = styled.div`
   display: flex;
   user-select: none;
 
-  > svg {
-    cursor: pointer;
-    position: absolute;
-    top: 30px;
-    right: 30px;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
   }
 `;
+
 export const Preview = styled.aside`
   flex: 1;
   display: flex;
@@ -29,8 +27,12 @@ export const Preview = styled.aside`
     box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2);
   }
 
-  svg {
-    cursor: pointer;
+  @media screen and (max-width: 768px) {
+    padding-right: 0;
+
+    div {
+      margin: 0 5px;
+    }
   }
 `;
 
@@ -58,6 +60,11 @@ export const SliderWrapper = styled.div`
         transform: scale(1.1);
       }
     }
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    padding: 20px 50px 0;
   }
 `;
 
@@ -95,5 +102,9 @@ export const Description = styled.div`
     color: #555;
     font-weight: 500;
     user-select: text;
+  }
+
+  @media screen and (max-width: 768px) {
+    /* display: none; */
   }
 `;

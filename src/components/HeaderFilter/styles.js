@@ -7,4 +7,11 @@ export const Container = styled.aside`
   width: 100%;
   user-select: none;
   padding-left: 50px;
+
+  @media screen and (max-width: 768px) {
+    padding-left: 10px;
+    padding-bottom: 10px;
+    overflow-x: auto;
+    height: 40px;
+  }
 `;

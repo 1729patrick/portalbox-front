@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { MdSearch } from 'react-icons/md';
+import { withTheme } from 'styled-components';
 
 import { Container, Search } from './styles';
 import HeaderFilter from '~/components/HeaderFilter';
 
 import { links } from '~/services/fakeData';
 
-export default function Header({ simple, searchable, ...props }) {
+function Header({ simple, searchable, ...props }) {
   const [popupOpen, setPopupOpen] = useState(-1);
 
   return (
@@ -24,7 +25,7 @@ export default function Header({ simple, searchable, ...props }) {
         {searchable && (
           <Search>
             <input type="text" placeholder="O que você procura?" />
-            <MdSearch size={25} color="#444" />
+            <MdSearch size={25} color={props.theme.header.search.color} />
           </Search>
         )}
 
@@ -53,3 +54,5 @@ Header.defaultProps = {
   contranstLight: false,
   overlay: false,
 };
+
+export default withTheme(Header);

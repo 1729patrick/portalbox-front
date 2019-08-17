@@ -11,7 +11,10 @@ export const Container = styled.div`
   height: 300px;
   border-radius: 6px;
   padding: 50px;
-  color: ${props => (props.contranstLight ? '#fff' : 'rgb(239, 108, 0)')};
+  color: ${props =>
+    props.contranstLight
+      ? props.theme.ads.imageBackground.title.color
+      : props.theme.ads.imageBackground.title.colorDark};
   box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2);
   user-select: none;
   overflow: hidden;
@@ -37,8 +40,12 @@ export const Container = styled.div`
 `;
 
 export const Button = styled(DefaultButton).attrs(props => ({
-  background: props.contranstLight ? '#fff' : 'rgb(239, 108, 0)',
-  color: props.contranstLight ? '#444' : '#fff',
+  background: props.contranstLight
+    ? props.theme.ads.imageBackground.button.backgroundColor
+    : props.theme.ads.imageBackground.button.backgroundColorDark,
+  color: props.contranstLight
+    ? props.theme.ads.imageBackground.button.color
+    : props.theme.ads.imageBackground.button.colorDark,
 }))`
   width: 175px;
 `;

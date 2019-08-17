@@ -34,6 +34,14 @@ export const Container = styled.div`
       }
     }
   }
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    margin-top: 15px;
+    background: transparent;
+    box-shadow: none;
+    border-top: 1px solid #eee;
+  }
 `;
 
 export const Button = styled(DefaultButton).attrs({
@@ -56,4 +64,8 @@ export const Highlighter = styled.div`
   top: -13px;
   font-weight: 500;
   text-align: center;
+
+  @media screen and (max-width: 768px) {
+    left: -40px;
+  }
 `;

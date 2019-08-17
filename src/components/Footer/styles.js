@@ -25,8 +25,12 @@ export const Container = styled.div`
     }
 
     span {
-      p + p {
-        margin-top: 5px;
+      p {
+        white-space: nowrap;
+
+        & + p {
+          margin-top: 5px;
+        }
       }
     }
   }
@@ -34,15 +38,19 @@ export const Container = styled.div`
   ul {
     display: flex;
     flex-direction: row;
+    overflow-x: auto;
+    margin-left: 25px;
 
     li {
       font-weight: 500;
       font-size: 14.5px;
       cursor: pointer;
-      padding: 7px 0;
+      padding: 5px 0;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
 
       &:hover {
-        color: rgb(239, 108, 0);
+        border-color: #444;
       }
 
       & + li {
@@ -75,8 +83,7 @@ export const Copyright = styled.div`
   p + p {
     margin-top: 5px;
 
-
-    &:active
+    &: active;
   }
 
   @media screen and (max-width: 768px) {

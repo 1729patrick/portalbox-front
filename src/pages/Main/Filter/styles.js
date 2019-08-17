@@ -45,7 +45,9 @@ export const Container = styled.div`
   }
 
   @media screen and (max-width: 768px) {
-    display: none;
+    margin: 0;
+    width: 100%;
+    margin: auto;
   }
 `;
 

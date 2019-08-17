@@ -23,6 +23,12 @@ export const Container = styled.div`
       color: #666;
     }
   }
+
+  @media screen and (max-width: 768px) {
+    header {
+      padding: 30px 20px;
+    }
+  }
 `;
 
 export const MapsImage = styled.div`

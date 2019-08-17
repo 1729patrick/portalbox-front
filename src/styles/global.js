@@ -3,6 +3,8 @@ import { createGlobalStyle } from 'styled-components';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+import theme from './theme';
+
 export default createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
   @import url('https://fonts.googleapis.com/css?family=Product+Sans:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');
@@ -12,7 +14,7 @@ export default createGlobalStyle`
     padding: 0;
     outline: 0;
     box-sizing: border-box;
-
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
 
   *:focus {
@@ -90,10 +92,10 @@ body {
     .MuiFormControlLabel-root {
       height: 35px;
       margin-right: 0 !important;
-      color: #444;
+      color: ${theme.checkbox.color};
 
       &:hover {
-        color: rgb(239, 108, 0);
+        color: ${theme.checkbox.checkedColor};
       }
     }
 
@@ -102,8 +104,4 @@ body {
       -webkit-appearance: none;
       margin: 0;
     }
-
-
-
-
 `;

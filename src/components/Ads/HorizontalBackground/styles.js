@@ -8,7 +8,7 @@ export const Container = styled.div`
   overflow: hidden;
 
   h1 {
-    color: #444;
+    color: ${props => props.theme.ads.horizontalBackground.title.color};
     font-size: 2em;
   }
 `;
@@ -37,10 +37,10 @@ export const Image = styled.div`
   }
 `;
 
-export const Button = styled(DefaultButton).attrs({
-  color: '#222',
-  background: '#fff',
-})`
+export const Button = styled(DefaultButton).attrs(props => ({
+  color: props.theme.ads.horizontalBackground.button.color,
+  background: props.theme.ads.horizontalBackground.button.backgroundColor,
+}))`
   margin-bottom: 30px;
   width: 150px;
 `;

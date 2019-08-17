@@ -12,9 +12,17 @@ export const Container = styled.div`
   right: 0;
   background: #fff;
   z-index: 3;
+
+  @media screen and (max-width: 768px) {
+    padding: 0 0 30px 0;
+
+    header {
+      padding: 15px 20px 10px;
+    }
+  }
 `;
 
-export const Header = styled.div`
+export const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;

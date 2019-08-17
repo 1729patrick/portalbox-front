@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import { Container } from './styles';
 import ImmobileCard from './Immobile';
@@ -12,7 +13,9 @@ export default function GroupImmobiles({ title, style, list, showSize }) {
 
       <div>
         {list.map(immobile => (
-          <ImmobileCard immobile={immobile} key={immobile.id} />
+          <Link to="/imoveis/asdasd" key={immobile.id}>
+            <ImmobileCard immobile={immobile} key={immobile.id} />
+          </Link>
         ))}
       </div>
 

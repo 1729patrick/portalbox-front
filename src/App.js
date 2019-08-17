@@ -1,15 +1,18 @@
 import React from 'react';
-import 'dotenv';
+import { ThemeProvider } from 'styled-components';
 
 import Routes from './routes';
 import GlobalStyle from './styles/global';
+import theme from './styles/theme';
 
 const App = () => {
   return (
-    <>
-      <Routes />
-      <GlobalStyle />
-    </>
+    <ThemeProvider theme={theme}>
+      <>
+        <Routes />
+        <GlobalStyle />
+      </>
+    </ThemeProvider>
   );
 };
 

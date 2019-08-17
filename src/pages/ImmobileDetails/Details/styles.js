@@ -14,6 +14,7 @@ export const Container = styled.div`
     margin-top: 15px;
     font-weight: 500;
     color: #666;
+    line-height: 22px;
 
     span {
       text-transform: uppercase;
@@ -22,6 +23,12 @@ export const Container = styled.div`
       margin-left: 15px;
       font-size: 14px;
       cursor: pointer;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    > h2 {
+      font-size: 25px;
     }
   }
 `;
@@ -68,6 +75,28 @@ export const Particulars = styled.div`
       height: 40px;
       font-weight: 500;
       color: #444;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    margin-top: 40px;
+
+    div {
+      margin-top: 0;
+      justify-content: space-between;
+
+      p {
+        width: 50%;
+        margin-top: 0;
+      }
+    }
+    ul {
+      flex-wrap: wrap;
+
+      li {
+        width: 50% !important;
+        margin-bottom: 15px;
+      }
     }
   }
 `;

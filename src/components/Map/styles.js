@@ -4,6 +4,10 @@ export const Container = styled.div`
   height: 100%;
   display: flex;
   background: #fff;
+
+  @media screen and (max-width: 768px) {
+    padding: 0 20px;
+  }
 `;
 
 export const MapWrapper = styled.div`
@@ -59,5 +63,9 @@ export const MarkerList = styled.div`
   h4 {
     font-weight: 500;
     color: #777;
+  }
+
+  @media screen and (max-width: 768px) {
+    display: none;
   }
 `;

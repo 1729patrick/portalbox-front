@@ -7,21 +7,24 @@ export const Container = styled.div`
   border-radius: 25px;
   font-size: 14.5px;
   margin-right: 13px;
-  border: solid 1px #cfcfcf;
+  border: ${props =>
+    `solid 1px ${props.theme.headerFilter.option.borderColor}`};
   transition: 200ms;
+  white-space: nowrap;
 
   ${props =>
     props.selected
       ? css`
-          background: rgb(239, 108, 0);
-          border-color: rgb(239, 108, 0);
+          background: ${props.theme.headerFilter.option.selected
+            .backgroundColor};
+          border-color: ${props.theme.headerFilter.option.selected
+            .backgroundColor};
         `
       : css`
           background: transparent;
 
           &:hover {
-            background: #eee;
-            border-color: #eee;
+            background: ${props.theme.headerFilter.option.borderColor};
           }
         `};
 
@@ -29,10 +32,14 @@ export const Container = styled.div`
     padding: 10px 14px;
     cursor: pointer;
 
-    color: ${props => (props.selected ? '#fff' : '#444')};
+    color: ${props =>
+      props.selected
+        ? props.theme.headerFilter.option.selected.color
+        : props.theme.headerFilter.option.color};
 
     &:hover {
-      color: ${props => !props.selected && '#444'};
+      color: ${props =>
+        !props.selected && props.theme.headerFilter.option.selected.color};
     }
   }
 `;
