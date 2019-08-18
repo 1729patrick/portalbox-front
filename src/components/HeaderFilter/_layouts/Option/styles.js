@@ -21,7 +21,7 @@ export const Container = styled.div`
             .backgroundColor};
         `
       : css`
-          background: transparent;
+          background: rgba(255, 255, 255, 0.07);
 
           &:hover {
             background: ${props.theme.headerFilter.option.borderColor};

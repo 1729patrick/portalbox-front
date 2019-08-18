@@ -4,7 +4,6 @@ import DefaultButton from '~/components/Button';
 
 export const Container = styled.div`
   padding: 50px 80px 70px 80px;
-  /* background: #eee; */
   color: #444;
 
   h2 {
@@ -74,10 +73,10 @@ export const Container = styled.div`
   }
 `;
 
-export const Button = styled(DefaultButton).attrs({
-  color: '#fff',
-  background: 'rgb(239, 108, 0)',
-})`
+export const Button = styled(DefaultButton).attrs(props => ({
+  color: props.theme.immobileDetails.financing.button.color,
+  background: props.theme.immobileDetails.financing.button.backgroundColor,
+}))`
   width: 200px;
   margin-top: auto;
   margin-left: 30px;

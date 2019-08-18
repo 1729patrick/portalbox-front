@@ -29,9 +29,9 @@ IncrementDecrement.propTypes = {
   title: PropTypes.string.isRequired,
   valueToChange: PropTypes.number,
   theme: PropTypes.shape({
-    incrementDecrement: {
+    incrementDecrement: PropTypes.shape({
       borderColor: PropTypes.string,
-    },
+    }),
   }).isRequired,
 };
 IncrementDecrement.defaultProps = {

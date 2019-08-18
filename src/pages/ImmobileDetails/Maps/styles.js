@@ -54,10 +54,10 @@ export const MapsImage = styled.div`
   }
 `;
 
-export const ButtonExplore = styled(DefaultButton).attrs({
-  background: '#fff',
-  color: '#444',
-})`
+export const ButtonExplore = styled(DefaultButton).attrs(props => ({
+  background: props.theme.immobileDetails.maps.button.backgroundColor,
+  color: props.theme.immobileDetails.maps.button.color,
+}))`
   position: absolute;
   width: 175px;
   bottom: 50px;

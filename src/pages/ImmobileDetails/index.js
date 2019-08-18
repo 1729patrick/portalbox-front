@@ -34,7 +34,7 @@ export default function PlaceDetails() {
 
   const openMap = location =>
     handlePreviewOpen('map', {
-      location: { lat: -26.724933, lng: -53.532206 },
+      location: { lat: -26.764955, lng: -53.640173 },
     });
 
   return (

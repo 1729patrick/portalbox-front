@@ -26,6 +26,7 @@ export const Container = styled.header`
 
     img {
       max-width: 125px;
+      cursor: pointer;
     }
 
     ul {

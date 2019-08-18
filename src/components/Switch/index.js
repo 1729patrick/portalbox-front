@@ -2,6 +2,8 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 
+import globalTheme from '~/styles/theme';
+
 const CustomSwitch = withStyles(theme => ({
   root: {
     width: 52,
@@ -14,13 +16,13 @@ const CustomSwitch = withStyles(theme => ({
     '&$checked': {
       color: theme.palette.common.white,
       '& + $track': {
-        backgroundColor: 'rgb(239, 108, 0)',
+        backgroundColor: globalTheme.switch.checkedColor,
         opacity: 1,
         border: 'none',
       },
     },
     '&$focusVisible $thumb': {
-      color: 'rgb(239, 108, 0)',
+      color: globalTheme.switch.checkedColor,
       border: '6px solid #fff',
     },
   },

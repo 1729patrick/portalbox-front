@@ -84,10 +84,10 @@ export const Container = styled.div`
   }
 `;
 
-export const Button = styled(DefaultButton).attrs({
-  background: '#fff',
-  color: '#444',
-})`
+export const Button = styled(DefaultButton).attrs(props => ({
+  background: props.theme.immobileDetails.images.button.backgroundColor,
+  color: props.theme.immobileDetails.images.button.color,
+}))`
   position: absolute;
   bottom: 20px;
   right: 20px;

@@ -44,10 +44,10 @@ export const Container = styled.div`
   }
 `;
 
-export const Button = styled(DefaultButton).attrs({
-  color: '#fff',
-  background: 'rgb(239, 108, 0)',
-})`
+export const Button = styled(DefaultButton).attrs(props => ({
+  background: props.theme.immobileDetails.price.button.backgroundColor,
+  color: props.theme.immobileDetails.price.button.color,
+}))`
   margin-top: auto;
   width: 100%;
   margin: 25px 0;
@@ -56,10 +56,11 @@ export const Button = styled(DefaultButton).attrs({
 export const Highlighter = styled.div`
   position: absolute;
   font-size: 14px;
-  background: rgb(239, 108, 0);
+  background: ${props =>
+    props.theme.immobileDetails.price.highlighter.backgroundColor};
   padding: 7px 10px;
   border-radius: 25px;
-  color: #fff;
+  color: ${props => props.theme.immobileDetails.price.highlighter.color};
   left: -55px;
   top: -13px;
   font-weight: 500;

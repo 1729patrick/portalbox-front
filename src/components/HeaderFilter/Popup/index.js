@@ -7,14 +7,17 @@ export default function Popup({
   open,
   children,
   onClick,
+  onClose,
+  index,
 }) {
   return (
     <ReactPopup
       trigger={children}
       position="bottom left"
       arrow={false}
-      offsetY={5}
+      offsetY={6}
       open={open}
+      onClose={() => onClose(index)}
     >
       <span onClick={onClick}>
         <Component />
@@ -28,4 +31,5 @@ Popup.propTypes = {
   open: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
 };

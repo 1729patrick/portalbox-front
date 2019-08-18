@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import 'react-input-range/lib/css/index.css';
 
 import theme from './theme';
 
@@ -23,7 +24,7 @@ export default createGlobalStyle`
 
   html, body, #root {
     height: 100%;
-    background: #fcfcfc;
+    background: #f4f7fb;
   }
 
 body {
@@ -65,17 +66,16 @@ body {
   }
 
   .popup-content  {
-    /* box-shadow: none !important; */
-    border-color: #ddd;
+    border: none !important;
     border-radius: 4px;
-    border: none;
     min-width: 300px;
-
-    box-shadow: 0 15px 20px 0 rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    box-shadow: 0 0 30px 6px rgba(31,51,73,.1) !important;
+    padding: 0 !important;
   }
 
   .popup-overlay  {
-    background: #fff;
+    background: #eee;
     opacity: 0.8;
     top: 125px !important;
     cursor: auto;

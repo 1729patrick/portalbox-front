@@ -33,6 +33,14 @@ export const optionsParticular = [
   { id: 7, title: 'Piscina', type: 'bool' },
 ];
 
+export const optionsParticularAdvanced = [
+  { id: 1, title: 'Triplex', type: 'bool' },
+  { id: 2, title: 'Adega', type: 'bool' },
+  { id: 4, title: 'Aquecimento a gás', type: 'bool' },
+  { id: 6, title: 'Salão de festas', type: 'bool' },
+  { id: 7, title: 'Heliponto', type: 'bool' },
+];
+
 export const listTypes = [
   {
     id: 1,

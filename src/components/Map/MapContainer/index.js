@@ -11,7 +11,7 @@ import {
 import { withTheme } from 'styled-components';
 
 import styles from './GoogleMapStyles.json';
-import iconMarker from '~/assets/marker.svg';
+import marker from './Marker.json';
 
 const token = 'AIzaSyDwaVUBJv9_DE3Sr-C_gyu-B_uVWfIK9x4';
 const MapContainer = compose(
@@ -66,13 +66,14 @@ const MapContainer = compose(
   withScriptjs,
   withGoogleMap
 )(props => {
-  const icon = new window.google.maps.MarkerImage(
-    iconMarker,
-    null /* size is determined at runtime */,
-    null /* origin is 0,0 */,
-    null /* anchor is bottom center of the scaled image */,
-    new window.google.maps.Size(40, 40)
-  );
+  const markerIcon = {
+    ...marker,
+    fillOpacity: 1,
+    anchor: new google.maps.Point(203, 406),
+    scale: 0.108,
+    fillColor: props.theme.map.marker.fillColor,
+    strokeColor: props.theme.map.marker.strokeColor,
+  };
 
   return (
     <GoogleMap
@@ -92,7 +93,7 @@ const MapContainer = compose(
         styles,
       }}
     >
-      <Marker position={props.location} icon={icon} />
+      <Marker position={props.location} icon={markerIcon} />
 
       <Circle
         radius={750}

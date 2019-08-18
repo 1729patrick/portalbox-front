@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  padding: 16px 14px 14px;
+  padding: 24px;
 
   > label {
     display: block;
@@ -9,6 +9,7 @@ export const Container = styled.div`
     color: #444;
     border-bottom: 1px solid #eee;
     padding-bottom: 12px;
+    font-weight: 500;
   }
 `;
 

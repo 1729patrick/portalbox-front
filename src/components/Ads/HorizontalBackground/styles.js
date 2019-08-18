@@ -30,7 +30,7 @@ export const Image = styled.div`
   background-size: cover;
   flex: 1;
   height: 100%;
-  box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2);
+  box-shadow: 0 0 30px 6px rgba(31, 51, 73, 0.1);
 
   & + div {
     margin-left: 10px;

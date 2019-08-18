@@ -18,7 +18,7 @@ export const Container = styled.div`
 
     span {
       text-transform: uppercase;
-      color: rgb(239, 108, 0);
+      color: ${props => props.theme.immobileDetails.details.seeInMap.color};
       font-weight: 600;
       margin-left: 15px;
       font-size: 14px;

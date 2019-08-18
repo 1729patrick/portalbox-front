@@ -23,13 +23,11 @@ const theme = {
         color: '#162962',
       },
     },
-  },
-  checkbox: {
-    color: '#777',
-    checkedColor: '#162962',
-  },
-  incrementDecrement: {
-    borderColor: '#162962',
+    price: {
+      range: {
+        backgroundColor: '#162962',
+      },
+    },
   },
   ads: {
     horizontalBackground: {
@@ -64,10 +62,46 @@ const theme = {
       },
     },
   },
-  cards: {
-    immobile: {
-      price: {
-        color: 'blue',
+  immobileDetails: {
+    details: {
+      seeInMap: {
+        color: '#162962',
+      },
+    },
+    financing: {
+      button: {
+        color: '#fff',
+        backgroundColor: '#162962',
+      },
+    },
+    images: {
+      button: {
+        color: '#fff',
+        backgroundColor: '#162962',
+      },
+    },
+    maps: {
+      button: {
+        color: '#fff',
+        backgroundColor: '#162962',
+      },
+    },
+    price: {
+      highlighter: {
+        color: '#fff',
+        backgroundColor: '#162962',
+      },
+      button: {
+        color: '#fff',
+        backgroundColor: '#162962',
+      },
+    },
+  },
+  main: {
+    filter: {
+      button: {
+        color: '#fff',
+        backgroundColor: '#162962',
       },
     },
   },
@@ -76,6 +110,35 @@ const theme = {
       fillColor: '#162962',
       strokeColor: '#162962',
     },
+    marker: {
+      fillColor: '#162962',
+      strokeColor: '#162962',
+    },
+  },
+  cards: {
+    immobile: {
+      price: {
+        color: '#162962',
+      },
+    },
+  },
+  checkbox: {
+    color: '#555',
+    checkedColor: '#162962',
+  },
+  incrementDecrement: {
+    borderColor: '#162962',
+  },
+  select: {
+    color: '#fff',
+    backgroundColor: '#162962',
+  },
+  switch: {
+    checkedColor: '#162962',
+  },
+  toggle: {
+    color: '#fff',
+    backgroundColor: '#162962',
   },
 };
 

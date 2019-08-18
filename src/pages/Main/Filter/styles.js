@@ -51,10 +51,10 @@ export const Container = styled.div`
   }
 `;
 
-export const SubmitButton = styled(DefaultButton).attrs({
-  background: 'rgb(239, 108, 0)',
-  color: '#fff',
-})`
+export const SubmitButton = styled(DefaultButton).attrs(props => ({
+  background: props.theme.main.filter.button.backgroundColor,
+  color: props.theme.main.filter.button.color,
+}))`
   margin-top: 15px;
   width: 130px;
   margin-left: auto;

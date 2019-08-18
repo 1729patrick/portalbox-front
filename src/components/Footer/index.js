@@ -18,6 +18,7 @@ export default function Footer() {
             <p>(49) 9 91118313</p>
             <p>(49) 9 91118313</p>
             <p>(49) 9 91118313</p>
+            <p>contato@atma.com.br</p>
           </span>
         </div>
 
@@ -31,8 +32,8 @@ export default function Footer() {
       <Copyright>
         <span>
           <p>
-            <b>ATMA IMOBILIARIA</b>- CRECI 0425 J - RUA XV DE NOVEMBRO, 1081 -
-            CEP: 89900-000 - SÃO MIGUEL DO OESTE - SC
+            <b>ATMA IMOBILIARIA</b>- CRECI 0425 - Rua Capote Valente, 39 -
+            Pinheiros, São Paulo - SP, 05409-000 - <b>Ver no mapa</b>
           </p>
         </span>
 

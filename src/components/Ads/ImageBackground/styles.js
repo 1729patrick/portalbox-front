@@ -15,7 +15,7 @@ export const Container = styled.div`
     props.contranstLight
       ? props.theme.ads.imageBackground.title.color
       : props.theme.ads.imageBackground.title.colorDark};
-  box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2);
+  box-shadow: 0 0 30px 6px rgba(31, 51, 73, 0.1);
   user-select: none;
   overflow: hidden;
 

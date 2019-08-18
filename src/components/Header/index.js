@@ -1,26 +1,37 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useRef, useState, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { MdSearch } from 'react-icons/md';
 import { withTheme } from 'styled-components';
-
 import { Container, Search } from './styles';
 import HeaderFilter from '~/components/HeaderFilter';
 
 import { links } from '~/services/fakeData';
 
-function Header({ simple, searchable, ...props }) {
+function Header({ simple, searchable, history, ...props }) {
   const [popupOpen, setPopupOpen] = useState(-1);
+  const node = useRef();
+
+  const handleClick = e => {
+    if (!node.current.contains(e.target)) {
+      setPopupOpen(-1);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', handleClick);
+
+    return () => document.removeEventListener('click', handleClick);
+  }, []);
 
   return (
-    <Container {...props} onClickCapture={() => setPopupOpen(-1)}>
+    <Container ref={node} {...props} onClickCapture={() => setPopupOpen(-1)}>
       <div>
-        <Link to="/">
-          <img
-            src="http://fotos.sitemidas.com.br/per_corr/logos/logoGeral1221.png"
-            alt="Logo"
-          />
-        </Link>
+        <img
+          onClick={history.goBack}
+          src="http://fotos.sitemidas.com.br/per_corr/logos/logoGeral1221.png"
+          alt="Logo"
+        />
 
         {searchable && (
           <Search>
@@ -55,4 +66,4 @@ Header.defaultProps = {
   overlay: false,
 };
 
-export default withTheme(Header);
+export default withRouter(withTheme(Header));

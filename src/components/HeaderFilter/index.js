@@ -15,7 +15,7 @@ import {
 import Option from './_layouts/Option';
 
 const optionsFilter = [
-  { componenet: Finality, text: 'Alugar' },
+  { componenet: Finality, text: 'Alugar', selected: true },
   { componenet: Type, text: 'Tipo' },
   { componenet: Locale, text: 'Bairro' },
   { componenet: Price, text: 'Preço' },
@@ -34,6 +34,7 @@ export default function HeaderFilter({ popupOpen, setPopupOpen }) {
           component={option.componenet}
           popupOpen={popupOpen}
           text={option.text}
+          selected={option.selected}
         />
       ))}
     </Container>

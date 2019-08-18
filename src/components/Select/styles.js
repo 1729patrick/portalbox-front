@@ -1,11 +1,13 @@
+import theme from '~/styles/theme';
+
 const styles = {
   option: (provided, state) => {
     return {
       ...provided,
       borderBottom: '1px solid #eee',
-      color: state.isSelected ? '#fff' : '#444',
+      color: state.isSelected ? theme.select.color : '#444',
       backgroundColor: state.isSelected
-        ? 'rgb(239,108,0)'
+        ? theme.select.backgroundColor
         : state.isFocused
         ? '#eee'
         : 'transparent',
@@ -13,7 +15,7 @@ const styles = {
       cursor: 'pointer',
 
       '&:active': {
-        background: state.isSelected ? 'rgb(239,108,0)' : '#fff',
+        background: state.isSelected ? theme.select.backgroundColor : '#fff',
       },
     };
   },

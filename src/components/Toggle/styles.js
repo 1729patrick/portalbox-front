@@ -21,8 +21,8 @@ export const Buttons = styled.div`
 `;
 
 export const ButtonToggle = styled(DefaultButton).attrs(props => ({
-  background: props.contranstLight ? '#fff' : 'rgb(239, 108, 0)',
-  color: props.contranstLight ? '#444' : '#fff',
+  background: props.theme.toggle.backgroundColor,
+  color: props.theme.toggle.color,
 }))`
   flex: 1;
   transition: 0.2s;
@@ -34,11 +34,11 @@ export const ButtonToggle = styled(DefaultButton).attrs(props => ({
     css`
       background: transparent;
       border: 1.5px solid #cacaca;
-      color: #666;
+      color: #555;
 
       &:hover {
-        border-color: rgb(239, 108, 0);
-        color: rgb(239, 108, 0);
+        border-color: ${props.theme.toggle.backgroundColor};
+        color: ${props.theme.toggle.backgroundColor};
         background: transparent;
       }
     `}

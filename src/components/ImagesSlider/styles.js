@@ -16,6 +16,10 @@ export const Preview = styled.aside`
   align-items: center;
   padding-right: 30px;
 
+  svg {
+    cursor: pointer;
+  }
+
   div {
     margin: 0 26px;
     background: ${props => props.source && `url(${props.source})`} center

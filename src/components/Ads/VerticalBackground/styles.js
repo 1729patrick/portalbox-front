@@ -12,7 +12,7 @@ export const Container = styled.div`
   border-radius: 6px;
   overflow: hidden;
   color: ${props => props.theme.ads.verticalBackground.title.color};
-  box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2);
+  box-shadow: 0 0 30px 6px rgba(31, 51, 73, 0.1);
   position: relative;
   user-select: none;
 
