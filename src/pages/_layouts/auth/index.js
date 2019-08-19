@@ -1,29 +1,19 @@
 import React from 'react';
-import { MdAccountCircle, MdArrowDropDown } from 'react-icons/md';
+import PropTypes from 'prop-types';
 
-import { Container, Header } from './styles';
+import { Container } from './styles';
+import Header from './Header';
 
-export default function AuthLayout() {
+export default function AuthLayout({ children }) {
   return (
     <Container>
-      <Header>
-        <div>
-          <h1>portalbox</h1>
-          {/* <img src={box} alt="" /> */}
-        </div>
+      <Header />
 
-        <div>
-          <ul>
-            <li>Início</li>
-            <li>Imóveis</li>
-            <li>Banners</li>
-            <li>Configurações</li>
-          </ul>
-
-          <MdAccountCircle size={33} color="rgb(239, 108, 0)" />
-          <MdArrowDropDown size={25} color="rgb(239, 108, 0)" />
-        </div>
-      </Header>
+      {children}
     </Container>
   );
 }
+
+AuthLayout.propTypes = {
+  children: PropTypes.element.isRequired,
+};

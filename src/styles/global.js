@@ -31,7 +31,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-  body, input, button {
+  body, input, button, textarea {
     font: 14px 'Product Sans', 'Roboto', sans-serif;
   }
 
@@ -67,7 +67,7 @@ body {
 
   .popup-content  {
     border: none !important;
-    border-radius: 4px;
+    border-radius: 6px;
     min-width: 300px;
     overflow: hidden;
     box-shadow: 0 0 30px 6px rgba(31,51,73,.1) !important;
