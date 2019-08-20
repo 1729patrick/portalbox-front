@@ -1,4 +1,33 @@
+import styled from 'styled-components';
 import theme from '~/styles/theme';
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+`;
+
+export const Label = styled.div`
+  font-weight: 500;
+  font-size: 15px;
+  color: #444;
+  margin-bottom: 3px;
+  justify-content: space-between;
+  display: flex;
+
+  label span {
+    color: #777;
+    font-weight: 500;
+    margin-left: 4px;
+    font-size: 13px;
+  }
+
+  > span {
+    color: #d50000 !important;
+  }
+`;
+
+
 
 const styles = {
   option: (provided, state) => {
@@ -24,7 +53,6 @@ const styles = {
     ...provided,
     margin: 0,
     borderRadius: state.selectProps.menuIsOpen ? '0 0 6px 6px' : 6,
-    boxShadow: '0 15px 40px rgba(0, 0, 0, 0.2)',
   }),
 
   indicatorSeparator: provided => ({
@@ -40,11 +68,10 @@ const styles = {
   }),
 
   control: (_, state) => ({
-    height: 44,
+    height: 37,
     display: 'flex',
     border: '1px solid #ccc',
     borderRadius: state.selectProps.menuIsOpen ? '6px 6px 0 0' : 6,
-    boxShadow: state.selectProps.menuIsOpen && '0 15px 40px rgba(0, 0, 0, 0.2)',
     cursor: 'pointer',
   }),
 

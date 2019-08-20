@@ -46,4 +46,5 @@ export const Content = styled.div`
   flex: 1;
   margin: 0 -30px 0 30px;
   padding: 55px 30px 0 25%;
+  width: 75%;
 `;

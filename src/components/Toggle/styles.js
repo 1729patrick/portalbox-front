@@ -15,6 +15,26 @@ export const Container = styled.div`
   }
 `;
 
+export const Label = styled.div`
+  font-weight: 500;
+  font-size: 15px;
+  color: #444;
+  margin-bottom: 3px;
+  justify-content: space-between;
+  display: flex;
+
+  label span {
+    color: #777;
+    font-weight: 500;
+    margin-left: 4px;
+    font-size: 13px;
+  }
+
+  > span {
+    color: #d50000 !important;
+  }
+`;
+
 export const Buttons = styled.div`
   display: flex;
   flex: 1;

@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 
 import { useField } from '@rocketseat/unform';
 
-import styles from './styles';
+import styles, { Label, Container } from './styles';
 
 export default function ReactSelect({
   name,
   label,
   options,
   multiple,
+  optional,
   ...rest
 }) {
   const ref = useRef(null);
@@ -42,14 +43,23 @@ export default function ReactSelect({
     if (!defaultValue) return null;
 
     if (!multiple) {
-      return options.find(option => option.id === defaultValue);
+      return options.find(option => option.id == defaultValue);
     }
 
     return options.filter(option => defaultValue.includes(option.id));
   }
   return (
-    <>
-      {label && <label htmlFor={fieldName}>{label}</label>}
+    <Container>
+      <Label>
+        {label && (
+          <label htmlFor={fieldName}>
+            {label}
+            {optional && <span>(Opcional)</span>}
+          </label>
+        )}
+
+        {error && <span>{error}</span>}
+      </Label>
 
       <Select
         styles={styles}
@@ -63,9 +73,7 @@ export default function ReactSelect({
         getOptionLabel={option => option.title}
         {...rest}
       />
-
-      {error && <span>{error}</span>}
-    </>
+    </Container>
   );
 }
 
@@ -79,8 +87,10 @@ ReactSelect.propTypes = {
     })
   ).isRequired,
   multiple: PropTypes.bool,
+  optional: PropTypes.bool,
 };
 
 ReactSelect.defaultProps = {
   multiple: false,
+  optional: false,
 };

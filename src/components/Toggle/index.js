@@ -2,9 +2,9 @@ import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useField } from '@rocketseat/unform';
 
-import { Container, ButtonToggle, Buttons } from './styles';
+import { Container, ButtonToggle, Buttons, Label } from './styles';
 
-export default function Toggle({ options, name, label, value }) {
+export default function Toggle({ options, name, label, value, optional }) {
   const ref = useRef(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
 
@@ -20,7 +20,16 @@ export default function Toggle({ options, name, label, value }) {
 
   return (
     <Container>
-      {label && <label htmlFor={fieldName}>{label}</label>}
+      <Label>
+        {label && (
+          <label htmlFor={fieldName}>
+            {label}
+            {optional && <span>(Opcional)</span>}
+          </label>
+        )}
+
+        {error && <span>{error}</span>}
+      </Label>
 
       <Buttons>
         {options.map(option => (
@@ -35,7 +44,6 @@ export default function Toggle({ options, name, label, value }) {
       </Buttons>
 
       <input type="text" data-selected={selected} ref={ref} />
-      {error && <span>{error}</span>}
     </Container>
   );
 }
@@ -50,9 +58,11 @@ Toggle.propTypes = {
     })
   ).isRequired,
   value: PropTypes.number,
+  optional: PropTypes.bool,
 };
 
 Toggle.defaultProps = {
   label: '',
   value: undefined,
+  optional: false,
 };

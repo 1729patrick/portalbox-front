@@ -1,251 +1,276 @@
-import React from 'react';
-import { Form } from '@rocketseat/unform';
-import Slider from 'react-slick';
-
-import SliderArrow from '~/components/SliderArrow';
+import React, { useState } from 'react';
+import { Form, Scope } from '@rocketseat/unform';
+import Slider from '~/components/Slider';
 
 import {
   Container,
   Card,
   SubmitButton,
-  SelectImagesButton,
   Images,
-  Img
+  Img,
 } from './styles';
 
-import Input from '~/components/Input';
+import schema from './schema';
 
-const settings = {
-  infinite: false,
-  dots: false,
-  speed: 500,
-  slidesToShow: 6,
-  slidesToScroll: 6,
-  initialSlide: 0,
-  nextArrow: <SliderArrow next />,
-  prevArrow: <SliderArrow prev />,
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 5,
-        slidesToScroll: 5,
-      },
-    },
-    {
-      breakpoint: 920,
-      settings: {
-        slidesToShow: 4,
-        slidesToScroll: 4,
-      },
-    },
-    {
-      breakpoint: 630,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 3,
-      },
-    },
-    {
-      breakpoint: 470,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2,
-      },
-    },
-    {
-      breakpoint: 320,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-      },
-    },
-  ],
-};
+import Input from '~/components/Input';
+import Select from '~/components/Select';
+import Radio from '~/components/Radio';
+
+
+import ImagesUploader from '~/components/_admin/ImageUploader';
+
+
+import {
+  optionsLocale,
+  optionsType,
+  optionsParticulars,
+} from '~/services/fakeData';
 
 export default function New() {
+  const [images, setImages] = useState([]);
+
+  const initialValue = {
+
+    address: {
+city: "3",
+neighborhood: "2",
+street: "asdas",
+},
+
+map: {
+lat: "",
+lng: "",
+},
+owner:{
+cpf: "",
+name: "",
+whatsapp: "",
+},
+particulars:{
+area: "1312",
+bathroom: "4",
+bedroom: "3",
+garage: "2",
+type: "3",
+},
+price:{
+rent: "",
+sale: ""
+  }};
+
+  const openGoogleMaps = () => {
+    // https://www.google.com/maps/place/R.+1%C2%BA+de+Maio,+1425,+Bandeirante+-+SC,+89905-000
+    // const address =
+    window.open(`https://www.google.com/maps/place/`, '_blank');
+  };
+
+
+  return <ImagesUploader></ImagesUploader>
   return (
     <Container>
-      <Card>
-        <h1>Endereço</h1>
+      <Form
+        onSubmit={data => console.log(data)}
+        schema={schema}
+        initialData={initialValue}
+        onChange={e => console.log(e)}
+      >
+        <Card >
+          <Scope path="address">
+          <div>
+            <h1>Endereço</h1>
+            </div>
 
-        <Form>
-          <Input
+            <Input
             type="text"
-            name="address"
+            name="street"
             label="Rua"
             placeholder="Digite o nome da rua"
           />
           <Input
-            type="text"
+            type="number"
             name="number"
             label="Número"
             placeholder="Digite o número"
             optional
           />
-          <Input
-            type="text"
-            name="bairro"
+
+          <Select
+            placeholder="Selecione o bairro"
+            options={optionsLocale}
+            name="neighborhood"
             label="Bairro"
-            placeholder="Digite o nome bairro"
+            multiple={false}
           />
-          <Input
-            type="text"
+
+          <Select
+            placeholder="Selecione a cidade"
+            options={optionsLocale}
             name="city"
             label="Cidade"
-            placeholder="Digite o nome da cidade"
+            multiple={false}
           />
-        </Form>
-      </Card>
+          </Scope>
+        </Card>
 
-      <Card>
-        <h1>Características</h1>
+        <Card>
+          <Scope path="particulars">
+          <div>
+            <h1>Características</h1>
+          </div>
 
-        <Form>
-          <Input
-            type="text"
-            name="address"
+          <Select
+            placeholder="Selecione o tipo"
+            options={optionsType}
+            name="type"
             label="Tipo"
-            placeholder="Selecione o tipo do imóvel"
+            multiple={false}
+          />
+
+          <Radio name="bedroom" label="Quartos" options={optionsParticulars} />
+
+          <Radio
+            name="bathroom"
+            label="Banheiros"
+            options={optionsParticulars}
+          />
+
+          <Radio
+            name="garage"
+            label="Garagens"
+            optional
+            options={optionsParticulars}
           />
 
           <Input
-            type="text"
-            name="address"
-            label="Quartos"
-            placeholder="Digite a quantidade de quartos"
-          />
-          <Input
-            type="text"
-            name="number"
-            label="Banheiros"
-            placeholder="Digite a quantidade de banheiros"
-          />
-          <Input
-            type="text"
-            name="bairro"
-            label="Garagens"
-            placeholder="Digite a quantidade de garagens"
-            optional
-          />
-          <Input
-            type="text"
-            name="city"
+            type="number"
+            name="area"
             label="Área"
             placeholder="Digite o tamanho do imóvel"
             optional
           />
-        </Form>
 
-        <p>Outras características</p>
-      </Card>
+          <p>Outras características</p>
+          </Scope>
+        </Card>
 
-      <Card>
-        <h1>
-          Mapa <span>(Opcional)</span>
-        </h1>
-        <span>
-          Se as coordenadas estiverem vazias não será possível exibir o mapa do
-          imóvel no PORTAL DA IMOBILIÁRIA
-        </span>
+        <Card>
+          <Scope path="map">
+          <div>
+            <h1>
+              Mapa <p>(Opcional)</p>
+            </h1>
+            <p>
+              Se as coordenadas estiverem vazias não será possível exibir o mapa
+              do imóvel no PORTAL DA IMOBILIÁRIA
+            </p>
+          </div>
 
-        <Form>
           <Input
             type="text"
-            name="address"
+            name="lat"
             label="Latitude"
             placeholder="Digite a latidode da localização"
           />
           <Input
             type="text"
-            name="number"
+            name="lng"
             label="Longitude"
             placeholder="Digite a longitude da localização"
           />
-        </Form>
 
-        <p>Buscar coordenadas no Google Maps</p>
-      </Card>
+          <button type="button" onClick={openGoogleMaps}>
+            Buscar coordenadas no Google Maps
+          </button>
+          </Scope>
+        </Card>
 
-      <Card>
-        <h1>
-          Preço <span>(Opcional)</span>
-        </h1>
-        <span>
-          Imóveis sem preço serão ignorados ao utilizar o filtro de preço no
-          PORAL DA IMOBILIÁRIA
-        </span>
+        <Card>
+          <Scope path="price">
+          <div>
+            <h1>
+              Preço <p>(Opcional)</p>
+            </h1>
+            <p>
+              Imóveis sem preço serão ignorados ao utilizar o filtro de preço no
+              PORAL DA IMOBILIÁRIA
+            </p>
+          </div>
 
-        <Form>
           <Input
-            type="text"
-            name="address"
+            type="number"
+            name="sale"
             label="Preço para venda"
             placeholder="Digite o preço para venda"
           />
           <Input
-            type="text"
-            name="number"
+            type="number"
+            name="rent"
             label="Preço para locação"
             placeholder="Digite o preço para locação"
           />
-        </Form>
-      </Card>
-      <Card>
-        <h1>Fotos</h1>
-        <Images>
-          <Slider {...settings}>
-            <Img></Img>
-            <Img></Img>
-            <Img></Img>
-            <Img></Img>
-            <Img></Img>
-            <Img></Img>
-            <Img></Img>
-            <Img></Img>
-            <Img></Img>
-            <Img></Img>
-          </Slider>
-        </Images>
-        <SelectImagesButton text="Fazer upload de fotos" />
-      </Card>
+          </Scope>
+        </Card>
 
-      <Card>
-        <h1>
-          Proprietário <span>(Opcional)</span>
-        </h1>
+        <Card>
+          <Scope path="images">
+          <div>
+            <h1>Fotos</h1>
+            <p>Adicione ao menos uma foto</p>
+          </div>
 
-        <Form>
+          <Images>
+            {images.length ? (
+              <Slider>
+                {images.map((image, index) => (
+                  <Img key={index} src={image} />
+                ))}
+              </Slider>
+            ) : (
+              <p>Fazer upload de fotos</p>
+            )}
+          </Images>
+          </Scope>
+        </Card>
+
+        <Card >
+          <Scope  path="owner">
+          <div>
+            <h1>
+              Proprietário <p>(Opcional)</p>
+            </h1>
+          </div>
+
           <Input
             type="text"
-            name="address"
+            name="name"
             label="Nome"
             placeholder="Digite o nome do proprietário"
           />
           <Input
             type="text"
-            name="number"
+            name="whatsapp"
             label="Whatsapp"
             placeholder="Digite o número de Whatsapp"
           />
           <Input
             type="text"
-            name="number"
+            name="cpf"
             label="CPF"
             placeholder="Digite o número do CPF"
           />
 
           <Input
             type="text"
-            name="number"
-            label="Observações"
+            name="annotations"
+            label="Anotações"
             multiline
-            placeholder="Digite a observação sobre o responsável"
+            placeholder="Digite algo sobre o responsável"
           />
-        </Form>
-      </Card>
+          </Scope>
+        </Card>
 
-      <SubmitButton text="Salvar" />
+        <SubmitButton text="Salvar" />
+      </Form>
     </Container>
   );
 }

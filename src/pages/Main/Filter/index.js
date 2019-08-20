@@ -33,7 +33,7 @@ export default function Filter() {
             { value: 2, name: 'Comprar' },
           ]}
           value={1}
-                />
+        />
 
         <Select
           placeholder="Qualquer tipo"

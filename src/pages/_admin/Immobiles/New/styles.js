@@ -10,29 +10,45 @@ export const Card = styled.div`
   background: #fff;
   box-shadow: 0 0 30px 6px rgba(31, 51, 73, 0.1);
   padding: 60px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
 
-  h1 {
-    font-size: 25px;
-    margin-bottom: 4px;
+  > div {
+    margin-bottom: 30px;
+
+    h1 {
+      font-size: 25px;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: baseline;
+
+      > p {
+        color: #666;
+        font-weight: 500;
+        margin-left: 4px;
+        font-size: 14px;
+      }
+    }
+
+    > p {
+      color: #777;
+      font-weight: 500;
+      margin-left: 4px;
+      font-size: 13px;
+      line-height: 20px;
+    }
   }
 
-  span {
-    color: #666;
-    font-size: 14px;
-    font-weight: 500;
-  }
-
-  > p {
-    text-align: right;
+  > button {
+    width: min-content;
     font-weight: 500;
     color: rgb(239, 108, 0);
     cursor: pointer;
-  }
-
-  form {
-    margin-top: 30px;
     display: flex;
-    flex-direction: column;
+    border: none;
+    margin-left: auto;
+    white-space: nowrap;
   }
 
   & + div {
@@ -50,27 +66,31 @@ export const SubmitButton = styled(DefaultButton).attrs({
   width: 150px;
 `;
 
-export const SelectImagesButton = styled(DefaultButton).attrs({
-  background: '#e5e5e5',
-  color: '#444',
-})`
-  display: flex;
-  justify-content: center;
-  margin: 20px 0 0 auto;
-  width: 200px;
-  font-size: 15px;
-`;
-
 export const Images = styled.div`
   margin-top: 20px;
   height: 90px;
   background: #eee;
   border-radius: 4px;
-  width: 800px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  cursor: pointer;
+  transition: 300ms;
+
+  p {
+    font-weight: 500;
+    color: #444 !important;
+    font-size: 15px;
+  }
+
+  &:hover {
+    p {
+      color: rgb(239, 108, 0) !important;
+    }
+  }
 `;
 
-export const Img = styled.div`
+export const Img = styled.img`
   height: 90px;
-  border: 1px solid black;
   margin-right: 15px;
 `;
