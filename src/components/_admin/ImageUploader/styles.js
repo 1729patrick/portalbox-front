@@ -1,126 +1,185 @@
 import styled from 'styled-components';
-import DefaultButton from '~/components/Button';
+import Button from '~/components/Button';
 
-export const Container = styled.div`
-  height: 100%;
-  display: flex;
-  user-select: none;
-  padding: 60px;
+export const Container = styled.section`
   position: fixed;
+  background: #fff;
+  height: 100%;
+  width: 100%;
   top: 0;
   left: 0;
   z-index: 3;
-  right: 0;
-  background: #fff;
+  overflow-y: auto;
 
-  @media screen and (max-width: 768px) {
-    flex-direction: column;
+  aside {
+    padding: 231px 60px 60px;
+    display: flex;
+    flex-wrap: wrap;
+    background: #fff;
+
+
+    > div {
+      border: 1px solid #ccc;
+      max-width: 300px;
+      width: 24%;
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 0.5%;
+      position: relative;
+
+      > svg {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        cursor: pointer;
+      }
+
+      span {
+        display: flex;
+        border-top: 1px solid #ccc;
+        align-items: center;
+        position: relative;
+
+        textarea {
+          height: 47px;
+          flex: 1;
+          padding: 21px 8px 0px;
+          color: #444;
+          border: none;
+        }
+
+        p {
+          position: absolute;
+          padding: 5px 10px;
+          background: #eee;
+          border-radius: 50px;
+          font-weight: 500;
+          font-size: 13px;
+          color: #444;
+          top: -15px;
+          left: 8px;
+          border: 1px solid #d5d5d5;
+          display: flex;
+          align-items: center;
+
+          svg {
+            margin-right: 5px;
+          }
+        }
+    }
   }
 `;
 
-export const Preview = styled.aside`
-  flex: 1;
+export const DragAndDrop = styled.section`
   display: flex;
-  align-items: center;
-  padding-right: 30px;
+  flex-direction: column;
 
-  svg {
-    cursor: pointer;
-  }
-
-  div {
-    margin: 0 26px;
-    background: ${props => props.source && `url(${props.source})`} center
-      no-repeat;
-    background-size: cover;
-    height: 100%;
+  header {
+    background: #fff;
+    padding: 20px calc(60px + 0.5%) 20px;
+    position: fixed;
     width: 100%;
-    border-radius: 12px;
-    box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2);
-  }
+    z-index: 1;
 
-  @media screen and (max-width: 768px) {
-    padding-right: 0;
+    section {
+      display: flex;
+      margin-bottom: 15px;
 
-    div {
-      margin: 0 5px;
+      h1 {
+        font-size: 25px;
+      }
+
+      svg {
+        margin-left: auto;
+        cursor: pointer;
+      }
     }
-  }
-`;
 
-export const SliderWrapper = styled.div`
-  width: 230px;
-  padding: 50px 0;
-  transition: 300ms;
+    > span {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      margin-top: 15px;
 
-  .slick-slide {
-    padding: 4px;
-    opacity: 0.6;
+      h2 {
+        color: #555;
+        white-space: nowrap;
+      }
 
-    &:hover {
-      opacity: 1 !important;
-    }
-  }
-
-  .slick-center {
-    opacity: 1 !important;
-
-    div div {
-      border: solid 2px #444;
-
-      div {
-        transform: scale(1.1);
+      button {
+        margin-left: auto;
       }
     }
   }
-
-  @media screen and (max-width: 768px) {
-    width: 100%;
-    padding: 20px 50px 0;
-  }
 `;
 
-export const ImageIcon = styled.div`
-  border-radius: 8px;
-  height: 49px !important;
-  box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2);
+export const Image = styled.div`
+  background: ${props => `url('${props.source}')`} center no-repeat;
+  background-size: cover;
+  height: 300px;
+`;
+
+export const SaveButton = styled(Button).attrs({
+  background: 'rgb(239, 108, 0)',
+  color: '#fff',
+})``;
+
+export const Images = styled.section`
+  background: #eee;
+  border-radius: 4px;
   cursor: pointer;
-  overflow: hidden;
+  transition: 300ms;
+  margin-top: 30px;
 
-  > div {
+  p {
     height: 100%;
-    background: ${props => props.source && `url(${props.source})`} center
-      no-repeat;
-    background-size: cover;
-    transition: 300ms;
+    font-weight: 500;
+    color: #444 !important;
+    font-size: 14.5px !important;
+    text-align: center;
+  }
 
-    &:hover {
-      transform: scale(1.1);
+  &:hover {
+    p {
+      color: rgb(239, 108, 0) !important;
     }
   }
 `;
 
-export const Description = styled.div`
-  p {
-    font-weight: 600;
-    font-size: 16px;
-    color: #555;
-    margin-top: 20px;
-  }
-
-  input {
-    margin-top: 7px;
-    height: 37px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    padding: 12px 6px;
-  }
+export const ImageSlider = styled.div`
+  height: 90px;
+  width: 90px;
+  max-width: 100px;
+  background: ${props => `url('${props.source}')`} center no-repeat;
+  background-size: cover;
 `;
 
-export const SaveButton = styled(DefaultButton).attrs({
-  background: 'rgb(239, 108, 0)',
-  color: '#fff',
-})`
-  width: 100%;
-  margin-top: 50px;
+export const Dropzone = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 35px 0;
+  border-width: 2px;
+  border-radius: 2px;
+  border-color: #ccc;
+  border-style: dashed;
+  background-color: #eee;
+  color: #555;
+  outline: none;
+  transition: border 0.24s ease-in-out;
+  cursor: pointer;
+
+  > p {
+    font-weight: 500;
+    font-size: 15px;
+  }
+
+  &:hover {
+    color: rgb(239, 108, 0);
+  }
+
+  &:focus {
+    border-color: rgb(239, 108, 0);
+  }
 `;

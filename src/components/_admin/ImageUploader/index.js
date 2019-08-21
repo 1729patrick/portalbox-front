@@ -1,83 +1,133 @@
-import React, { useRef, useState, useMemo } from 'react';
-import PropTypes from 'prop-types';
-import Slider from 'react-slick';
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import React, { useState, useMemo } from 'react';
+import { useDropzone } from 'react-dropzone';
+import { MdModeEdit, MdRemoveCircle, MdClose } from 'react-icons/md';
 
+import Slider from '~/components/Slider';
 import {
   Container,
-  Preview,
-  ImageIcon,
-  SliderWrapper,
-  Description,
+  DragAndDrop,
+  Image,
   SaveButton,
+  Images,
+  ImageSlider,
+  Dropzone,
 } from './styles';
 
-import { images as x } from '~/services/fakeData';
+export default function ImageUploader({ onSave, onClose }) {
+  const [images, setImages] = useState([]);
+  const [uploaderOpen, setUploaderOpen] = useState(false);
 
-export default function ImagesUploader({ initialImage }) {
-  const [activeImage, setActiveImage] = useState(initialImage);
+  const imagesSize = useMemo(() => {
+    const { length } = images;
 
-  const images = [{}];
+    if (!length) {
+      return null;
+    }
 
-  const imageActive = useMemo(() => images[activeImage], [activeImage, images]);
+    return length > 1 ? `${length} fotos` : `${length} foto`;
+  }, [images]);
 
-  const imageIndicator = useMemo(
-    () => `${activeImage + 1} / ${images.length}`,
-    [activeImage, images.length]
-  );
+  const handleDropImage = acceptedimages => {
+    setUploaderOpen(true);
 
-  const settings = {
-    centerMode: true,
-    centerPadding: '30px',
-    slidesToShow: 3,
-    speed: 300,
-    focusOnSelect: true,
-    arrows: false,
-    initialSlide: initialImage,
-    beforeChange: (_, next) => setActiveImage(next),
+    const newimages = acceptedimages.map(file => {
+      let [, ...description] = file.name.split('.').reverse();
+      description = description.reverse().join('.');
+      return { ...file, description, preview: URL.createObjectURL(file) };
+    });
+
+    setImages([...images, ...newimages]);
   };
 
-  const sliderRef = useRef(null);
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: 'image/*',
+    onDrop: handleDropImage,
+  });
 
-  const next = () => {
-    sliderRef.current.slickNext();
+  const handleDescriptionChange = (e, index) => {
+    const description = e.target.value;
+
+    setImages(
+      images.map((file, i) => (i === index ? { ...file, description } : file))
+    );
   };
-  const previous = () => {
-    sliderRef.current.slickPrev();
+
+  const handleFileRemove = index => {
+    setImages(images.filter((_, i) => i !== index));
   };
+
+  if (!uploaderOpen) {
+    return (
+      <Images>
+        {images.length ? (
+          <Slider>
+            {images.map((image, index) => (
+              <ImageSlider key={index} source={image.preview} />
+            ))}
+          </Slider>
+        ) : (
+          <Dropzone {...getRootProps({ className: 'dropzone' })}>
+            <input {...getInputProps()} />
+            <p>Arraste as fotos ou clique aqui para selecionar</p>
+          </Dropzone>
+        )}
+      </Images>
+    );
+  }
 
   return (
     <Container>
-      <Preview source={imageActive.source}>
-        <FiChevronLeft size={60} color="#666" onClick={previous} />
-        <div />
-        <FiChevronRight size={60} color="#666" onClick={next} />
-      </Preview>
+      <DragAndDrop>
+        <header>
+          <section>
+            <h1>Fotos do imóvel</h1>
+            <MdClose
+              color="#555"
+              size={35}
+              onClick={() => setUploaderOpen(false)}
+            />
+          </section>
 
-      <SliderWrapper>
-        <Slider {...settings} ref={sliderRef}>
-          {images.map(img => (
-            <ImageIcon source={img.source} key={img}>
-              <div />
-            </ImageIcon>
+          <Dropzone {...getRootProps({ className: 'dropzone' })}>
+            <input {...getInputProps()} />
+            <p>Arraste as fotos ou clique aqui para selecionar</p>
+          </Dropzone>
+
+          {imagesSize && (
+            <span>
+              <h2>{imagesSize}</h2>
+              <SaveButton
+                text="Salvar"
+                onClick={() => setUploaderOpen(false)}
+              />
+            </span>
+          )}
+        </header>
+
+        <aside>
+          {images.map((file, index) => (
+            <div key={index}>
+              <MdRemoveCircle
+                color="#d50000"
+                size={24}
+                onClick={() => handleFileRemove(index)}
+              />
+
+              <Image source={file.preview} />
+
+              <span>
+                <p>
+                  <MdModeEdit color="#444" size={15} /> Descrição
+                </p>
+                <textarea
+                  value={file.description}
+                  onChange={e => handleDescriptionChange(e, index)}
+                />
+              </span>
+            </div>
           ))}
-        </Slider>
-
-        <Description>
-          <p>{imageIndicator}</p>
-          <input type="text" value={imageActive.description} />
-
-          <SaveButton text="Salvar" />
-        </Description>
-      </SliderWrapper>
+        </aside>
+      </DragAndDrop>
     </Container>
   );
 }
-
-ImagesUploader.propTypes = {
-  initialImage: PropTypes.number,
-};
-
-ImagesUploader.defaultProps = {
-  initialImage: 0,
-};

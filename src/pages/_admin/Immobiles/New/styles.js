@@ -15,7 +15,9 @@ export const Card = styled.div`
   flex-direction: column;
 
   > div {
-    margin-bottom: 30px;
+    & + div {
+      margin-top: 30px;
+    }
 
     h1 {
       font-size: 25px;
@@ -35,7 +37,7 @@ export const Card = styled.div`
       color: #777;
       font-weight: 500;
       margin-left: 4px;
-      font-size: 13px;
+      font-size: 14.5px;
       line-height: 20px;
     }
   }
@@ -64,33 +66,4 @@ export const SubmitButton = styled(DefaultButton).attrs({
   justify-content: center;
   margin: 20px 0 20px auto;
   width: 150px;
-`;
-
-export const Images = styled.div`
-  margin-top: 20px;
-  height: 90px;
-  background: #eee;
-  border-radius: 4px;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  cursor: pointer;
-  transition: 300ms;
-
-  p {
-    font-weight: 500;
-    color: #444 !important;
-    font-size: 15px;
-  }
-
-  &:hover {
-    p {
-      color: rgb(239, 108, 0) !important;
-    }
-  }
-`;
-
-export const Img = styled.img`
-  height: 90px;
-  margin-right: 15px;
 `;
