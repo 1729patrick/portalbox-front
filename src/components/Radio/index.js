@@ -3,7 +3,6 @@ import { useField } from '@rocketseat/unform';
 import MaterialRadio from '@material-ui/core/Radio';
 import { withStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { IoMdClose } from 'react-icons/io';
 
 import { Container, Label, Options } from './styles';
 

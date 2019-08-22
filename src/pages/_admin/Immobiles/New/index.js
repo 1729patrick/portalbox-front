@@ -17,8 +17,10 @@ import {
   optionsParticulars,
 } from '~/services/fakeData';
 
+import img from '~/assets/0ffd8594.jpg';
+
 export default function New() {
-  const [images, setImages] = useState([]);
+
 
   const initialValue = {
     address: {
@@ -47,6 +49,13 @@ export default function New() {
       rent: '',
       sale: '',
     },
+    images: [{preview: img, description: 'patrick'},
+    {preview: img, description: 'patrick'},
+    {preview: img, description: 'patrick'},
+    {preview: img, description: 'patrick'},
+    {preview: img, description: 'patrick'},
+    {preview: img, description: 'patrick'},
+    {preview: img, description: 'patrick'}],
   };
 
   const openGoogleMaps = () => {
@@ -55,13 +64,12 @@ export default function New() {
     window.open(`https://www.google.com/maps/place/`, '_blank');
   };
 
-   return (
+  return (
     <Container>
       <Form
         onSubmit={data => console.log(data)}
         schema={schema}
         initialData={initialValue}
-        onChange={e => console.log(e)}
       >
         <Card>
           <Scope path="address">
@@ -142,7 +150,7 @@ export default function New() {
               optional
             />
 
-            <p>Outras características</p>
+            {/* <p>Outras características</p> */}
           </Scope>
         </Card>
 
@@ -205,18 +213,12 @@ export default function New() {
         </Card>
 
         <Card>
-          <Scope path="images">
-            <div>
-              <h1>Fotos</h1>
-              <p>
-                Adicione ao menos uma foto
-              </p>
-            </div>
+          <div>
+            <h1>Fotos</h1>
+            <p>Adicione ao menos uma foto</p>
+          </div>
 
-            <ImagesUploader onSave={setImages}/>
-
-
-          </Scope>
+          <ImagesUploader name="images" />
         </Card>
 
         <Card>

@@ -1,26 +1,31 @@
 import React from 'react';
 
-import { Container, Options, Content, ButtonOption } from './styles';
+import {
+  Container,
+  LeftAside,
+  RigthAside,
+  Title,
+  Route,
+} from '~/components/_admin/Layout';
+
 import New from './New';
 
 export default function Immobiles() {
   return (
     <Container>
-      <Options>
-        <h2>Imóveis</h2>
+      <LeftAside>
+        <Title>Imóveis</Title>
 
         <div>
-          <ButtonOption type="button" active>
-            Novo imóvel
-          </ButtonOption>
-          <ButtonOption type="button">Lista de imóveis</ButtonOption>
-          <ButtonOption type="button">Imóveis em destaque</ButtonOption>
-          <ButtonOption type="button">Automatização</ButtonOption>
+          <Route to="/portal/imoveis">Novo imóvel</Route>
+          <Route to="/portal/imoveis/listar">Lista de imóveis</Route>
+          <Route to="/portal/imoveis/destaque">Imóveis em destaque</Route>
+          <Route to="/portal/imoveis/automatizacao">Automatização</Route>
         </div>
-      </Options>
-      <Content>
+      </LeftAside>
+      <RigthAside>
         <New />
-      </Content>
+      </RigthAside>
     </Container>
   );
 }

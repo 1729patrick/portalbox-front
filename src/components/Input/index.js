@@ -7,7 +7,6 @@ export default function Input({ name, label, optional, ...rest }) {
   const ref = useRef(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
   const [value, setValue] = useState(defaultValue || '');
-
   useEffect(() => {
     registerField({
       name: fieldName,

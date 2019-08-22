@@ -27,7 +27,7 @@ const schema = Yup.object().shape({
     sale: Yup.string(),
     rent: Yup.string(),
   }),
-
+  images: Yup.string(),
   owner: Yup.object().shape({
     name: Yup.string(),
     whatsapp: Yup.string(),

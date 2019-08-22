@@ -1,21 +1,35 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { MdModeEdit, MdRemoveCircle, MdClose } from 'react-icons/md';
+import { useField } from '@rocketseat/unform';
 
-import Slider from '~/components/Slider';
 import {
   Container,
   DragAndDrop,
   Image,
   SaveButton,
   Images,
-  ImageSlider,
   Dropzone,
+  ImageSmall,
 } from './styles';
 
-export default function ImageUploader({ onSave, onClose }) {
-  const [images, setImages] = useState([]);
+export default function ImageUploader({ name, ...rest }) {
+  const ref = useRef(null);
+  const { fieldName, registerField, defaultValue, error } = useField(name);
+
   const [uploaderOpen, setUploaderOpen] = useState(false);
+  const [images, setImages] = useState(defaultValue || []);
+  const [imagesSaved, setImagesSaved] = useState(defaultValue || []);
+
+  useEffect(() => setImages(imagesSaved), [imagesSaved, uploaderOpen]);
+
+  useEffect(() => {
+    registerField({
+      name: fieldName,
+      ref: ref.current,
+      path: 'dataset.images',
+    });
+  }, [ref.current, fieldName]); // eslint-disable-line
 
   const imagesSize = useMemo(() => {
     const { length } = images;
@@ -27,21 +41,19 @@ export default function ImageUploader({ onSave, onClose }) {
     return length > 1 ? `${length} fotos` : `${length} foto`;
   }, [images]);
 
-  const handleDropImage = acceptedimages => {
-    setUploaderOpen(true);
-
-    const newimages = acceptedimages.map(file => {
-      let [, ...description] = file.name.split('.').reverse();
-      description = description.reverse().join('.');
-      return { ...file, description, preview: URL.createObjectURL(file) };
-    });
-
-    setImages([...images, ...newimages]);
-  };
-
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/*',
-    onDrop: handleDropImage,
+    onDrop: acceptedimages => {
+      setUploaderOpen(true);
+
+      const newimages = acceptedimages.map(file => {
+        let [, ...description] = file.name.split('.').reverse();
+        description = description.reverse().join('.');
+        return { ...file, description, preview: URL.createObjectURL(file) };
+      });
+
+      setImages([...images, ...newimages]);
+    },
   });
 
   const handleDescriptionChange = (e, index) => {
@@ -56,21 +68,33 @@ export default function ImageUploader({ onSave, onClose }) {
     setImages(images.filter((_, i) => i !== index));
   };
 
+  const handleSave = () => {
+    setImagesSaved(images);
+    setUploaderOpen(false);
+  };
+
   if (!uploaderOpen) {
-    return (
+    return imagesSaved.length ? (
+      <>
+        <input ref={ref} hidden data-images={imagesSaved} />
+
+        <Images onClick={() => setUploaderOpen(true)}>
+          {imagesSaved.map((image, index) => (
+            <ImageSmall key={index} source={image.preview}>
+              <div />
+
+              <h3>{image.description}</h3>
+            </ImageSmall>
+          ))}
+        </Images>
+        {error}
+      </>
+    ) : (
       <Images>
-        {images.length ? (
-          <Slider>
-            {images.map((image, index) => (
-              <ImageSlider key={index} source={image.preview} />
-            ))}
-          </Slider>
-        ) : (
-          <Dropzone {...getRootProps({ className: 'dropzone' })}>
-            <input {...getInputProps()} />
-            <p>Arraste as fotos ou clique aqui para selecionar</p>
-          </Dropzone>
-        )}
+        <Dropzone {...getRootProps({ className: 'dropzone' })}>
+          <input {...getInputProps()} />
+          <p>Arraste as fotos ou clique aqui para selecionar</p>
+        </Dropzone>
       </Images>
     );
   }
@@ -96,10 +120,7 @@ export default function ImageUploader({ onSave, onClose }) {
           {imagesSize && (
             <span>
               <h2>{imagesSize}</h2>
-              <SaveButton
-                text="Salvar"
-                onClick={() => setUploaderOpen(false)}
-              />
+              <SaveButton type="button" text="Salvar" onClick={handleSave} />
             </span>
           )}
         </header>
@@ -107,11 +128,13 @@ export default function ImageUploader({ onSave, onClose }) {
         <aside>
           {images.map((file, index) => (
             <div key={index}>
-              <MdRemoveCircle
-                color="#d50000"
-                size={24}
-                onClick={() => handleFileRemove(index)}
-              />
+              {images.length > 1 && (
+                <MdRemoveCircle
+                  color="#d50000"
+                  size={24}
+                  onClick={() => handleFileRemove(index)}
+                />
+              )}
 
               <Image source={file.preview} />
 

@@ -4,8 +4,8 @@ export const Container = styled.div`
   padding: 0 100px;
   height: 100%;
 
-  > section {
-    height: calc(100% - 75px);
+  > div {
+    height: 100%;
     padding-top: 115px;
   }
 `;

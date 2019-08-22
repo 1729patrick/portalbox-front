@@ -10,6 +10,7 @@ import PlaceDetails from '~/pages/ImmobileDetails';
 import AdminSignIn from '~/pages/_admin/SignIn';
 import AdminDashboard from '~/pages/_admin/Dashboard';
 import AdminImmobiles from '~/pages/_admin/Immobiles';
+import AdminConfiguration from '~/pages/_admin/Configuration';
 
 const Routes = () => {
   return (
@@ -25,6 +26,12 @@ const Routes = () => {
           path="/portal/imoveis"
           exact
           component={AdminImmobiles}
+          isPrivate
+        />
+        <Route
+          path="/portal/configuracoes"
+          exact
+          component={AdminConfiguration}
           isPrivate
         />
       </Switch>

@@ -16,7 +16,7 @@ export const Card = styled.div`
 
   > div {
     & + div {
-      margin-top: 30px;
+      margin-top: 25px;
     }
 
     h1 {
@@ -26,18 +26,16 @@ export const Card = styled.div`
       align-items: baseline;
 
       > p {
-        color: #666;
-        font-weight: 500;
+        color: #888;
         margin-left: 4px;
+        font-weight: 400;
         font-size: 14px;
       }
     }
 
     > p {
-      color: #777;
-      font-weight: 500;
-      margin-left: 4px;
-      font-size: 14.5px;
+      color: #555;
+      font-size: 14px;
       line-height: 20px;
     }
   }
@@ -50,6 +48,7 @@ export const Card = styled.div`
     display: flex;
     border: none;
     margin-left: auto;
+    margin-top: 25px;
     white-space: nowrap;
   }
 

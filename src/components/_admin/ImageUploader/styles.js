@@ -12,20 +12,20 @@ export const Container = styled.section`
   overflow-y: auto;
 
   aside {
-    padding: 231px 60px 60px;
+    padding: 235px 60px 60px;
     display: flex;
     flex-wrap: wrap;
     background: #fff;
 
 
     > div {
-      border: 1px solid #ccc;
       max-width: 300px;
       width: 24%;
       border-radius: 8px;
       overflow: hidden;
       margin: 0.5%;
       position: relative;
+      box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2);
 
       > svg {
         position: absolute;
@@ -37,6 +37,7 @@ export const Container = styled.section`
       span {
         display: flex;
         border-top: 1px solid #ccc;
+
         align-items: center;
         position: relative;
 
@@ -130,8 +131,11 @@ export const Images = styled.section`
   cursor: pointer;
   transition: 300ms;
   margin-top: 30px;
-
-  p {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  border-radius: 6px;
+  padding: 0 8px 0 4px p {
     height: 100%;
     font-weight: 500;
     color: #444 !important;
@@ -146,12 +150,30 @@ export const Images = styled.section`
   }
 `;
 
-export const ImageSlider = styled.div`
-  height: 90px;
-  width: 90px;
-  max-width: 100px;
-  background: ${props => `url('${props.source}')`} center no-repeat;
-  background-size: cover;
+export const ImageSmall = styled.div`
+  flex: 1;
+  cursor: pointer;
+  margin: 8px 4px;
+  min-width: 20%;
+  box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2);
+  background: #fff;
+  overflow: hidden;
+  border-radius: 6px;
+
+  > div {
+    background: ${props =>
+      props.source && `url(${props.source}) center no-repeat`};
+    background-size: cover;
+    height: 120px;
+    border-bottom: 1px solid #eee;
+  }
+
+  h3 {
+    padding: 10px;
+    font-weight: 500;
+    font-size: 15px;
+    text-align: center;
+  }
 `;
 
 export const Dropzone = styled.div`
