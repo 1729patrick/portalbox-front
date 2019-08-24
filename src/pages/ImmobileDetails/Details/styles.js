@@ -5,7 +5,7 @@ export const Container = styled.div`
 
   > h2 {
     font-weight: 500;
-    color: #444;
+    color: #333;
     font-size: 30px;
   }
 
@@ -38,7 +38,7 @@ export const Particulars = styled.div`
 
   h2 {
     font-weight: 500;
-    color: #444;
+    color: #333;
     font-size: 25px;
   }
 
@@ -58,7 +58,7 @@ export const Particulars = styled.div`
       p {
         margin-left: 10px;
         font-weight: 500;
-        color: #444;
+        color: #333;
       }
     }
   }
@@ -74,7 +74,7 @@ export const Particulars = styled.div`
       align-items: center;
       height: 40px;
       font-weight: 500;
-      color: #444;
+      color: #333;
     }
   }
 

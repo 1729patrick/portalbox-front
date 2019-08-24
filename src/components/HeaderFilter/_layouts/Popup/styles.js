@@ -6,7 +6,7 @@ export const Container = styled.div`
   > label {
     display: block;
     margin-bottom: 12px;
-    color: #444;
+    color: #202124;
     border-bottom: 1px solid #eee;
     padding-bottom: 12px;
     font-weight: 500;
@@ -24,7 +24,7 @@ export const Footer = styled.footer`
     border: none;
     font-size: 14px;
     font-weight: 500;
-    color: #444;
+    color: #333;
     transition: 300ms;
     border-bottom: 1px solid transparent;
 

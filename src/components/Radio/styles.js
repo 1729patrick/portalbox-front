@@ -26,7 +26,7 @@ export const Container = styled.div`
 export const Label = styled.div`
   font-weight: 500;
   font-size: 15px;
-  color: #444;
+  color: #333;
   margin-bottom: 3px;
   justify-content: space-between;
   display: flex;

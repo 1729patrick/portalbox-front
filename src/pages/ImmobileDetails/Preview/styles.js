@@ -43,15 +43,15 @@ export const Button = styled.button`
   border: none;
   padding: 3px;
   border-bottom: solid 2px transparent;
-  color: #444;
+  color: #333;
 
   & + button {
     margin-left: 25px;
   }
 
   &:hover {
-    border-color: #444;
+    border-color: #333;
   }
 
-  border-color: ${props => props.selected && '#444'};
+  border-color: ${props => props.selected && '#333'};
 `;

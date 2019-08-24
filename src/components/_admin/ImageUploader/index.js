@@ -140,7 +140,7 @@ export default function ImageUploader({ name, ...rest }) {
 
               <span>
                 <p>
-                  <MdModeEdit color="#444" size={15} /> Descrição
+                  <MdModeEdit color="#333" size={15} /> Descrição
                 </p>
                 <textarea
                   value={file.description}

@@ -57,7 +57,7 @@ export const Container = styled.header`
               `};
 
         font-weight: 500;
-        font-size: 14.5px;
+        font-size: 14px;
         cursor: pointer;
         padding: 7px 0;
 

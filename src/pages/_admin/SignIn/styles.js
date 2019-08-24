@@ -38,7 +38,7 @@ export const Container = styled.div`
     label {
       font-weight: 500;
       margin-bottom: 3px;
-      color: #444;
+      color: #333;
     }
 
     input {

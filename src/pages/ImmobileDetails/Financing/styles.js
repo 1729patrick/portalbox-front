@@ -4,7 +4,7 @@ import DefaultButton from '~/components/Button';
 
 export const Container = styled.div`
   padding: 50px 80px 70px 80px;
-  color: #444;
+  color: #333;
 
   h2 {
     font-weight: 500;

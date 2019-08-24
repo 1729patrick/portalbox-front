@@ -9,7 +9,7 @@ export const Container = styled.div`
   padding: 50px 80px;
   background: #eee;
   font-weight: 500;
-  color: #444;
+  color: #333;
   border-bottom: 1px solid #ccc;
 
   div {
@@ -43,14 +43,14 @@ export const Container = styled.div`
 
     li {
       font-weight: 500;
-      font-size: 14.5px;
+      font-size: 14px;
       cursor: pointer;
       padding: 5px 0;
       border-bottom: 2px solid transparent;
       white-space: nowrap;
 
       &:hover {
-        border-color: #444;
+        border-color: #333;
       }
 
       & + li {
@@ -74,7 +74,7 @@ export const Copyright = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 30px 20px;
-  color: #444;
+  color: #333;
   font-weight: 400;
   background: #eee;
 

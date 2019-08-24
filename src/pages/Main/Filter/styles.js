@@ -13,7 +13,7 @@ export const Container = styled.div`
   flex-direction: column;
 
   h1 {
-    color: #444;
+    color: #333;
     font-size: 30px;
   }
 

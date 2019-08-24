@@ -13,7 +13,7 @@ export const Container = styled.div`
 
     h2 {
       font-size: 25px;
-      color: #444;
+      color: #333;
       font-weight: 500;
     }
 

@@ -36,7 +36,7 @@ export const Container = styled.header`
         margin-right: 50px;
 
         a {
-          color: #444;
+          color: #333;
           font-weight: 500;
 
           & + a {

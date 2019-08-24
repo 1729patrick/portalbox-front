@@ -8,7 +8,7 @@ import { Container, Label, Options } from './styles';
 
 const CustomRadio = withStyles({
   root: {
-    color: '#444',
+    color: '#333',
     '&$checked': {
       color: 'rgb(239, 108, 0)',
     },

@@ -9,7 +9,7 @@ export const Container = styled.div`
 export const Label = styled.div`
   font-weight: 500;
   font-size: 15px;
-  color: #444;
+  color: #333;
   margin-bottom: 3px;
   justify-content: space-between;
   display: flex;
@@ -33,7 +33,7 @@ const styles = {
     return {
       ...provided,
       borderBottom: '1px solid #eee',
-      color: state.isSelected ? theme.select.color : '#444',
+      color: state.isSelected ? theme.select.color : '#333',
       backgroundColor: state.isSelected
         ? theme.select.backgroundColor
         : state.isFocused

@@ -58,7 +58,7 @@ export const SliderWrapper = styled.div`
     opacity: 1 !important;
 
     div div {
-      border: solid 2px #444;
+      border: solid 2px #333;
 
       div {
         transform: scale(1.1);

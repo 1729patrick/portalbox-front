@@ -14,7 +14,7 @@ const theme = {
       color: '#fff',
       backgroundColor: '#fff',
       selected: {
-        color: '#444',
+        color: '#333',
         backgroundColor: '#fff',
       },
     },
@@ -32,23 +32,23 @@ const theme = {
   ads: {
     horizontalBackground: {
       title: {
-        color: '#444',
+        color: '#333',
       },
       button: {
-        color: '#444',
+        color: '#333',
         backgroundColor: '#fff',
       },
     },
     imageBackground: {
       title: {
         color: '#fff',
-        colorDark: '#444',
+        colorDark: '#333',
       },
       button: {
-        color: '#444',
+        color: '#333',
         backgroundColor: '#fff',
         colorDark: '#fff',
-        backgroundColorDark: '#444',
+        backgroundColorDark: '#333',
       },
     },
     verticalBackground: {
@@ -123,7 +123,7 @@ const theme = {
     },
   },
   checkbox: {
-    color: '#555',
+    color: '#333',
     checkedColor: '#162962',
   },
   incrementDecrement: {

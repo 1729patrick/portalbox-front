@@ -6,7 +6,7 @@ export const Content = styled.div`
 
   > label {
     margin-top: 10px;
-    color: #444;
+    color: #333;
   }
 
   .MuiFormControlLabel-root {

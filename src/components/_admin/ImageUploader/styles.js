@@ -45,7 +45,7 @@ export const Container = styled.section`
           height: 47px;
           flex: 1;
           padding: 21px 8px 0px;
-          color: #444;
+          color: #333;
           border: none;
         }
 
@@ -56,7 +56,7 @@ export const Container = styled.section`
           border-radius: 50px;
           font-weight: 500;
           font-size: 13px;
-          color: #444;
+          color: #333;
           top: -15px;
           left: 8px;
           border: 1px solid #d5d5d5;
@@ -138,8 +138,8 @@ export const Images = styled.section`
   padding: 0 8px 0 4px p {
     height: 100%;
     font-weight: 500;
-    color: #444 !important;
-    font-size: 14.5px !important;
+    color: #333 !important;
+    font-size: 14px !important;
     text-align: center;
   }
 

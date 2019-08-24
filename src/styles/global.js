@@ -7,8 +7,7 @@ import 'react-input-range/lib/css/index.css';
 import theme from './theme';
 
 export default createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
-  @import url('https://fonts.googleapis.com/css?family=Product+Sans:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');
+  @import url('https://fonts.gstatic.com/s/productsans/v10/pxiDypQkot1TnFhsFMOfGShVF9eOYktMqg.woff2');
 
   * {
     margin: 0;
@@ -32,11 +31,23 @@ body {
 }
 
   body, input, button, textarea {
-    font: 14px 'Product Sans', 'Roboto', sans-serif;
+    font: 14px "Google Sans",Roboto,Arial,Helvetica,sans-serif;
+    line-height: 1.71429;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 1.444;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
 
   input::placeholder {
-    font: 14px 'Product Sans', 'Roboto', sans-serif;
+    font: 14px "Google Sans",Roboto,Arial,Helvetica,sans-serif;
+    line-height: 1.71429;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 1.444;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
 
   a {
@@ -83,10 +94,9 @@ body {
 
 
  .MuiFormControlLabel-label {
-      font-size: 14.5px !important;
-      font-family: 'Product Sans', 'Roboto', sans-serif !important;
+      font-size: 14px !important;
+      font-family: "Google Sans",Roboto,Arial,Helvetica,sans-serif !important;
       font-weight: 500 !important;
-
     }
 
     .MuiFormControlLabel-root {

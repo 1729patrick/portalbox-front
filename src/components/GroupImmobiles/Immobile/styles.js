@@ -40,13 +40,13 @@ export const Details = styled.div`
 
   > p {
     margin-top: 4px;
-    color: #444;
+    color: #333;
   }
 
   ul {
     margin-top: 12px;
     display: flex;
-    color: #444;
+    color: #333;
 
     li {
       flex: 1;

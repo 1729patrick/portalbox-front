@@ -4,6 +4,7 @@ export const Container = styled.label`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-weight: 500;
 
   > div {
     display: flex;

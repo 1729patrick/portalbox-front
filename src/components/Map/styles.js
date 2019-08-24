@@ -33,7 +33,7 @@ export const MarkerList = styled.div`
     p {
       font-size: 15.5px;
       font-weight: 500;
-      color: #444;
+      color: #333;
       margin: 16px 0 12px 0;
       padding-bottom: 16px;
       border-bottom: 1px solid #eee;
