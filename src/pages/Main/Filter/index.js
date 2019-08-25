@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Form } from '@rocketseat/unform';
 import { Link } from 'react-router-dom';
 
@@ -9,14 +10,15 @@ import { Container, SubmitButton } from './styles';
 
 import { optionsLocale, optionsType } from '~/services/fakeData';
 
-export default function Filter() {
+export default function Filter({ types }) {
+  const description = useSelector(state => state.company.description);
   function handleSubmit() {
     // console.log(data);
   }
 
   return (
     <Container>
-      <h1>Encontre seu novo imóvel aqui na imobiliária ATMA.</h1>
+      <h1>{description}</h1>
       <Form
         onSubmit={handleSubmit}
         initialData={{
@@ -37,7 +39,7 @@ export default function Filter() {
 
         <Select
           placeholder="Qualquer tipo"
-          options={optionsType}
+          options={types}
           name="type"
           label="Qual tipo?"
           multiple={false}

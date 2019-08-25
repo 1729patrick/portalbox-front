@@ -69,8 +69,8 @@ export default function ReactSelect({
         isMulti={multiple}
         defaultValue={getDefaultValue()}
         ref={ref}
-        getOptionValue={option => option.id}
-        getOptionLabel={option => option.title}
+        getOptionValue={option => option._id}
+        getOptionLabel={option => option.name}
         {...rest}
       />
     </Container>

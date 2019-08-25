@@ -4,7 +4,7 @@ import api from '~/services/api';
 export function* signInVisitor() {
   try {
     const response = yield call(api.get, 'sessions');
-  } catch (e) {}
+  } catch {}
 }
 
 export default all([

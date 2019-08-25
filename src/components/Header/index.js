@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { MdSearch } from 'react-icons/md';
 import { withTheme } from 'styled-components';
@@ -9,6 +10,8 @@ import HeaderFilter from '~/components/HeaderFilter';
 import { links } from '~/services/fakeData';
 
 function Header({ simple, searchable, history, ...props }) {
+  const logo = useSelector(state => state.company.logo);
+
   const [popupOpen, setPopupOpen] = useState(-1);
   const node = useRef();
 
@@ -27,11 +30,7 @@ function Header({ simple, searchable, history, ...props }) {
   return (
     <Container ref={node} {...props} onClickCapture={() => setPopupOpen(-1)}>
       <div>
-        <img
-          onClick={history.goBack}
-          src="http://fotos.sitemidas.com.br/per_corr/logos/logoGeral1221.png"
-          alt="Logo"
-        />
+        <img onClick={history.goBack} src={logo} alt="Logo" />
 
         {searchable && (
           <Search>

@@ -1,24 +1,26 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import { Container, Copyright, FooterWrapper } from './styles';
 
 import { links } from '~/services/fakeData';
 
 export default function Footer() {
+  const company = useSelector(state => state.company);
+
   return (
     <FooterWrapper>
       <Container>
         <div>
-          <img
-            src="http://fotos.sitemidas.com.br/per_corr/logos/logoGeral1221.png"
-            alt="Logo"
-          />
+          <img src={company.logo} alt="Logo" />
           <span>
-            <p>(49) 9 91118313</p>
-            <p>(49) 9 91118313</p>
-            <p>(49) 9 91118313</p>
-            <p>(49) 9 91118313</p>
-            <p>contato@atma.com.br</p>
+            {company.phones.map(phone => (
+              <p key={phone.number}>{phone.number}</p>
+            ))}
+
+            {company.emails.map(email => (
+              <p key={email}>{email}</p>
+            ))}
           </span>
         </div>
 
@@ -32,13 +34,16 @@ export default function Footer() {
       <Copyright>
         <span>
           <p>
-            <b>ATMA IMOBILIARIA</b>- CRECI 0425 - Rua Capote Valente, 39 -
-            Pinheiros, São Paulo - SP, 05409-000 - <b>Ver no mapa</b>
+            <b>{company.name}</b> - CRECI {company.creci} -{' '}
+            {company.address.street},{' '}
+            {company.address.number ? `${company.address.number}, ` : ''}
+            {company.address.neighborhood}, {company.address.city}-SC,{' '}
+            {company.address.cep} - <b>Ver no mapa</b>
           </p>
         </span>
 
         <p>
-          DESENVOLVIDO POR: <b>PATRICK BATTISTI</b>
+          DESENVOLVIDO POR: <b>PORTALBOX</b>
         </p>
       </Copyright>
     </FooterWrapper>

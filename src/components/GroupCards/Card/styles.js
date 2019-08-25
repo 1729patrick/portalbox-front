@@ -18,6 +18,9 @@ export const Container = styled.div`
     padding: 10px;
     font-weight: 500;
     font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import { Container } from './styles';
 import GroupImmobiles from '~/components/GroupImmobiles';
@@ -13,9 +14,11 @@ import {
 import { listImmobiles, listTypes } from '~/services/fakeData';
 
 export default function Immobiles() {
+  const types = useSelector(state => state.core.types);
+
   return (
     <Container>
-      <GroupCards title="Tipos" list={listTypes} />
+      <GroupCards title="Tipos" list={types} />
 
       <AdImageBackground
         title="Veja os imóveis mais visualizados na última semana."

@@ -1,5 +1,6 @@
 import React from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
+import { useSelector } from 'react-redux';
 
 import Header from '~/components/Header';
 import Footer from '~/components/Footer';
@@ -15,11 +16,14 @@ import GroupCards from '~/components/GroupCards';
 import { listImmobiles, listTypes } from '~/services/fakeData';
 
 const Main = () => {
+  const banner = useSelector(state => state.company.banner);
+  const types = useSelector(state => state.core.types);
+
   return (
     <>
-      <Background>
+      <Background banner={banner}>
         <Header contranstLight overlay simple searchable={false} />
-        <Filter />
+        <Filter types={types} />
 
         <span>
           <IoIosArrowDown size={35} color="#fff" />
@@ -27,7 +31,7 @@ const Main = () => {
       </Background>
 
       <Content>
-        <GroupCards title="Tipos" list={listTypes} />
+        <GroupCards title="Tipos" list={types} />
 
         <AdImageBackground
           title="Veja os imóveis mais visualizados na última semana."

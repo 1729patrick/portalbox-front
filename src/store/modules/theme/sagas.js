@@ -12,4 +12,4 @@ function* loadColors({ payload }) {
   yield put(loadColorsSuccess(response.data));
 }
 
-export default all([takeLatest('@auth/SIGN_IN_SUCCESS', loadColors)]);
+export default all([takeLatest('@auth/SIGN_IN_VISITOR_SUCCESS', loadColors)]);

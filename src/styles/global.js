@@ -4,10 +4,19 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-input-range/lib/css/index.css';
 
+import font from '~/assets/fonts/GoogleSans-Medium.ttf';
+// import font from '~/assets/fonts/GoogleSans-Regular.ttf';
 import theme from './theme';
 
 export default createGlobalStyle`
-  @import url('https://fonts.gstatic.com/s/productsans/v10/pxiDypQkot1TnFhsFMOfGShVF9eOYktMqg.woff2');
+  /* @import url('https://fonts.gstatic.com/s/productsans/v10/pxiDypQkot1TnFhsFMOfGShVF9eOYktMqg.woff2'); */
+
+@font-face {
+    font-family: 'Google Sans';
+    src: url(${font}) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
 
   * {
     margin: 0;

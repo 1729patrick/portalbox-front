@@ -6,7 +6,7 @@ export default reducers => {
     {
       key: 'portalbox',
       storage,
-      whitelist: ['auth', 'company', 'theme'],
+      whitelist: ['auth', 'company', 'theme', 'core'],
     },
     reducers
   );

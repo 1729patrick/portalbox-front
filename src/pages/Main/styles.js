@@ -5,8 +5,7 @@ export const Background = styled.div`
   width: 100%;
   padding: 10px;
 
-  background: url('https://privilegeimobiliaria.com.br/wp-content/uploads/2018/11/zzzzz.jpg')
-    center no-repeat;
+  background: ${props => `url("${props.banner}") center no-repeat`};
   background-size: cover;
   display: flex;
   flex-direction: column;

@@ -9,13 +9,18 @@ const INITIAL_STATE = {
 const auth = (state = INITIAL_STATE, action) => {
   return produce(state, draft => {
     switch (action.type) {
-      case '@auth/SIGN_IN_VISITOR_REQUEST': {
+      case '@auth/SIGN_IN_REQUEST': {
         draft.loading = true;
         break;
       }
       case '@auth/SIGN_IN_SUCCESS': {
         draft.token = action.payload.token;
         draft.loading = false;
+        draft.signed = true;
+        break;
+      }
+      case '@auth/SIGN_IN_VISITOR_SUCCESS': {
+        draft.token = action.payload.token;
         break;
       }
       case '@auth/SIGN_IN_FAILURE': {

@@ -6,11 +6,11 @@ export const Container = styled.div`
   display: flex;
   flex: 1;
   height: 100%;
-  background: rgb(239, 108, 0);
+  background: linear-gradient(130deg, rgb(239, 108, 0) 0, #78378c 100%);
   align-items: center;
   justify-content: center;
 
-/* repetido */
+  /* repetido */
   div {
     position: absolute;
     top: 40px;

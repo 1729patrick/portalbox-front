@@ -12,7 +12,7 @@ export default function GroupCards({ title, style, list }) {
 
       <Slider>
         {list.map(card => (
-          <Card key={card.id} {...card} />
+          <Card key={card._id} {...card} />
         ))}
       </Slider>
     </Container>
@@ -24,8 +24,8 @@ GroupCards.propTypes = {
   style: PropTypes.shape(),
   list: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
+      _id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
       image: PropTypes.string.isRequired,
     })
   ).isRequired,
