@@ -49,6 +49,7 @@ export default function Radio({ name, label, optional, options }) {
             value="start"
             control={
               <CustomRadio
+                // eslint-disable-next-line eqeqeq
                 checked={checked == option.value}
                 onChange={e => setChecked(e.target.value)}
                 value={option.value}

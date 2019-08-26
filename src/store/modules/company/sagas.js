@@ -1,11 +1,6 @@
-import { all, takeLatest, put, call } from 'redux-saga/effects';
-import api from '~/services/api';
+import { all, takeLatest } from 'redux-saga/effects';
 
-export function* signInVisitor() {
-  try {
-    const response = yield call(api.get, 'sessions');
-  } catch {}
-}
+export function* signInVisitor() {}
 
 export default all([
   takeLatest('@company/LOAD_COMPANY_REQUEST', signInVisitor),

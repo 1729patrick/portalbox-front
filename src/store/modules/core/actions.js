@@ -1,8 +1,17 @@
-export const loadTypeRequest = () => ({ type: '@core/LOAD_TYPE_REQUEST' });
+export const loadTypesRequest = () => ({ type: '@core/LOAD_TYPES_REQUEST' });
 
-export const loadTypeSuccess = types => ({
-  type: '@core/LOAD_TYPE_SUCCESS',
+export const loadTypesSuccess = types => ({
+  type: '@core/LOAD_TYPES_SUCCESS',
   payload: { types },
 });
 
-export const loadTypeFailure = () => ({ type: '@core/LOAD_TYPE_SUCCESS' });
+export const loadTypesFailure = () => ({ type: '@core/LOAD_TYPES_SUCCESS' });
+
+export const loadCitiesRequest = () => ({ type: '@core/LOAD_CITIES_REQUEST' });
+
+export const loadCitiesSuccess = cities => ({
+  type: '@core/LOAD_CITIES_SUCCESS',
+  payload: { cities },
+});
+
+export const loadCitiesFailure = () => ({ type: '@core/LOAD_CITIES_SUCCESS' });

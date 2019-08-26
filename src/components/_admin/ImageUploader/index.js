@@ -1,23 +1,26 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { MdModeEdit, MdRemoveCircle, MdClose } from 'react-icons/md';
+import { MdClose } from 'react-icons/md';
 import { useField } from '@rocketseat/unform';
+import { DndProvider } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
 import {
   Container,
-  DragAndDrop,
-  Image,
+  DragAndDrop1,
   SaveButton,
   Images,
   Dropzone,
   ImageSmall,
 } from './styles';
 
+import DragAndDrop from './DragAndDrop';
+
 export default function ImageUploader({ name, ...rest }) {
   const ref = useRef(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
 
-  const [uploaderOpen, setUploaderOpen] = useState(false);
+  const [uploaderOpen, setUploaderOpen] = useState(true);
   const [images, setImages] = useState(defaultValue || []);
   const [imagesSaved, setImagesSaved] = useState(defaultValue || []);
 
@@ -49,23 +52,29 @@ export default function ImageUploader({ name, ...rest }) {
       const newimages = acceptedimages.map(file => {
         let [, ...description] = file.name.split('.').reverse();
         description = description.reverse().join('.');
-        return { ...file, description, preview: URL.createObjectURL(file) };
+
+        return {
+          ...file,
+          description,
+          preview: URL.createObjectURL(file),
+          id: Math.random() * 10000,
+        };
       });
 
       setImages([...images, ...newimages]);
     },
   });
 
-  const handleDescriptionChange = (e, index) => {
+  const handleDescriptionChange = (e, id) => {
     const description = e.target.value;
 
     setImages(
-      images.map((file, i) => (i === index ? { ...file, description } : file))
+      images.map(image => (image.id === id ? { ...image, description } : image))
     );
   };
 
-  const handleFileRemove = index => {
-    setImages(images.filter((_, i) => i !== index));
+  const handleFileRemove = id => {
+    setImages(images.filter(image => image.id !== id));
   };
 
   const handleSave = () => {
@@ -76,7 +85,11 @@ export default function ImageUploader({ name, ...rest }) {
   if (!uploaderOpen) {
     return imagesSaved.length ? (
       <>
-        <input ref={ref} hidden data-images={imagesSaved} />
+        <input
+          ref={ref}
+          hidden
+          data-images={['5d61bd5b20e846243ea0c9ff', '5d61bd5b20e846243ea0c9ff']}
+        />
 
         <Images onClick={() => setUploaderOpen(true)}>
           {imagesSaved.map((image, index) => (
@@ -101,7 +114,7 @@ export default function ImageUploader({ name, ...rest }) {
 
   return (
     <Container>
-      <DragAndDrop>
+      <DragAndDrop1>
         <header>
           <section>
             <h1>Fotos do imóvel</h1>
@@ -125,32 +138,15 @@ export default function ImageUploader({ name, ...rest }) {
           )}
         </header>
 
-        <aside>
-          {images.map((file, index) => (
-            <div key={index}>
-              {images.length > 1 && (
-                <MdRemoveCircle
-                  color="#d50000"
-                  size={24}
-                  onClick={() => handleFileRemove(index)}
-                />
-              )}
-
-              <Image source={file.preview} />
-
-              <span>
-                <p>
-                  <MdModeEdit color="#333" size={15} /> Descrição
-                </p>
-                <textarea
-                  value={file.description}
-                  onChange={e => handleDescriptionChange(e, index)}
-                />
-              </span>
-            </div>
-          ))}
-        </aside>
-      </DragAndDrop>
+        <DndProvider backend={HTML5Backend}>
+          <DragAndDrop
+            cards={images}
+            setCards={setImages}
+            handleDescriptionChange={handleDescriptionChange}
+            handleFileRemove={handleFileRemove}
+          />
+        </DndProvider>
+      </DragAndDrop1>
     </Container>
   );
 }

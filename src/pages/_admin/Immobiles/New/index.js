@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Form, Scope } from '@rocketseat/unform';
 
-import { Container, Card, SubmitButton, Images, Image } from './styles';
+import { Container, Card, SubmitButton } from './styles';
 
-import schema from './schema';
+import CreateImmobileSchema from '~/schemas/CreateImmobileSchema';
 
 import Input from '~/components/Input';
 import Select from '~/components/Select';
@@ -11,21 +12,16 @@ import Radio from '~/components/Radio';
 
 import ImagesUploader from '~/components/_admin/ImageUploader';
 
-import {
-  optionsLocale,
-  optionsType,
-  optionsParticulars,
-} from '~/services/fakeData';
-
-import img from '~/assets/0ffd8594.jpg';
+import { optionsParticulars } from '~/services/fakeData';
 
 export default function New() {
-
+  const types = useSelector(state => state.core.types);
+  const cities = useSelector(state => state.core.cities);
 
   const initialValue = {
     address: {
-      city: '3',
-      neighborhood: '2',
+      city: '5d62d8f7d913533aa88fcb9b',
+      neighborhood: '5d62b707943c5917ae5879a7',
       street: 'asdas',
     },
 
@@ -43,19 +39,13 @@ export default function New() {
       bathroom: '4',
       bedroom: '3',
       garage: '2',
-      type: '3',
+      type: '5d61f08c3be9865134c092c1',
     },
     price: {
       rent: '',
       sale: '',
     },
-    images: [{preview: img, description: 'patrick'},
-    {preview: img, description: 'patrick'},
-    {preview: img, description: 'patrick'},
-    {preview: img, description: 'patrick'},
-    {preview: img, description: 'patrick'},
-    {preview: img, description: 'patrick'},
-    {preview: img, description: 'patrick'}],
+    images: [],
   };
 
   const openGoogleMaps = () => {
@@ -68,7 +58,7 @@ export default function New() {
     <Container>
       <Form
         onSubmit={data => console.log(data)}
-        schema={schema}
+        schema={CreateImmobileSchema}
         initialData={initialValue}
       >
         <Card>
@@ -93,18 +83,25 @@ export default function New() {
 
             <Select
               placeholder="Selecione o bairro"
-              options={optionsLocale}
-              name="neighborhood"
-              label="Bairro"
+              options={cities}
+              name="city"
+              label="Cidade"
               multiple={false}
             />
 
             <Select
-              placeholder="Selecione a cidade"
-              options={optionsLocale}
-              name="city"
-              label="Cidade"
+              placeholder="Selecione o bairro"
+              options={cities}
+              name="neighborhood"
+              label="Bairro"
               multiple={false}
+              groupedData
+              keys={{
+                label: 'name',
+                options: 'neighborhoods',
+                option: 'name',
+                value: '_id',
+              }}
             />
           </Scope>
         </Card>
@@ -117,7 +114,7 @@ export default function New() {
 
             <Select
               placeholder="Selecione o tipo"
-              options={optionsType}
+              options={types}
               name="type"
               label="Tipo"
               multiple={false}
@@ -127,6 +124,7 @@ export default function New() {
               name="bedroom"
               label="Quartos"
               options={optionsParticulars}
+              optional
             />
 
             <Radio

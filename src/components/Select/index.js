@@ -1,10 +1,11 @@
+/* eslint-disable  */
 import React, { useRef, useEffect, useMemo } from 'react';
 import Select from 'react-select';
 import PropTypes from 'prop-types';
 
 import { useField } from '@rocketseat/unform';
 
-import styles, { Label, Container } from './styles';
+import styles, { Label, Container, GroupLabel } from './styles';
 
 export default function ReactSelect({
   name,
@@ -12,6 +13,8 @@ export default function ReactSelect({
   options,
   multiple,
   optional,
+  groupedData,
+  keys,
   ...rest
 }) {
   const ref = useRef(null);
@@ -26,6 +29,17 @@ export default function ReactSelect({
       return selectValue ? selectValue.map(option => option.id) : [];
     };
   }, [multiple]);
+
+  const data = useMemo(() => {
+    if (!groupedData) {
+      return options.map(({ _id, name }) => ({ id: _id, name }));
+    }
+
+    return options.map(option => ({
+      label: option[keys.label],
+      options: option[keys.options].map(({ _id, name }) => ({ id: _id, name })),
+    }));
+  }, [groupedData, keys, options]);
 
   useEffect(() => {
     registerField({
@@ -42,12 +56,26 @@ export default function ReactSelect({
   function getDefaultValue() {
     if (!defaultValue) return null;
 
-    if (!multiple) {
-      return options.find(option => option.id == defaultValue);
+    if (groupedData) {
+      return data
+        .map(opt => opt.options.find(option => option.id == defaultValue))
+        .filter(option => option)[0];
     }
 
-    return options.filter(option => defaultValue.includes(option.id));
+    if (!multiple) {
+      return data.find(option => option.id == defaultValue);
+    }
+
+    return data.filter(option => defaultValue.includes(option.id));
   }
+
+  const formatGroupLabel = data => (
+    <GroupLabel>
+      <p>{data.label}</p>
+      <span>{data.options.length}</span>
+    </GroupLabel>
+  );
+
   return (
     <Container>
       <Label>
@@ -65,12 +93,13 @@ export default function ReactSelect({
         styles={styles}
         name={fieldName}
         aria-label={fieldName}
-        options={options}
+        options={data}
         isMulti={multiple}
         defaultValue={getDefaultValue()}
         ref={ref}
-        getOptionValue={option => option._id}
+        getOptionValue={option => option.id}
         getOptionLabel={option => option.name}
+        formatGroupLabel={formatGroupLabel}
         {...rest}
       />
     </Container>

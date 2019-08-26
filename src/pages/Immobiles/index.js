@@ -11,7 +11,7 @@ import {
   AdHorizontalBackground,
 } from '~/components/Ads';
 
-import { listImmobiles, listTypes } from '~/services/fakeData';
+import { listImmobiles } from '~/services/fakeData';
 
 export default function Immobiles() {
   const types = useSelector(state => state.core.types);

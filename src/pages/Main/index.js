@@ -13,7 +13,7 @@ import Filter from './Filter';
 import GroupImmobiles from '~/components/GroupImmobiles';
 import GroupCards from '~/components/GroupCards';
 
-import { listImmobiles, listTypes } from '~/services/fakeData';
+import { listImmobiles } from '~/services/fakeData';
 
 const Main = () => {
   const banner = useSelector(state => state.company.banner);

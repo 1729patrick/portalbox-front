@@ -10,68 +10,9 @@ export const Container = styled.section`
   left: 0;
   z-index: 3;
   overflow-y: auto;
-
-  aside {
-    padding: 235px 60px 60px;
-    display: flex;
-    flex-wrap: wrap;
-    background: #fff;
-
-
-    > div {
-      max-width: 300px;
-      width: 24%;
-      border-radius: 8px;
-      overflow: hidden;
-      margin: 0.5%;
-      position: relative;
-      box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2);
-
-      > svg {
-        position: absolute;
-        right: 10px;
-        top: 10px;
-        cursor: pointer;
-      }
-
-      span {
-        display: flex;
-        border-top: 1px solid #ccc;
-
-        align-items: center;
-        position: relative;
-
-        textarea {
-          height: 47px;
-          flex: 1;
-          padding: 21px 8px 0px;
-          color: #333;
-          border: none;
-        }
-
-        p {
-          position: absolute;
-          padding: 5px 10px;
-          background: #eee;
-          border-radius: 50px;
-          font-weight: 500;
-          font-size: 13px;
-          color: #333;
-          top: -15px;
-          left: 8px;
-          border: 1px solid #d5d5d5;
-          display: flex;
-          align-items: center;
-
-          svg {
-            margin-right: 5px;
-          }
-        }
-    }
-  }
 `;
 
-export const DragAndDrop = styled.section`
+export const DragAndDrop1 = styled.section`
   display: flex;
   flex-direction: column;
 
@@ -80,7 +21,7 @@ export const DragAndDrop = styled.section`
     padding: 20px calc(60px + 0.5%) 20px;
     position: fixed;
     width: 100%;
-    z-index: 1;
+    z-index: 3;
 
     section {
       display: flex;
@@ -112,12 +53,6 @@ export const DragAndDrop = styled.section`
       }
     }
   }
-`;
-
-export const Image = styled.div`
-  background: ${props => `url('${props.source}')`} center no-repeat;
-  background-size: cover;
-  height: 300px;
 `;
 
 export const SaveButton = styled(Button).attrs({

@@ -1,16 +1,33 @@
 import { all, takeLatest, call, put } from 'redux-saga/effects';
 import api from '~/services/api';
 
-import { loadTypeSuccess, loadTypeFailure } from './actions';
+import {
+  loadTypesSuccess,
+  loadTypesFailure,
+  loadCitiesSuccess,
+  loadCitiesFailure,
+} from './actions';
 
 export function* loadTypes() {
   try {
     const response = yield call(api.get, 'types');
 
-    yield put(loadTypeSuccess(response.data));
+    yield put(loadTypesSuccess(response.data));
   } catch {
-    yield put(loadTypeFailure());
+    yield put(loadTypesFailure());
   }
 }
 
-export default all([takeLatest('@auth/SIGN_IN_VISITOR_SUCCESS', loadTypes)]);
+export function* loadCities() {
+  try {
+    const response = yield call(api.get, 'cities');
+
+    yield put(loadCitiesSuccess(response.data));
+  } catch {
+    yield put(loadCitiesFailure());
+  }
+}
+
+export default all([
+  takeLatest('@auth/SIGN_IN_VISITOR_SUCCESS', [loadTypes, loadCities]),
+]);

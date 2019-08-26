@@ -8,7 +8,7 @@ import Toggle from '~/components/Toggle';
 
 import { Container, SubmitButton } from './styles';
 
-import { optionsLocale, optionsType } from '~/services/fakeData';
+import { optionsLocale } from '~/services/fakeData';
 
 export default function Filter({ types }) {
   const description = useSelector(state => state.company.description);

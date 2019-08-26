@@ -2,13 +2,13 @@ import * as Yup from 'yup';
 
 const requiredMessage = 'Este campo precisa ser preenchido';
 
-const schema = Yup.object().shape({
+const CreateImmobileSchema = Yup.object().shape({
   // address
   address: Yup.object().shape({
     street: Yup.string().required(requiredMessage),
     string: Yup.string(),
-    neighborhood: Yup.string().required(requiredMessage),
     city: Yup.string().required(requiredMessage),
+    neighborhood: Yup.string().required(requiredMessage),
   }),
   particulars: Yup.object().shape({
     type: Yup.string().required(requiredMessage),
@@ -27,7 +27,7 @@ const schema = Yup.object().shape({
     sale: Yup.string(),
     rent: Yup.string(),
   }),
-  images: Yup.array(Yup.object()),
+  images: Yup.string(),
   owner: Yup.object().shape({
     name: Yup.string(),
     whatsapp: Yup.string(),
@@ -36,4 +36,4 @@ const schema = Yup.object().shape({
   }),
 });
 
-export default schema;
+export default CreateImmobileSchema;

@@ -16,13 +16,13 @@ export const optionsLocale = [
 ];
 
 export const optionsType = [
-  { id: 1, title: 'Apartamento' },
-  { id: 2, title: 'Casa' },
-  { id: 4, title: 'Kitnet' },
-  { id: 3, title: 'Sala comercial' },
-  { id: 5, title: 'Cobertura' },
-  { id: 6, title: 'Chacará' },
-  { id: 7, title: 'Armazém' },
+  { _id: 1, name: 'Apartamento' },
+  { _id: 2, name: 'Casa' },
+  { _id: 4, name: 'Kitnet' },
+  { _id: 3, name: 'Sala comercial' },
+  { _id: 5, name: 'Cobertura' },
+  { _id: 6, name: 'Chacará' },
+  { _id: 7, name: 'Armazém' },
 ];
 
 export const optionsParticular = [

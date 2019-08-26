@@ -26,7 +26,25 @@ export const Label = styled.div`
   }
 `;
 
+export const GroupLabel = styled.div`
+  display: flex;
+  align-items: center;
 
+  p {
+    color: rgb(239, 108, 0);
+  }
+
+  span {
+    line-height: 20px;
+    text-align: center;
+    margin-left: auto;
+    color: #444;
+    background: #eee;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+  }
+`;
 
 const styles = {
   option: (provided, state) => {
@@ -39,7 +57,7 @@ const styles = {
         : state.isFocused
         ? '#eee'
         : 'transparent',
-      padding: 14,
+      padding: '10px 15px',
       cursor: 'pointer',
 
       '&:active': {
@@ -81,5 +99,4 @@ const styles = {
     return { ...provided, opacity, transition, border: 'none' };
   },
 };
-
 export default styles;
