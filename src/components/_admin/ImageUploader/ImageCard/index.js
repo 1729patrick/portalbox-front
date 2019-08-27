@@ -9,7 +9,6 @@ export default function ImageCard({
   image,
   handleFileRemove,
   handleDescriptionChange,
-  imagesLength,
   moveCard,
   findCard,
 }) {
@@ -33,13 +32,11 @@ export default function ImageCard({
   const opacity = isDragging ? 0 : 1;
   return (
     <Card ref={node => drag(drop(node))} style={{ opacity }}>
-      {imagesLength > 1 && (
         <MdRemoveCircle
           color="#d50000"
           size={24}
           onClick={() => handleFileRemove(id)}
         />
-      )}
 
       <Image source={image.preview} />
 

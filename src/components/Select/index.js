@@ -100,6 +100,7 @@ export default function ReactSelect({
         getOptionValue={option => option.id}
         getOptionLabel={option => option.name}
         formatGroupLabel={formatGroupLabel}
+        noOptionsMessage={()=> 'Nenhuma opção'}
         {...rest}
       />
     </Container>

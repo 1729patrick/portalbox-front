@@ -16,11 +16,11 @@ import {
 
 import DragAndDrop from './DragAndDrop';
 
-export default function ImageUploader({ name, ...rest }) {
+export default function ImageUploader({ name, onSave }) {
   const ref = useRef(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
 
-  const [uploaderOpen, setUploaderOpen] = useState(true);
+  const [uploaderOpen, setUploaderOpen] = useState(false);
   const [images, setImages] = useState(defaultValue || []);
   const [imagesSaved, setImagesSaved] = useState(defaultValue || []);
 
@@ -57,10 +57,10 @@ export default function ImageUploader({ name, ...rest }) {
           ...file,
           description,
           preview: URL.createObjectURL(file),
-          id: Math.random() * 10000,
+          id: (Math.random() * 10000).toFixed(0),
+          file,
         };
       });
-
       setImages([...images, ...newimages]);
     },
   });
@@ -80,28 +80,21 @@ export default function ImageUploader({ name, ...rest }) {
   const handleSave = () => {
     setImagesSaved(images);
     setUploaderOpen(false);
+
+    onSave(images)
   };
 
-  if (!uploaderOpen) {
-    return imagesSaved.length ? (
-      <>
-        <input
-          ref={ref}
-          hidden
-          data-images={['5d61bd5b20e846243ea0c9ff', '5d61bd5b20e846243ea0c9ff']}
-        />
+  const getContent = () =>
+    imagesSaved.length ? (
+      <Images onClick={() => setUploaderOpen(true)}>
+        {imagesSaved.map((image, index) => (
+          <ImageSmall key={index} source={image.preview}>
+            <div />
 
-        <Images onClick={() => setUploaderOpen(true)}>
-          {imagesSaved.map((image, index) => (
-            <ImageSmall key={index} source={image.preview}>
-              <div />
-
-              <h3>{image.description}</h3>
-            </ImageSmall>
-          ))}
-        </Images>
-        {error}
-      </>
+            <h3>{image.description}</h3>
+          </ImageSmall>
+        ))}
+      </Images>
     ) : (
       <Images>
         <Dropzone {...getRootProps({ className: 'dropzone' })}>
@@ -109,6 +102,16 @@ export default function ImageUploader({ name, ...rest }) {
           <p>Arraste as fotos ou clique aqui para selecionar</p>
         </Dropzone>
       </Images>
+    );
+
+  if (!uploaderOpen) {
+    return (
+      <>
+        <input ref={ref} hidden data-images={imagesSaved.length} />
+        {error}
+
+        {getContent()}
+      </>
     );
   }
 

@@ -29,5 +29,6 @@ export function* loadCities() {
 }
 
 export default all([
-  takeLatest('@auth/SIGN_IN_VISITOR_SUCCESS', [loadTypes, loadCities]),
+  takeLatest('@auth/SIGN_IN_VISITOR_SUCCESS', loadCities),
+  takeLatest('@auth/SIGN_IN_VISITOR_SUCCESS', loadTypes),
 ]);

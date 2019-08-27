@@ -8,6 +8,8 @@ import font from '~/assets/fonts/GoogleSans-Medium.ttf';
 // import font from '~/assets/fonts/GoogleSans-Regular.ttf';
 import theme from './theme';
 
+import 'react-toastify/dist/ReactToastify.css';
+
 export default createGlobalStyle`
   /* @import url('https://fonts.gstatic.com/s/productsans/v10/pxiDypQkot1TnFhsFMOfGShVF9eOYktMqg.woff2'); */
 

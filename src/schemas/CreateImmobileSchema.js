@@ -6,13 +6,15 @@ const CreateImmobileSchema = Yup.object().shape({
   // address
   address: Yup.object().shape({
     street: Yup.string().required(requiredMessage),
-    string: Yup.string(),
+    number: Yup.number()
+      .transform(cv => (!cv ? null : cv))
+      .nullable(),
     city: Yup.string().required(requiredMessage),
     neighborhood: Yup.string().required(requiredMessage),
   }),
   particulars: Yup.object().shape({
     type: Yup.string().required(requiredMessage),
-    bedroom: Yup.string().required(requiredMessage),
+    bedroom: Yup.string(),
     bathroom: Yup.string().required(requiredMessage),
     garage: Yup.string(),
     area: Yup.string(),
@@ -27,7 +29,7 @@ const CreateImmobileSchema = Yup.object().shape({
     sale: Yup.string(),
     rent: Yup.string(),
   }),
-  images: Yup.string(),
+  images: Yup.number().min(1, 'Adicione ao menos uma foto'),
   owner: Yup.object().shape({
     name: Yup.string(),
     whatsapp: Yup.string(),

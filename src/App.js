@@ -1,6 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import { ToastContainer } from 'react-toastify';
 
 import Routes from './routes';
 import Theme from './theme';
@@ -14,6 +15,7 @@ const App = () => {
       <PersistGate persistor={persistor}>
         <Theme>
           <Routes />
+          <ToastContainer />
         </Theme>
       </PersistGate>
     </Provider>

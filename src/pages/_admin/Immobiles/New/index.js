@@ -1,5 +1,5 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, {useState} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Form, Scope } from '@rocketseat/unform';
 
 import { Container, Card, SubmitButton } from './styles';
@@ -14,40 +14,16 @@ import ImagesUploader from '~/components/_admin/ImageUploader';
 
 import { optionsParticulars } from '~/services/fakeData';
 
+import {createImmobilesRequest } from '~/store/modules/immobiles/actions'
+
 export default function New() {
+  const dispatch = useDispatch()
+
   const types = useSelector(state => state.core.types);
   const cities = useSelector(state => state.core.cities);
+    const [images, setImages] = useState([])
 
-  const initialValue = {
-    address: {
-      city: '5d62d8f7d913533aa88fcb9b',
-      neighborhood: '5d62b707943c5917ae5879a7',
-      street: 'asdas',
-    },
-
-    map: {
-      lat: '',
-      lng: '',
-    },
-    owner: {
-      cpf: '',
-      name: '',
-      whatsapp: '',
-    },
-    particulars: {
-      area: '1312',
-      bathroom: '4',
-      bedroom: '3',
-      garage: '2',
-      type: '5d61f08c3be9865134c092c1',
-    },
-    price: {
-      rent: '',
-      sale: '',
-    },
-    images: [],
-  };
-
+ 
   const openGoogleMaps = () => {
     // https://www.google.com/maps/place/R.+1%C2%BA+de+Maio,+1425,+Bandeirante+-+SC,+89905-000
     // const address =
@@ -57,9 +33,8 @@ export default function New() {
   return (
     <Container>
       <Form
-        onSubmit={data => console.log(data)}
+        onSubmit={data => dispatch(createImmobilesRequest(data, images))}
         schema={CreateImmobileSchema}
-        initialData={initialValue}
       >
         <Card>
           <Scope path="address">
@@ -216,7 +191,7 @@ export default function New() {
             <p>Adicione ao menos uma foto</p>
           </div>
 
-          <ImagesUploader name="images" />
+          <ImagesUploader name="images" onSave={setImages}/>
         </Card>
 
         <Card>

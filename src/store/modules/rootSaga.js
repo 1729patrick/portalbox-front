@@ -4,7 +4,8 @@ import auth from './auth/sagas';
 import company from './company/sagas';
 import theme from './theme/sagas';
 import core from './core/sagas';
+import immobiles from './immobiles/sagas';
 
 export default function* rootSaga() {
-  return yield all([auth, company, theme, core]);
+  return yield all([auth, company, theme, core, immobiles]);
 }
