@@ -66,3 +66,9 @@ export const SubmitButton = styled(DefaultButton).attrs({
   margin: 20px 0 20px auto;
   width: 150px;
 `;
+
+export const Configuration = styled.div`
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+`;

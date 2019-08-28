@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useDispatch} from 'react-redux'
 import { IoIosArrowDown } from 'react-icons/io';
 import { useSelector } from 'react-redux';
 
@@ -15,9 +16,16 @@ import GroupCards from '~/components/GroupCards';
 
 import { listImmobiles } from '~/services/fakeData';
 
+import {loadSessionImmobilesRequest} from '~/store/modules/immobiles/actions'
 const Main = () => {
+  const dispatch = useDispatch()
   const banner = useSelector(state => state.company.banner);
   const types = useSelector(state => state.core.types);
+const news = useSelector(state=> state.immobiles.news)
+
+useEffect(() => {
+        dispatch(loadSessionImmobilesRequest({ sessions: [1, 2] }));
+  }, [dispatch])
 
   return (
     <>
@@ -39,11 +47,11 @@ const Main = () => {
           textButton="Explorar imóveis"
           style={{ marginTop: 50 }}
         />
-        <GroupImmobiles
+        {/* <GroupImmobiles
           style={{ marginTop: 50 }}
           list={listImmobiles}
-          title="Destaques"
-        />
+          title="Destaques de locação"
+        /> */}
         <AdVerticalBackground
           title="Encontre os aparamentos com os melhores acabentos em Florianópolis."
           style={{ marginTop: 50 }}
@@ -51,8 +59,8 @@ const Main = () => {
         />
         <GroupImmobiles
           style={{ marginTop: 50 }}
-          list={listImmobiles}
           title="Novos"
+          {...news}
         />
       </Content>
       <Footer />

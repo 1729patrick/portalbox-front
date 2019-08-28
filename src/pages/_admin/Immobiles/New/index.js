@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Form, Scope } from '@rocketseat/unform';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-import { Container, Card, SubmitButton } from './styles';
+import { Container, Card, SubmitButton, Configuration } from './styles';
 
 import CreateImmobileSchema from '~/schemas/CreateImmobileSchema';
 
@@ -12,18 +13,30 @@ import Radio from '~/components/Radio';
 
 import ImagesUploader from '~/components/_admin/ImageUploader';
 
-import { optionsParticulars } from '~/services/fakeData';
+import { optionsParticulars, sessionsImmobiles } from '~/services/fakeData';
 
 import {createImmobilesRequest } from '~/store/modules/immobiles/actions'
+
+import Checkbox from '~/components/Checkbox';
 
 export default function New() {
   const dispatch = useDispatch()
 
   const types = useSelector(state => state.core.types);
   const cities = useSelector(state => state.core.cities);
-    const [images, setImages] = useState([])
+  const [images, setImages] = useState([])
+  const [sessions, setSessions] = useState([])
 
- 
+  const handleSessionChange = (_id)=> {
+    const index = sessions.indexOf(_id) ;
+      if(index=== -1){
+        return setSessions([...sessions, _id])
+      }
+
+      setSessions(sessions.filter((_, i) => i !==index))
+  }
+
+
   const openGoogleMaps = () => {
     // https://www.google.com/maps/place/R.+1%C2%BA+de+Maio,+1425,+Bandeirante+-+SC,+89905-000
     // const address =
@@ -33,7 +46,7 @@ export default function New() {
   return (
     <Container>
       <Form
-        onSubmit={data => dispatch(createImmobilesRequest(data, images))}
+        onSubmit={data => dispatch(createImmobilesRequest({...data, sessions}, images))}
         schema={CreateImmobileSchema}
       >
         <Card>
@@ -106,6 +119,7 @@ export default function New() {
               name="bathroom"
               label="Banheiros"
               options={optionsParticulars}
+              optional
             />
 
             <Radio
@@ -135,7 +149,7 @@ export default function New() {
               </h1>
               <p>
                 Se as coordenadas estiverem vazias não será possível exibir o
-                mapa do imóvel no PORTAL DA IMOBILIÁRIA
+               imóvel no mapa do PORTAL
               </p>
             </div>
 
@@ -166,7 +180,7 @@ export default function New() {
               </h1>
               <p>
                 Imóveis sem preço serão ignorados ao utilizar o filtro de preço
-                no PORAL DA IMOBILIÁRIA
+                no PORAL
               </p>
             </div>
 
@@ -230,6 +244,36 @@ export default function New() {
             />
           </Scope>
         </Card>
+
+        <Card>
+          <Scope path="owner">
+            <div>
+              <h1>
+                Configuração <p>(Opcional)</p>
+              </h1>
+
+              <p>O imóvel deve ser listado em qual sessão no PORTAL?</p>
+            </div>
+
+
+      <Configuration>
+          {sessionsImmobiles.map(type => (
+          <FormControlLabel
+            key={type.name}
+            control={
+              <Checkbox
+                checked={sessions.indexOf(type._id) !== -1}
+                onChange={()=> handleSessionChange(type._id)}
+                value={type._id}
+              />
+            }
+            label={type.name}
+          />
+        ))}
+        </Configuration>
+</Scope>
+        </Card>
+
 
         <SubmitButton text="Salvar" />
       </Form>

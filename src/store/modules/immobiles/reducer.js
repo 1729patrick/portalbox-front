@@ -2,6 +2,26 @@ import produce from 'immer';
 
 const INITIAL_STATE = {
   loading: false,
+  news: {
+    count: 0,
+    immobiles: [],
+  },
+  saleHighlights: {
+    count: 0,
+    immobiles: [],
+  },
+  rentalHighlights: {
+    count: 0,
+    immobiles: [],
+  },
+  offersOfWeek: {
+    count: 0,
+    immobiles: [],
+  },
+  moreViewedOfWeek: {
+    count: 0,
+    immobiles: [],
+  },
 };
 
 const immobiles = (state = INITIAL_STATE, action) => {
@@ -14,6 +34,12 @@ const immobiles = (state = INITIAL_STATE, action) => {
         break;
       }
       case '@immobile/CREATE_IMMOBILES_FAILURE': {
+        break;
+      }
+
+      case '@immobile/LOAD_SESSION_IMMOBILES_SUCCESS': {
+        const { sessionKey } = action.payload;
+        draft[sessionKey] = action.payload.immobiles;
         break;
       }
       default:

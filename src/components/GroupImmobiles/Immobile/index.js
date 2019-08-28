@@ -1,43 +1,34 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import { Container, Image, Details } from './styles';
-
-import bed from '~/assets/carac/bed.svg';
-import car from '~/assets/carac/car.svg';
-import move from '~/assets/carac/move.svg';
-import shower from '~/assets/carac/shower.svg';
+import { particularsIcons } from '~/services/fakeData';
 
 export default function Immobile({ immobile }) {
+  const image = useMemo(() => immobile.images[0].file, [immobile.images]);
   return (
     <Container>
-      <Image source={immobile.images} />
+      <Image source={image} />
 
       <Details>
         <span>
-          <h4>{immobile.type}</h4>
-          <p>{immobile.priceFormatted}</p>
+          <h4>{immobile.type.name}</h4>
+          <p>{immobile.price.rent}</p>
+          <p>{immobile.price.sale}</p>
         </span>
 
-        <p>{immobile.address}</p>
+        <p>{immobile.address.street}</p>
 
         <ul>
-          <li>
-            <img src={bed} alt="Quartos" />
-            <p>{immobile.roomsFormatted}</p>
-          </li>
-          <li>
-            <img src={car} alt="Garagem" />
-            <p>{immobile.garagesFormatted}</p>
-          </li>
-          <li>
-            <img src={shower} alt="Banheiros" />
-            <p>{immobile.bathroomsFormatted}</p>
-          </li>
-          <li>
-            <img src={move} alt="Área" />
-            <p>{immobile.area}m²</p>
-          </li>
+          {immobile.particulars.map(particular => (
+            <li key={particular.title}>
+              <img
+                src={particularsIcons[particular.title]}
+                alt={particular.title}
+              />
+              <p>{particular.value}</p>
+            </li>
+          ))}
         </ul>
       </Details>
     </Container>

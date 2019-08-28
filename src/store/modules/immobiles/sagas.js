@@ -1,19 +1,9 @@
 import { all, takeLatest, call, put } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 import api from '~/services/api';
+import { sessionsImmobiles } from '~/services/fakeData';
 
-const clean = obj => {
-  return JSON.parse(
-    JSON.stringify(obj, (key, value) => {
-      if (value === null || value === undefined || value === '') {
-        return undefined;
-      }
-
-      console.log(value);
-      return value;
-    })
-  );
-};
+import { loadSessionImmobilesSuccess } from './actions';
 
 export function* createImmobile({ payload }) {
   const { immobile, images } = payload;
@@ -31,29 +21,52 @@ export function* createImmobile({ payload }) {
     a.map((c, i) => Object.assign({}, c, b[i]))
   );
 
-  const { address, particulars, map, price, owner } = immobile;
+  const { address, particulars, map, price, owner, sessions } = immobile;
   const { type, ...onlyParticulars } = particulars;
 
-  const particularsFormatted = Object.keys(onlyParticulars).map(k => ({
-    title: k,
-    value: onlyParticulars[k],
-  }));
+  const particularsFormatted = Object.keys(onlyParticulars)
+    .map(k => ({
+      title: k,
+      value: onlyParticulars[k],
+    }))
+    .filter(({ value }) => value);
+
+  const imagesMergedFormatted = imagesMerged.map(
+    ({ _id, url, description }) => ({ file: _id, url, description })
+  );
 
   const immobileClean = {
-    address: clean(address),
-    map: clean(clean(map)),
-    price: clean(clean(price)),
-    owner: clean(clean(owner)),
-    type: clean(type),
+    address,
+    map,
+    price,
+    owner,
+    type,
+    config: { sessions },
     particulars: particularsFormatted,
-    images: imagesMerged,
+    images: imagesMergedFormatted,
   };
 
-  const responseImmobile = yield call(api.post, 'immobiles', immobileClean);
+  yield call(api.post, 'immobiles', immobileClean);
 
-  console.log(responseImmobile);
+  toast.success('Imóvel cadastrado com sucesso');
+}
+
+export function* loadSession({ payload }) {
+  const { sessions } = payload;
+
+  const response = yield call(api.get, 'immobiles', {
+    params: {
+      sessions: JSON.stringify(sessions),
+    },
+  });
+
+  const { key } = sessionsImmobiles.find(({ _id }) => _id === sessions[0]);
+
+  const immobiles = response.data;
+  yield put(loadSessionImmobilesSuccess({ sessionKey: key, immobiles }));
 }
 
 export default all([
   takeLatest('@immobile/CREATE_IMMOBILES_REQUEST', createImmobile),
+  takeLatest('@immobile/LOAD_SESSION_IMMOBILES_REQUEST', loadSession),
 ]);
