@@ -1,4 +1,4 @@
-import { all, takeLatest, call, put } from 'redux-saga/effects';
+import { all, takeLatest, call, put, takeEvery } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 import api from '~/services/api';
 import { sessionsImmobiles } from '~/services/fakeData';
@@ -52,15 +52,15 @@ export function* createImmobile({ payload }) {
 }
 
 export function* loadSession({ payload }) {
-  const { sessions } = payload;
+  const { session } = payload;
 
   const response = yield call(api.get, 'immobiles', {
     params: {
-      sessions: JSON.stringify(sessions),
+      sessions: JSON.stringify([session]),
     },
   });
 
-  const { key } = sessionsImmobiles.find(({ _id }) => _id === sessions[0]);
+  const { key } = sessionsImmobiles.find(({ _id }) => _id === session);
 
   const immobiles = response.data;
   yield put(loadSessionImmobilesSuccess({ sessionKey: key, immobiles }));
@@ -68,5 +68,5 @@ export function* loadSession({ payload }) {
 
 export default all([
   takeLatest('@immobile/CREATE_IMMOBILES_REQUEST', createImmobile),
-  takeLatest('@immobile/LOAD_SESSION_IMMOBILES_REQUEST', loadSession),
+  takeEvery('@immobile/LOAD_SESSION_IMMOBILES_REQUEST', loadSession),
 ]);

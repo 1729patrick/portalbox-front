@@ -14,17 +14,18 @@ import Filter from './Filter';
 import GroupImmobiles from '~/components/GroupImmobiles';
 import GroupCards from '~/components/GroupCards';
 
-import { listImmobiles } from '~/services/fakeData';
-
 import {loadSessionImmobilesRequest} from '~/store/modules/immobiles/actions'
+
 const Main = () => {
   const dispatch = useDispatch()
   const banner = useSelector(state => state.company.banner);
   const types = useSelector(state => state.core.types);
-const news = useSelector(state=> state.immobiles.news)
+  const saleHighlights = useSelector(state=> state.immobiles.saleHighlights)
+  const rentalHighlights = useSelector(state=> state.immobiles.rentalHighlights)
 
 useEffect(() => {
-        dispatch(loadSessionImmobilesRequest({ sessions: [1, 2] }));
+        dispatch(loadSessionImmobilesRequest({ session: 3 }));
+        dispatch(loadSessionImmobilesRequest({ session: 2 }));
   }, [dispatch])
 
   return (
@@ -47,11 +48,11 @@ useEffect(() => {
           textButton="Explorar imóveis"
           style={{ marginTop: 50 }}
         />
-        {/* <GroupImmobiles
+        <GroupImmobiles
           style={{ marginTop: 50 }}
-          list={listImmobiles}
           title="Destaques de locação"
-        /> */}
+          {...rentalHighlights}
+        />
         <AdVerticalBackground
           title="Encontre os aparamentos com os melhores acabentos em Florianópolis."
           style={{ marginTop: 50 }}
@@ -59,8 +60,8 @@ useEffect(() => {
         />
         <GroupImmobiles
           style={{ marginTop: 50 }}
-          title="Novos"
-          {...news}
+          title="Destaque de venda"
+          {...saleHighlights}
         />
       </Content>
       <Footer />

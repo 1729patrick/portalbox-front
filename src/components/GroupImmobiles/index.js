@@ -13,7 +13,7 @@ export default function GroupImmobiles({
   count,
 }) {
   return (
-    <Container style={style}>
+    <Container style={style} oneLine={count <= 4}>
       {title && <h1>{title}</h1>}
 
       <div>
@@ -24,7 +24,7 @@ export default function GroupImmobiles({
         ))}
       </div>
 
-      {showSize && <p>Ver todos ({count})</p>}
+      {showSize && count > 8 && <p>Ver todos ({count})</p>}
     </Container>
   );
 }

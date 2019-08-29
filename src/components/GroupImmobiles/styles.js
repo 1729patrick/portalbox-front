@@ -10,7 +10,8 @@ export const Container = styled.div`
   > div {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: ${props =>
+      props.oneLine ? 'repeat(1, 1fr)' : 'repeat(1, 1fr)'};
     /* grid-auto-rows: 0; */
     overflow-y: hidden;
     grid-gap: 15px;

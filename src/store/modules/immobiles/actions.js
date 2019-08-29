@@ -11,9 +11,9 @@ export const createImmobilesFailure = () => ({
   type: '@immobile/CREATE_IMMOBILES_FAILURE',
 });
 
-export const loadSessionImmobilesRequest = ({ sessions }) => ({
+export const loadSessionImmobilesRequest = ({ session }) => ({
   type: '@immobile/LOAD_SESSION_IMMOBILES_REQUEST',
-  payload: { sessions },
+  payload: { session },
 });
 
 export const loadSessionImmobilesSuccess = ({ sessionKey, immobiles }) => ({

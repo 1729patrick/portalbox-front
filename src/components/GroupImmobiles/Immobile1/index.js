@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import { Container, Image, Details } from './styles';
-import { particularsIcons, particularsName } from '~/services/fakeData';
+import { particularsName } from '~/services/fakeData';
 
 // {
 //   id: 1,
@@ -83,24 +83,18 @@ export default function Immobile({ immobile }) {
           )}
         </span>
 
-        <p>{address}</p>
-
         <ul>
           {immobile.particulars.map(particular => (
             <li key={particular.title}>
-              <img
-                src={particularsIcons[particular.title]}
-                alt={particular.title}
-              />
               <p>
-                {particular.value}
-                <span>
-                  {particularsName[particular.title][particular.value > 1]}
-                </span>
+                {particular.value}{' '}
+                <span>{particularsName[particular.title]}</span>
               </p>
             </li>
           ))}
         </ul>
+
+        <p>{address}</p>
       </Details>
     </Container>
   );

@@ -3,8 +3,6 @@ import car from '~/assets/carac/car.svg';
 import move from '~/assets/carac/move.svg';
 import shower from '~/assets/carac/shower.svg';
 
-
-
 export const links = [
   { title: 'Alugar imóvel' },
   { title: 'Comprar imóvel' },
@@ -277,10 +275,19 @@ export const sessionsImmobiles = [
   { name: 'Mais vistos da semana', _id: 5, key: 'moreViewedOfWeek' },
 ];
 
-
 export const particularsIcons = {
-    bedroom: bed,
-    bathroom: shower,
-    garage: car,
-    area: move,
-}
+  bedroom: bed,
+  bathroom: shower,
+  garage: car,
+  area: move,
+};
+
+export const particularsName = {
+  bedroom: {
+    true: 'Quartos',
+    false: 'Quarto',
+  },
+  bathroom: { true: 'Banheiros', false: 'Banheiro' },
+  garage: { true: 'Vagas', false: 'Vaga' },
+  area: { true: 'm²', false: 'm²'   },
+};
