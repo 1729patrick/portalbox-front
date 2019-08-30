@@ -10,6 +10,7 @@ import ImagesSlider from '~/components/ImagesSlider';
 
 export default function Preview({ page: pageDefaul, onClose, args }) {
   const [page, setPage] = useState(pageDefaul);
+
   return (
     <Container>
       <Header>

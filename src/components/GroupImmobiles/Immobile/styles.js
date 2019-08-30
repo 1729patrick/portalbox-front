@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   min-width: 260px;
-  min-height: 355px;
+  min-height: 362px;
   overflow: hidden;
   border-radius: 5px;
   user-select: none;
@@ -29,7 +29,7 @@ export const Details = styled.div`
     align-items: center;
 
     h4 {
-      color: #777;
+      color: #666;
       text-transform: uppercase;
       font-size: 13px;
     }
@@ -43,8 +43,8 @@ export const Details = styled.div`
   }
 
   > p {
-    color: #666;
-    margin-bottom: 5px;
+    color: #555;
+    margin: 7px 0;
   }
 
   ul {
@@ -66,7 +66,7 @@ export const Details = styled.div`
       }
 
       p {
-        margin-left: 5px;
+        margin-left: 8px;
         font-size: 14px;
         word-break: break-all;
         overflow: hidden;

@@ -29,7 +29,7 @@ export default function Immobile({ immobile }) {
   const address = useMemo(() => {
     const { address } = immobile;
 
-    const number = address.number ? `, Nº ${address.number}` : '';
+    const number = address.number ? `, ${address.number}` : '';
     const neighborhood = address.neighborhood
       ? `, ${address.neighborhood.name}`
       : '';

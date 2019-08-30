@@ -11,6 +11,7 @@ export const Container = styled.div`
   text-align: center;
   display: flex;
   flex-direction: column;
+  height: min-content;
 
   h4 {
     font-size: 25px;

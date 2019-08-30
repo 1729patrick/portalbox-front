@@ -36,7 +36,7 @@ export default function New() {
   }
 
 
-  return <ParticularsCheckList></ParticularsCheckList>
+  // return <ParticularsCheckList></ParticularsCheckList>
   return (
     <Container>
       <Form

@@ -1,27 +1,27 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
-import { Container, Button } from './styles';
+import { Container, Button, Img } from './styles';
 
-export default function Images({ openPreview }) {
+export default function Images({ openPreview, immobile }) {
+  const images = useMemo(() => immobile.images.slice(0, 4), [immobile.images]);
+
   return (
-    <Container>
-      <div className="img1" onClick={() => openPreview(0)}>
-        <div />
-      </div>
+    <Container imagesLength={images.length}>
+      {images.map((image, index) => (
+        <Img
+          key={image._id}
+          className={index}
+          gridArea={`img-${index}`}
+          source={image.file}
+          onClick={() => openPreview(index)}
+        >
+          <div />
+        </Img>
+      ))}
 
-      <div className="img2" onClick={() => openPreview(1)}>
-        <div />
-      </div>
-
-      <div className="img3" onClick={() => openPreview(2)}>
-        <div />
-      </div>
-
-      <div className="img4" onClick={() => openPreview(3)}>
-        <div />
-      </div>
-
-      <Button text="Ver fotos" onClick={() => openPreview()} />
+      {immobile.images.length > 4 && (
+        <Button text="Ver fotos" onClick={() => openPreview()} />
+      )}
     </Container>
   );
 }

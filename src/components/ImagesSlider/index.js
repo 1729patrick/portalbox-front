@@ -11,22 +11,20 @@ import {
   Description,
 } from './styles';
 
-import { images } from '~/services/fakeData';
-
-export default function ImagesSlider({ initialImage }) {
+export default function ImagesSlider({ initialImage, images }) {
   const [activeImage, setActiveImage] = useState(initialImage);
 
-  const imageActive = useMemo(() => images[activeImage], [activeImage]);
+  const imageActive = useMemo(() => images[activeImage], [activeImage, images]);
 
   const imageIndicator = useMemo(
     () => `${activeImage + 1} / ${images.length}`,
-    [activeImage]
+    [activeImage, images.length]
   );
 
   const settings = {
     centerMode: true,
     centerPadding: '30px',
-    slidesToShow: 3,
+    slidesToShow: images.length < 3 ? images.length : 3,
     speed: 300,
     focusOnSelect: true,
     arrows: false,
@@ -43,9 +41,11 @@ export default function ImagesSlider({ initialImage }) {
     sliderRef.current.slickPrev();
   };
 
+  console.log(images);
+
   return (
     <Container>
-      <Preview source={imageActive.source}>
+      <Preview source={imageActive.file}>
         <FiChevronLeft size={60} color="#666" onClick={previous} />
         <div />
         <FiChevronRight size={60} color="#666" onClick={next} />
@@ -54,7 +54,7 @@ export default function ImagesSlider({ initialImage }) {
       <SliderWrapper>
         <Slider {...settings} ref={sliderRef}>
           {images.map(img => (
-            <ImageIcon source={img.source} key={img}>
+            <ImageIcon source={img.file} key={img._id}>
               <div />
             </ImageIcon>
           ))}

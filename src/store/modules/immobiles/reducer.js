@@ -38,8 +38,9 @@ const immobiles = (state = INITIAL_STATE, action) => {
       }
 
       case '@immobile/LOAD_SESSION_IMMOBILES_SUCCESS': {
-        const { sessionKey } = action.payload;
-        draft[sessionKey] = action.payload.immobiles;
+        // eslint-disable-next-line no-shadow
+        const { sessionKey, immobiles } = action.payload;
+        draft[sessionKey] = immobiles;
         break;
       }
       default:

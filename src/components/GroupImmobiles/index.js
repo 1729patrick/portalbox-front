@@ -1,26 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import { Container } from './styles';
 import ImmobileCard from './Immobile';
 
-export default function GroupImmobiles({
-  title,
-  style,
-  showSize,
-  immobiles,
-  count,
-}) {
+function GroupImmobiles({ title, style, showSize, immobiles, count, history }) {
+  const openDetails = (_id, address) => {
+    history.push(`imoveis/${_id}/${address}`);
+  };
+
   return (
     <Container style={style} oneLine={count <= 4}>
       {title && <h1>{title}</h1>}
 
       <div>
         {immobiles.map(immobile => (
-          <Link to="/imoveis/asdasd" key={immobile.id}>
-            <ImmobileCard immobile={immobile} key={immobile.id} />
-          </Link>
+          <ImmobileCard
+            immobile={immobile}
+            key={immobile._id}
+            openDetails={openDetails}
+          />
         ))}
       </div>
 
@@ -54,3 +54,5 @@ GroupImmobiles.defaultProps = {
   showSize: true,
   count: null,
 };
+
+export default withRouter(GroupImmobiles);

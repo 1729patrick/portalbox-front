@@ -28,6 +28,8 @@ export default function Cards() {
         label="Preço para locação"
         placeholder="Digite o preço para locação"
       />
+
+      <button type="button">Adicionar taxas</button>
     </Scope>
   );
 }

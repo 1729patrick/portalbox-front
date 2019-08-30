@@ -4,21 +4,7 @@ import PropTypes from 'prop-types';
 import { Container, Image, Details } from './styles';
 import { particularsIcons, particularsName } from '~/services/fakeData';
 
-// {
-//   id: 1,
-//   images:
-//     'https://cdn.cyrela.com.br/Files/Imagens/Imoveis/2235/imovel/132043120495224766-apartamento-moema-by-cyrela-lounge-festas-636x295-.jpg',
-//   type: 'Apartamento',
-//   priceFormatted: 'R$ 1720,00/mês',
-//   address: 'Rua Maria Lúcia da Paz - Gleba Fazenda Palhano, Londrina - PR',
-//   roomsFormatted: '3 quartos',
-//   garagesFormatted: '1 vaga',
-//   bathroomsFormatted: '2 banheiros',
-//   area: 150,
-//   location: { lat: -26.724933, lng: -53.532206 },
-// },
-
-export default function Immobile({ immobile }) {
+export default function Immobile({ immobile, openDetails }) {
   const image = useMemo(() => {
     if (immobile.images && immobile.images[0]) {
       return immobile.images[0].file;
@@ -29,7 +15,7 @@ export default function Immobile({ immobile }) {
   const address = useMemo(() => {
     const { address } = immobile;
 
-    const number = address.number ? `, Nº ${address.number}` : '';
+    const number = address.number ? `, ${address.number}` : '';
     const neighborhood = address.neighborhood
       ? `, ${address.neighborhood.name}`
       : '';
@@ -68,7 +54,7 @@ export default function Immobile({ immobile }) {
   }, [immobile.price.sale]);
 
   return (
-    <Container>
+    <Container onClick={() => openDetails(immobile._id, address)}>
       <Image source={image} />
 
       <Details>

@@ -5,7 +5,7 @@ import Route from './Route';
 
 import Main from '~/pages/Main';
 import Immobiles from '~/pages/Immobiles';
-import PlaceDetails from '~/pages/ImmobileDetails';
+import ImmobileDetails from '~/pages/ImmobileDetails';
 
 import AdminSignIn from '~/pages/_admin/SignIn';
 import AdminDashboard from '~/pages/_admin/Dashboard';
@@ -18,7 +18,12 @@ const Routes = () => {
       <Switch>
         <Route path="/" exact component={Main} onlyComponent />
         <Route path="/imoveis" exact component={Immobiles} />
-        <Route path="/imoveis/:id" exact component={PlaceDetails} simple />
+        <Route
+          path="/imoveis/:_id/:address"
+          exact
+          component={ImmobileDetails}
+          simple
+        />
 
         <Route path="/login" exact component={AdminSignIn} onlyComponent />
         <Route path="/portal" exact component={AdminDashboard} isPrivate />

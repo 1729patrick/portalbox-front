@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 const requiredMessage = 'Este campo precisa ser preenchido';
 Yup.numberNullable = () =>
   Yup.number()
-    .transform(cv => (!cv ? null : cv))
+    .transform(cv => (!(cv >=0) ? null : cv))
     .nullable();
 
 const CreateImmobileSchema = Yup.object().shape({

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { Container, Particulars } from './styles';
 
@@ -7,13 +7,31 @@ import car from '~/assets/carac/car.svg';
 import move from '~/assets/carac/move.svg';
 import shower from '~/assets/carac/shower.svg';
 
-export default function Details({ openPreview }) {
+export default function Details({ openPreview, immobile }) {
+  console.log(immobile)
+  const address = useMemo(() => {
+    console.log(immobile);
+    const { address } = immobile;
+
+    const number = address.number ? `, ${address.number}` : '';
+    const neighborhood = address.neighborhood
+      ? `, ${address.neighborhood.name}`
+      : '';
+    const city = address.city ? `${address.city.name} - ` : '';
+
+    return `${address.street}${neighborhood}${number} - ${city}SC`;
+  }, [immobile]);
+
+  const title = useMemo(()=> {
+    return 'Apartamento com 3 quartos para Alugar, 153 m² por R$ 6.000/Mês'
+  }, [])
+  
   return (
     <Container>
-      <h2>Apartamento com 3 quartos para Alugar, 153 m² por R$ 6.000/Mês</h2>
+      <h2>{title}</h2>
 
       <h3>
-        Rua Maria Lúcia da Paz - Gleba Fazenda Palhano, Londrina - PR
+        {address}
         <span onClick={openPreview}>Ver no mapa</span>
       </h3>
 
