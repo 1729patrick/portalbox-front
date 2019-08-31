@@ -3,7 +3,7 @@ import { Scope } from '@rocketseat/unform';
 
 import Input from '~/components/Input';
 
-export default function Cards() {
+export default function Cards({ openRatePicker }) {
   return (
     <Scope path="price">
       <div>
@@ -11,8 +11,7 @@ export default function Cards() {
           Preço <p>(Opcional)</p>
         </h1>
         <p>
-          Imóveis sem preço serão ignorados ao utilizar o filtro de preço no
-          PORAL
+          Digite <b>0</b> para exibir "Sob Consulta" no PORTAL
         </p>
       </div>
 
@@ -29,7 +28,9 @@ export default function Cards() {
         placeholder="Digite o preço para locação"
       />
 
-      <button type="button">Adicionar taxas</button>
+      <button type="button" onClick={openRatePicker}>
+        Adicionar taxas
+      </button>
     </Scope>
   );
 }

@@ -1,17 +1,17 @@
-import React, {useState} from 'react';
-import{ useDispatch} from 'react-redux'
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Form } from '@rocketseat/unform';
-
 
 import { Container, Card, SubmitButton } from './styles';
 
 import CreateImmobileSchema from '~/schemas/CreateImmobileSchema';
 
 import ImagesUploader from '~/components/_admin/ImageUploader';
-import ParticularsCheckList from '~/components/_admin/ParticularsCheckList';
 
 import { createImmobilesRequest } from '~/store/modules/immobiles/actions'
 
+
+import Rate from './Pickers/Rate';
 
 import Address from './Cards/Address'
 import Particulars from './Cards/Particulars'
@@ -25,6 +25,7 @@ export default function New() {
 
   const [images, setImages] = useState([])
   const [sessions, setSessions] = useState([])
+  const [ showRate, setShowRate] = useState(false)
 
   const handleSessionChange = (_id)=> {
     const index = sessions.indexOf(_id) ;
@@ -35,8 +36,6 @@ export default function New() {
       setSessions(sessions.filter((_, i) => i !==index))
   }
 
-
-  // return <ParticularsCheckList></ParticularsCheckList>
   return (
     <Container>
       <Form
@@ -49,7 +48,7 @@ export default function New() {
 
         <Card><Map></Map></Card>
 
-        <Card><Price></Price></Card>
+        <Card><Price openRatePicker={()=> setShowRate(true)}></Price></Card>
 
         <Card>
           <div>
@@ -70,6 +69,8 @@ export default function New() {
 
         <SubmitButton text="Salvar" />
       </Form>
+
+      {showRate && <Rate onClose={()=>setShowRate(false)}></Rate>}
     </Container>
   );
 }

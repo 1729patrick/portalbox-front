@@ -47,9 +47,15 @@ export const Card = styled.div`
     cursor: pointer;
     display: flex;
     border: none;
-    margin-left: auto;
     margin-top: 25px;
     white-space: nowrap;
+    font-size: 15px;
+    padding-bottom: 3px;
+    border-bottom: 2px solid transparent;
+
+    &:hover {
+      border-color: rgb(239, 108, 0);
+    }
   }
 
   & + div {
@@ -66,5 +72,3 @@ export const SubmitButton = styled(DefaultButton).attrs({
   margin: 20px 0 20px auto;
   width: 150px;
 `;
-
-
