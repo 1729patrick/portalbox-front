@@ -28,7 +28,7 @@ export const Details = styled.div`
     align-items: center;
 
     h4 {
-      color: #777;
+      color: #666;
       text-transform: uppercase;
       font-size: 13px;
     }
@@ -42,33 +42,41 @@ export const Details = styled.div`
   }
 
   > p {
-    color: #666;
-    margin-bottom: 5px;
+    color: #555;
+    margin: 7px 0;
   }
 
   ul {
-    margin: 7px 0;
-    padding: 7px 0;
+    margin-top: 8px;
+    padding-top: 8px;
     display: flex;
     color: #333;
     justify-content: space-between;
-    /* border-top: 1px solid #eee; */
 
     li {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      img {
+        height: 22px;
+      }
+
       p {
+        margin-top: 8px;
         font-size: 14px;
         word-break: break-all;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
         justify-content: center;
-        font-weight: 600;
+        font-weight: 500;
         display: flex;
 
         span {
           font-size: 14px;
           font-weight: 400;
-          margin-left: 5px;
+          margin-left: 2px;
           color: #444;
         }
       }

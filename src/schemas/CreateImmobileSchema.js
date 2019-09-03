@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 const requiredMessage = 'Este campo precisa ser preenchido';
 Yup.numberNullable = () =>
   Yup.number()
-    .transform(cv => (!(cv >=0) ? null : cv))
+    .transform(cv => (!(cv >= 0) ? null : cv))
     .nullable();
 
 const CreateImmobileSchema = Yup.object().shape({
@@ -14,19 +14,12 @@ const CreateImmobileSchema = Yup.object().shape({
     city: Yup.string().required(requiredMessage),
     neighborhood: Yup.string().required(requiredMessage),
   }),
-  particulars: Yup.object().shape({
-    type: Yup.string().required(requiredMessage),
-    bedroom: Yup.string(),
-    bathroom: Yup.string(),
-    garage: Yup.string(),
-    area: Yup.string(),
-  }),
-
+  particulars: Yup.mixed(),
+  type: Yup.string().required(requiredMessage),
   map: Yup.object().shape({
     lat: Yup.numberNullable(),
     lng: Yup.numberNullable(),
   }),
-
   price: Yup.object().shape({
     sale: Yup.numberNullable(),
     rent: Yup.numberNullable(),

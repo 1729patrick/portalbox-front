@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+import { useField } from '@rocketseat/unform';
 import { withStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import globalTheme from '~/styles/theme';
 
@@ -39,19 +41,44 @@ const CustomSwitch = withStyles(theme => ({
   },
   checked: {},
   focusVisible: {},
-}))(({ classes, ...props }) => {
+}))(({ classes, label, name, style, ...props }) => {
+  const ref = useRef(null);
+  const { fieldName, registerField, defaultValue, error } = useField(name);
+  const [value, setValue] = useState(defaultValue == true);
+
+  useEffect(() => {
+    registerField({
+      name: fieldName,
+      ref: ref.current,
+      path: 'dataset.value',
+    });
+  }, [ref.current, fieldName]); // eslint-disable-line
+
+  console.log(value);
   return (
-    <Switch
-      focusVisibleClassName={classes.focusVisible}
-      disableRipple
-      classes={{
-        root: classes.root,
-        switchBase: classes.switchBase,
-        thumb: classes.thumb,
-        track: classes.track,
-        checked: classes.checked,
-      }}
-      {...props}
+    <FormControlLabel
+      style={style}
+      control={
+        <Switch
+          focusVisibleClassName={classes.focusVisible}
+          disableRipple
+          ref={ref}
+          data-value={value}
+          onChange={() => setValue(!value)}
+          value={value}
+          checked={value}
+          classes={{
+            root: classes.root,
+            switchBase: classes.switchBase,
+            thumb: classes.thumb,
+            track: classes.track,
+            checked: classes.checked,
+          }}
+          {...props}
+        />
+      }
+      label={label}
+      labelPlacement="start"
     />
   );
 });

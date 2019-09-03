@@ -2,8 +2,9 @@ import React from 'react';
 import { Scope } from '@rocketseat/unform';
 
 import Input from '~/components/Input';
+import RatePicker from '../Picker/Rate';
 
-export default function Cards({ openRatePicker }) {
+export default function Cards({ onOpenPicker, onClosePicker, openPicker }) {
   return (
     <Scope path="price">
       <div>
@@ -28,9 +29,11 @@ export default function Cards({ openRatePicker }) {
         placeholder="Digite o preço para locação"
       />
 
-      <button type="button" onClick={openRatePicker}>
+      <button type="button" onClick={onOpenPicker}>
         Adicionar taxas
       </button>
+
+      <RatePicker onClose={onClosePicker} open={openPicker} />
     </Scope>
   );
 }

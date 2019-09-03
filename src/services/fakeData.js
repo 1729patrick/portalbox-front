@@ -284,10 +284,186 @@ export const particularsIcons = {
 
 export const particularsName = {
   bedroom: {
-    true: 'Quartos',
-    false: 'Quarto',
+    true: 'quartos',
+    false: 'quarto',
   },
-  bathroom: { true: 'Banheiros', false: 'Banheiro' },
-  garage: { true: 'Vagas', false: 'Vaga' },
-  area: { true: 'm²', false: 'm²'   },
+  bathroom: { true: 'banheiros', false: 'banheiro' },
+  garage: { true: 'vagas', false: 'vaga' },
+  area: { true: 'm²', false: 'm²' },
 };
+
+export const allParticulars = [
+  {
+    label: 'Lazer',
+    particulars: [
+      {
+        label: 'Academia',
+        name: 'academy',
+        type: 'bool',
+      },
+      {
+        label: 'Churrasqueira',
+        name: 'barbecueGrill',
+        type: 'bool',
+      },
+      {
+        label: 'Espaço gourmet',
+        name: 'gourmetSpace',
+        type: 'bool',
+      },
+      {
+        label: 'Jardim',
+        name: 'garden',
+        type: 'bool',
+      },
+      {
+        label: 'Piscina',
+        name: 'pool',
+        type: 'bool',
+      },
+      {
+        label: 'Salão de festas',
+        name: 'partyRoom',
+        type: 'bool',
+      },
+      {
+        label: 'Salão de jogos',
+        name: 'gamesRoom',
+        type: 'bool',
+      },
+    ],
+  },
+  {
+    label: 'Comodidades',
+    particulars: [
+      {
+        label: 'Ar-condicionado',
+        name: 'airConditioning',
+        type: 'range',
+      },
+      {
+        label: 'Elevador',
+        name: 'elevator',
+        type: 'bool',
+      },
+      {
+        label: 'Lareira',
+        name: 'fireplace',
+        type: 'bool',
+      },
+      {
+        label: 'Lavanderia',
+        name: 'laundry',
+        type: 'bool',
+      },
+      {
+        label: 'Mobiliado',
+        name: 'furnished',
+        type: 'bool',
+      },
+      {
+        label: 'Recepção',
+        name: 'reception',
+        type: 'bool',
+      },
+      {
+        label: 'Porcelanato',
+        name: 'porcelain',
+        type: 'bool',
+      },
+      {
+        label: 'Piso laminado',
+        name: 'laminateFlooring',
+        type: 'bool',
+      },
+      {
+        label: 'Imóvel de esquina',
+        name: 'corner',
+        type: 'bool',
+      },
+    ],
+  },
+  {
+    label: 'Segurança',
+    particulars: [
+      {
+        label: 'Condomínio fechado',
+        name: 'gatedCommunity',
+        type: 'bool',
+      },
+      {
+        label: 'Interfone',
+        name: 'intercom',
+        type: 'bool',
+      },
+      {
+        label: 'Segurança 24h',
+        name: 'security24h',
+        type: 'bool',
+      },
+      {
+        label: 'Alarme',
+        name: 'alarm',
+        type: 'bool',
+      },
+      {
+        label: 'Vigia',
+        name: 'watchman',
+        type: 'bool',
+      },
+    ],
+  },
+  {
+    label: 'Cômodos',
+    particulars: [
+      {
+        label: 'Quartos',
+        name: 'bedroom',
+        type: 'range',
+      },
+      {
+        label: 'Suítes',
+        name: 'suite',
+        type: 'range',
+      },
+      {
+        label: 'Banheiros',
+        name: 'bathroom',
+        type: 'range',
+      },
+      {
+        label: 'Garagens',
+        name: 'garage',
+        type: 'range',
+      },
+      {
+        label: 'Varandas',
+        name: 'balconie',
+        type: 'range',
+      },
+      {
+        label: 'Escritório',
+        name: 'office',
+        type: 'bool',
+      },
+      {
+        label: 'Sala de jantar',
+        name: 'diningRoom',
+        type: 'bool',
+      },
+      {
+        label: 'Área construida',
+        name: 'buildingArea',
+        type: 'number',
+        placeholder: 'Digite o tamanho do imóvel',
+      },
+      {
+        label: 'Área total',
+        name: 'totalArea',
+        type: 'number',
+        placeholder: 'Digite o tamanho do terreno',
+      },
+    ],
+  },
+];
+

@@ -105,7 +105,7 @@ body {
 
 
  .MuiFormControlLabel-label {
-      font-size: 14px !important;
+      font-size: 15px !important;
       font-family: "Google Sans",Roboto,Arial,Helvetica,sans-serif !important;
       font-weight: 500 !important;
     }
@@ -125,4 +125,14 @@ body {
       -webkit-appearance: none;
       margin: 0;
     }
+
+    .MuiFormControlLabel-root {
+      margin: 0;
+      display: flex;
+      margin-left: 0 !important;
+
+      > span {
+        margin: 0;
+      }
+  }
 `;

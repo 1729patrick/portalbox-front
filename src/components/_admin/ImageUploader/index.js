@@ -81,7 +81,7 @@ export default function ImageUploader({ name, onSave }) {
     setImagesSaved(images);
     setUploaderOpen(false);
 
-    onSave(images)
+    onSave(images);
   };
 
   const getContent = () =>

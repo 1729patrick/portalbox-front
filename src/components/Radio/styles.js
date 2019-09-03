@@ -3,6 +3,8 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  margin-left: -9px;
 
   input {
     display: none;
@@ -24,6 +26,7 @@ export const Container = styled.div`
 `;
 
 export const Label = styled.div`
+  margin-left: 9px;
   font-weight: 500;
   font-size: 15px;
   color: #333;
@@ -47,15 +50,16 @@ export const Options = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+`;
 
-  p {
-    margin-left: 20px;
-    cursor: pointer;
-    opacity: 0.6;
-    font-weight: 500;
+export const Clear = styled.p`
+  margin-left: 20px;
+  cursor: pointer;
+  opacity: 0.6;
+  font-weight: 500;
+  font-size: 14px;
 
-    &:hover {
-      opacity: 1;
-    }
+  &:hover {
+    opacity: 1;
   }
 `;

@@ -4,7 +4,7 @@ import MaterialRadio from '@material-ui/core/Radio';
 import { withStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-import { Container, Label, Options } from './styles';
+import { Container, Label, Options, Clear } from './styles';
 
 const CustomRadio = withStyles({
   root: {
@@ -16,7 +16,14 @@ const CustomRadio = withStyles({
   checked: {},
 })(props => <MaterialRadio {...props} />);
 
-export default function Radio({ name, label, optional, options }) {
+export default function Radio({
+  name,
+  label,
+  optional,
+  options,
+  showClear,
+  style,
+}) {
   const ref = useRef(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
   const [checked, setChecked] = useState(defaultValue || '');
@@ -30,7 +37,7 @@ export default function Radio({ name, label, optional, options }) {
   }, [fieldName, registerField]);
 
   return (
-    <Container>
+    <Container style={style}>
       <Label>
         {label && (
           <label htmlFor={fieldName}>
@@ -39,6 +46,7 @@ export default function Radio({ name, label, optional, options }) {
           </label>
         )}
 
+        {showClear && <Clear onClick={() => setChecked(null)}>Limpar</Clear>}
         {error && <span>{error}</span>}
       </Label>
 
@@ -61,7 +69,8 @@ export default function Radio({ name, label, optional, options }) {
             labelPlacement="end"
           />
         ))}
-        {optional && <p onClick={()=>setChecked(null)}>Limpar</p>}
+
+        {optional && <Clear onClick={() => setChecked(null)}>Limpar</Clear>}
       </Options>
 
       <input type="text" data-checked={checked} ref={ref} />

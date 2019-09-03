@@ -39,7 +39,7 @@ export default function DragAndDrop({
       image={image}
       handleDescriptionChange={handleDescriptionChange}
       handleFileRemove={handleFileRemove}
-    ></ImageCard>
+    />
   );
 
   return <Images ref={drop}>{cards.map(image => renderImage(image))}</Images>;

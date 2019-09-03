@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
 import { Container } from './styles';
-import ImmobileCard from './Immobile';
+import ImmobileCard from './Immobile1';
 
 function GroupImmobiles({ title, style, showSize, immobiles, count, history }) {
   const openDetails = (_id, address) => {
