@@ -8,22 +8,22 @@ import Radio from '~/components/Radio';
 
 import { optionsParticulars } from '~/services/fakeData';
 
-export default function Address({onOpenPicker, onClosePicker, openPicker}) {
+export default function Address({ onOpenPicker }) {
   const types = useSelector(state => state.core.types);
 
   return (
     <Fragment>
-        <div>
-          <h1>Características</h1>
-        </div>
+      <div>
+        <h1>Características</h1>
+      </div>
 
-        <Select
-          placeholder="Selecione o tipo"
-          options={types}
-          name="type"
-          label="Tipo"
-          multiple={false}
-        />
+      <Select
+        placeholder="Selecione o tipo"
+        options={types}
+        name="type"
+        label="Tipo"
+        multiple={false}
+      />
 
       <Scope path="particulars">
         <Radio
@@ -49,17 +49,16 @@ export default function Address({onOpenPicker, onClosePicker, openPicker}) {
 
         <Input
           type="number"
-          name="area"
-          label="Área"
-          placeholder="Digite o tamanho do imóvel"
+          name="totalArea"
+          label="Área total"
+          placeholder="Digite o tamanho do terreno"
           optional
         />
-
-        <button type="button" onClick={onOpenPicker}>
-          Todas características
-        </button>
       </Scope>
 
-  </Fragment>
+      <button type="button" onClick={onOpenPicker}>
+        Todas características
+      </button>
+    </Fragment>
   );
 }

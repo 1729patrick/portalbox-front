@@ -2,6 +2,9 @@ import bed from '~/assets/carac/bed.svg';
 import car from '~/assets/carac/car.svg';
 import move from '~/assets/carac/move.svg';
 import shower from '~/assets/carac/shower.svg';
+import dumbbell from '~/assets/carac/dumbbell.svg';
+import gourmetSpace from '~/assets/carac/gourmetSpace.svg';
+import partyRoom from '~/assets/carac/partyRoom.svg';
 
 export const links = [
   { title: 'Alugar imóvel' },
@@ -282,14 +285,126 @@ export const particularsIcons = {
   area: move,
 };
 
-export const particularsName = {
-  bedroom: {
-    true: 'quartos',
-    false: 'quarto',
-  },
-  bathroom: { true: 'banheiros', false: 'banheiro' },
-  garage: { true: 'vagas', false: 'vaga' },
-  area: { true: 'm²', false: 'm²' },
+export const getParticular = title => pos => value => {
+  const particulars = {
+    bedroom: {
+      true: '%@%$% quartos',
+      false: '%@%$% quarto',
+      icon: bed,
+    },
+    bathroom: {
+      true: '%@%$% banheiros',
+      false: '%@%$% banheiro',
+      icon: shower,
+    },
+    garage: { true: '%@%$% vagas', false: '%@%$% vaga', icon: car },
+    totalArea: { true: '%@%$% m²', false: '%@%$% m²', icon: move },
+    academy: { true: 'Academias', false: 'Academia', icon: dumbbell },
+    barbecueGrill: { true: 'Churrasqueiras', false: 'Churrasqueira', icon: '' },
+    gourmetSpace: {
+      true: 'Espaços Gourmet',
+      false: 'Espaço Gourmet',
+      icon: gourmetSpace,
+    },
+    garden: {
+      true: 'Jardins',
+      false: 'Jardim',
+      icon: '',
+    },
+    pool: {
+      true: 'Piscinas',
+      false: 'Piscina',
+      icon: '',
+    },
+    partyRoom: {
+      true: 'Salões de festas',
+      false: 'Salão de festas',
+      icon: partyRoom,
+    },
+    gamesRoom: {
+      true: 'Salões de jogos',
+      false: 'Salão de jogos',
+      icon: partyRoom,
+    },
+    airConditioning: {
+      true: 'Ar-condicionado: %@%$%',
+      false: 'Ar-condicionado',
+    },
+    elevator: {
+      true: 'Elevadores',
+      false: 'Elevador',
+    },
+    fireplace: {
+      true: 'Lareiras',
+      false: 'Lareira',
+    },
+    laundry: {
+      true: 'Lavanderias',
+      false: 'Lavanderia',
+    },
+    furnished: {
+      true: 'Mobiliados',
+      false: 'Mobiliado',
+    },
+    reception: {
+      true: 'Recepções',
+      false: 'Recepção',
+    },
+    porcelain: {
+      true: 'Porcelanatos',
+      false: 'Porcelanato',
+    },
+    laminateFlooring: {
+      true: 'Pisos laminado',
+      false: 'Piso laminado',
+    },
+    corner: {
+      true: 'Imóvel de esquina',
+      false: 'Imóvel de esquina',
+    },
+    gatedCommunity: {
+      true: 'Condomínio fechado',
+      false: 'Condomínio fechado',
+    },
+    intercom: {
+      true: 'Interfones',
+      false: 'Interfone',
+    },
+    security24h: {
+      true: 'Segurança 24h',
+      false: 'Segurança 24h',
+    },
+    alarm: {
+      true: 'Alarmes',
+      false: 'Alarme',
+    },
+    watchman: {
+      true: 'Vigias',
+      false: 'Vigia',
+    },
+    balconie: {
+      true: 'Varandas: %@%$%',
+      false: 'Varanda',
+    },
+    office: {
+      true: 'Escritórios',
+      false: 'Escritório',
+    },
+    diningRoom: {
+      true: 'Sala de jantar',
+      false: 'Sala de jantar',
+    },
+    buildingArea: {
+      true: 'Área construida: %@%$% m²',
+      false: 'Área construida: %@%$% m²',
+    },
+    area: { true: 'm²', false: 'm²', icon: move },
+  };
+
+  if (particulars[title] && particulars[title][pos])
+    return particulars[title][pos].replace('%@%$%', value);
+
+  return null;
 };
 
 export const allParticulars = [
@@ -307,7 +422,7 @@ export const allParticulars = [
         type: 'bool',
       },
       {
-        label: 'Espaço gourmet',
+        label: 'Espaço Gourmet',
         name: 'gourmetSpace',
         type: 'bool',
       },
@@ -417,26 +532,6 @@ export const allParticulars = [
     label: 'Cômodos',
     particulars: [
       {
-        label: 'Quartos',
-        name: 'bedroom',
-        type: 'range',
-      },
-      {
-        label: 'Suítes',
-        name: 'suite',
-        type: 'range',
-      },
-      {
-        label: 'Banheiros',
-        name: 'bathroom',
-        type: 'range',
-      },
-      {
-        label: 'Garagens',
-        name: 'garage',
-        type: 'range',
-      },
-      {
         label: 'Varandas',
         name: 'balconie',
         type: 'range',
@@ -457,13 +552,6 @@ export const allParticulars = [
         type: 'number',
         placeholder: 'Digite o tamanho do imóvel',
       },
-      {
-        label: 'Área total',
-        name: 'totalArea',
-        type: 'number',
-        placeholder: 'Digite o tamanho do terreno',
-      },
     ],
   },
 ];
-

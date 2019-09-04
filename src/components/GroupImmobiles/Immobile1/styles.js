@@ -70,15 +70,9 @@ export const Details = styled.div`
         text-overflow: ellipsis;
         white-space: nowrap;
         justify-content: center;
-        font-weight: 500;
+        font-weight: 400;
         display: flex;
-
-        span {
-          font-size: 14px;
-          font-weight: 400;
-          margin-left: 2px;
-          color: #444;
-        }
+        color: #444;
       }
     }
   }

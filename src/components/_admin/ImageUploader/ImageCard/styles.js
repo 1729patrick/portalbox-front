@@ -4,7 +4,7 @@ export const Card = styled.div`
   cursor: move;
   border: 1px dashed transparent;
   transition: 300ms;
-background: #fff;
+  background: #fff;
 
   &:hover {
     border-color: rgb(239, 108, 0);

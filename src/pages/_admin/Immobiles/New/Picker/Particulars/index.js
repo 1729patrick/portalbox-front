@@ -1,18 +1,21 @@
 import React, { Fragment } from 'react';
 
-
 import { Container, Label, Switch, Radio, Input } from './styles';
 
-import { optionsParticulars } from '~/services/fakeData';
+import { optionsParticulars, allParticulars } from '~/services/fakeData';
 
 import Picker from '..';
 
-import {allParticulars} from '~/services/fakeData';
+export default function Particulars({
+  initialData,
+  onClose,
+  open,
+  onSave,
+  path,
+}) {
+  if (!open) return null;
 
-export default function Particulars({ initialData, onClose, open , onSave}) {
-  if (!open) return  null;
-
-  const renderParticular = ({ name, label, type, placeholder,  }) => {
+  const renderParticular = ({ name, label, type, placeholder }) => {
     if (type === 'bool')
       return (
         <Switch
@@ -50,11 +53,13 @@ export default function Particulars({ initialData, onClose, open , onSave}) {
 
   return (
     <Picker
-    title="Todas características" 
-    onClose={onClose}
-    open={open}
-    initialData={initialData}
-    onSave={onSave}>
+      title="Todas características"
+      onClose={onClose}
+      open={open}
+      initialData={initialData}
+      onSave={onSave}
+      path={path}
+    >
       <Container>
         {allParticulars.map(scopeParticular => (
           <Fragment key={scopeParticular.label}>
@@ -63,7 +68,6 @@ export default function Particulars({ initialData, onClose, open , onSave}) {
             <span>{scopeParticular.particulars.map(renderParticular)}</span>
           </Fragment>
         ))}
-
       </Container>
     </Picker>
   );

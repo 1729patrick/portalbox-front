@@ -16,6 +16,7 @@ export default function Picker({
   open,
   initialData,
   onSave,
+  path,
 }) {
   if (!open) return null;
 
@@ -28,7 +29,7 @@ export default function Picker({
       </header>
 
       <Form initialData={initialData} onSubmit={onSave}>
-        <Scope path="particulars">
+        <Scope path={path}>
           <Content>{children}</Content>
 
           <SubmitButtonWrapper>

@@ -21,15 +21,35 @@ export function* createImmobile({ payload }) {
     a.map((c, i) => Object.assign({}, c, b[i]))
   );
 
-  const { address, particulars, map, price, owner, sessions } = immobile;
-  const { type, ...onlyParticulars } = particulars;
+  const {
+    address,
+    type,
+    particulars,
+    allParticulars,
+    map,
+    price,
+    owner,
+    sessions,
+  } = immobile;
 
-  const particularsFormatted = Object.keys(onlyParticulars)
+  const particularsComplete = Object.assign(particulars, allParticulars);
+
+  const particularsFormatted = Object.keys(particularsComplete)
     .map(k => ({
       title: k,
-      value: onlyParticulars[k],
+      value: particularsComplete[k],
     }))
-    .filter(({ value }) => value);
+    .filter(({ value }) => value)
+    .map(particular => {
+      try {
+        return {
+          ...particular,
+          value: JSON.parse(particular.value),
+        };
+      } catch (e) {
+        return particular;
+      }
+    });
 
   const imagesMergedFormatted = imagesMerged.map(
     ({ _id, url, description }) => ({ file: _id, url, description })

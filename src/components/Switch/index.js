@@ -1,7 +1,7 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, forwardRef } from 'react';
 import { useField } from '@rocketseat/unform';
 import { withStyles } from '@material-ui/core/styles';
-import Switch from '@material-ui/core/Switch';
+import MaterialSwitch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import globalTheme from '~/styles/theme';
@@ -41,10 +41,32 @@ const CustomSwitch = withStyles(theme => ({
   },
   checked: {},
   focusVisible: {},
-}))(({ classes, label, name, style, ...props }) => {
+}))(forwardRef(({ classes, label, value, onChange, ...props }, ref) => {
+  return (
+    <MaterialSwitch
+      focusVisibleClassName={classes.focusVisible}
+      disableRipple
+      checked={value}
+      onChange={event => onChange(event.target.checked)}
+      value={value}
+      ref={ref}
+      classes={{
+        root: classes.root,
+        switchBase: classes.switchBase,
+        thumb: classes.thumb,
+        track: classes.track,
+        checked: classes.checked,
+      }}
+      {...props}
+    />
+  );
+}));
+
+const Switch = ({style, name, label}) => {
   const ref = useRef(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
-  const [value, setValue] = useState(defaultValue == true);
+  const [value, setValue] = useState(defaultValue);
+
 
   useEffect(() => {
     registerField({
@@ -54,33 +76,21 @@ const CustomSwitch = withStyles(theme => ({
     });
   }, [ref.current, fieldName]); // eslint-disable-line
 
-  console.log(value);
   return (
     <FormControlLabel
       style={style}
       control={
-        <Switch
-          focusVisibleClassName={classes.focusVisible}
-          disableRipple
+        <CustomSwitch
           ref={ref}
           data-value={value}
-          onChange={() => setValue(!value)}
           value={value}
-          checked={value}
-          classes={{
-            root: classes.root,
-            switchBase: classes.switchBase,
-            thumb: classes.thumb,
-            track: classes.track,
-            checked: classes.checked,
-          }}
-          {...props}
-        />
+          onChange={setValue}
+        ></CustomSwitch>
       }
       label={label}
       labelPlacement="start"
     />
   );
-});
+};
 
-export default CustomSwitch;
+export default Switch;
