@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 const requiredMessage = 'Este campo precisa ser preenchido';
 Yup.numberNullable = () =>
   Yup.number()
-    .transform(cv => (!(cv >= 0) ? null : cv))
+    .transform(cv => (typeof cv === 'number' ? cv : null))
     .nullable();
 
 const CreateImmobileSchema = Yup.object().shape({
@@ -33,6 +33,11 @@ const CreateImmobileSchema = Yup.object().shape({
   }),
   config: Yup.object().shape({
     sessions: Yup.array(Yup.number()),
+  }),
+  rates: Yup.object().shape({
+    iptu: Yup.numberNullable(),
+    condominium: Yup.numberNullable(),
+    fireInsurance: Yup.numberNullable(),
   }),
 });
 

@@ -24,71 +24,28 @@ export const Details = styled.div`
 
   span {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-
-    h4 {
-      color: #666;
+    > p {
+      color: #999;
+      font-weight: 600;
+      font-size: 12px;
       text-transform: uppercase;
-      font-size: 13px;
-    }
+      letter-spacing: 0.3px;
 
-      > p {
-        color: ${props => props.theme.cards.immobile.price.color};
-        font-weight: 500;
-        font-size: 15px;
+      & + p {
+        &::before {
+          content: '·';
+          color: #666;
+          margin: 0 5px;
+        }
       }
     }
   }
 
-  > p {
-    color: #555;
-    margin: 7px 0;
-  }
-
-  ul {
-    margin-top: 8px;
-    padding-top: 8px;
-    display: flex;
+  h2 {
+    margin-top: 5px;
+    font-weight: 500;
     color: #333;
-    justify-content: space-between;
-
-    li {
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-
-      img {
-        height: 22px;
-      }
-
-      p {
-        margin-top: 8px;
-        font-size: 14px;
-        word-break: break-all;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        justify-content: center;
-        font-weight: 400;
-        display: flex;
-        color: #444;
-      }
-    }
-  }
-
-  > div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-    p {
-      font-size: 17px;
-      white-space: nowrap;
-
-      span {
-        font-size: 13px;
-      }
-    }
+    font-size: 17px;
   }
 `;

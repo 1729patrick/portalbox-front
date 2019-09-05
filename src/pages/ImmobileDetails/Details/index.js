@@ -9,6 +9,7 @@ export default function Details({ openPreview, immobile }) {
     immobile,
   ]);
   const particulars = useMemo(() => immobile.particulars.splice(4), [immobile]);
+
   const address = useMemo(() => {
     const { address } = immobile;
 
@@ -24,45 +25,59 @@ export default function Details({ openPreview, immobile }) {
   const title = useMemo(() => {
     console.log(immobile);
 
-    const particular0 = getParticular(particularsSpotlight[0].title)(
-      particularsSpotlight[0].value > 1
-    )(particularsSpotlight[0].value);
+    let [firstParticular, secondParticular] = particularsSpotlight;
 
-    const particular1 = getParticular(particularsSpotlight[1].title)(
-      particularsSpotlight[1].value > 1
-    )(particularsSpotlight[1].value);
+    firstParticular = getParticular({
+      title: firstParticular.title,
+      pos: firstParticular.value > 1,
+      value: firstParticular.value,
+    });
 
-    const priceRent =
-      immobile.price.rent &&
-      immobile.price.rent.toLocaleString(navigator.language, {
-        minimumFractionDigits: 2,
-      });
+    secondParticular = getParticular({
+      title: secondParticular.title,
+      pos: secondParticular.value > 1,
+      value: secondParticular.value,
+    });
 
-    const rent = immobile.price.rent
-      ? ` para Alugar por R$ ${priceRent}/mês`
+    const { rent, sale } = immobile.price;
+    const priceRent = rent
+      ? ` por R$ ${rent.toLocaleString(navigator.language, {
+          minimumFractionDigits: 2,
+        })}/mês`
+      : ' com preço sob consulta';
+
+    const rentFormatted =
+      typeof rent === 'number' && rent >= 0 ? ` para alugar${priceRent}` : '';
+
+    const priceSale = sale
+      ? ` por R$ ${sale.toLocaleString(navigator.language, {
+          minimumFractionDigits: 2,
+        })}`
       : '';
 
-    const priceSale =
-      immobile.price.sale &&
-      immobile.price.sale.toLocaleString(navigator.language, {
-        minimumFractionDigits: 2,
-      });
+    const saleFormatted =
+      typeof sale === 'number' && sale >= 0
+        ? typeof rent === 'number' && rent >= 0
+          ? ` e para vender${priceSale}`
+          : ` para vender${priceSale}`
+        : ' com preço sob consulta';
 
-    const sale = immobile.price.sale
-      ? rent
-        ? ` e para Vender por R$ ${priceSale}`
-        : ` para Vender por R$ ${priceSale}`
-      : '';
-
-    const area = immobile.particulars.find(
+    const area = [...particularsSpotlight, ...particulars].find(
       particular => particular.title === 'totalArea'
     );
-    const areaFormatted = area ? ` ${area.value} m²` : '';
 
-    return `${immobile.type.name} com ${particular0}, ${particular1},${areaFormatted}${rent}${sale}`;
+    const areaFormatted = area
+      ? ` ${getParticular({
+          title: area.title,
+          pos: 'simple',
+          value: area.value,
+        })}`
+      : '';
+
+    return `${immobile.type.name} com ${firstParticular}, ${secondParticular},${areaFormatted}${rentFormatted}${saleFormatted}`;
 
     // return 'Apartamento com 3 quartos para Alugar, 153 m² por R$ 6.000/Mês';
-  }, []);
+  }, [immobile, particulars, particularsSpotlight]);
 
   return (
     <Container>
@@ -77,30 +92,20 @@ export default function Details({ openPreview, immobile }) {
         <h2>Características</h2>
 
         <ul>
-          {particularsSpotlight.map(particular => (
-            <li key={particular.title}>
-              {getParticular(particular.title)('icon') && (
-                <img
-                  src={getParticular(particular.title)('icon')()}
-                  alt="Quartos"
-                />
+          {particularsSpotlight.map(({ title, value }) => (
+            <li key={title}>
+              {getParticular({ title, pos: 'icon' }) && (
+                <img src={getParticular({ title, pos: 'icon' })} alt="." />
               )}
-              <p>
-                {getParticular(particular.title)(particular.value > 1)(
-                  particular.value
-                )}
-              </p>
+
+              <p>{getParticular({ title, pos: 'simple', value })}</p>
             </li>
           ))}
         </ul>
 
         <div>
-          {particulars.map(particular => (
-            <p key={particular.title}>
-              {getParticular(particular.title)(particular.value > 1)(
-                particular.value
-              )}
-            </p>
+          {particulars.map(({ title, value }) => (
+            <p key={title}>{getParticular({ title, pos: value > 1, value })}</p>
           ))}
         </div>
       </Particulars>

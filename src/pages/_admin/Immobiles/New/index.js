@@ -11,6 +11,7 @@ import ImagesUploader from '~/components/_admin/ImageUploader';
 import { createImmobilesRequest } from '~/store/modules/immobiles/actions';
 
 import ParticularsPicker from './Picker/Particulars';
+import RatesPicker from './Picker/Rates';
 
 import Address from './Cards/Address';
 import Particulars from './Cards/Particulars';
@@ -20,13 +21,14 @@ import Owner from './Cards/Owner';
 import Config from './Cards/Config';
 
 const initialData = {
+  rates: { condominium: '1', iptu: '2', fireInsurance: '4' },
   config: {},
   owner: { cpf: '', whatsapp: '', name: '' },
   images: [],
   price: { rent: null, sale: 500000 },
   map: { lng: 20, lat: 20 },
   type: '5d61f08c3be9865134c092c1',
-  particulars: { bedroom: '3patrick', bathroom: '4', garage: '2', totalArea: '1500' },
+  particulars: { bedroom: '3', bathroom: '4', garage: '2', totalArea: '1500' },
   address: {
     neighborhood: '5d62b707943c5917ae5879a7',
     city: '5d62b707943c5917ae5879a6',
@@ -41,7 +43,7 @@ const initialData = {
     balconie: '',
     buildingArea: '',
   },
-  sessions: [2, 3, 1],
+  sessions: [],
 };
 
 export default function New() {
@@ -52,6 +54,7 @@ export default function New() {
   const [showPicker, setShowPicker] = useState(null);
 
   const [particulars, setParticulars] = useState(initialData);
+  const [rates, setRates] = useState(initialData);
 
   /**
    * Tipos do imóvel no porta [Destaque de *, Novos]
@@ -72,13 +75,18 @@ export default function New() {
     setShowPicker(null);
   };
 
+  const handleSaveRates = data => {
+    setRates(data);
+    setShowPicker(null);
+  };
+
   return (
     <Container>
       <Form
         onSubmit={data =>
           dispatch(
             createImmobilesRequest(
-              { ...data, ...particulars, sessions },
+              { ...data, ...particulars, ...rates, sessions },
               images
             )
           )
@@ -102,9 +110,9 @@ export default function New() {
 
         <Card>
           <Price
-            onOpenPicker={() => setShowPicker('pricePicker')}
+            onOpenPicker={() => setShowPicker('ratesPicker')}
             onClosePicker={() => setShowPicker(null)}
-            openPicker={showPicker === 'pricePicker'}
+            openPicker={showPicker === 'ratesPicker'}
           />
         </Card>
 
@@ -137,6 +145,14 @@ export default function New() {
         open={showPicker === 'particularsPicker'}
         onSave={handleSaveParticulars}
         path="allParticulars"
+      />
+
+      <RatesPicker
+        initialData={rates}
+        onClose={() => setShowPicker(null)}
+        open={showPicker === 'ratesPicker'}
+        onSave={handleSaveRates}
+        path="rates"
       />
     </Container>
   );

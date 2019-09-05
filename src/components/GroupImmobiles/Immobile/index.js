@@ -2,7 +2,9 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import { Container, Image, Details } from './styles';
-import { particularsIcons, particularsName } from '~/services/fakeData';
+import { getParticular } from '~/services/fakeData';
+
+import { formatPrice } from '~/services/format';
 
 export default function Immobile({ immobile, openDetails }) {
   const image = useMemo(() => {
@@ -28,14 +30,8 @@ export default function Immobile({ immobile, openDetails }) {
     if (!immobile.price.rent) {
       return '';
     }
-    const priceFormatted = immobile.price.rent.toLocaleString(
-      navigator.language,
-      {
-        minimumFractionDigits: 2,
-      }
-    );
 
-    return `R$ ${priceFormatted}/mês`;
+    return `${formatPrice(immobile.price.rent)}/mês`;
   }, [immobile.price.rent]);
 
   const priceSale = useMemo(() => {
@@ -43,14 +39,7 @@ export default function Immobile({ immobile, openDetails }) {
       return '';
     }
 
-    const priceFormatted = immobile.price.sale.toLocaleString(
-      navigator.language,
-      {
-        minimumFractionDigits: 2,
-      }
-    );
-
-    return `R$ ${priceFormatted}`;
+    return formatPrice(immobile.price.sale);
   }, [immobile.price.sale]);
 
   return (
@@ -72,18 +61,13 @@ export default function Immobile({ immobile, openDetails }) {
         <p>{address}</p>
 
         <ul>
-          {immobile.particulars.map(particular => (
-            <li key={particular.title}>
-              <img
-                src={particularsIcons[particular.title]}
-                alt={particular.title}
-              />
-              <p>
-                {particular.value}
-                <span>
-                  {particularsName[particular.title][particular.value > 1]}
-                </span>
-              </p>
+          {immobile.particulars.map(({ title, value }) => (
+            <li key={title}>
+              {getParticular({ title, pos: 'icon' }) && (
+                <img src={getParticular({ title, pos: 'icon' })} alt="." />
+              )}
+
+              <p>{getParticular({ title, pos: 'simple', value })}</p>
             </li>
           ))}
         </ul>

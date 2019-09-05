@@ -1,6 +1,9 @@
 import React, { useMemo } from 'react';
-
 import { Container, Button, Highlighter } from './styles';
+
+import { getRate } from '~/services/fakeData';
+
+import { formatPrice } from '~/services/format';
 
 export default function Price({ immobile }) {
   const priceRent = useMemo(() => {
@@ -14,11 +17,7 @@ export default function Price({ immobile }) {
       return 'Sob Consulta';
     }
 
-    const priceFormatted = price.toLocaleString(navigator.language, {
-      minimumFractionDigits: 2,
-    });
-
-    return `R$ ${priceFormatted}/mês`;
+    return `${formatPrice(price)}/mês`;
   }, [immobile.price.rent]);
 
   const priceSale = useMemo(() => {
@@ -31,11 +30,7 @@ export default function Price({ immobile }) {
       return 'Sob Consulta';
     }
 
-    const priceFormatted = price.toLocaleString(navigator.language, {
-      minimumFractionDigits: 2,
-    });
-
-    return `R$ ${priceFormatted}`;
+    return formatPrice(price);
   }, [immobile.price.sale]);
 
   return (
@@ -48,15 +43,12 @@ export default function Price({ immobile }) {
           </h4>
 
           <ul>
-            <li>
-              <span>IPTU</span>
-              <span>R$ 52,00</span>
-            </li>
-
-            <li>
-              <span>Condomínio</span>
-              <span>R$ 52,00</span>
-            </li>
+            {immobile.rates.map(({ title, value }) => (
+              <li key={title}>
+                <span>{getRate(title)}</span>
+                <span>{formatPrice(value)}</span>
+              </li>
+            ))}
           </ul>
         </>
       )}
@@ -69,15 +61,12 @@ export default function Price({ immobile }) {
           </h4>
 
           <ul>
-            <li>
-              <span>IPTU</span>
-              <span>R$ 52,00</span>
-            </li>
-
-            <li>
-              <span>Condomínio</span>
-              <span>R$ 52,00</span>
-            </li>
+            {immobile.rates.map(({ title, value }) => (
+              <li key={title}>
+                <span>{getRate(title)}</span>
+                <span>{formatPrice(value)}</span>
+              </li>
+            ))}
           </ul>
         </>
       )}

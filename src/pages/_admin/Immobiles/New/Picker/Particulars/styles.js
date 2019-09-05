@@ -5,16 +5,16 @@ import InputDefault from '~/components/Input';
 import SwitchDefault from '~/components/Switch';
 
 export const Container = styled.div`
-width: 100%;
+  width: 100%;
 
-    > span {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #ddd;
-    }
+  > span {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+  }
 
   .MuiFormControlLabel-root {
     display: flex;

@@ -4,11 +4,14 @@ import PropTypes from 'prop-types';
 import { Container, Image, Details } from './styles';
 import { getParticular } from '~/services/fakeData';
 
+import { formatPrice, formatTitleImmobile } from '~/services/format';
+
 export default function Immobile({ immobile, openDetails }) {
   const image = useMemo(() => {
     if (immobile.images && immobile.images[0]) {
       return immobile.images[0].file;
     }
+
     return 'https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwi_gvfe4KbkAhVrLLkGHY-MDXAQjRx6BAgBEAQ&url=https%3A%2F%2Fionicframework.com%2Fblog%2Fannouncing-the-ionic-react-beta%2F&psig=AOvVaw3th3jrNASSsyjYQS0S_J9R&ust=1567122594326608';
   }, [immobile.images]);
 
@@ -28,14 +31,8 @@ export default function Immobile({ immobile, openDetails }) {
     if (!immobile.price.rent) {
       return '';
     }
-    const priceFormatted = immobile.price.rent.toLocaleString(
-      navigator.language,
-      {
-        minimumFractionDigits: 2,
-      }
-    );
 
-    return `R$ ${priceFormatted}/mês`;
+    return `${formatPrice(immobile.price.rent)}/mês`;
   }, [immobile.price.rent]);
 
   const priceSale = useMemo(() => {
@@ -43,14 +40,7 @@ export default function Immobile({ immobile, openDetails }) {
       return '';
     }
 
-    const priceFormatted = immobile.price.sale.toLocaleString(
-      navigator.language,
-      {
-        minimumFractionDigits: 2,
-      }
-    );
-
-    return `R$ ${priceFormatted}`;
+    return formatPrice(immobile.price.sale);
   }, [immobile.price.sale]);
 
   return (
@@ -59,36 +49,12 @@ export default function Immobile({ immobile, openDetails }) {
 
       <Details>
         <span>
-          <h4>{immobile.type.name}</h4>
-
-          {(!priceRent || !priceSale) && (
-            <span>
-              <p>{priceRent}</p>
-              <p>{priceSale}</p>
-            </span>
-          )}
+          {immobile.particulars.map(({ title, value }) => (
+            <p>{getParticular({ title, pos: 'simple', value })}</p>
+          ))}
         </span>
 
-        <p>{address}</p>
-
-        <ul>
-          {immobile.particulars.map(particular => (
-            <li key={particular.title}>
-              {getParticular(particular.title)('icon')() && (
-                <img
-                  src={getParticular(particular.title)('icon')()}
-                  // alt={particular.title}
-                  alt={getParticular(particular.title)(true)()}
-                />
-              )}
-              <p>
-                {getParticular(particular.title)(particular.value > 1)(
-                  particular.value
-                )}
-              </p>
-            </li>
-          ))}
-        </ul>
+        <h2>{formatTitleImmobile()}</h2>
       </Details>
     </Container>
   );

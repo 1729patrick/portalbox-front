@@ -285,7 +285,7 @@ export const particularsIcons = {
   area: move,
 };
 
-export const getParticular = title => pos => value => {
+export const getParticular = ({ title, pos, value }) => {
   const particulars = {
     bedroom: {
       true: '%@%$% quartos',
@@ -298,7 +298,12 @@ export const getParticular = title => pos => value => {
       icon: shower,
     },
     garage: { true: '%@%$% vagas', false: '%@%$% vaga', icon: car },
-    totalArea: { true: '%@%$% m²', false: '%@%$% m²', icon: move },
+    totalArea: {
+      true: 'Área total: %@%$% m²',
+      false: 'Área total: %@%$% m²',
+      simple: '%@%$% m²',
+      icon: move,
+    },
     academy: { true: 'Academias', false: 'Academia', icon: dumbbell },
     barbecueGrill: { true: 'Churrasqueiras', false: 'Churrasqueira', icon: '' },
     gourmetSpace: {
@@ -400,6 +405,10 @@ export const getParticular = title => pos => value => {
     },
     area: { true: 'm²', false: 'm²', icon: move },
   };
+
+  if (pos === 'simple' && !particulars[title][pos]) {
+    return particulars[title][value > 1].replace('%@%$%', value);
+  }
 
   if (particulars[title] && particulars[title][pos])
     return particulars[title][pos].replace('%@%$%', value);
@@ -555,3 +564,13 @@ export const allParticulars = [
     ],
   },
 ];
+
+export const getRate = title => {
+  const rates = {
+    condominium: 'Condomínio',
+    iptu: 'IPTU',
+    fireInsurance: 'Seguro de incêndio',
+  };
+
+  return rates[title];
+};

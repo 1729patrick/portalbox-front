@@ -30,26 +30,42 @@ export function* createImmobile({ payload }) {
     price,
     owner,
     sessions,
+    rates,
   } = immobile;
 
   const particularsComplete = Object.assign(particulars, allParticulars);
 
   const particularsFormatted = Object.keys(particularsComplete)
-    .map(k => ({
-      title: k,
-      value: particularsComplete[k],
-    }))
-    .filter(({ value }) => value)
-    .map(particular => {
+    .map(k => {
       try {
         return {
-          ...particular,
-          value: JSON.parse(particular.value),
+          title: k,
+          value: JSON.parse(particularsComplete[k]),
         };
       } catch (e) {
-        return particular;
+        return {
+          title: k,
+          value: particularsComplete[k],
+        };
       }
-    });
+    })
+    .filter(({ value }) => value);
+
+  const ratesFormatted = Object.keys(rates)
+    .map(k => {
+      try {
+        return {
+          title: k,
+          value: JSON.parse(rates[k]),
+        };
+      } catch (e) {
+        return {
+          title: k,
+          value: rates[k],
+        };
+      }
+    })
+    .filter(({ value }) => value);
 
   const imagesMergedFormatted = imagesMerged.map(
     ({ _id, url, description }) => ({ file: _id, url, description })
@@ -64,6 +80,7 @@ export function* createImmobile({ payload }) {
     config: { sessions },
     particulars: particularsFormatted,
     images: imagesMergedFormatted,
+    rates: ratesFormatted,
   };
 
   yield call(api.post, 'immobiles', immobileClean);

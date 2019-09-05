@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   min-width: 260px;
-  min-height: 362px;
   overflow: hidden;
   border-radius: 5px;
   user-select: none;
@@ -21,7 +20,7 @@ export const Image = styled.div`
 `;
 
 export const Details = styled.div`
-  padding: 12px 10px 0 10px;
+  padding: 12px 10px;
 
   span {
     display: flex;
@@ -48,40 +47,32 @@ export const Details = styled.div`
   }
 
   ul {
-    margin: 7px 0 0;
-    padding: 7px 0 0;
+    margin-top: 8px;
+    padding-top: 8px;
     display: flex;
     color: #333;
     justify-content: space-between;
-    flex-wrap: wrap;
 
     li {
-      width: 50%;
       display: flex;
       align-items: center;
-      margin-bottom: 12px;
+      flex-direction: column;
 
       img {
         height: 22px;
       }
 
       p {
-        margin-left: 8px;
+        margin-top: 8px;
         font-size: 14px;
         word-break: break-all;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
         justify-content: center;
-        font-weight: 500;
+        font-weight: 400;
         display: flex;
-
-        span {
-          font-size: 14px;
-          font-weight: 400;
-          margin-left: 5px;
-          color: #444;
-        }
+        color: #444;
       }
     }
   }
