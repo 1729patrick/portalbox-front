@@ -14,10 +14,10 @@ export const Container = styled.div`
       props.oneLine ? 'repeat(1, 1fr)' : 'repeat(1, 1fr)'};
     /* grid-auto-rows: 0; */
     overflow-y: hidden;
-    grid-gap: 15px;
+    grid-gap: 13px;
     z-index: 1;
-    margin: -15px;
-    padding: 15px;
+    margin: -13px;
+    padding: 13px;
   }
 
   > p {

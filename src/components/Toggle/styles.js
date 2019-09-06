@@ -53,7 +53,7 @@ export const ButtonToggle = styled(DefaultButton).attrs(props => ({
     !props.active &&
     css`
       background: transparent;
-      border: 1.5px solid #cacaca;
+      border: 1.5px solid #ddd;
       color: #555;
 
       &:hover {

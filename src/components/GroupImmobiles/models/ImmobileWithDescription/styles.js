@@ -3,12 +3,11 @@ import styled from 'styled-components';
 export const Container = styled.div`
   min-width: 260px;
   overflow: hidden;
-  border-radius: 5px;
   user-select: none;
   cursor: pointer;
   transition: 0.3s;
-  background: #fff;
-  box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2);
+  /* background: #fff; */
+  /* box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2); */
 `;
 
 export const Image = styled.div`
@@ -20,22 +19,23 @@ export const Image = styled.div`
 `;
 
 export const Details = styled.div`
-  padding: 12px 10px;
+  padding: 12px 0;
 
   span {
     display: flex;
     align-items: center;
+
     > p {
-      color: #999;
+      color: #909090;
       font-weight: 600;
-      font-size: 12px;
+      font-size: 12.4px;
       text-transform: uppercase;
       letter-spacing: 0.3px;
 
       & + p {
         &::before {
           content: '·';
-          color: #666;
+          color: #606060;
           margin: 0 5px;
         }
       }
@@ -43,9 +43,31 @@ export const Details = styled.div`
   }
 
   h2 {
-    margin-top: 5px;
+    margin: 8px 0;
     font-weight: 500;
     color: #333;
-    font-size: 17px;
+    font-size: 16px;
+  }
+
+  > div {
+    display: flex;
+
+    div {
+      span {
+        font-weight: 400;
+        font-size: 14px;
+        color: #555;
+      }
+
+      p {
+        font-size: 15px;
+        color: #555;
+        font-weight: 500;
+      }
+
+      & + div {
+        margin-left: 20px;
+      }
+    }
   }
 `;

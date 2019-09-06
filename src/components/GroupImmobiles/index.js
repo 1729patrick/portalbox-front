@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
 import { Container } from './styles';
-import ImmobileCard from './Immobile1';
+import ImmobileCard from './models/ImmobileWithDescription';
 
 function GroupImmobiles({ title, style, showSize, immobiles, count, history }) {
   const openDetails = (_id, address) => {
@@ -36,14 +36,32 @@ GroupImmobiles.propTypes = {
   count: PropTypes.number,
   immobiles: PropTypes.arrayOf(
     PropTypes.shape({
-      images: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-      priceFormatted: PropTypes.string.isRequired,
-      address: PropTypes.string.isRequired,
-      roomsFormatted: PropTypes.string.isRequired,
-      garagesFormatted: PropTypes.string.isRequired,
-      bathroomsFormatted: PropTypes.string.isRequired,
-      area: PropTypes.number.isRequired,
+      _id: PropTypes.string.isRequired,
+      images: PropTypes.arrayOf(
+        PropTypes.shape({
+          file: PropTypes.string.isRequired,
+        })
+      ).isRequired,
+      address: PropTypes.shape({
+        number: PropTypes.number,
+        neighborhood: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+        }).isRequired,
+        city: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+        }).isRequired,
+        street: PropTypes.string.isRequired,
+      }),
+      price: PropTypes.shape({
+        rent: PropTypes.number,
+        sale: PropTypes.number,
+      }),
+      particulars: PropTypes.arrayOf(
+        PropTypes.shape({
+          title: PropTypes.string.isRequired,
+          value: PropTypes.any.isRequired,
+        })
+      ),
     })
   ).isRequired,
 };

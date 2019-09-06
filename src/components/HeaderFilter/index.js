@@ -15,12 +15,12 @@ import {
 import Option from './_layouts/Option';
 
 const optionsFilter = [
-  { componenet: Finality, text: 'Alugar', selected: true },
-  { componenet: Type, text: 'Tipo' },
-  { componenet: Locale, text: 'Bairro' },
-  { componenet: Price, text: 'Preço' },
-  { componenet: Especification, text: 'Características' },
-  { componenet: Advanced, text: 'Mais filtros' },
+  { componenet: Finality, title: 'Finalidade' },
+  { componenet: Type, title: 'Tipo' },
+  { componenet: Locale, title: 'Bairro' },
+  { componenet: Price, title: 'Preço' },
+  { componenet: Especification, title: 'Características' },
+  { componenet: Advanced, title: 'Mais filtros' },
 ];
 
 export default function HeaderFilter({ popupOpen, setPopupOpen }) {
@@ -28,12 +28,12 @@ export default function HeaderFilter({ popupOpen, setPopupOpen }) {
     <Container>
       {optionsFilter.map((option, index) => (
         <Option
-          key={index}
+          key={option.title}
           index={index}
           setPopupOpen={setPopupOpen}
           component={option.componenet}
           popupOpen={popupOpen}
-          text={option.text}
+          title={option.title}
           selected={option.selected}
         />
       ))}

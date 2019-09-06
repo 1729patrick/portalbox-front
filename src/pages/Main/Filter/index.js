@@ -8,10 +8,10 @@ import Toggle from '~/components/Toggle';
 
 import { Container, SubmitButton } from './styles';
 
-import { optionsLocale } from '~/services/fakeData';
-
 export default function Filter({ types }) {
   const description = useSelector(state => state.company.description);
+  const cities = useSelector(state => state.core.cities);
+
   function handleSubmit() {
     // console.log(data);
   }
@@ -48,11 +48,18 @@ export default function Filter({ types }) {
 
         <Select
           placeholder="Em qualquer lugar"
-          options={optionsLocale}
-          name="locale"
+          options={cities}
+          name="neighborhood"
           label="Onde?"
           multiple={false}
           isSearchable={false}
+          groupedData
+          keys={{
+            label: 'name',
+            options: 'neighborhoods',
+            option: 'name',
+            value: '_id',
+          }}
         />
 
         <Link to="/imoveis">

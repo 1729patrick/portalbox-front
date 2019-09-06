@@ -50,15 +50,16 @@ const styles = {
   option: (provided, state) => {
     return {
       ...provided,
-      borderBottom: '1px solid #eee',
+      borderBottom: '1px solid #f1f1f1',
       color: state.isSelected ? theme.select.color : '#333',
       backgroundColor: state.isSelected
         ? theme.select.backgroundColor
         : state.isFocused
-        ? '#eee'
+        ? '#f1f1f1'
         : 'transparent',
       padding: '10px 15px',
       cursor: 'pointer',
+      fontWeight: 500,
 
       '&:active': {
         background: state.isSelected ? theme.select.backgroundColor : '#fff',
@@ -68,7 +69,9 @@ const styles = {
 
   menu: (provided, state) => ({
     ...provided,
-    margin: 0,
+    marginTop: 0,
+    border: 'none',
+    boxShadow: '0 0 30px 6px rgba(31, 51, 73, 0.1)',
     borderRadius: state.selectProps.menuIsOpen ? '0 0 6px 6px' : 6,
   }),
 
@@ -81,15 +84,15 @@ const styles = {
     margin: 0,
     padding: 0,
     borderRadius: state.selectProps.menuIsOpen ? '0 0 6px 6px' : 6,
-    border: 'none',
   }),
 
   control: (_, state) => ({
-    height: 37,
+    height: 44,
     display: 'flex',
-    border: '1px solid #ccc',
+    border: '1px solid #ddd',
     borderRadius: state.selectProps.menuIsOpen ? '6px 6px 0 0' : 6,
     cursor: 'pointer',
+    fontWeight: 500,
   }),
 
   singleValue: (provided, state) => {

@@ -7,7 +7,7 @@ import Popup from '../../Popup';
 export default function Option({
   index,
   setPopupOpen,
-  text,
+  title,
   popupOpen,
   component,
   selected,
@@ -23,7 +23,7 @@ export default function Option({
         onClick={() => setPopupOpen(index)}
         onClose={() => {}}
       >
-        <span>{text}</span>
+        <span>{title}</span>
       </Popup>
     </Container>
   );
@@ -32,7 +32,7 @@ export default function Option({
 Option.propTypes = {
   index: PropTypes.number.isRequired,
   setPopupOpen: PropTypes.func.isRequired,
-  text: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   popupOpen: PropTypes.number.isRequired,
   component: PropTypes.func.isRequired,
   selected: PropTypes.bool,

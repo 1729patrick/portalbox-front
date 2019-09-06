@@ -6,7 +6,7 @@ import { getParticular } from '~/services/fakeData';
 
 import { formatPrice } from '~/services/format';
 
-export default function Immobile({ immobile, openDetails }) {
+export default function ImmobileWithIcons({ immobile, openDetails }) {
   const image = useMemo(() => {
     if (immobile.images && immobile.images[0]) {
       return immobile.images[0].file;
@@ -76,15 +76,34 @@ export default function Immobile({ immobile, openDetails }) {
   );
 }
 
-Immobile.propTypes = {
+ImmobileWithIcons.propTypes = {
   immobile: PropTypes.shape({
-    images: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    priceFormatted: PropTypes.string.isRequired,
-    address: PropTypes.string.isRequired,
-    roomsFormatted: PropTypes.string.isRequired,
-    garagesFormatted: PropTypes.string.isRequired,
-    bathroomsFormatted: PropTypes.string.isRequired,
-    area: PropTypes.number.isRequired,
+    _id: PropTypes.string.isRequired,
+    images: PropTypes.arrayOf(
+      PropTypes.shape({
+        file: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+    address: PropTypes.shape({
+      number: PropTypes.number,
+      neighborhood: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+      }).isRequired,
+      city: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+      }).isRequired,
+      street: PropTypes.string.isRequired,
+    }),
+    price: PropTypes.shape({
+      rent: PropTypes.number,
+      sale: PropTypes.number,
+    }),
+    particulars: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        value: PropTypes.any.isRequired,
+      })
+    ),
   }).isRequired,
+  openDetails: PropTypes.func.isRequired,
 };

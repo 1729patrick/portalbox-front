@@ -7,6 +7,7 @@ import Select from '~/components/Select';
 
 export default function Address() {
   const cities = useSelector(state => state.core.cities);
+
   return (
     <Scope path="address">
       <div>
@@ -19,7 +20,7 @@ export default function Address() {
         label="Rua"
         placeholder="Digite o nome da rua"
       />
-      
+
       <Input
         type="number"
         name="number"

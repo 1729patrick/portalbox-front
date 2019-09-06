@@ -1,5 +1,5 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Container } from './styles';
 import GroupImmobiles from '~/components/GroupImmobiles';
@@ -11,10 +11,21 @@ import {
   AdHorizontalBackground,
 } from '~/components/Ads';
 
-import { listImmobiles } from '~/services/fakeData';
+import { loadSessionImmobilesRequest } from '~/store/modules/immobiles/actions';
 
 export default function Immobiles() {
+  const dispatch = useDispatch();
+
   const types = useSelector(state => state.core.types);
+  const saleHighlights = useSelector(state => state.immobiles.saleHighlights);
+  const rentalHighlights = useSelector(
+    state => state.immobiles.rentalHighlights
+  );
+
+  useEffect(() => {
+    dispatch(loadSessionImmobilesRequest({ session: 3 }));
+    dispatch(loadSessionImmobilesRequest({ session: 2 }));
+  }, [dispatch]);
 
   return (
     <Container>
@@ -29,8 +40,8 @@ export default function Immobiles() {
 
       <GroupImmobiles
         style={{ marginTop: 50 }}
-        list={listImmobiles}
-        title="Destaques"
+        title="Destaques de locação"
+        {...rentalHighlights}
       />
 
       <AdVerticalBackground
@@ -38,10 +49,11 @@ export default function Immobiles() {
         style={{ marginTop: 50 }}
         textButton="Ver apartamentos"
       />
+
       <GroupImmobiles
         style={{ marginTop: 50 }}
-        list={listImmobiles}
-        title="Novos"
+        title="Destaque de venda"
+        {...saleHighlights}
       />
 
       <AdHorizontalBackground
@@ -51,7 +63,7 @@ export default function Immobiles() {
         secondTextButton="Comprar"
       />
 
-      <GroupImmobiles
+      {/* <GroupImmobiles
         title="Nossos imóveis"
         style={{ marginTop: 50 }}
         list={listImmobiles}
@@ -61,7 +73,7 @@ export default function Immobiles() {
       <GroupImmobiles list={listImmobiles} />
       <GroupImmobiles list={listImmobiles} />
       <GroupImmobiles list={listImmobiles} />
-      <GroupImmobiles list={listImmobiles} />
+      <GroupImmobiles list={listImmobiles} /> */}
     </Container>
   );
 }

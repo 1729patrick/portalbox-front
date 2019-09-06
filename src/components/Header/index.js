@@ -17,6 +17,7 @@ function Header({ simple, searchable, history, ...props }) {
 
   const handleClick = e => {
     if (!node.current.contains(e.target)) {
+      console.log('fechou');
       setPopupOpen(-1);
     }
   };
@@ -58,6 +59,9 @@ Header.propTypes = {
   overlay: PropTypes.bool,
   searchable: PropTypes.bool.isRequired,
   simple: PropTypes.bool.isRequired,
+  history: PropTypes.shape({
+    goBack: PropTypes.func,
+  }).isRequired,
 };
 
 Header.defaultProps = {
