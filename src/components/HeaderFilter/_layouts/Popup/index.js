@@ -1,19 +1,32 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { Container, Footer } from './styles';
+import { Container, Content, ClearButton, SaveButton } from './styles';
 
-export default function PopupLayout({ label, children }) {
+import { saveFilterRequest } from '~/store/modules/filter/actions';
+
+export default function PopupLayout({ label, children, onClick }) {
+  const dispatch = useDispatch();
+
+  const handleSave = () => {
+    dispatch(saveFilterRequest());
+  };
+
   return (
     <Container>
-      <label>{label}</label>
+      <Content onClick={onClick}>
+        <label>{label}</label>
 
-      {children}
+        {children}
+      </Content>
 
-      <Footer>
-        <button type="button">Limpar</button>
-        <button type="button">Salvar</button>
-      </Footer>
+      <ClearButton type="button" className="clear">
+        Limpar
+      </ClearButton>
+      <SaveButton type="button" onClick={handleSave} className="save">
+        Salvar
+      </SaveButton>
     </Container>
   );
 }

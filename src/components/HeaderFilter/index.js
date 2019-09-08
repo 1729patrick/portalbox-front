@@ -1,10 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { Container } from './styles';
 
 import {
-  Type,
+  Types,
   Finality,
   Locale,
   Price,
@@ -15,15 +16,17 @@ import {
 import Option from './_layouts/Option';
 
 const optionsFilter = [
-  { componenet: Finality, title: 'Finalidade' },
-  { componenet: Type, title: 'Tipo' },
-  { componenet: Locale, title: 'Bairro' },
-  { componenet: Price, title: 'Preço' },
-  { componenet: Especification, title: 'Características' },
-  { componenet: Advanced, title: 'Mais filtros' },
+  { component: Finality, title: 'Finalidade' },
+  { component: Types, title: 'Tipo', pos: 'types' },
+  { component: Locale, title: 'Bairro' },
+  { component: Price, title: 'Preço' },
+  { component: Especification, title: 'Características' },
+  { component: Advanced, title: 'Mais filtros' },
 ];
 
 export default function HeaderFilter({ popupOpen, setPopupOpen }) {
+  const filters = useSelector(state => state.filter.filters);
+
   return (
     <Container>
       {optionsFilter.map((option, index) => (
@@ -31,10 +34,14 @@ export default function HeaderFilter({ popupOpen, setPopupOpen }) {
           key={option.title}
           index={index}
           setPopupOpen={setPopupOpen}
-          component={option.componenet}
+          component={option.component}
           popupOpen={popupOpen}
-          title={option.title}
-          selected={option.selected}
+          title={option.pos ? filters[option.pos].title : option.title}
+          selected={
+            option.pos
+              ? filters[option.pos].title !== filters[option.pos].default
+              : false
+          }
         />
       ))}
     </Container>

@@ -21,7 +21,6 @@ export default function Option({
         component={component}
         open={popupOpen === index}
         onClick={() => setPopupOpen(index)}
-        onClose={() => {}}
       >
         <span>{title}</span>
       </Popup>

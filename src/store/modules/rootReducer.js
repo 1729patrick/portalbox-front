@@ -5,6 +5,7 @@ import company from './company/reducer';
 import theme from './theme/reducer';
 import core from './core/reducer';
 import immobiles from './immobiles/reducer';
+import filter from './filter/reducer';
 
 export default combineReducers({
   auth,
@@ -12,4 +13,5 @@ export default combineReducers({
   theme,
   core,
   immobiles,
+  filter,
 });

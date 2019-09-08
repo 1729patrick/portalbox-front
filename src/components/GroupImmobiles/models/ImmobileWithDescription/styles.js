@@ -56,12 +56,12 @@ export const Details = styled.div`
       span {
         font-weight: 400;
         font-size: 14px;
-        color: #555;
+        color: #666;
       }
 
       p {
         font-size: 15px;
-        color: #555;
+        color: ${props => props.theme.cards.immobile.price.color};
         font-weight: 500;
       }
 

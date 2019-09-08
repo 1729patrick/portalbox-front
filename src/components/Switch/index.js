@@ -41,32 +41,33 @@ const CustomSwitch = withStyles(theme => ({
   },
   checked: {},
   focusVisible: {},
-}))(forwardRef(({ classes, label, value, onChange, ...props }, ref) => {
-  return (
-    <MaterialSwitch
-      focusVisibleClassName={classes.focusVisible}
-      disableRipple
-      checked={value}
-      onChange={event => onChange(event.target.checked)}
-      value={value}
-      ref={ref}
-      classes={{
-        root: classes.root,
-        switchBase: classes.switchBase,
-        thumb: classes.thumb,
-        track: classes.track,
-        checked: classes.checked,
-      }}
-      {...props}
-    />
-  );
-}));
+}))(
+  forwardRef(({ classes, label, value, onChange, ...props }, ref) => {
+    return (
+      <MaterialSwitch
+        focusVisibleClassName={classes.focusVisible}
+        disableRipple
+        checked={value}
+        onChange={event => onChange(event.target.checked)}
+        value={value}
+        ref={ref}
+        classes={{
+          root: classes.root,
+          switchBase: classes.switchBase,
+          thumb: classes.thumb,
+          track: classes.track,
+          checked: classes.checked,
+        }}
+        {...props}
+      />
+    );
+  })
+);
 
-const Switch = ({style, name, label}) => {
+const Switch = ({ style, name, label }) => {
   const ref = useRef(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
   const [value, setValue] = useState(defaultValue);
-
 
   useEffect(() => {
     registerField({
@@ -85,7 +86,7 @@ const Switch = ({style, name, label}) => {
           data-value={value}
           value={value}
           onChange={setValue}
-        ></CustomSwitch>
+        />
       }
       label={label}
       labelPlacement="start"

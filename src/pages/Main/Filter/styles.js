@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import DefaultButton from '~/components/Button';
 
 export const Container = styled.div`
-  margin: 50px 0 0 80px;
+  margin: auto 0 auto 70px;
   width: 430px;
   padding: 30px;
   align-items: center;

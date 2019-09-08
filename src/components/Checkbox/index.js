@@ -1,21 +1,41 @@
 import React from 'react';
-import Checkbox from '@material-ui/core/Checkbox';
+import PropTypes from 'prop-types';
+import MaterialCheckbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { withStyles } from '@material-ui/core/styles';
 
-import theme from '~/styles/theme';
+import { styles } from './styles';
 
-const styles = {
-  root: {
-    color: theme.checkbox.color,
-    '&$checked': {
-      color: theme.checkbox.checkedColor,
-    },
-  },
-  checked: {},
+const CustomCheckbox = withStyles(styles)(props => {
+  return <MaterialCheckbox color="default" {...props} />;
+});
+
+const Checkbox = ({ checked, onChange, value, label }) => {
+  return (
+    <FormControlLabel
+      control={
+        <CustomCheckbox
+          checked={checked}
+          onChange={() => onChange(value)}
+          value={value}
+        />
+      }
+      label={label}
+      labelPlacement="end"
+    />
+  );
 };
 
-const CustomCheckbox = props => {
-  return <Checkbox color="default" {...props} />;
+Checkbox.propTypes = {
+  checked: PropTypes.bool.isRequired,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+    PropTypes.shape()
+  ]).isRequired,
+  label: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(CustomCheckbox);
+export default Checkbox;

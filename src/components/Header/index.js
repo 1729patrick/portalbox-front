@@ -1,6 +1,6 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import { withRouter } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { MdSearch } from 'react-icons/md';
 import { withTheme } from 'styled-components';
@@ -8,25 +8,40 @@ import { Container, Search } from './styles';
 import HeaderFilter from '~/components/HeaderFilter';
 
 import { links } from '~/services/fakeData';
+import {
+  saveFilterRequest,
+  setPopupOpenRequest,
+} from '~/store/modules/filter/actions';
 
 function Header({ simple, searchable, history, ...props }) {
-  const logo = useSelector(state => state.company.logo);
+  const dispatch = useDispatch();
 
-  const [popupOpen, setPopupOpen] = useState(-1);
+  const logo = useSelector(state => state.company.logo);
+  const popupOpen = useSelector(state => state.filter.popupOpen);
+
   const node = useRef();
 
-  const handleClick = e => {
-    if (!node.current.contains(e.target)) {
-      console.log('fechou');
-      setPopupOpen(-1);
-    }
-  };
+  const setPopupOpen = useCallback(
+    popup => {
+      dispatch(setPopupOpenRequest(popup));
+    },
+    [dispatch]
+  );
+
+  const handleClick = useCallback(
+    e => {
+      if (!node.current.contains(e.target) && popupOpen !== -1) {
+        dispatch(saveFilterRequest());
+      }
+    },
+    [dispatch, popupOpen]
+  );
 
   useEffect(() => {
     document.addEventListener('click', handleClick);
 
     return () => document.removeEventListener('click', handleClick);
-  }, []);
+  }, [handleClick]);
 
   return (
     <Container ref={node} {...props} onClickCapture={() => setPopupOpen(-1)}>
