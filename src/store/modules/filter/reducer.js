@@ -7,8 +7,23 @@ const INITIAL_STATE = {
   filters: {
     types: {
       title: 'Tipo',
-      default: 'Tipo',
+      titleDefault: 'Tipo',
       value: [],
+      valueDefault: [],
+      saved: [],
+    },
+    finality: {
+      title: 'Finalidade',
+      titleDefault: 'Finalidade',
+      value: {},
+      valueDefault: {},
+      saved: {},
+    },
+    neighborhoods: {
+      title: 'Bairro',
+      titleDefault: 'Bairro',
+      value: [],
+      valueDefault: [],
       saved: [],
     },
   },
@@ -17,8 +32,13 @@ const INITIAL_STATE = {
 const filter = (state = INITIAL_STATE, action) => {
   return produce(state, draft => {
     switch (action.type) {
-      case '@filter/SET_POPUP_OPEN_REQUEST': {
+      case '@filter/SET_POPUP_OPEN_SUCCESS': {
         draft.popupOpen = action.payload.popup;
+
+        Object.keys(draft.filters).forEach(filter => {
+          draft.filters[filter].saved = draft.filters[filter].value;
+        });
+
         break;
       }
       case '@filter/SAVE_FILTER_REQUEST': {
@@ -37,6 +57,7 @@ const filter = (state = INITIAL_STATE, action) => {
         draft.filters[filter].value = value;
         break;
       }
+
       default:
     }
   });

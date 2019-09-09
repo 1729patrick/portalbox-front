@@ -1,71 +1,78 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { Form } from '@rocketseat/unform';
-import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { Formik, Form } from 'formik';
 
 import Select from '~/components/Select';
 import Toggle from '~/components/Toggle';
 
 import { Container, SubmitButton } from './styles';
 
-export default function Filter({ types }) {
+import { searchImmobiles } from '~/store/modules/immobiles/actions';
+
+function Filter() {
+  const dispatch = useDispatch();
+
   const description = useSelector(state => state.company.description);
   const cities = useSelector(state => state.core.cities);
-
-  function handleSubmit() {
-    // console.log(data);
-  }
+  const types = useSelector(state => state.core.types);
 
   return (
     <Container>
       <h1>{description}</h1>
-      <Form
-        onSubmit={handleSubmit}
-        initialData={{
-          finality: 2,
-          locale: 2,
-          type: 3,
+      <Formik
+        initialValues={{
+          finality: {},
+          type: null,
+          neighborhood: null,
         }}
-      >
-        <Toggle
-          label="O que você precisa?"
-          name="finality"
-          options={[
-            { value: 1, name: 'Alugar' },
-            { value: 2, name: 'Comprar' },
-          ]}
-          value={1}
-        />
+        onSubmit={values => dispatch(searchImmobiles(values))}
+        render={({ values, setFieldValue }) => (
+          <Form>
+            <Toggle
+              label="O que você precisa?"
+              options={[
+                { value: 'rent', title: 'Alugar' },
+                { value: 'sale', title: 'Comprar' },
+              ]}
+              selected={values.finality}
+              setSelected={value => setFieldValue('finality', value)}
+            />
 
-        <Select
-          placeholder="Qualquer tipo"
-          options={types}
-          name="type"
-          label="Qual tipo?"
-          multiple={false}
-          isSearchable={false}
-        />
+            <Select
+              placeholder="Qualquer tipo"
+              options={types}
+              name="type"
+              label="Qual tipo?"
+              multiple={false}
+              isSearchable={false}
+              selected={values.type}
+              setSelected={value => setFieldValue('type', value)}
+            />
 
-        <Select
-          placeholder="Em qualquer lugar"
-          options={cities}
-          name="neighborhood"
-          label="Onde?"
-          multiple={false}
-          isSearchable={false}
-          groupedData
-          keys={{
-            label: 'name',
-            options: 'neighborhoods',
-            option: 'name',
-            value: '_id',
-          }}
-        />
+            <Select
+              placeholder="Em qualquer lugar"
+              options={cities}
+              name="neighborhood"
+              label="Onde?"
+              multiple={false}
+              isSearchable={false}
+              groupedData
+              selected={values.neighborhood}
+              setSelected={value => setFieldValue('neighborhood', value)}
+              keys={{
+                label: 'name',
+                options: 'neighborhoods',
+                option: 'name',
+                value: '_id',
+              }}
+            />
 
-        <Link to="/imoveis">
-          <SubmitButton type="submit" text="Buscar" />
-        </Link>
-      </Form>
+            <SubmitButton type="submit" text="Buscar" />
+          </Form>
+        )}
+      />
     </Container>
   );
 }
+
+export default Filter;

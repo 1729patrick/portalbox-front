@@ -39,7 +39,9 @@ export function* signInVisitor() {
 }
 
 export const setToken = ({ payload }) => {
-  api.defaults.headers.Authorization = `Bearer ${payload.auth.token}`;
+  if (payload) {
+    api.defaults.headers.Authorization = `Bearer ${payload.auth.token}`;
+  }
 };
 
 export default all([

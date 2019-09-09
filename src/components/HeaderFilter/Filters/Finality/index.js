@@ -1,16 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Toggle from '~/components/Toggle';
 
 import PopupLayout from '../../_layouts/Popup';
 
-export default function Finality() {
+import { setFinalityFilterRequest } from '~/store/modules/filter/actions';
+
+export default function Finality({ onClick }) {
+  const dispatch = useDispatch();
+  const saved = useSelector(state => state.filter.filters.finality.saved);
+
+  const [selected, setSelected] = useState(saved);
+
+  useEffect(() => {
+    dispatch(setFinalityFilterRequest({ filter: 'finality', value: selected }));
+  }, [dispatch, selected]);
+
   return (
-    <PopupLayout label="O que você precisa?">
+    <PopupLayout
+      label="O que você precisa?"
+      onClick={onClick}
+      onClear={() => setSelected({})}
+      showClear={!!selected.value}
+    >
       <Toggle
-        name="finality"
-        options={[{ value: 1, name: 'Alugar' }, { value: 2, name: 'Comprar' }]}
-        value={1}
+        options={[
+          { value: 'rend', title: 'Alugar' },
+          { value: 'sale', title: 'Comprar' },
+        ]}
+        selected={selected}
+        setSelected={setSelected}
       />
     </PopupLayout>
   );

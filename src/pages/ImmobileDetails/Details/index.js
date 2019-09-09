@@ -23,8 +23,6 @@ export default function Details({ openPreview, immobile }) {
   }, [immobile]);
 
   const title = useMemo(() => {
-    console.log(immobile);
-
     let [firstParticular, secondParticular] = particularsSpotlight;
 
     firstParticular = getParticular({

@@ -14,15 +14,11 @@ export default function Types({ onClick }) {
   const types = useSelector(state => state.core.types);
   const saved = useSelector(state => state.filter.filters.types.saved);
 
-  const [selecteds, setSelecteds] = useState([]);
+  const [selecteds, setSelecteds] = useState(saved);
 
   useEffect(() => {
     dispatch(setTypesFilterRequest({ filter: 'types', value: selecteds }));
   }, [dispatch, selecteds]);
-
-  useEffect(() => {
-    setSelecteds(saved);
-  }, [saved]);
 
   const handleChange = type => {
     const selected = selecteds.find(({ _id }) => _id === type._id);
@@ -35,11 +31,16 @@ export default function Types({ onClick }) {
   };
 
   return (
-    <PopupLayout label="Qual tipo?" onClick={onClick}>
+    <PopupLayout
+      label="Qual tipo?"
+      onClick={onClick}
+      onClear={() => setSelecteds([])}
+      showClear={!!(selecteds.length > 0)}
+    >
       <Content>
         {types.map(type => (
           <Checkbox
-            key={type.name}
+            key={type._id}
             onChange={handleChange}
             value={type}
             label={type.name}

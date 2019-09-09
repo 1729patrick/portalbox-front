@@ -5,6 +5,12 @@ import { sessionsImmobiles } from '~/services/fakeData';
 
 import { loadSessionImmobilesSuccess } from './actions';
 
+import {
+  setFinalityFilterRequest,
+  setTypesFilterRequest,
+  setNeighborhoodsFilterRequest,
+} from '../filter/actions';
+
 export function* createImmobile({ payload }) {
   const { immobile, images } = payload;
 
@@ -103,7 +109,44 @@ export function* loadSession({ payload }) {
   yield put(loadSessionImmobilesSuccess({ sessionKey: key, immobiles }));
 }
 
+function* searchImmobiles({ payload }) {
+  let { finality, type, neighborhood } = payload;
+
+  if (finality) {
+    yield put(
+      setFinalityFilterRequest({ filter: 'finality', value: finality })
+    );
+
+    finality = finality.value;
+  }
+
+  if (type) {
+    yield put(setTypesFilterRequest({ filter: 'types', value: [type] }));
+    type = type._id;
+  }
+
+  if (neighborhood) {
+    yield put(
+      setNeighborhoodsFilterRequest({
+        filter: 'neighborhoods',
+        value: [neighborhood],
+      })
+    );
+
+    neighborhood = neighborhood._id;
+  }
+
+  const response = yield call(api.get, 'immobiles', {
+    params: {
+      finality,
+      type,
+      neighborhood,
+    },
+  });
+}
+
 export default all([
   takeLatest('@immobile/CREATE_IMMOBILES_REQUEST', createImmobile),
   takeEvery('@immobile/LOAD_SESSION_IMMOBILES_REQUEST', loadSession),
+  takeLatest('@immobile/SEARCH_IMMOBILES_REQUEST', searchImmobiles),
 ]);

@@ -33,7 +33,7 @@ Checkbox.propTypes = {
     PropTypes.string,
     PropTypes.number,
     PropTypes.bool,
-    PropTypes.shape()
+    PropTypes.shape(),
   ]).isRequired,
   label: PropTypes.string.isRequired,
 };

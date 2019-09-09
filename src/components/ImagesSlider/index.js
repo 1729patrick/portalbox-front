@@ -41,8 +41,6 @@ export default function ImagesSlider({ initialImage, images }) {
     sliderRef.current.slickPrev();
   };
 
-  console.log(images);
-
   return (
     <Container>
       <Preview source={imageActive.file}>

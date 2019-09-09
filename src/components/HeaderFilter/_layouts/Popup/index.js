@@ -6,25 +6,40 @@ import { Container, Content, ClearButton, SaveButton } from './styles';
 
 import { saveFilterRequest } from '~/store/modules/filter/actions';
 
-export default function PopupLayout({ label, children, onClick }) {
+export default function PopupLayout({
+  label,
+  children,
+  onClick,
+  onClear,
+  showClear,
+}) {
   const dispatch = useDispatch();
 
   const handleSave = () => {
     dispatch(saveFilterRequest());
   };
 
+  const handleClear = () => {
+    setTimeout(() => {
+      onClear();
+    }, 0);
+  };
+
   return (
     <Container>
-      <Content onClick={onClick}>
+      <Content onClickCapture={onClick}>
         <label>{label}</label>
 
         {children}
+
+        {showClear && (
+          <ClearButton type="button" onClick={handleClear}>
+            Limpar
+          </ClearButton>
+        )}
       </Content>
 
-      <ClearButton type="button" className="clear">
-        Limpar
-      </ClearButton>
-      <SaveButton type="button" onClick={handleSave} className="save">
+      <SaveButton type="button" onClick={handleSave}>
         Salvar
       </SaveButton>
     </Container>
@@ -34,4 +49,9 @@ export default function PopupLayout({ label, children, onClick }) {
 PopupLayout.propTypes = {
   label: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+  showClear: PropTypes.bool,
+};
+
+PopupLayout.defaultProps = {
+  showClear: false,
 };

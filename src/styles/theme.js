@@ -28,6 +28,11 @@ const theme = {
         backgroundColor: '#162962',
       },
     },
+    neighborhood: {
+      city: {
+        color: '#162962',
+      },
+    },
   },
   ads: {
     horizontalBackground: {

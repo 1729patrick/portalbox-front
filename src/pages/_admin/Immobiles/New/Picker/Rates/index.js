@@ -5,7 +5,6 @@ import Picker from '..';
 import { Container, InputMask } from './styles';
 
 export default function Rates({ onClose, open, initialData, onSave, path }) {
-  console.log(path);
   return (
     <Picker
       title="Adicionar taxas"
