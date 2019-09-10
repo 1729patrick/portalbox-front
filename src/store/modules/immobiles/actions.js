@@ -21,7 +21,12 @@ export const loadSessionImmobilesSuccess = ({ sessionKey, immobiles }) => ({
   payload: { sessionKey, immobiles },
 });
 
-export const searchImmobiles = ({ finality, type, neighborhood }) => ({
+export const searchImmobilesRequest = ({ finality, types, neighborhoods }) => ({
   type: '@immobile/SEARCH_IMMOBILES_REQUEST',
-  payload: { finality, type, neighborhood },
+  payload: { finality, types, neighborhoods },
+});
+
+export const searchImmobilesSuccess = ({ count, immobiles }) => ({
+  type: '@immobile/SEARCH_IMMOBILES_SUCCESS',
+  payload: { count, immobiles },
 });

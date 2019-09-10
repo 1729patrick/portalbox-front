@@ -1,15 +1,12 @@
 import { all, takeLatest, call, put, takeEvery } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
+
 import api from '~/services/api';
+
 import { sessionsImmobiles } from '~/services/fakeData';
+import history from '~/services/history';
 
-import { loadSessionImmobilesSuccess } from './actions';
-
-import {
-  setFinalityFilterRequest,
-  setTypesFilterRequest,
-  setNeighborhoodsFilterRequest,
-} from '../filter/actions';
+import { loadSessionImmobilesSuccess, searchImmobilesSuccess } from './actions';
 
 export function* createImmobile({ payload }) {
   const { immobile, images } = payload;
@@ -110,39 +107,25 @@ export function* loadSession({ payload }) {
 }
 
 function* searchImmobiles({ payload }) {
-  let { finality, type, neighborhood } = payload;
+  try {
+    const { finality, types, neighborhoods } = payload;
 
-  if (finality) {
-    yield put(
-      setFinalityFilterRequest({ filter: 'finality', value: finality })
-    );
+    const response = yield call(api.get, 'immobiles', {
+      params: {
+        finality: finality.value,
+        types: JSON.stringify(types.map(({ _id }) => _id)),
+        neighborhoods: JSON.stringify(neighborhoods.map(({ _id }) => _id)),
+      },
+    });
 
-    finality = finality.value;
+    const { count, immobiles } = response.data;
+
+    history.push('/imoveis');
+
+    yield put(searchImmobilesSuccess({ count, immobiles }));
+  } catch (e) {
+    yield put(searchImmobilesSuccess({ count: 0, immobiles: [] }));
   }
-
-  if (type) {
-    yield put(setTypesFilterRequest({ filter: 'types', value: [type] }));
-    type = type._id;
-  }
-
-  if (neighborhood) {
-    yield put(
-      setNeighborhoodsFilterRequest({
-        filter: 'neighborhoods',
-        value: [neighborhood],
-      })
-    );
-
-    neighborhood = neighborhood._id;
-  }
-
-  const response = yield call(api.get, 'immobiles', {
-    params: {
-      finality,
-      type,
-      neighborhood,
-    },
-  });
 }
 
 export default all([

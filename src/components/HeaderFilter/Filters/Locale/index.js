@@ -19,8 +19,7 @@ export default function Locale({ onClick }) {
   useEffect(() => {
     dispatch(
       setNeighborhoodsFilterRequest({
-        filter: 'neighborhoods',
-        value: selecteds,
+        neighborhoods: selecteds,
       })
     );
   }, [dispatch, selecteds]);

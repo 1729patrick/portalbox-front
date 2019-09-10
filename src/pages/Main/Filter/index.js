@@ -7,7 +7,7 @@ import Toggle from '~/components/Toggle';
 
 import { Container, SubmitButton } from './styles';
 
-import { searchImmobiles } from '~/store/modules/immobiles/actions';
+import { searchImmobilesRequest } from '~/store/modules/immobiles/actions';
 
 function Filter() {
   const dispatch = useDispatch();
@@ -16,6 +16,15 @@ function Filter() {
   const cities = useSelector(state => state.core.cities);
   const types = useSelector(state => state.core.types);
 
+  const handleSubmit = ({ finality, type, neighborhood }) => {
+    const search = {
+      finality,
+      types: type ? [type] : [],
+      neighborhoods: neighborhood ? [neighborhood] : [],
+    };
+
+    dispatch(searchImmobilesRequest(search));
+  };
   return (
     <Container>
       <h1>{description}</h1>
@@ -25,7 +34,7 @@ function Filter() {
           type: null,
           neighborhood: null,
         }}
-        onSubmit={values => dispatch(searchImmobiles(values))}
+        onSubmit={handleSubmit}
         render={({ values, setFieldValue }) => (
           <Form>
             <Toggle

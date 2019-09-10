@@ -17,7 +17,7 @@ export default function Types({ onClick }) {
   const [selecteds, setSelecteds] = useState(saved);
 
   useEffect(() => {
-    dispatch(setTypesFilterRequest({ filter: 'types', value: selecteds }));
+    dispatch(setTypesFilterRequest({ types: selecteds }));
   }, [dispatch, selecteds]);
 
   const handleChange = type => {

@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import produce from 'immer';
 
 const INITIAL_STATE = {
@@ -22,6 +23,10 @@ const INITIAL_STATE = {
     count: 0,
     immobiles: [],
   },
+  search: {
+    count: 0,
+    immobiles: [],
+  },
 };
 
 const immobiles = (state = INITIAL_STATE, action) => {
@@ -38,9 +43,20 @@ const immobiles = (state = INITIAL_STATE, action) => {
       }
 
       case '@immobile/LOAD_SESSION_IMMOBILES_SUCCESS': {
-        // eslint-disable-next-line no-shadow
         const { sessionKey, immobiles } = action.payload;
         draft[sessionKey] = immobiles;
+        break;
+      }
+
+      case '@immobile/SEARCH_IMMOBILES_REQUEST': {
+        draft.loading = true;
+        break;
+      }
+      case '@immobile/SEARCH_IMMOBILES_SUCCESS': {
+        draft.loading = false;
+
+        const { count, immobiles } = action.payload;
+        draft.search = { count, immobiles };
         break;
       }
       default:

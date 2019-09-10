@@ -12,19 +12,19 @@ export const saveFilterRequest = () => ({
   type: '@filter/SAVE_FILTER_REQUEST',
 });
 
-export const setTypesFilterRequest = ({ filter, value }) => ({
+export const setTypesFilterRequest = ({ types }) => ({
   type: '@filter/SET_TYPES_FILTER_REQUEST',
-  payload: { filter, value },
+  payload: { types },
 });
 
-export const setFinalityFilterRequest = ({ filter, value }) => ({
+export const setFinalityFilterRequest = ({ finality }) => ({
   type: '@filter/SET_FINALITY_FILTER_REQUEST',
-  payload: { filter, value },
+  payload: { finality },
 });
 
-export const setNeighborhoodsFilterRequest = ({ filter, value }) => ({
+export const setNeighborhoodsFilterRequest = ({ neighborhoods }) => ({
   type: '@filter/SET_NEIGHBORHOODS_FILTER_REQUEST',
-  payload: { filter, value },
+  payload: { neighborhoods },
 });
 
 export const setFilterSuccess = ({ filter, title, value }) => ({

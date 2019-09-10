@@ -14,7 +14,7 @@ export default function Finality({ onClick }) {
   const [selected, setSelected] = useState(saved);
 
   useEffect(() => {
-    dispatch(setFinalityFilterRequest({ filter: 'finality', value: selected }));
+    dispatch(setFinalityFilterRequest({ finality: selected }));
   }, [dispatch, selected]);
 
   return (
