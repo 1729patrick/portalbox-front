@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Container } from './styles';
@@ -22,13 +22,39 @@ export default function Immobiles() {
     state => state.immobiles.rentalHighlights
   );
 
+  const resultFilter = useSelector(state => state.filter.result);
+
   useEffect(() => {
     dispatch(loadSessionImmobilesRequest({ session: 3 }));
     dispatch(loadSessionImmobilesRequest({ session: 2 }));
   }, [dispatch]);
 
+  const titleResultFilter = useMemo(() => {
+    return resultFilter.count
+      ? `${resultFilter.count} imóveis encontrados`
+      : 'Desculpe, não encontramos imóveis com os critérios da busca.';
+  }, [resultFilter.count]);
+
+  const showResultFilter = useSelector(state => {
+    const { filters } = state.filter;
+    const filterWithValueSaved = Object.keys(filters)
+      .map(filter => Object.entries(filters[filter].saved).length !== 0)
+      .filter(value => value);
+
+    return filterWithValueSaved.length >= 1;
+  });
+
   return (
     <Container>
+      {showResultFilter && (
+        <GroupImmobiles
+          style={{ marginBottom: 50 }}
+          title={titleResultFilter}
+          {...resultFilter}
+          showSize={resultFilter.count > 1000}
+        />
+      )}
+
       <GroupCards title="Tipos" list={types} />
 
       <AdImageBackground

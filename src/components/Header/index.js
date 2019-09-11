@@ -8,16 +8,14 @@ import { Container, Search } from './styles';
 import HeaderFilter from '~/components/HeaderFilter';
 
 import { links } from '~/services/fakeData';
-import {
-  saveFilterRequest,
-  setPopupOpenRequest,
-} from '~/store/modules/filter/actions';
+import { saveFilterRequest } from '~/store/modules/filter/actions';
+import { setPopupOpenRequest } from '~/store/modules/popup/actions';
 
 function Header({ simple, searchable, history, ...props }) {
   const dispatch = useDispatch();
 
   const logo = useSelector(state => state.company.logo);
-  const popupOpen = useSelector(state => state.filter.popupOpen);
+  const popupOpen = useSelector(state => state.popup);
 
   const node = useRef();
 

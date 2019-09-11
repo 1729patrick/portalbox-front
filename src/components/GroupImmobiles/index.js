@@ -11,18 +11,20 @@ function GroupImmobiles({ title, style, showSize, immobiles, count, history }) {
   };
 
   return (
-    <Container style={style} oneLine={count <= 4}>
+    <Container style={style}>
       {title && <h1>{title}</h1>}
 
-      <div>
-        {immobiles.map(immobile => (
-          <ImmobileCard
-            immobile={immobile}
-            key={immobile._id}
-            openDetails={openDetails}
-          />
-        ))}
-      </div>
+      {immobiles.length > 0 && (
+        <div>
+          {immobiles.map(immobile => (
+            <ImmobileCard
+              immobile={immobile}
+              key={immobile._id}
+              openDetails={openDetails}
+            />
+          ))}
+        </div>
+      )}
 
       {showSize && count > 8 && <p>Ver todos ({count})</p>}
     </Container>

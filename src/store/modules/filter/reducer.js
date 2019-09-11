@@ -2,7 +2,6 @@
 import produce from 'immer';
 
 const INITIAL_STATE = {
-  popupOpen: -1,
   loading: false,
   filters: {
     types: {
@@ -27,14 +26,16 @@ const INITIAL_STATE = {
       saved: [],
     },
   },
+  result: {
+    count: 0,
+    immobiles: [],
+  },
 };
 
 const filter = (state = INITIAL_STATE, action) => {
   return produce(state, draft => {
     switch (action.type) {
       case '@filter/SET_POPUP_OPEN_SUCCESS': {
-        draft.popupOpen = action.payload.popup;
-
         Object.keys(draft.filters).forEach(filter => {
           draft.filters[filter].saved = draft.filters[filter].value;
         });
@@ -42,8 +43,6 @@ const filter = (state = INITIAL_STATE, action) => {
         break;
       }
       case '@filter/SAVE_FILTER_REQUEST': {
-        draft.popupOpen = -1;
-
         Object.keys(draft.filters).forEach(filter => {
           draft.filters[filter].saved = draft.filters[filter].value;
         });
@@ -55,6 +54,18 @@ const filter = (state = INITIAL_STATE, action) => {
 
         draft.filters[filter].title = title;
         draft.filters[filter].value = value;
+        break;
+      }
+
+      case '@immobile/SEARCH_IMMOBILES_REQUEST': {
+        draft.loading = true;
+        break;
+      }
+      case '@immobile/SEARCH_IMMOBILES_SUCCESS': {
+        draft.loading = false;
+
+        const { count, immobiles } = action.payload;
+        draft.result = { count, immobiles };
         break;
       }
 

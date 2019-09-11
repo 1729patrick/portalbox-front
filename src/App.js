@@ -22,7 +22,6 @@ const App = () => {
           <Theme>
             <Routes />
             <ToastContainer />
-
             <Loading />
           </Theme>
         </Router>

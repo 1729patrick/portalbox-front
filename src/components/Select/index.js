@@ -31,7 +31,7 @@ export default function ReactSelect({
     }
 
     return options;
-  }, []);
+  }, [options]);
 
   return (
     <Container>

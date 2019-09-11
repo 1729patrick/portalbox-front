@@ -66,7 +66,7 @@ const CustomSwitch = withStyles(theme => ({
 
 const Switch = ({ style, name, label }) => {
   const ref = useRef(null);
-  const { fieldName, registerField, defaultValue, error } = useField(name);
+  const { fieldName, registerField, defaultValue } = useField(name);
   const [value, setValue] = useState(defaultValue);
 
   useEffect(() => {

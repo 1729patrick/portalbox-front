@@ -4,9 +4,8 @@ import { toast } from 'react-toastify';
 import api from '~/services/api';
 
 import { sessionsImmobiles } from '~/services/fakeData';
-import history from '~/services/history';
 
-import { loadSessionImmobilesSuccess, searchImmobilesSuccess } from './actions';
+import { loadSessionImmobilesSuccess } from './actions';
 
 export function* createImmobile({ payload }) {
   const { immobile, images } = payload;
@@ -93,43 +92,30 @@ export function* createImmobile({ payload }) {
 
 export function* loadSession({ payload }) {
   const { session } = payload;
+  const { key } = sessionsImmobiles.find(({ _id }) => _id === session);
+
+  // const { sessionLoaded } = select(state => state.immobiles[key]);
+
+  // if (sessionLoaded.count) {
+  //   const { immobiles } = sessionLoaded;
+
+  //   return yield put(
+  //     loadSessionImmobilesSuccess({ sessionKey: key, immobiles })
+  //   );
+  // }
 
   const response = yield call(api.get, 'immobiles', {
     params: {
       sessions: JSON.stringify([session]),
+      limit: 8,
     },
   });
-
-  const { key } = sessionsImmobiles.find(({ _id }) => _id === session);
 
   const immobiles = response.data;
   yield put(loadSessionImmobilesSuccess({ sessionKey: key, immobiles }));
 }
 
-function* searchImmobiles({ payload }) {
-  try {
-    const { finality, types, neighborhoods } = payload;
-
-    const response = yield call(api.get, 'immobiles', {
-      params: {
-        finality: finality.value,
-        types: JSON.stringify(types.map(({ _id }) => _id)),
-        neighborhoods: JSON.stringify(neighborhoods.map(({ _id }) => _id)),
-      },
-    });
-
-    const { count, immobiles } = response.data;
-
-    history.push('/imoveis');
-
-    yield put(searchImmobilesSuccess({ count, immobiles }));
-  } catch (e) {
-    yield put(searchImmobilesSuccess({ count: 0, immobiles: [] }));
-  }
-}
-
 export default all([
   takeLatest('@immobile/CREATE_IMMOBILES_REQUEST', createImmobile),
   takeEvery('@immobile/LOAD_SESSION_IMMOBILES_REQUEST', loadSession),
-  takeLatest('@immobile/SEARCH_IMMOBILES_REQUEST', searchImmobiles),
 ]);

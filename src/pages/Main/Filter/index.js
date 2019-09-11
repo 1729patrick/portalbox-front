@@ -7,7 +7,7 @@ import Toggle from '~/components/Toggle';
 
 import { Container, SubmitButton } from './styles';
 
-import { searchImmobilesRequest } from '~/store/modules/immobiles/actions';
+import { searchImmobilesRequest } from '~/store/modules/filter/actions';
 
 function Filter() {
   const dispatch = useDispatch();
@@ -25,6 +25,7 @@ function Filter() {
 
     dispatch(searchImmobilesRequest(search));
   };
+
   return (
     <Container>
       <h1>{description}</h1>

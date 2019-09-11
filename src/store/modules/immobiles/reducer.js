@@ -23,10 +23,6 @@ const INITIAL_STATE = {
     count: 0,
     immobiles: [],
   },
-  search: {
-    count: 0,
-    immobiles: [],
-  },
 };
 
 const immobiles = (state = INITIAL_STATE, action) => {
@@ -48,17 +44,6 @@ const immobiles = (state = INITIAL_STATE, action) => {
         break;
       }
 
-      case '@immobile/SEARCH_IMMOBILES_REQUEST': {
-        draft.loading = true;
-        break;
-      }
-      case '@immobile/SEARCH_IMMOBILES_SUCCESS': {
-        draft.loading = false;
-
-        const { count, immobiles } = action.payload;
-        draft.search = { count, immobiles };
-        break;
-      }
       default:
     }
   });

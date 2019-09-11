@@ -1,6 +1,16 @@
-import { put, takeLatest, all, takeEvery, select } from 'redux-saga/effects';
+import {
+  call,
+  put,
+  takeLatest,
+  all,
+  takeEvery,
+  select,
+} from 'redux-saga/effects';
 
-import { setFilterSuccess, setPopupOpenSuccess } from './actions';
+import api from '~/services/api';
+import history from '~/services/history';
+
+import { setFilterSuccess, searchImmobilesSuccess } from './actions';
 
 function* save() {}
 
@@ -79,22 +89,49 @@ function* setNeighborhoods({ payload }) {
   );
 }
 
-function* openPopup({ payload }) {
-  const { popup } = payload;
+function* searchImmobiles({ payload }) {
+  try {
+    const { finality, types, neighborhoods } = payload;
 
-  const popupOpen = select(state => state.filter.popupOpen);
+    const typesFormatted = types.length
+      ? JSON.stringify(types.map(({ _id }) => _id))
+      : null;
 
-  if (popupOpen !== popup) {
-    yield put(setPopupOpenSuccess(popup));
+    const neighborhoodsFormatted = neighborhoods.length
+      ? JSON.stringify(neighborhoods.map(({ _id }) => _id))
+      : null;
+
+    if (!typesFormatted && !neighborhoodsFormatted && !finality.value) {
+      throw new Error();
+    }
+
+    const response = yield call(api.get, 'immobiles', {
+      params: {
+        finality: finality.value,
+        types: typesFormatted,
+        neighborhoods: neighborhoodsFormatted,
+        limit: 1000,
+      },
+    });
+
+    const { count, immobiles } = response.data;
+
+    history.push('/imoveis');
+
+    yield put(searchImmobilesSuccess({ count, immobiles }));
+  } catch (e) {
+    history.push('/imoveis');
+    yield put(searchImmobilesSuccess({ count: 0, immobiles: [] }));
   }
 }
+
 export default all([
   takeLatest('@filter/SAVE_FILTER_REQUEST', save),
   takeEvery('@filter/SET_TYPES_FILTER_REQUEST', setTypes),
   takeEvery('@filter/SET_FINALITY_FILTER_REQUEST', setFinality),
   takeLatest('@filter/SET_NEIGHBORHOODS_FILTER_REQUEST', setNeighborhoods),
-  takeLatest('@filter/SET_POPUP_OPEN_REQUEST', openPopup),
   takeLatest('@immobile/SEARCH_IMMOBILES_REQUEST', setTypes),
   takeLatest('@immobile/SEARCH_IMMOBILES_REQUEST', setFinality),
   takeLatest('@immobile/SEARCH_IMMOBILES_REQUEST', setNeighborhoods),
+  takeLatest('@immobile/SEARCH_IMMOBILES_REQUEST', searchImmobiles),
 ]);
