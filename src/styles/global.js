@@ -2,12 +2,11 @@ import { createGlobalStyle } from 'styled-components';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import 'react-input-range/lib/css/index.css';
 
 import fontMedium from '~/assets/fonts/GoogleSans-Medium.ttf';
 import fontRegular from '~/assets/fonts/GoogleSans-Regular.ttf';
 
-import theme from './theme';
+// import theme from './theme';
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -119,10 +118,12 @@ body {
     .MuiFormControlLabel-root {
       height: 35px;
       margin-right: 0 !important;
-      color: ${theme.checkbox.color};
+
+      color: blue;
 
       &:hover {
-        color: ${theme.checkbox.checkedColor};
+
+        color: blue
       }
     }
 

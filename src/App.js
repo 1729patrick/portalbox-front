@@ -12,8 +12,6 @@ import Theme from './theme';
 import '~/config/Reactotron';
 import { store, persistor } from './store';
 
-import Loading from '~/components/Loading';
-
 const App = () => {
   return (
     <Provider store={store}>
@@ -22,7 +20,6 @@ const App = () => {
           <Theme>
             <Routes />
             <ToastContainer />
-            <Loading />
           </Theme>
         </Router>
       </PersistGate>

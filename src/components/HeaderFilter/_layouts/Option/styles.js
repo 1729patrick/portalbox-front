@@ -42,4 +42,12 @@ export const Container = styled.div`
         !props.selected && props.theme.headerFilter.option.selected.color};
     }
   }
+
+  ${props =>
+    props.width &&
+    css`
+      .popup-content {
+        width: ${props.width} !important;
+      }
+    `}
 `;

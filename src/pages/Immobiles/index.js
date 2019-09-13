@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Container } from './styles';
 import GroupImmobiles from '~/components/GroupImmobiles';
 import GroupCards from '~/components/GroupCards';
+import Loading from './Loading';
 
 import {
   AdImageBackground,
@@ -15,6 +16,8 @@ import { loadSessionImmobilesRequest } from '~/store/modules/immobiles/actions';
 
 export default function Immobiles() {
   const dispatch = useDispatch();
+
+  const loading = useSelector(state => state.filter.loading);
 
   const types = useSelector(state => state.core.types);
   const saleHighlights = useSelector(state => state.immobiles.saleHighlights);
@@ -94,12 +97,9 @@ export default function Immobiles() {
         style={{ marginTop: 50 }}
         list={listImmobiles}
         showSize={false}
-      />
-      <GroupImmobiles list={listImmobiles} showSize={false} />
-      <GroupImmobiles list={listImmobiles} />
-      <GroupImmobiles list={listImmobiles} />
-      <GroupImmobiles list={listImmobiles} />
-      <GroupImmobiles list={listImmobiles} /> */}
+      /> */}
+
+      {loading && <Loading />}
     </Container>
   );
 }

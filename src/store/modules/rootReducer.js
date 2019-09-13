@@ -13,7 +13,7 @@ export default combineReducers({
   company,
   theme,
   core,
+  popup,
   immobiles,
   filter,
-  popup,
 });

@@ -10,9 +10,36 @@ import {
 import api from '~/services/api';
 import history from '~/services/history';
 
-import { setFilterSuccess, searchImmobilesSuccess } from './actions';
+import { setFilterSuccess, loadImmobilesSuccess } from './actions';
 
-function* save() {}
+function* save() {
+  const { finality, types, neighborhoods } = yield select(
+    state => state.filter.filters
+  );
+
+  const typesFormatted = types.saved.length
+    ? JSON.stringify(types.saved.map(x => x._id))
+    : null;
+
+  const neighborhoodsFormatted = neighborhoods.saved.length
+    ? JSON.stringify(neighborhoods.saved.map(x => x._id))
+    : null;
+
+  const finalityFormatted = finality.saved.value ? finality.saved.value : null;
+
+  const response = yield call(api.get, 'immobiles', {
+    params: {
+      finality: finalityFormatted,
+      types: typesFormatted,
+      neighborhoods: neighborhoodsFormatted,
+      limit: 40,
+    },
+  });
+
+  const { count, immobiles } = response.data;
+
+  yield put(loadImmobilesSuccess({ count, immobiles }));
+}
 
 function* setTypes({ payload }) {
   const { types } = payload;
@@ -91,6 +118,8 @@ function* setNeighborhoods({ payload }) {
 
 function* searchImmobiles({ payload }) {
   try {
+    history.push('/imoveis');
+
     const { finality, types, neighborhoods } = payload;
 
     const typesFormatted = types.length
@@ -110,18 +139,16 @@ function* searchImmobiles({ payload }) {
         finality: finality.value,
         types: typesFormatted,
         neighborhoods: neighborhoodsFormatted,
-        limit: 1000,
+        limit: 40,
       },
     });
 
     const { count, immobiles } = response.data;
 
-    history.push('/imoveis');
-
-    yield put(searchImmobilesSuccess({ count, immobiles }));
+    yield put(loadImmobilesSuccess({ count, immobiles }));
   } catch (e) {
     history.push('/imoveis');
-    yield put(searchImmobilesSuccess({ count: 0, immobiles: [] }));
+    yield put(loadImmobilesSuccess({ count: 0, immobiles: [] }));
   }
 }
 
@@ -130,8 +157,8 @@ export default all([
   takeEvery('@filter/SET_TYPES_FILTER_REQUEST', setTypes),
   takeEvery('@filter/SET_FINALITY_FILTER_REQUEST', setFinality),
   takeLatest('@filter/SET_NEIGHBORHOODS_FILTER_REQUEST', setNeighborhoods),
+  takeLatest('@immobile/SEARCH_IMMOBILES_REQUEST', searchImmobiles),
   takeLatest('@immobile/SEARCH_IMMOBILES_REQUEST', setTypes),
   takeLatest('@immobile/SEARCH_IMMOBILES_REQUEST', setFinality),
   takeLatest('@immobile/SEARCH_IMMOBILES_REQUEST', setNeighborhoods),
-  takeLatest('@immobile/SEARCH_IMMOBILES_REQUEST', searchImmobiles),
 ]);

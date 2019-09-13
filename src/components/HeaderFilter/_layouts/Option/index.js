@@ -11,9 +11,11 @@ export default function Option({
   popupOpen,
   component,
   selected,
+  width,
 }) {
   return (
     <Container
+      width={width}
       onClick={() => setPopupOpen(index)}
       selected={selected || popupOpen === index}
     >

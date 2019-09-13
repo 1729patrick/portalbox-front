@@ -27,7 +27,7 @@ export const searchImmobilesRequest = ({ finality, types, neighborhoods }) => ({
   payload: { finality, types, neighborhoods },
 });
 
-export const searchImmobilesSuccess = ({ count, immobiles }) => ({
-  type: '@immobile/SEARCH_IMMOBILES_SUCCESS',
+export const loadImmobilesSuccess = ({ count, immobiles }) => ({
+  type: '@immobile/LOAD_IMMOBILES_SUCCESS',
   payload: { count, immobiles },
 });

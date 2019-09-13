@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import theme from '~/styles/theme';
+// import theme from '~/styles/theme';
 
 export const Container = styled.div`
   display: flex;
@@ -51,9 +51,11 @@ const styles = {
     return {
       ...provided,
       borderBottom: '1px solid #f1f1f1',
-      color: state.isSelected ? theme.select.color : '#333',
+      // color: state.isSelected ? theme.select.color : '#333',
+      color: state.isSelected ? 'blue' : '#333',
       backgroundColor: state.isSelected
-        ? theme.select.backgroundColor
+        ? // ? theme.select.backgroundColor
+          'blue'
         : state.isFocused
         ? '#f1f1f1'
         : 'transparent',
@@ -62,7 +64,7 @@ const styles = {
       fontWeight: 500,
 
       '&:active': {
-        background: state.isSelected ? theme.select.backgroundColor : '#fff',
+        background: state.isSelected ? 'blue' : '#fff',
       },
     };
   },

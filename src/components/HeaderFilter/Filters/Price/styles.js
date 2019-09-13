@@ -1,48 +1,67 @@
 import styled from 'styled-components';
+import NumberFormat from 'react-number-format';
 
 export const Content = styled.div`
-  padding: 15px;
-
-  .popup-content {
-    background: blue !important;
+  > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 6px;
+    margin: 20px 0;
   }
 
-  .input-range__slider {
-    background: ${props =>
-      props.theme.headerFilter.price.range.backgroundColor};
-    border-color: ${props =>
-      props.theme.headerFilter.price.range.backgroundColor};
+  .MuiSlider-root {
+    width: calc(100% - 16px);
   }
 
-  .input-range__track--active {
-    background: ${props =>
-      props.theme.headerFilter.price.range.backgroundColor};
+  .MuiSlider-valueLabel {
+    left: calc(-50% + -20px);
+
+    span {
+      width: 74px;
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-family: 'Google Sans', Roboto, Arial, Helvetica, sans-serif !important;
+    }
   }
 
-  .input-range__label {
-    top: -20px;
-    color: #555;
-    display: none;
+  .MuiSlider-thumb:hover,
+  .Mui-focusVisible,
+  .MuiSlider-active {
+    > span {
+      transform: scale(1) translateY(-60px) !important;
+    }
   }
 
-  .input-range__label--value {
-    display: none;
+  .MuiSlider-thumb {
+    height: 18px;
+    width: 18px;
+    margin-top: -8px;
+  }
+
+  .MuiSlider-track,
+  .MuiSlider-rail {
+    height: 3px;
   }
 `;
 
 export const Values = styled.div`
-  margin: 20px -10px 0 -10px;
   display: flex;
   justify-content: space-between;
+`;
 
-  input {
-    height: 40px;
-    border: none;
-    background: #eee;
-    border-radius: 50px;
-    width: 49%;
-    font-size: 14px;
-
-    padding: 0 13px;
-  }
+export const Input = styled(NumberFormat)`
+  text-align: center;
+  height: 40px;
+  border: none;
+  background: #eee;
+  border-radius: 50px;
+  width: 49%;
+  font-size: 14px;
+  padding: 0 13px;
+  font-weight: 500;
+  color: #333;
 `;

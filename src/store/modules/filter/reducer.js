@@ -43,6 +43,8 @@ const filter = (state = INITIAL_STATE, action) => {
         break;
       }
       case '@filter/SAVE_FILTER_REQUEST': {
+        draft.loading = true;
+
         Object.keys(draft.filters).forEach(filter => {
           draft.filters[filter].saved = draft.filters[filter].value;
         });
@@ -61,7 +63,8 @@ const filter = (state = INITIAL_STATE, action) => {
         draft.loading = true;
         break;
       }
-      case '@immobile/SEARCH_IMMOBILES_SUCCESS': {
+
+      case '@immobile/LOAD_IMMOBILES_SUCCESS': {
         draft.loading = false;
 
         const { count, immobiles } = action.payload;

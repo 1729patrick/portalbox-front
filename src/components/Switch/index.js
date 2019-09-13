@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import MaterialSwitch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-import globalTheme from '~/styles/theme';
+// import globalTheme from '~/styles/theme';
 
 const CustomSwitch = withStyles(theme => ({
   root: {
@@ -18,13 +18,15 @@ const CustomSwitch = withStyles(theme => ({
     '&$checked': {
       color: theme.palette.common.white,
       '& + $track': {
-        backgroundColor: globalTheme.switch.checkedColor,
+        // backgroundColor: globalTheme.switch.checkedColor,
+        backgroundColor: 'blue',
         opacity: 1,
         border: 'none',
       },
     },
     '&$focusVisible $thumb': {
-      color: globalTheme.switch.checkedColor,
+      // color: globalTheme.switch.checkedColor,
+      color: 'blue',
       border: '6px solid #fff',
     },
   },

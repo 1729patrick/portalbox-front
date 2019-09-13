@@ -19,7 +19,7 @@ const optionsFilter = [
   { component: Finality, title: 'Finalidade', filter: 'finality' },
   { component: Types, title: 'Tipo', filter: 'types' },
   { component: Locale, title: 'Bairro', filter: 'neighborhoods' },
-  { component: Price, title: 'Preço' },
+  { component: Price, title: 'Preço', width: '325px' },
   { component: Especification, title: 'Características' },
   { component: Advanced, title: 'Mais filtros' },
 ];
@@ -37,6 +37,7 @@ export default function HeaderFilter({ popupOpen, setPopupOpen }) {
           component={option.component}
           popupOpen={popupOpen}
           title={option.filter ? filters[option.filter].title : option.title}
+          width={option.width}
           selected={
             option.filter
               ? filters[option.filter].title !==

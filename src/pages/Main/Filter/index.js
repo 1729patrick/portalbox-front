@@ -77,7 +77,7 @@ function Filter() {
               }}
             />
 
-            <SubmitButton type="submit" text="Buscar" />
+            <SubmitButton type="submit" text="Procurar" />
           </Form>
         )}
       />

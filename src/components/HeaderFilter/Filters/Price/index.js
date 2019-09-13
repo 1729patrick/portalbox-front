@@ -1,53 +1,57 @@
-import React, { useState, useMemo } from 'react';
-import InputRange from 'react-input-range';
+import React, { useState } from 'react';
+import Slider from '@material-ui/core/Slider';
 
-import { Content, Values } from './styles';
+import { Content, Values, Input } from './styles';
 import PopupLayout from '../../_layouts/Popup';
 
-export default function Price() {
-  const [value, setValue] = useState({
-    min: 500,
-    max: 1500000,
-  });
+export default function Price({ onClick }) {
+  const [value, setValue] = useState([1000, 15000000]);
 
-  const min = useMemo(
-    () =>
-      value.min.toLocaleString('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
-      }),
-    [value.min]
-  );
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
-  const max = useMemo(
-    () =>
-      value.max.toLocaleString('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
-      }),
-    [value.max]
-  );
+  const valueLabelFormat = value => value.toLocaleString('pt-BR');
+
+  const [min, max] = value;
 
   return (
-    <PopupLayout label="Entre qual faixa de preço?">
+    <PopupLayout
+      label="Entre qual faixa de preço?"
+      onClick={onClick}
+      onClear={() => {}}
+      showClear={!!false}
+    >
       <Content>
-        <InputRange
-          formatLabel={value =>
-            value.toLocaleString('pt-BR', {
-              style: 'currency',
-              currency: 'BRL',
-            })
-          }
-          maxValue={1500000}
-          minValue={500}
-          value={value}
-          step={100}
-          onChange={setValue}
-        />
+        <span>
+          <Slider
+            min={950}
+            max={30000000}
+            value={[min || 0, max || 0]}
+            onChange={handleChange}
+            valueLabelDisplay="off"
+            aria-labelledby="range-slider"
+            valueLabelFormat={valueLabelFormat}
+          />
+        </span>
 
         <Values>
-          <input type="text" value={min} readOnly />
-          <input type="text" value={max} readOnly />
+          <Input
+            type="text"
+            value={min}
+            prefix="R$ "
+            decimalSeparator=","
+            thousandSeparator="."
+            onValueChange={({ floatValue }) => setValue([floatValue, max])}
+          />
+          <Input
+            type="text"
+            value={max}
+            prefix="R$ "
+            decimalSeparator=","
+            thousandSeparator="."
+            onValueChange={({ floatValue }) => setValue([min, floatValue])}
+          />
         </Values>
       </Content>
     </PopupLayout>
