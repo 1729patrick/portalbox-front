@@ -25,6 +25,19 @@ const INITIAL_STATE = {
       valueDefault: [],
       saved: [],
     },
+    price: {
+      title: 'Preço',
+      titleDefault: 'Preço',
+      value: {},
+      valueDefault: {
+        min: 300,
+        max: 13000,
+      },
+      saved: {
+        min: 300,
+        max: 13000,
+      },
+    },
   },
   result: {
     count: 0,
@@ -35,13 +48,6 @@ const INITIAL_STATE = {
 const filter = (state = INITIAL_STATE, action) => {
   return produce(state, draft => {
     switch (action.type) {
-      case '@filter/SET_POPUP_OPEN_SUCCESS': {
-        Object.keys(draft.filters).forEach(filter => {
-          draft.filters[filter].saved = draft.filters[filter].value;
-        });
-
-        break;
-      }
       case '@filter/SAVE_FILTER_REQUEST': {
         draft.loading = true;
 
@@ -56,6 +62,7 @@ const filter = (state = INITIAL_STATE, action) => {
 
         draft.filters[filter].title = title;
         draft.filters[filter].value = value;
+        draft.filters[filter].saved = value;
         break;
       }
 

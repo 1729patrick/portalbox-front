@@ -6,7 +6,7 @@ import Checkbox from '~/components/Checkbox';
 
 import PopupLayout from '../../_layouts/Popup';
 
-import { setTypesFilterRequest } from '~/store/modules/filter/actions';
+import { setTypesFilter } from '~/store/modules/filter/actions';
 
 export default function Types({ onClick }) {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ export default function Types({ onClick }) {
   const [selecteds, setSelecteds] = useState(saved);
 
   useEffect(() => {
-    dispatch(setTypesFilterRequest({ types: selecteds }));
+    dispatch(setTypesFilter({ types: selecteds }));
   }, [dispatch, selecteds]);
 
   const handleChange = type => {

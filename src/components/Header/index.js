@@ -9,7 +9,7 @@ import HeaderFilter from '~/components/HeaderFilter';
 
 import { links } from '~/services/fakeData';
 import { saveFilterRequest } from '~/store/modules/filter/actions';
-import { setPopupOpenRequest } from '~/store/modules/popup/actions';
+import { setPopupOpen } from '~/store/modules/popup/actions';
 
 function Header({ simple, searchable, history, ...props }) {
   const dispatch = useDispatch();
@@ -19,9 +19,9 @@ function Header({ simple, searchable, history, ...props }) {
 
   const node = useRef();
 
-  const setPopupOpen = useCallback(
+  const setPopup = useCallback(
     popup => {
-      dispatch(setPopupOpenRequest(popup));
+      dispatch(setPopupOpen(popup));
     },
     [dispatch]
   );
@@ -42,7 +42,7 @@ function Header({ simple, searchable, history, ...props }) {
   }, [handleClick]);
 
   return (
-    <Container ref={node} {...props} onClickCapture={() => setPopupOpen(-1)}>
+    <Container ref={node} {...props} onClickCapture={() => setPopup(-1)}>
       <div>
         <img onClick={history.goBack} src={logo} alt="Logo" />
 
@@ -61,7 +61,7 @@ function Header({ simple, searchable, history, ...props }) {
       </div>
 
       {!simple && (
-        <HeaderFilter popupOpen={popupOpen} setPopupOpen={setPopupOpen} />
+        <HeaderFilter popupOpen={popupOpen} setPopupOpen={setPopup} />
       )}
     </Container>
   );

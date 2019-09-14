@@ -1,4 +1,4 @@
-export const setPopupOpenRequest = popup => ({
-  type: '@filter/SET_POPUP_OPEN_REQUEST',
+export const setPopupOpen = popup => ({
+  type: '@popup/SET_POPUP_OPEN',
   payload: { popup },
 });

@@ -13,6 +13,7 @@
     "immer": "^3.2.0",
     "immutability-helper": "^3.0.1",
     "immutable": "^4.0.0-rc.12",
+    "lodash": "^4.17.15",
     "polished": "^3.4.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",

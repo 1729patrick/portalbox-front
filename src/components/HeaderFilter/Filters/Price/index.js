@@ -1,11 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Slider from '@material-ui/core/Slider';
 
 import { Content, Values, Input } from './styles';
 import PopupLayout from '../../_layouts/Popup';
 
+import { setPriceFilter } from '~/store/modules/filter/actions';
+
 export default function Price({ onClick }) {
-  const [value, setValue] = useState([1000, 15000000]);
+  const dispatch = useDispatch();
+
+  const { saved, valueDefault } = useSelector(
+    state => state.filter.filters.price
+  );
+  const [value, setValue] = useState([saved.min, saved.max]);
+
+  useEffect(() => {
+    const [min, max] = value;
+    dispatch(setPriceFilter({ price: { min, max } }));
+  }, [dispatch, value]);
+
+  const { min, max } = useMemo(() => valueDefault, [valueDefault]);
+  const [minValue, maxValue] = useMemo(() => value, [value]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -13,21 +29,19 @@ export default function Price({ onClick }) {
 
   const valueLabelFormat = value => value.toLocaleString('pt-BR');
 
-  const [min, max] = value;
-
   return (
     <PopupLayout
       label="Entre qual faixa de preço?"
       onClick={onClick}
-      onClear={() => {}}
-      showClear={!!false}
+      onClear={() => setValue([min, max])}
+      showClear={min !== minValue || max !== maxValue}
     >
       <Content>
         <span>
           <Slider
-            min={950}
-            max={30000000}
-            value={[min || 0, max || 0]}
+            min={min}
+            max={max}
+            value={[minValue || 0, maxValue || 0]}
             onChange={handleChange}
             valueLabelDisplay="off"
             aria-labelledby="range-slider"
@@ -38,19 +52,19 @@ export default function Price({ onClick }) {
         <Values>
           <Input
             type="text"
-            value={min}
+            value={minValue}
             prefix="R$ "
             decimalSeparator=","
             thousandSeparator="."
-            onValueChange={({ floatValue }) => setValue([floatValue, max])}
+            onValueChange={({ floatValue }) => setValue([floatValue, maxValue])}
           />
           <Input
             type="text"
-            value={max}
+            value={maxValue}
             prefix="R$ "
             decimalSeparator=","
             thousandSeparator="."
-            onValueChange={({ floatValue }) => setValue([min, floatValue])}
+            onValueChange={({ floatValue }) => setValue([minValue, floatValue])}
           />
         </Values>
       </Content>

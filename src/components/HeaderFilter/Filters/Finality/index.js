@@ -5,7 +5,7 @@ import Toggle from '~/components/Toggle';
 
 import PopupLayout from '../../_layouts/Popup';
 
-import { setFinalityFilterRequest } from '~/store/modules/filter/actions';
+import { setFinalityFilter } from '~/store/modules/filter/actions';
 
 export default function Finality({ onClick }) {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ export default function Finality({ onClick }) {
   const [selected, setSelected] = useState(saved);
 
   useEffect(() => {
-    dispatch(setFinalityFilterRequest({ finality: selected }));
+    dispatch(setFinalityFilter({ finality: selected }));
   }, [dispatch, selected]);
 
   return (

@@ -7,13 +7,15 @@ import {
   select,
 } from 'redux-saga/effects';
 
+import _ from 'lodash';
+
 import api from '~/services/api';
 import history from '~/services/history';
 
 import { setFilterSuccess, loadImmobilesSuccess } from './actions';
 
 function* save() {
-  const { finality, types, neighborhoods } = yield select(
+  const { finality, types, neighborhoods, price } = yield select(
     state => state.filter.filters
   );
 
@@ -27,12 +29,16 @@ function* save() {
 
   const finalityFormatted = finality.saved.value ? finality.saved.value : null;
 
+  const { min: priceMin, max: priceMax } = price.saved;
+
   const response = yield call(api.get, 'immobiles', {
     params: {
       finality: finalityFormatted,
       types: typesFormatted,
       neighborhoods: neighborhoodsFormatted,
       limit: 40,
+      priceMin,
+      priceMax,
     },
   });
 
@@ -116,6 +122,42 @@ function* setNeighborhoods({ payload }) {
   );
 }
 
+function* setPrice({ payload }) {
+  const { price } = payload;
+
+  const { min, max } = price;
+
+  const { titleDefault, valueDefault } = yield select(
+    state => state.filter.filters.price
+  );
+
+  if (_.isEqual(price, valueDefault) || !(min >= 0) || !(max >= 0)) {
+    return yield put(
+      setFilterSuccess({
+        filter: 'price',
+        title: titleDefault,
+        value: valueDefault,
+      })
+    );
+  }
+
+  const minFormatted = `R$ ${min.toLocaleString(navigator.language, {
+    minimumFractionDigits: 2,
+  })}`;
+
+  const maxFormatted = `R$ ${max.toLocaleString(navigator.language, {
+    minimumFractionDigits: 2,
+  })}`;
+
+  yield put(
+    setFilterSuccess({
+      filter: 'price',
+      title: `${minFormatted} - ${maxFormatted}`,
+      value: { min, max },
+    })
+  );
+}
+
 function* searchImmobiles({ payload }) {
   try {
     history.push('/imoveis');
@@ -154,9 +196,10 @@ function* searchImmobiles({ payload }) {
 
 export default all([
   takeLatest('@filter/SAVE_FILTER_REQUEST', save),
-  takeEvery('@filter/SET_TYPES_FILTER_REQUEST', setTypes),
-  takeEvery('@filter/SET_FINALITY_FILTER_REQUEST', setFinality),
-  takeLatest('@filter/SET_NEIGHBORHOODS_FILTER_REQUEST', setNeighborhoods),
+  takeEvery('@filter/SET_TYPES_FILTER', setTypes),
+  takeEvery('@filter/SET_FINALITY_FILTER', setFinality),
+  takeLatest('@filter/SET_NEIGHBORHOODS_FILTER', setNeighborhoods),
+  takeLatest('@filter/SET_PRICE_FILTER', setPrice),
   takeLatest('@immobile/SEARCH_IMMOBILES_REQUEST', searchImmobiles),
   takeLatest('@immobile/SEARCH_IMMOBILES_REQUEST', setTypes),
   takeLatest('@immobile/SEARCH_IMMOBILES_REQUEST', setFinality),
