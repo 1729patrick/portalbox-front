@@ -10,7 +10,7 @@ export const links = [
   { title: 'Alugar imóvel' },
   { title: 'Comprar imóvel' },
   { title: 'Anunciar meu imóvel' },
-  { title: 'Área do cliente' },
+  // { title: 'Área do cliente' },
   { title: 'Quem somos' },
   { title: 'Contato' },
 ];
@@ -34,11 +34,9 @@ export const optionsType = [
 ];
 
 export const optionsParticular = [
-  { id: 1, title: 'Quartos', type: 'range', valueToChange: 3 },
-  { id: 2, title: 'Banheiros', type: 'range', valueToChange: 2 },
-  { id: 4, title: 'Garagens', type: 'range', valueToChange: 1 },
-  { id: 6, title: 'Porteiro', type: 'bool' },
-  { id: 7, title: 'Piscina', type: 'bool' },
+  { _id: 1, title: 'Quartos', type: 'range', name: 'bedroom' },
+  { _id: 2, title: 'Banheiros', type: 'range', name: 'bathroom' },
+  { _id: 4, title: 'Garagens', type: 'range', name: 'garage' },
 ];
 
 export const optionsParticularAdvanced = [

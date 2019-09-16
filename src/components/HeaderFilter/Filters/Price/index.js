@@ -13,7 +13,10 @@ export default function Price({ onClick }) {
   const { saved, valueDefault } = useSelector(
     state => state.filter.filters.price
   );
-  const [value, setValue] = useState([saved.min, saved.max]);
+  const [value, setValue] = useState([
+    saved.min || valueDefault.min,
+    saved.max || valueDefault.max,
+  ]);
 
   useEffect(() => {
     const [min, max] = value;

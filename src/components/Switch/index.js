@@ -43,53 +43,33 @@ const CustomSwitch = withStyles(theme => ({
   },
   checked: {},
   focusVisible: {},
-}))(
-  forwardRef(({ classes, label, value, onChange, ...props }, ref) => {
-    return (
-      <MaterialSwitch
-        focusVisibleClassName={classes.focusVisible}
-        disableRipple
-        checked={value}
-        onChange={event => onChange(event.target.checked)}
-        value={value}
-        ref={ref}
-        classes={{
-          root: classes.root,
-          switchBase: classes.switchBase,
-          thumb: classes.thumb,
-          track: classes.track,
-          checked: classes.checked,
-        }}
-        {...props}
-      />
-    );
-  })
-);
+}))(({ classes, value, onChange, ...props }) => {
+  return (
+    <MaterialSwitch
+      focusVisibleClassName={classes.focusVisible}
+      disableRipple
+      checked={value}
+      onChange={event => onChange(event.target.checked)}
+      value={value}
+      classes={{
+        root: classes.root,
+        switchBase: classes.switchBase,
+        thumb: classes.thumb,
+        track: classes.track,
+        checked: classes.checked,
+      }}
+      {...props}
+    />
+  );
+});
 
-const Switch = ({ style, name, label }) => {
-  const ref = useRef(null);
-  const { fieldName, registerField, defaultValue } = useField(name);
-  const [value, setValue] = useState(defaultValue);
-
-  useEffect(() => {
-    registerField({
-      name: fieldName,
-      ref: ref.current,
-      path: 'dataset.value',
-    });
-  }, [ref.current, fieldName]); // eslint-disable-line
+const Switch = ({ style, label }) => {
+  const [value, setValue] = useState(false);
 
   return (
     <FormControlLabel
       style={style}
-      control={
-        <CustomSwitch
-          ref={ref}
-          data-value={value}
-          value={value}
-          onChange={setValue}
-        />
-      }
+      control={<CustomSwitch value={value} onChange={setValue} />}
       label={label}
       labelPlacement="start"
     />

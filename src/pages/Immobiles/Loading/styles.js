@@ -20,8 +20,6 @@ export const Container = styled.div`
   }
 
   @media screen and (max-width: 768px) {
-    section {
-      padding-top: 105px;
-    }
+    padding-top: 115px;
   }
 `;

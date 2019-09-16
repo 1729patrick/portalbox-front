@@ -22,6 +22,11 @@ export const setPriceFilter = ({ price }) => ({
   payload: { price },
 });
 
+export const setParticularsFilter = ({ particulars }) => ({
+  type: '@filter/SET_PARTICULARS_FILTER',
+  payload: { particulars },
+});
+
 export const setFilterSuccess = ({ filter, title, value }) => ({
   type: '@filter/SET_FILTER_SUCCESS',
   payload: { filter, title, value },
@@ -35,4 +40,8 @@ export const searchImmobilesRequest = ({ finality, types, neighborhoods }) => ({
 export const loadImmobilesSuccess = ({ count, immobiles }) => ({
   type: '@immobile/LOAD_IMMOBILES_SUCCESS',
   payload: { count, immobiles },
+});
+
+export const loadImmobilesFailure = () => ({
+  type: '@filter/LOAD_IMMOBILES_FAILURE',
 });

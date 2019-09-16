@@ -33,10 +33,18 @@ const INITIAL_STATE = {
         min: 300,
         max: 13000,
       },
-      saved: {
-        min: 300,
-        max: 13000,
+      saved: {},
+    },
+    particulars: {
+      title: 'Características',
+      titleDefault: 'Características',
+      value: {},
+      valueDefault: {
+        bathroom: 1,
+        bedroom: 1,
+        garage: 1,
       },
+      saved: {},
     },
   },
   result: {
@@ -50,19 +58,14 @@ const filter = (state = INITIAL_STATE, action) => {
     switch (action.type) {
       case '@filter/SAVE_FILTER_REQUEST': {
         draft.loading = true;
-
-        Object.keys(draft.filters).forEach(filter => {
-          draft.filters[filter].saved = draft.filters[filter].value;
-        });
-
         break;
       }
+
       case '@filter/SET_FILTER_SUCCESS': {
         const { filter, title, value } = action.payload;
 
         draft.filters[filter].title = title;
         draft.filters[filter].value = value;
-        draft.filters[filter].saved = value;
         break;
       }
 
@@ -74,11 +77,18 @@ const filter = (state = INITIAL_STATE, action) => {
       case '@immobile/LOAD_IMMOBILES_SUCCESS': {
         draft.loading = false;
 
+        Object.keys(draft.filters).forEach(filter => {
+          draft.filters[filter].saved = draft.filters[filter].value;
+        });
+
         const { count, immobiles } = action.payload;
         draft.result = { count, immobiles };
         break;
       }
-
+      case '@filter/LOAD_IMMOBILES_FAILURE': {
+        draft.loading = false;
+        break;
+      }
       default:
     }
   });

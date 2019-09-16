@@ -9,7 +9,7 @@ import {
   Finality,
   Locale,
   Price,
-  Especification,
+  Particulars,
   Advanced,
 } from './Filters';
 
@@ -20,7 +20,7 @@ const optionsFilter = [
   { component: Types, title: 'Tipo', filter: 'types' },
   { component: Locale, title: 'Bairro', filter: 'neighborhoods' },
   { component: Price, title: 'Preço', filter: 'price', width: '325px' },
-  { component: Especification, title: 'Características' },
+  { component: Particulars, title: 'Características', filter: 'particulars' },
   { component: Advanced, title: 'Mais filtros' },
 ];
 
