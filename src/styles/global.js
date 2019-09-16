@@ -103,7 +103,7 @@ body {
 
   .popup-overlay  {
     background: #eee;
-    opacity: 0.8;
+    opacity: 0.6;
     top: 125px !important;
     cursor: auto;
   }

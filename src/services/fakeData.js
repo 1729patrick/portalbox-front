@@ -37,6 +37,8 @@ export const optionsParticular = [
   { _id: 1, title: 'Quartos', type: 'range', name: 'bedroom' },
   { _id: 2, title: 'Banheiros', type: 'range', name: 'bathroom' },
   { _id: 4, title: 'Garagens', type: 'range', name: 'garage' },
+  { _id: 5, title: 'Mobiliado', type: 'bool', name: 'furnished' },
+  { _id: 6, title: 'Jardim', type: 'bool', name: 'garden' },
 ];
 
 export const optionsParticularAdvanced = [

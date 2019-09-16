@@ -1,5 +1,4 @@
-import React, { useRef, useState, useEffect, forwardRef } from 'react';
-import { useField } from '@rocketseat/unform';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import MaterialSwitch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -8,7 +7,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const CustomSwitch = withStyles(theme => ({
   root: {
-    width: 52,
+    width: 42,
     height: 26,
     padding: 0,
     margin: theme.spacing(1),
@@ -16,17 +15,16 @@ const CustomSwitch = withStyles(theme => ({
   switchBase: {
     padding: 1,
     '&$checked': {
+      transform: 'translateX(16px)',
       color: theme.palette.common.white,
       '& + $track': {
-        // backgroundColor: globalTheme.switch.checkedColor,
-        backgroundColor: 'blue',
+        backgroundColor: '#52d869',
         opacity: 1,
         border: 'none',
       },
     },
     '&$focusVisible $thumb': {
-      // color: globalTheme.switch.checkedColor,
-      color: 'blue',
+      color: '#52d869',
       border: '6px solid #fff',
     },
   },
@@ -50,7 +48,6 @@ const CustomSwitch = withStyles(theme => ({
       disableRipple
       checked={value}
       onChange={event => onChange(event.target.checked)}
-      value={value}
       classes={{
         root: classes.root,
         switchBase: classes.switchBase,
@@ -63,14 +60,11 @@ const CustomSwitch = withStyles(theme => ({
   );
 });
 
-const Switch = ({ style, label }) => {
-  const [value, setValue] = useState(false);
-
+const Switch = ({ title, value, setValue }) => {
   return (
     <FormControlLabel
-      style={style}
       control={<CustomSwitch value={value} onChange={setValue} />}
-      label={label}
+      label={title}
       labelPlacement="start"
     />
   );

@@ -43,6 +43,8 @@ const INITIAL_STATE = {
         bathroom: 1,
         bedroom: 1,
         garage: 1,
+        furnished: false,
+        garden: false,
       },
       saved: {},
     },

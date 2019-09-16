@@ -194,9 +194,9 @@ function* setParticulars({ payload }) {
   }
 
   const particularsKey = Object.keys(particulars).filter(
-    particular => particulars[particular] > 1
+    particular => particulars[particular] !== valueDefault[particular]
   );
-  console.log(particularsKey);
+
   const [particular] = particularsKey;
   const valueParticular = particulars[particular];
 
@@ -213,15 +213,15 @@ function* setParticulars({ payload }) {
     setFilterSuccess({
       filter: 'particulars',
       title,
-      value: [particulars],
+      value: particulars,
     })
   );
 }
 
 function* searchImmobiles({ payload }) {
-  try {
-    history.push('/imoveis');
+  history.push('/imoveis');
 
+  try {
     const { finality, types, neighborhoods } = payload;
 
     const typesFormatted = types.length
@@ -249,7 +249,6 @@ function* searchImmobiles({ payload }) {
 
     yield put(loadImmobilesSuccess({ count, immobiles }));
   } catch (e) {
-    history.push('/imoveis');
     yield put(loadImmobilesSuccess({ count: 0, immobiles: [] }));
   }
 }
