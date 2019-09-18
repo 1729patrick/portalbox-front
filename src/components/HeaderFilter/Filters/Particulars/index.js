@@ -4,10 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form } from 'formik';
 import _ from 'lodash';
 
-import IncreaseDecrease from '~/components/IncreaseDecrease';
 import Switch from '~/components/Switch';
 
-import { Content } from './styles';
+import { Content, IncreaseDecrease } from './styles';
 import PopupLayout from '../../_layouts/Popup';
 
 import { optionsParticular } from '~/services/fakeData';

@@ -7,7 +7,6 @@ export const Container = styled.div`
   }
 
   > div {
-    margin-top: 8px;
-    width: calc(100% + 8px);
+    margin-top: 20px;
   }
 `;

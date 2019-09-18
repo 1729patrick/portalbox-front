@@ -44,6 +44,10 @@ export default createGlobalStyle`
 
 body {
   -webkit-font-smoothing: antialiased;
+
+  @media screen and (max-width: 768px) {
+    user-select: none;
+  }
 }
 
   body, input, button, textarea {
@@ -78,19 +82,7 @@ body {
     cursor: pointer;
   }
 
-  .slick-prev {
-    left: -17px !important;
-    z-index: 1;
-  }
 
-  .slick-next {
-    right: -10px !important;
-  }
-
-
-  .slick-prev.slick-disabled, .slick-next.slick-disabled {
-    display: none !important;
-  }
 
   .popup-content  {
     border: none !important;
@@ -102,8 +94,8 @@ body {
   }
 
   .popup-overlay  {
-    background: #eee;
-    opacity: 0.6;
+    background: #000;
+    opacity: 0.2;
     top: 125px !important;
     cursor: auto;
   }
@@ -116,14 +108,12 @@ body {
     }
 
     .MuiFormControlLabel-root {
-      height: 35px;
+      height: 30px;
       margin-right: 0 !important;
-
-      color: blue;
+      color:  ${props => props.theme.checkbox.color};
 
       &:hover {
-
-        color: blue
+        color: ${props => props.theme.checkbox.checkedColor};
       }
     }
 
@@ -142,4 +132,12 @@ body {
         margin: 0;
       }
   }
+
+
+  @media screen and (max-width: 768px) {
+    .popup-overlay  {
+      top: 115px !important;
+    }
+   }
+
 `;

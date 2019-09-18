@@ -1,14 +1,20 @@
-// import theme from '~/styles/theme';
+import styled from 'styled-components';
 
-export const styles = {
-  root: {
-    // color: theme.checkbox.color,
-    color: 'blue',
-    '&$checked': {
-      // color: theme.checkbox.checkedColor,
-      color: 'blue',
-    },
-    marginLeft: '-10px !important',
-  },
-  checked: {},
-};
+export const Container = styled.div`
+  & + div {
+    margin-top: 5px;
+  }
+  .MuiCheckbox-root {
+    margin-left: -10px;
+  }
+
+  .MuiIconButton-label {
+    input:checked + .MuiSvgIcon-root {
+      color: ${props => props.theme.checkbox.checkedColor};
+    }
+  }
+  .MuiSvgIcon-root {
+    /* margin-left: -10px; */
+    color: ${props => props.theme.checkbox.color};
+  }
+`;

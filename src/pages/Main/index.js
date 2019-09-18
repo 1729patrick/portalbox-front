@@ -31,6 +31,10 @@ const Main = () => {
     dispatch(loadSessionImmobilesRequest({ session: 2 }));
   }, [dispatch]);
 
+  const handleClickType = type => {
+    // console.log(type);
+  };
+
   return (
     <>
       <Background banner={banner}>
@@ -43,7 +47,7 @@ const Main = () => {
       </Background>
 
       <Content>
-        <GroupCards title="Tipos" list={types} />
+        <GroupCards title="Tipos" list={types} onClick={handleClickType} />
 
         <AdImageBackground
           title="Veja os imóveis mais visualizados na última semana."

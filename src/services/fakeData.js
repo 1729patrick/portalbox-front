@@ -6,9 +6,31 @@ import dumbbell from '~/assets/carac/dumbbell.svg';
 import gourmetSpace from '~/assets/carac/gourmetSpace.svg';
 import partyRoom from '~/assets/carac/partyRoom.svg';
 
+import {
+  setFinalityFilter,
+  saveFilterRequest,
+} from '~/store/modules/filter/actions';
+
 export const links = [
-  { title: 'Alugar imóvel' },
-  { title: 'Comprar imóvel' },
+  {
+    title: 'Alugar imóvel',
+    onClick: ({ dispatch }) => {
+      dispatch(
+        setFinalityFilter({ finality: { value: 'rend', title: 'Alugar' } })
+      );
+      dispatch(saveFilterRequest());
+    },
+  },
+
+  {
+    title: 'Comprar imóvel',
+    onClick: ({ dispatch }) => {
+      dispatch(
+        setFinalityFilter({ finality: { value: 'sale', title: 'Comprar' } })
+      );
+      dispatch(saveFilterRequest());
+    },
+  },
   { title: 'Anunciar meu imóvel' },
   // { title: 'Área do cliente' },
   { title: 'Quem somos' },

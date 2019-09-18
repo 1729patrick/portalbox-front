@@ -2,6 +2,16 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   position: relative;
+
+  @media screen and (max-width: 768px) {
+    left: 0;
+    bottom: 0;
+    position: fixed;
+    background: #fff;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 20px 20px 0 0;
+  }
 `;
 
 export const Content = styled.div`

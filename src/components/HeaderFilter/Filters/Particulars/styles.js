@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import IncreaseDecreaseDefault from '~/components/IncreaseDecrease';
+
 export const Content = styled.div`
   margin-top: 15px;
 
@@ -18,4 +20,8 @@ export const Content = styled.div`
       margin: 0;
     }
   }
+`;
+
+export const IncreaseDecrease = styled(IncreaseDecreaseDefault)`
+  margin-top: 10px;
 `;

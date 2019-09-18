@@ -78,6 +78,7 @@ const filter = (state = INITIAL_STATE, action) => {
 
       case '@immobile/LOAD_IMMOBILES_SUCCESS': {
         draft.loading = false;
+        draft.empty = false;
 
         Object.keys(draft.filters).forEach(filter => {
           draft.filters[filter].saved = draft.filters[filter].value;
@@ -89,6 +90,26 @@ const filter = (state = INITIAL_STATE, action) => {
       }
       case '@filter/LOAD_IMMOBILES_FAILURE': {
         draft.loading = false;
+
+        Object.keys(draft.filters).forEach(filter => {
+          draft.filters[filter].saved = draft.filters[filter].value;
+        });
+
+        break;
+      }
+
+      case '@filter/SET_FILTER_EMPTY': {
+        draft.loading = false;
+        draft.empty = true;
+
+        Object.keys(draft.filters).forEach(filter => {
+          draft.filters[filter].saved = draft.filters[filter].value;
+        });
+
+        draft.result = {
+          count: 0,
+          immobiles: [],
+        };
         break;
       }
       default:

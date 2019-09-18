@@ -3,6 +3,8 @@ import Slider from 'react-slick';
 
 import SliderArrow from '~/components/SliderArrow';
 
+import { Container } from './styles';
+
 const settings = {
   infinite: false,
   dots: false,
@@ -52,5 +54,9 @@ const settings = {
 };
 
 export default ({ children }) => {
-  return <Slider {...settings}>{children}</Slider>;
+  return (
+    <Container>
+      <Slider {...settings}>{children}</Slider>
+    </Container>
+  );
 };

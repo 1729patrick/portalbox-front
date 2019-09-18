@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Content } from './styles';
-import Checkbox from '~/components/Checkbox';
+import { Content, Checkbox } from './styles';
 
 import PopupLayout from '../../_layouts/Popup';
 

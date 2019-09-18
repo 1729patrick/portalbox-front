@@ -15,6 +15,7 @@ import { getParticular } from '~/services/fakeData';
 
 import {
   setFilterSuccess,
+  setFilterEmpty,
   loadImmobilesSuccess,
   loadImmobilesFailure,
 } from './actions';
@@ -22,15 +23,39 @@ import {
 function* save() {
   const filters = yield select(state => state.filter.filters);
 
-  const filterWithValueSaved = Object.keys(filters).some(filter => {
+  const filterChanged = Object.keys(filters).some(filter => {
     return !_.isEqual(filters[filter].saved, filters[filter].value);
   });
 
-  if (!filterWithValueSaved) {
+  if (!filterChanged) {
     return yield put(loadImmobilesFailure());
   }
 
-  const { finality, types, neighborhoods, price } = filters;
+  const filterDirty = Object.keys(filters).some(filter => {
+    const isEqual = _.isEqual(
+      filters[filter].value,
+      filters[filter].valueDefault
+    );
+
+    return !(
+      isEqual ||
+      (_.isEqual(filters[filter].value, {}) &&
+        !_.isEqual(filters[filter].valueDefault, {}))
+    );
+  });
+
+  if (!filterDirty) {
+    return yield put(setFilterEmpty());
+  }
+
+  window.scroll({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
+
+  const { finality, types, neighborhoods, price, particulars } = filters;
+
   const typesFormatted = types.value.length
     ? JSON.stringify(types.value.map(x => x._id))
     : null;
@@ -43,6 +68,18 @@ function* save() {
 
   const { min: priceMin, max: priceMax } = price.value;
 
+  const particularsFormatted = _.isEqual(
+    particulars.value,
+    particulars.valueDefault
+  )
+    ? null
+    : JSON.stringify(
+        Object.keys(particulars.value).map(particular => ({
+          title: particular,
+          value: particulars.value[particular],
+        }))
+      );
+
   const response = yield call(api.get, 'immobiles', {
     params: {
       finality: finalityFormatted,
@@ -51,6 +88,7 @@ function* save() {
       limit: 40,
       priceMin,
       priceMax,
+      particulars: particularsFormatted,
     },
   });
 
@@ -83,7 +121,6 @@ function* setTypes({ payload }) {
 
 function* setFinality({ payload }) {
   const { finality } = payload;
-
   if (finality.title) {
     return yield put(
       setFilterSuccess({
@@ -247,9 +284,21 @@ function* searchImmobiles({ payload }) {
 
     const { count, immobiles } = response.data;
 
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+
     yield put(loadImmobilesSuccess({ count, immobiles }));
   } catch (e) {
-    yield put(loadImmobilesSuccess({ count: 0, immobiles: [] }));
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+
+    yield put(setFilterEmpty());
   }
 }
 

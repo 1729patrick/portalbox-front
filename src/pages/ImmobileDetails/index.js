@@ -56,6 +56,7 @@ export default function PlaceDetails({ match }) {
   const openMap = () =>
     handlePreviewOpen('map', {
       location: immobile.map,
+      images: immobile.images,
     });
 
   if (loading)
@@ -74,7 +75,7 @@ export default function PlaceDetails({ match }) {
           display: 'flex',
         }}
       >
-        <CircularProgress style={{ color: '#ef6c00' }} />;
+        <CircularProgress style={{ color: '#ef6c00' }} />
       </div>
     );
 

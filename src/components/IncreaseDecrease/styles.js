@@ -6,6 +6,10 @@ export const Container = styled.label`
   align-items: center;
   font-weight: 500;
 
+  & + label {
+    margin-top: 10px;
+  }
+
   > div {
     display: flex;
     flex-direction: row;

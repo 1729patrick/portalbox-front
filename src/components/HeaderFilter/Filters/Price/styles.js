@@ -12,6 +12,7 @@ export const Content = styled.div`
 
   .MuiSlider-root {
     width: calc(100% - 16px);
+    color: ${props => props.theme.headerFilter.price.range.backgroundColor};
   }
 
   .MuiSlider-valueLabel {

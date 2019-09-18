@@ -10,18 +10,18 @@ import {
   Locale,
   Price,
   Particulars,
-  Advanced,
+  // Advanced,
 } from './Filters';
 
 import Option from './_layouts/Option';
 
 const optionsFilter = [
-  { component: Finality, title: 'Finalidade', filter: 'finality' },
-  { component: Types, title: 'Tipo', filter: 'types' },
-  { component: Locale, title: 'Bairro', filter: 'neighborhoods' },
-  { component: Price, title: 'Preço', filter: 'price', width: '325px' },
-  { component: Particulars, title: 'Características', filter: 'particulars' },
-  { component: Advanced, title: 'Mais filtros' },
+  { component: Finality, filter: 'finality' },
+  { component: Types, filter: 'types' },
+  { component: Locale, filter: 'neighborhoods' },
+  { component: Price, filter: 'price', width: '325px' },
+  { component: Particulars, filter: 'particulars' },
+  // { component: Advanced, title: 'Mais filtros' },
 ];
 
 export default function HeaderFilter({ popupOpen, setPopupOpen }) {
@@ -31,18 +31,15 @@ export default function HeaderFilter({ popupOpen, setPopupOpen }) {
     <Container>
       {optionsFilter.map((option, index) => (
         <Option
-          key={option.title}
+          key={option.filter}
           index={index}
           setPopupOpen={setPopupOpen}
           component={option.component}
           popupOpen={popupOpen}
-          title={option.filter ? filters[option.filter].title : option.title}
+          title={filters[option.filter].title}
           width={option.width}
           selected={
-            option.filter
-              ? JSON.stringify(filters[option.filter].title) !==
-                JSON.stringify(filters[option.filter].titleDefault)
-              : false
+            filters[option.filter].title !== filters[option.filter].titleDefault
           }
         />
       ))}

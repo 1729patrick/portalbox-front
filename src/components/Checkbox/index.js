@@ -2,27 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MaterialCheckbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { withStyles } from '@material-ui/core/styles';
 
-import { styles } from './styles';
-
-const CustomCheckbox = withStyles(styles)(props => {
-  return <MaterialCheckbox color="default" {...props} />;
-});
+import { Container } from './styles';
 
 const Checkbox = ({ checked, onChange, value, label }) => {
   return (
-    <FormControlLabel
-      control={
-        <CustomCheckbox
-          checked={checked}
-          onChange={() => onChange(value)}
-          value={value}
-        />
-      }
-      label={label}
-      labelPlacement="end"
-    />
+    <Container>
+      <FormControlLabel
+        control={
+          <MaterialCheckbox
+            checked={checked}
+            onChange={() => onChange(value)}
+            value={value}
+          />
+        }
+        label={label}
+        labelPlacement="end"
+      />
+    </Container>
   );
 };
 

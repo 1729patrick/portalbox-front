@@ -55,7 +55,9 @@ function Header({ simple, searchable, history, ...props }) {
 
         <ul>
           {links.map(link => (
-            <li key={link.title}>{link.title}</li>
+            <li key={link.title} onClick={() => link.onClick({ dispatch })}>
+              {link.title}
+            </li>
           ))}
         </ul>
       </div>

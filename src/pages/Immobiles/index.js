@@ -13,6 +13,10 @@ import {
 } from '~/components/Ads';
 
 import { loadSessionImmobilesRequest } from '~/store/modules/immobiles/actions';
+import {
+  setTypesFilter,
+  saveFilterRequest,
+} from '~/store/modules/filter/actions';
 
 export default function Immobiles() {
   const dispatch = useDispatch();
@@ -20,12 +24,15 @@ export default function Immobiles() {
   const loading = useSelector(state => state.filter.loading);
 
   const types = useSelector(state => state.core.types);
+
   const saleHighlights = useSelector(state => state.immobiles.saleHighlights);
+
   const rentalHighlights = useSelector(
     state => state.immobiles.rentalHighlights
   );
 
   const resultFilter = useSelector(state => state.filter.result);
+  const empty = useSelector(state => state.filter.empty);
 
   useEffect(() => {
     dispatch(loadSessionImmobilesRequest({ session: 3 }));
@@ -34,22 +41,20 @@ export default function Immobiles() {
 
   const titleResultFilter = useMemo(() => {
     return resultFilter.count
-      ? `${resultFilter.count} imóveis encontrados`
+      ? resultFilter.count > 1
+        ? `${resultFilter.count} imóveis disponíveis`
+        : `${resultFilter.count} imóvel disponível`
       : 'Desculpe, não encontramos imóveis com os critérios da busca.';
   }, [resultFilter.count]);
 
-  const showResultFilter = useSelector(state => {
-    const { filters } = state.filter;
-    const filterWithValueSaved = Object.keys(filters)
-      .map(filter => Object.entries(filters[filter].saved).length !== 0)
-      .filter(value => value);
-
-    return filterWithValueSaved.length >= 1;
-  });
+  const handleClickType = type => {
+    dispatch(setTypesFilter({ types: [type] }));
+    dispatch(saveFilterRequest());
+  };
 
   return (
     <Container>
-      {showResultFilter && (
+      {!empty && (
         <GroupImmobiles
           style={{ marginBottom: 50 }}
           title={titleResultFilter}
@@ -58,7 +63,7 @@ export default function Immobiles() {
         />
       )}
 
-      <GroupCards title="Tipos" list={types} />
+      <GroupCards title="Tipos" list={types} onClick={handleClickType} />
 
       <AdImageBackground
         title="Veja os imóveis mais visualizados na última semana."

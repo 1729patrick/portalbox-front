@@ -45,3 +45,7 @@ export const loadImmobilesSuccess = ({ count, immobiles }) => ({
 export const loadImmobilesFailure = () => ({
   type: '@filter/LOAD_IMMOBILES_FAILURE',
 });
+
+export const setFilterEmpty = () => ({
+  type: '@filter/SET_FILTER_EMPTY',
+});

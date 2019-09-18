@@ -5,14 +5,14 @@ import { Container } from './styles';
 import Slider from '~/components/Slider';
 import Card from './Card';
 
-export default function GroupCards({ title, style, list }) {
+export default function GroupCards({ title, style, list, onClick, ...r }) {
   return (
     <Container style={style}>
       <h1>{title}</h1>
 
       <Slider>
         {list.map(card => (
-          <Card key={card._id} {...card} />
+          <Card key={card._id} {...card} onClick={() => onClick(card)} />
         ))}
       </Slider>
     </Container>
@@ -22,6 +22,7 @@ export default function GroupCards({ title, style, list }) {
 GroupCards.propTypes = {
   title: PropTypes.string.isRequired,
   style: PropTypes.shape(),
+  onClick: PropTypes.func.isRequired,
   list: PropTypes.arrayOf(
     PropTypes.shape({
       _id: PropTypes.string.isRequired,
