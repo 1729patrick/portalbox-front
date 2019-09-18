@@ -3,6 +3,7 @@ import produce from 'immer';
 
 const INITIAL_STATE = {
   loading: false,
+  empty: true,
   filters: {
     types: {
       title: 'Tipo',

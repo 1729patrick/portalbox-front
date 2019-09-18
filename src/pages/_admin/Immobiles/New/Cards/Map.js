@@ -1,5 +1,4 @@
 import React from 'react';
-import { Scope } from '@rocketseat/unform';
 
 import Input from '~/components/Input';
 
@@ -11,7 +10,7 @@ export default function Cards() {
   };
 
   return (
-    <Scope path="map">
+    <>
       <div>
         <h1>
           Mapa <p>(Opcional)</p>
@@ -38,6 +37,6 @@ export default function Cards() {
       <button type="button" onClick={openGoogleMaps}>
         Buscar coordenadas no Google Maps
       </button>
-    </Scope>
+    </>
   );
 }

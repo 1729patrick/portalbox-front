@@ -28,7 +28,7 @@ export const Card = styled.div`
       > p {
         color: #888;
         margin-left: 4px;
-        font-weight: 400;
+        font-weight: 500;
         font-size: 14px;
       }
     }

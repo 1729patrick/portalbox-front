@@ -89,7 +89,7 @@ const styles = {
   }),
 
   control: (_, state) => ({
-    height: 44,
+    height: 39,
     display: 'flex',
     border: '1px solid #ddd',
     borderRadius: state.selectProps.menuIsOpen ? '6px 6px 0 0' : 6,

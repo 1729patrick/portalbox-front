@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { useSelector } from 'react-redux';
-import { Scope } from '@rocketseat/unform';
 
 import Input from '~/components/Input';
 import Select from '~/components/Select';
@@ -25,36 +24,34 @@ export default function Address({ onOpenPicker }) {
         multiple={false}
       />
 
-      <Scope path="particulars">
-        <Radio
-          name="bedroom"
-          label="Quartos"
-          options={optionsParticulars}
-          optional
-        />
+      <Radio
+        name="bedroom"
+        label="Quartos"
+        options={optionsParticulars}
+        optional
+      />
 
-        <Radio
-          name="bathroom"
-          label="Banheiros"
-          options={optionsParticulars}
-          optional
-        />
+      <Radio
+        name="bathroom"
+        label="Banheiros"
+        options={optionsParticulars}
+        optional
+      />
 
-        <Radio
-          name="garage"
-          label="Garagens"
-          optional
-          options={optionsParticulars}
-        />
+      <Radio
+        name="garage"
+        label="Garagens"
+        optional
+        options={optionsParticulars}
+      />
 
-        <Input
-          type="number"
-          name="totalArea"
-          label="Área total"
-          placeholder="Digite o tamanho do terreno"
-          optional
-        />
-      </Scope>
+      <Input
+        type="number"
+        name="totalArea"
+        label="Área total"
+        placeholder="Digite o tamanho do terreno"
+        optional
+      />
 
       <button type="button" onClick={onOpenPicker}>
         Todas características

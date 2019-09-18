@@ -1,17 +1,16 @@
 import React from 'react';
-import { Scope } from '@rocketseat/unform';
 
 import Input from '~/components/Input';
 
 export default function Cards() {
   return (
-    <Scope path="owner">
+    <>
+      {' '}
       <div>
         <h1>
           Proprietário <p>(Opcional)</p>
         </h1>
       </div>
-
       <Input
         type="text"
         name="name"
@@ -30,7 +29,6 @@ export default function Cards() {
         label="CPF"
         placeholder="Digite o número do CPF"
       />
-
       <Input
         type="text"
         name="annotations"
@@ -38,6 +36,6 @@ export default function Cards() {
         multiline
         placeholder="Digite algo sobre o responsável"
       />
-    </Scope>
+    </>
   );
 }

@@ -68,17 +68,19 @@ function* save() {
 
   const { min: priceMin, max: priceMax } = price.value;
 
-  const particularsFormatted = _.isEqual(
-    particulars.value,
-    particulars.valueDefault
-  )
-    ? null
-    : JSON.stringify(
-        Object.keys(particulars.value).map(particular => ({
-          title: particular,
-          value: particulars.value[particular],
-        }))
-      );
+  let particularsFormatted = Object.keys(particulars.value)
+    .filter(
+      particular =>
+        particulars.value[particular] !== particulars.valueDefault[particular]
+    )
+    .map(particular => ({
+      title: particular,
+      value: particulars.value[particular],
+    }));
+
+  particularsFormatted = particularsFormatted.length
+    ? JSON.stringify(particularsFormatted)
+    : null;
 
   const response = yield call(api.get, 'immobiles', {
     params: {

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Scope } from '@rocketseat/unform';
 
 import Input from '~/components/Input';
 import Select from '~/components/Select';
@@ -9,7 +8,7 @@ export default function Address() {
   const cities = useSelector(state => state.core.cities);
 
   return (
-    <Scope path="address">
+    <>
       <div>
         <h1>Endereço</h1>
       </div>
@@ -51,6 +50,6 @@ export default function Address() {
           value: '_id',
         }}
       />
-    </Scope>
+    </>
   );
 }

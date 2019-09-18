@@ -297,7 +297,7 @@ export const sessionsImmobiles = [
   { name: 'Destaques de venda', _id: 2, key: 'saleHighlights' },
   { name: 'Destaques de locação', _id: 3, key: 'rentalHighlights' },
   { name: 'Ofertas da semana', _id: 4, key: 'offersOfWeek' },
-  { name: 'Mais vistos da semana', _id: 5, key: 'moreViewedOfWeek' },
+  // { name: 'Mais vistos da semana', _id: 5, key: 'moreViewedOfWeek' },
 ];
 
 export const particularsIcons = {

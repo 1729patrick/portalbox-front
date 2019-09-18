@@ -1,11 +1,10 @@
 import React from 'react';
-import { Scope } from '@rocketseat/unform';
 
 import InputMask from '~/components/InputMask';
 
-export default function Cards({ onOpenPicker, onClosePicker, openPicker }) {
+export default function Cards({ onOpenPicker }) {
   return (
-    <Scope path="price">
+    <>
       <div>
         <h1>
           Preço <p>(Opcional)</p>
@@ -14,22 +13,19 @@ export default function Cards({ onOpenPicker, onClosePicker, openPicker }) {
           Digite <b>0</b> para exibir "Sob Consulta" no PORTAL
         </p>
       </div>
-
       <InputMask
         name="sale"
         label="Preço para venda"
         placeholder="Digite o preço para venda"
       />
-
       <InputMask
         name="rent"
         label="Preço para locação"
         placeholder="Digite o preço para locação"
       />
-
       <button type="button" onClick={onOpenPicker}>
         Adicionar taxas
       </button>
-    </Scope>
+    </>
   );
 }

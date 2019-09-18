@@ -40,7 +40,7 @@ export const Route = styled(NavLink)`
   padding: 12px 0;
 
   &.active {
-    background: #e8e8e8;
+    background: #ddd;
     color: rgb(239, 108, 0);
     width: 75%;
     border-radius: 4px 50px 50px 4px;

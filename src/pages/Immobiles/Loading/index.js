@@ -9,6 +9,9 @@ export default function Loading() {
   useEffect(() => {
     const progress = () => {
       setCompleted(oldCompleted => {
+        if (oldCompleted >= 100) {
+          return 0;
+        }
         return oldCompleted + 1;
       });
     };

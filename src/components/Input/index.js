@@ -1,38 +1,24 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { useField } from '@rocketseat/unform';
+import React from 'react';
 
-import { Container, DefaultInput, Label } from './styles';
+import { DefaultInput } from './styles';
 
-export default function Input({ name, label, optional, ...rest }) {
-  const ref = useRef(null);
-  const { fieldName, registerField, defaultValue, error } = useField(name);
-  const [value, setValue] = useState(defaultValue || '');
-  useEffect(() => {
-    registerField({
-      name: fieldName,
-      ref: ref.current,
-      path: 'dataset.value',
-    });
-  }, [ref.current, fieldName]); // eslint-disable-line
+import FieldLayout from '~/components/_layouts/Field';
 
+export default function Input({
+  label,
+  optional,
+  error,
+  value,
+  setValue,
+  ...rest
+}) {
   return (
-    <Container>
-      <Label>
-        <label>
-          {label}
-          {optional && <span>(Opcional)</span>}
-        </label>
-
-        {error && <span>{error}</span>}
-      </Label>
-
+    <FieldLayout label={label} optional={optional} error={error}>
       <DefaultInput
         {...rest}
         value={value}
         onChange={e => setValue(e.target.value)}
-        ref={ref}
-        data-value={value}
       />
-    </Container>
+    </FieldLayout>
   );
 }

@@ -82,7 +82,7 @@ export default function New() {
 
   return (
     <Container>
-      <Form
+      {/* <Form
         onSubmit={data =>
           dispatch(
             createImmobilesRequest(
@@ -93,51 +93,45 @@ export default function New() {
         }
         initialData={initialData}
         schema={CreateImmobileSchema}
-      >
-        <Card>
-          <Address />
-        </Card>
+      > */}
+      <Card>
+        <Address />
+      </Card>
 
-        <Card>
-          <Particulars
-            onOpenPicker={() => setShowPicker('particularsPicker')}
-          />
-        </Card>
+      <Card>
+        <Particulars onOpenPicker={() => setShowPicker('particularsPicker')} />
+      </Card>
 
-        <Card>
-          <Map />
-        </Card>
+      <Card>
+        <Map />
+      </Card>
 
-        <Card>
-          <Price
-            onOpenPicker={() => setShowPicker('ratesPicker')}
-            onClosePicker={() => setShowPicker(null)}
-            openPicker={showPicker === 'ratesPicker'}
-          />
-        </Card>
+      <Card>
+        <Price
+          onOpenPicker={() => setShowPicker('ratesPicker')}
+          onClosePicker={() => setShowPicker(null)}
+          openPicker={showPicker === 'ratesPicker'}
+        />
+      </Card>
 
-        <Card>
-          <div>
-            <h1>Fotos</h1>
-            <p>Adicione ao menos uma foto</p>
-          </div>
+      <Card>
+        <div>
+          <h1>Fotos</h1>
+        </div>
 
-          <ImagesUploader name="images" onSave={setImages} />
-        </Card>
+        <ImagesUploader name="images" onSave={setImages} />
+      </Card>
 
-        <Card>
-          <Owner />
-        </Card>
+      <Card>
+        <Owner />
+      </Card>
 
-        <Card>
-          <Config
-            sessions={sessions}
-            handleSessionChange={handleSessionChange}
-          />
-        </Card>
+      <Card>
+        <Config sessions={sessions} handleSessionChange={handleSessionChange} />
+      </Card>
 
-        <SubmitButton text="Salvar" />
-      </Form>
+      <SubmitButton text="Salvar" />
+      {/* </Form> */}
 
       <ParticularsPicker
         initialData={particulars}

@@ -1,65 +1,30 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { useField } from '@rocketseat/unform';
+import React from 'react';
 import MaterialRadio from '@material-ui/core/Radio';
-import { withStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-import { Container, Label, Options, Clear } from './styles';
-
-const CustomRadio = withStyles({
-  root: {
-    color: '#333',
-    '&$checked': {
-      color: 'rgb(239, 108, 0)',
-    },
-  },
-  checked: {},
-})(props => <MaterialRadio {...props} />);
+import { Options, Clear } from './styles';
+import FieldLayout from '~/components/_layouts/Field';
 
 export default function Radio({
-  name,
   label,
   optional,
+  setValue,
   options,
-  showClear,
-  style,
+  value,
+  error,
 }) {
-  const ref = useRef(null);
-  const { fieldName, registerField, defaultValue, error } = useField(name);
-  const [checked, setChecked] = useState(defaultValue || '');
-
-  useEffect(() => {
-    registerField({
-      name: fieldName,
-      ref: ref.current,
-      path: 'dataset.checked',
-    });
-  }, [fieldName, registerField]);
-
   return (
-    <Container style={style}>
-      <Label>
-        {label && (
-          <label htmlFor={fieldName}>
-            {label}
-            {optional && <span>(Opcional)</span>}
-          </label>
-        )}
-
-        {showClear && <Clear onClick={() => setChecked(null)}>Limpar</Clear>}
-        {error && <span>{error}</span>}
-      </Label>
-
+    <FieldLayout label={label} optional={optional} error={error}>
       <Options>
         {options.map(option => (
           <FormControlLabel
             key={option.label}
             value="start"
             control={
-              <CustomRadio
+              <MaterialRadio
                 // eslint-disable-next-line eqeqeq
-                checked={checked == option.value}
-                onChange={e => setChecked(e.target.value)}
+                checked={value == option.value}
+                onChange={e => setValue(e.target.value)}
                 value={option.value}
                 name="radio-button-demo"
                 inputProps={{ 'aria-label': 'C' }}
@@ -70,10 +35,8 @@ export default function Radio({
           />
         ))}
 
-        {optional && <Clear onClick={() => setChecked(null)}>Limpar</Clear>}
+        {optional && <Clear onClick={() => setValue(null)}>Limpar</Clear>}
       </Options>
-
-      <input type="text" data-checked={checked} ref={ref} />
-    </Container>
+    </FieldLayout>
   );
 }
