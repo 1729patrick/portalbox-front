@@ -5,7 +5,11 @@ import { IoIosArrowDown } from 'react-icons/io';
 import Header from '~/components/Header';
 import Footer from '~/components/Footer';
 
-import { AdImageBackground, AdVerticalBackground } from '~/components/Ads';
+import {
+  AdImageBackground,
+  AdVerticalBackground,
+  AdHorizontalBackground,
+} from '~/components/Ads';
 
 import { Background, Content } from './styles';
 import Filter from './Filter';
@@ -14,8 +18,13 @@ import GroupImmobiles from '~/components/GroupImmobiles';
 import GroupCards from '~/components/GroupCards';
 
 import { loadSessionImmobilesRequest } from '~/store/modules/immobiles/actions';
+import {
+  setTypesFilter,
+  setFinalityFilter,
+  saveFilterRequest,
+} from '~/store/modules/filter/actions';
 
-const Main = () => {
+const Main = ({ history }) => {
   const dispatch = useDispatch();
 
   const banner = useSelector(state => state.company.banner);
@@ -32,7 +41,15 @@ const Main = () => {
   }, [dispatch]);
 
   const handleClickType = type => {
-    // console.log(type);
+    history.push('/imoveis');
+    dispatch(setTypesFilter({ types: [type] }));
+    dispatch(saveFilterRequest());
+  };
+
+  const handleClickFinality = finality => {
+    history.push('/imoveis');
+    dispatch(setFinalityFilter({ finality }));
+    dispatch(saveFilterRequest());
   };
 
   return (
@@ -63,15 +80,36 @@ const Main = () => {
         />
 
         <AdVerticalBackground
-          title="Encontre os aparamentos com os melhores acabentos em Florianópolis."
+          title="Encontre os aparamentos com os melhores acabentos em Bandeirante."
           style={{ marginTop: 50 }}
           textButton="Ver apartamentos"
+          onClick={() =>
+            handleClickType({
+              image:
+                'http://localhost:3333/static/files/f503a939f6cfbcc08e42f1eaac63e0f2.jpg',
+              name: 'Apartamento',
+              _id: '5d744dab68634c086bd78a22',
+            })
+          }
         />
 
         <GroupImmobiles
           style={{ marginTop: 50 }}
           title="Destaque de venda"
           {...saleHighlights}
+        />
+
+        <AdHorizontalBackground
+          style={{ marginTop: 50 }}
+          title="O que você precisa?"
+          firstTextButton="Alugar"
+          secondTextButton="Comprar"
+          firstOnClick={() =>
+            handleClickFinality({ value: 'rent', title: 'Alugar' })
+          }
+          secondOnClick={() =>
+            handleClickFinality({ value: 'sale', title: 'Comprar' })
+          }
         />
       </Content>
       <Footer />

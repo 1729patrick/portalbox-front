@@ -28,6 +28,7 @@ const RouteWrapper = ({
 
   return (
     <Route
+    
       {...rest}
       render={props =>
         onlyComponent ? (

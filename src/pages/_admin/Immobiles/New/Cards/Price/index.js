@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import InputMask from '~/components/InputMask';
+import { Card } from '../../styles';
 
-export default function Cards({ onOpenPicker }) {
+export default function Price({ onOpenPicker, values, setFieldValue }) {
+  const path = useMemo(() => values.price, [values.price]);
+
   return (
-    <>
+    <Card>
       <div>
         <h1>
           Preço <p>(Opcional)</p>
@@ -14,18 +17,20 @@ export default function Cards({ onOpenPicker }) {
         </p>
       </div>
       <InputMask
-        name="sale"
         label="Preço para venda"
         placeholder="Digite o preço para venda"
+        value={path.sale}
+        setValue={value => setFieldValue('price.sale', value)}
       />
       <InputMask
-        name="rent"
         label="Preço para locação"
         placeholder="Digite o preço para locação"
+        value={path.rent}
+        setValue={value => setFieldValue('price.rent', value)}
       />
       <button type="button" onClick={onOpenPicker}>
         Adicionar taxas
       </button>
-    </>
+    </Card>
   );
 }

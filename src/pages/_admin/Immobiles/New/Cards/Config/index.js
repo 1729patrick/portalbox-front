@@ -1,13 +1,15 @@
-import React from 'react';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import React, { useMemo } from 'react';
 
 import Checkbox from '~/components/Checkbox';
 import { sessionsImmobiles } from '~/services/fakeData';
 import { Configuration } from './styles';
+import { Card } from '../../styles';
 
-export default function Config({ sessions, handleSessionChange }) {
+export default function Config({ values, setFieldValue }) {
+  const path = useMemo(() => values.config, [values.config]);
+
   return (
-    <>
+    <Card>
       <div>
         <h1>
           Configuração <p>(Opcional)</p>
@@ -16,20 +18,14 @@ export default function Config({ sessions, handleSessionChange }) {
         <p>O imóvel deve ser listado em qual sessão no PORTAL?</p>
       </div>
       <Configuration>
-        {sessionsImmobiles.map(type => (
-          <FormControlLabel
-            key={type.name}
-            control={
-              <Checkbox
-                checked={sessions.indexOf(type._id) !== -1}
-                onChange={() => handleSessionChange(type._id)}
-                value={type._id}
-              />
-            }
-            label={type.name}
-          />
-        ))}
+        <Checkbox
+          label="name"
+          value="_id"
+          list={sessionsImmobiles}
+          checkeds={path.sessions}
+          setCheckeds={value => setFieldValue('config.sessions', value)}
+        />
       </Configuration>
-    </>
+    </Card>
   );
 }

@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Form } from '@rocketseat/unform';
+import { Formik, Form } from 'formik';
 
-import { Container, Card, SubmitButton } from './styles';
+import { Container, SubmitButton } from './styles';
 
 import CreateImmobileSchema from '~/schemas/CreateImmobileSchema';
-
-import ImagesUploader from '~/components/_admin/ImageUploader';
 
 import { createImmobilesRequest } from '~/store/modules/immobiles/actions';
 
@@ -17,21 +15,53 @@ import Address from './Cards/Address';
 import Particulars from './Cards/Particulars';
 import Map from './Cards/Map';
 import Price from './Cards/Price';
+import Images from './Cards/Images';
 import Owner from './Cards/Owner';
 import Config from './Cards/Config';
 
 const initialData = {
   rates: { condominium: '1', iptu: '2', fireInsurance: '4' },
-  config: {},
-  owner: { cpf: '', whatsapp: '', name: '' },
+  config: {
+    sessions: [
+      { name: 'Novos', _id: 1, key: 'news' },
+      { name: 'Destaques de venda', _id: 2, key: 'saleHighlights' },
+      { name: 'Destaques de locação', _id: 3, key: 'rentalHighlights' },
+      { name: 'Ofertas da semana', _id: 4, key: 'offersOfWeek' },
+    ],
+  },
+  owner: {
+    cpf: '312312312',
+    whatsapp: '22256256256625256256',
+    name: 'Patrick Battisti',
+    annotations: 'asdkmasmkdas',
+  },
   images: [],
-  price: { rent: null, sale: 500000 },
+  price: { rent: '0', sale: 500000 },
   map: { lng: 20, lat: 20 },
   type: '5d61f08c3be9865134c092c1',
-  particulars: { bedroom: '3', bathroom: '4', garage: '2', totalArea: '1500' },
+  particulars: {
+    bedroom: '3',
+    bathroom: '4',
+    garage: '2',
+    totalArea: '1500',
+    type: {
+      _id: '5d744dab68634c086bd78a22',
+      name: 'Apartamento',
+      image:
+        'http://localhost:3333/static/files/f503a939f6cfbcc08e42f1eaac63e0f2.jpg',
+    },
+  },
   address: {
-    neighborhood: '5d62b707943c5917ae5879a7',
-    city: '5d62b707943c5917ae5879a6',
+    neighborhood: { _id: '5d62b707943c5917ae5879a9', name: 'Agostini' },
+    city: {
+      neighborhoods: [
+        { _id: '5d62b829685c7e1a6244106e', name: 'Centro' },
+        { _id: '5d62b829685c7e1a6244106f', name: 'São Jorge' },
+        { _id: '5d62b829685c7e1a62441070', name: 'Agostini' },
+      ],
+      _id: '5d62b829685c7e1a6244106d',
+      name: 'Maravilha',
+    },
     number: 1425,
     street: 'Rua Primeiro de Maio',
   },
@@ -49,26 +79,10 @@ const initialData = {
 export default function New() {
   const dispatch = useDispatch();
 
-  const [images, setImages] = useState([]);
-  const [sessions, setSessions] = useState([]);
   const [showPicker, setShowPicker] = useState(null);
 
   const [particulars, setParticulars] = useState(initialData);
   const [rates, setRates] = useState(initialData);
-
-  /**
-   * Tipos do imóvel no porta [Destaque de *, Novos]
-   *
-   * @param {* id da categoria} _id
-   */
-  const handleSessionChange = _id => {
-    const index = sessions.indexOf(_id);
-    if (index === -1) {
-      return setSessions([...sessions, _id]);
-    }
-
-    setSessions(sessions.filter((_, i) => i !== index));
-  };
 
   const handleSaveParticulars = data => {
     setParticulars(data);
@@ -82,71 +96,54 @@ export default function New() {
 
   return (
     <Container>
-      {/* <Form
-        onSubmit={data =>
-          dispatch(
-            createImmobilesRequest(
-              { ...data, ...particulars, ...rates, sessions },
-              images
-            )
-          )
-        }
-        initialData={initialData}
-        schema={CreateImmobileSchema}
-      > */}
-      <Card>
-        <Address />
-      </Card>
+      <Formik
+        initialValues={initialData}
+        onSubmit={data => console.log(JSON.stringify(data))}
+        render={({ values, setFieldValue, resetForm }) => (
+          <Form>
+            <Address values={values} setFieldValue={setFieldValue} />
 
-      <Card>
-        <Particulars onOpenPicker={() => setShowPicker('particularsPicker')} />
-      </Card>
+            <Particulars
+              onOpenPicker={() => setShowPicker('particularsPicker')}
+              values={values}
+              setFieldValue={setFieldValue}
+            />
 
-      <Card>
-        <Map />
-      </Card>
+            <Map values={values} setFieldValue={setFieldValue} />
 
-      <Card>
-        <Price
-          onOpenPicker={() => setShowPicker('ratesPicker')}
-          onClosePicker={() => setShowPicker(null)}
-          openPicker={showPicker === 'ratesPicker'}
-        />
-      </Card>
+            <Price
+              onOpenPicker={() => setShowPicker('ratesPicker')}
+              onClosePicker={() => setShowPicker(null)}
+              openPicker={showPicker === 'ratesPicker'}
+              values={values}
+              setFieldValue={setFieldValue}
+            />
 
-      <Card>
-        <div>
-          <h1>Fotos</h1>
-        </div>
+            <Images />
 
-        <ImagesUploader name="images" onSave={setImages} />
-      </Card>
+            <Owner values={values} setFieldValue={setFieldValue} />
 
-      <Card>
-        <Owner />
-      </Card>
+            <Config values={values} setFieldValue={setFieldValue} />
 
-      <Card>
-        <Config sessions={sessions} handleSessionChange={handleSessionChange} />
-      </Card>
+            <SubmitButton text="Salvar" type="submit" />
 
-      <SubmitButton text="Salvar" />
-      {/* </Form> */}
+            <ParticularsPicker
+              initialData={particulars}
+              onClose={() => setShowPicker(null)}
+              open={showPicker === 'particularsPicker'}
+              onSave={handleSaveParticulars}
+              path="allParticulars"
+            />
 
-      <ParticularsPicker
-        initialData={particulars}
-        onClose={() => setShowPicker(null)}
-        open={showPicker === 'particularsPicker'}
-        onSave={handleSaveParticulars}
-        path="allParticulars"
-      />
-
-      <RatesPicker
-        initialData={rates}
-        onClose={() => setShowPicker(null)}
-        open={showPicker === 'ratesPicker'}
-        onSave={handleSaveRates}
-        path="rates"
+            <RatesPicker
+              initialData={rates}
+              onClose={() => setShowPicker(null)}
+              open={showPicker === 'ratesPicker'}
+              onSave={handleSaveRates}
+              path="rates"
+            />
+          </Form>
+        )}
       />
     </Container>
   );

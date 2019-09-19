@@ -1,11 +1,12 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Container, Copyright, FooterWrapper } from './styles';
 
 import { links } from '~/services/fakeData';
 
-export default function Footer() {
+const Footer = ({ history }) => {
   const dispatch = useDispatch();
   const company = useSelector(state => state.company);
 
@@ -27,7 +28,10 @@ export default function Footer() {
 
         <ul>
           {links.map(link => (
-            <li key={link.title} onClick={() => link.onClick({ dispatch })}>
+            <li
+              key={link.title}
+              onClick={() => link.onClick({ dispatch, history })}
+            >
               {link.title}
             </li>
           ))}
@@ -51,4 +55,6 @@ export default function Footer() {
       </Copyright>
     </FooterWrapper>
   );
-}
+};
+
+export default withRouter(Footer);

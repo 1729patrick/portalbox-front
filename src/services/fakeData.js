@@ -14,7 +14,11 @@ import {
 export const links = [
   {
     title: 'Alugar imóvel',
-    onClick: ({ dispatch }) => {
+    onClick: ({ dispatch, history }) => {
+      if (history.location.pathname !== '/imoveis') {
+        history.push('/imoveis');
+      }
+
       dispatch(
         setFinalityFilter({ finality: { value: 'rend', title: 'Alugar' } })
       );
@@ -24,7 +28,11 @@ export const links = [
 
   {
     title: 'Comprar imóvel',
-    onClick: ({ dispatch }) => {
+    onClick: ({ dispatch, history }) => {
+      if (history.location.pathname !== '/imoveis') {
+        history.push('/imoveis');
+      }
+
       dispatch(
         setFinalityFilter({ finality: { value: 'sale', title: 'Comprar' } })
       );

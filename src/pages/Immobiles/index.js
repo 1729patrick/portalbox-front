@@ -15,6 +15,7 @@ import {
 import { loadSessionImmobilesRequest } from '~/store/modules/immobiles/actions';
 import {
   setTypesFilter,
+  setFinalityFilter,
   saveFilterRequest,
 } from '~/store/modules/filter/actions';
 
@@ -52,6 +53,11 @@ export default function Immobiles() {
     dispatch(saveFilterRequest());
   };
 
+  const handleClickFinality = finality => {
+    dispatch(setFinalityFilter({ finality }));
+    dispatch(saveFilterRequest());
+  };
+
   return (
     <Container>
       {!empty && (
@@ -82,6 +88,14 @@ export default function Immobiles() {
         title="Encontre os aparamentos com os melhores acabentos em Florianópolis."
         style={{ marginTop: 50 }}
         textButton="Ver apartamentos"
+        onClick={() =>
+          handleClickType({
+            image:
+              'http://localhost:3333/static/files/f503a939f6cfbcc08e42f1eaac63e0f2.jpg',
+            name: 'Apartamento',
+            _id: '5d744dab68634c086bd78a22',
+          })
+        }
       />
 
       <GroupImmobiles
@@ -95,6 +109,12 @@ export default function Immobiles() {
         title="O que você precisa?"
         firstTextButton="Alugar"
         secondTextButton="Comprar"
+        firstOnClick={() =>
+          handleClickFinality({ value: 'rent', title: 'Alugar' })
+        }
+        secondOnClick={() =>
+          handleClickFinality({ value: 'sale', title: 'Comprar' })
+        }
       />
 
       {/* <GroupImmobiles

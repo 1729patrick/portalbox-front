@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { MdSearch } from 'react-icons/md';
 import { withTheme } from 'styled-components';
+
 import { Container, Search } from './styles';
 import HeaderFilter from '~/components/HeaderFilter';
-
 import { links } from '~/services/fakeData';
 import { saveFilterRequest } from '~/store/modules/filter/actions';
 import { setPopupOpen } from '~/store/modules/popup/actions';
@@ -55,7 +55,10 @@ function Header({ simple, searchable, history, ...props }) {
 
         <ul>
           {links.map(link => (
-            <li key={link.title} onClick={() => link.onClick({ dispatch })}>
+            <li
+              key={link.title}
+              onClick={() => link.onClick({ dispatch, history })}
+            >
               {link.title}
             </li>
           ))}

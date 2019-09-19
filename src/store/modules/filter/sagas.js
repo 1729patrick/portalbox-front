@@ -123,6 +123,7 @@ function* setTypes({ payload }) {
 
 function* setFinality({ payload }) {
   const { finality } = payload;
+
   if (finality.title) {
     return yield put(
       setFilterSuccess({
@@ -312,7 +313,4 @@ export default all([
   takeLatest('@filter/SET_PRICE_FILTER', setPrice),
   takeLatest('@filter/SET_PARTICULARS_FILTER', setParticulars),
   takeLatest('@immobile/SEARCH_IMMOBILES_REQUEST', searchImmobiles),
-  takeLatest('@immobile/SEARCH_IMMOBILES_REQUEST', setTypes),
-  takeLatest('@immobile/SEARCH_IMMOBILES_REQUEST', setFinality),
-  takeLatest('@immobile/SEARCH_IMMOBILES_REQUEST', setNeighborhoods),
 ]);

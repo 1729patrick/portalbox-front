@@ -8,9 +8,9 @@ import FieldLayout from '~/components/_layouts/Field';
 export default function Radio({
   label,
   optional,
-  setValue,
   options,
-  value,
+  setChecked,
+  checked,
   error,
 }) {
   return (
@@ -23,8 +23,8 @@ export default function Radio({
             control={
               <MaterialRadio
                 // eslint-disable-next-line eqeqeq
-                checked={value == option.value}
-                onChange={e => setValue(e.target.value)}
+                checked={checked == option.value}
+                onChange={e => setChecked(e.target.value)}
                 value={option.value}
                 name="radio-button-demo"
                 inputProps={{ 'aria-label': 'C' }}
@@ -35,7 +35,7 @@ export default function Radio({
           />
         ))}
 
-        {optional && <Clear onClick={() => setValue(null)}>Limpar</Clear>}
+        {optional && <Clear onClick={() => setChecked(null)}>Limpar</Clear>}
       </Options>
     </FieldLayout>
   );

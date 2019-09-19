@@ -1,17 +1,20 @@
-import React, { Fragment } from 'react';
+import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
+import { Card } from '../../styles';
 import Input from '~/components/Input';
 import Select from '~/components/Select';
 import Radio from '~/components/Radio';
 
 import { optionsParticulars } from '~/services/fakeData';
 
-export default function Address({ onOpenPicker }) {
+export default function Particulars({ onOpenPicker, values, setFieldValue }) {
   const types = useSelector(state => state.core.types);
 
+  const path = useMemo(() => values.particulars, [values.particulars]);
+
   return (
-    <Fragment>
+    <Card>
       <div>
         <h1>Características</h1>
       </div>
@@ -19,43 +22,48 @@ export default function Address({ onOpenPicker }) {
       <Select
         placeholder="Selecione o tipo"
         options={types}
-        name="type"
         label="Tipo"
         multiple={false}
+        selected={path.type}
+        setSelected={value => setFieldValue('particulars.type', value)}
       />
 
       <Radio
-        name="bedroom"
         label="Quartos"
         options={optionsParticulars}
         optional
+        checked={path.bedroom}
+        setChecked={value => setFieldValue('particulars.bedroom', value)}
       />
 
       <Radio
-        name="bathroom"
         label="Banheiros"
         options={optionsParticulars}
         optional
+        checked={path.bathroom}
+        setChecked={value => setFieldValue('particulars.bathroom', value)}
       />
 
       <Radio
-        name="garage"
         label="Garagens"
         optional
         options={optionsParticulars}
+        checked={path.garage}
+        setChecked={value => setFieldValue('particulars.garage', value)}
       />
 
       <Input
         type="number"
-        name="totalArea"
         label="Área total"
         placeholder="Digite o tamanho do terreno"
         optional
+        value={path.totalArea}
+        setValue={value => setFieldValue('particulars.totalArea', value)}
       />
 
       <button type="button" onClick={onOpenPicker}>
         Todas características
       </button>
-    </Fragment>
+    </Card>
   );
 }

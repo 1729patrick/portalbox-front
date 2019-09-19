@@ -26,7 +26,7 @@ export default function Finality({ onClick }) {
     >
       <Toggle
         options={[
-          { value: 'rend', title: 'Alugar' },
+          { value: 'rent', title: 'Alugar' },
           { value: 'sale', title: 'Comprar' },
         ]}
         selected={selected}

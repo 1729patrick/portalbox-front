@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import Input from '~/components/Input';
 
-export default function Cards() {
+import { Card } from '../../styles';
+
+export default function Map({ values, setFieldValue }) {
   const openGoogleMaps = () => {
     // https://www.google.com/maps/place/R.+1%C2%BA+de+Maio,+1425,+Bandeirante+-+SC,+89905-000
     // const address =
     window.open(`https://www.google.com/maps/place/`, '_blank');
   };
 
+  const path = useMemo(() => values.map, [values.map]);
+
   return (
-    <>
+    <Card>
       <div>
         <h1>
           Mapa <p>(Opcional)</p>
@@ -23,20 +27,23 @@ export default function Cards() {
 
       <Input
         type="text"
-        name="lat"
         label="Latitude"
         placeholder="Digite a latidode da localização"
+        value={path.lat}
+        setValue={value => setFieldValue('map.lat', value)}
       />
+
       <Input
         type="text"
-        name="lng"
         label="Longitude"
         placeholder="Digite a longitude da localização"
+        value={path.lng}
+        setValue={value => setFieldValue('map.lng', value)}
       />
 
       <button type="button" onClick={openGoogleMaps}>
         Buscar coordenadas no Google Maps
       </button>
-    </>
+    </Card>
   );
 }

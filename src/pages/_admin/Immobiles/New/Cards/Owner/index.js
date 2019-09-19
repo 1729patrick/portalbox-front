@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import Input from '~/components/Input';
+import { Card } from '../../styles';
 
-export default function Cards() {
+export default function Owner({ values, setFieldValue }) {
+  const path = useMemo(() => values.owner, [values.owner]);
+
   return (
-    <>
-      {' '}
+    <Card>
       <div>
         <h1>
           Proprietário <p>(Opcional)</p>
@@ -13,29 +15,36 @@ export default function Cards() {
       </div>
       <Input
         type="text"
-        name="name"
         label="Nome"
         placeholder="Digite o nome do proprietário"
+        value={path.name}
+        setValue={value => setFieldValue('owner.name', value)}
       />
+
       <Input
         type="text"
-        name="whatsapp"
         label="Whatsapp"
         placeholder="Digite o número de Whatsapp"
+        value={path.whatsapp}
+        setValue={value => setFieldValue('owner.whatsapp', value)}
       />
+
       <Input
         type="text"
-        name="cpf"
         label="CPF"
         placeholder="Digite o número do CPF"
+        value={path.cpf}
+        setValue={value => setFieldValue('owner.cpf', value)}
       />
+
       <Input
         type="text"
-        name="annotations"
         label="Anotações"
         multiline
         placeholder="Digite algo sobre o responsável"
+        value={path.annotations}
+        setValue={value => setFieldValue('owner.annotations', value)}
       />
-    </>
+    </Card>
   );
 }

@@ -14,7 +14,6 @@ import {
 export default function ImagesSlider({ initialImage, images }) {
   const [activeImage, setActiveImage] = useState(initialImage);
 
-  console.log(images);
   const imageActive = useMemo(() => images[activeImage], [activeImage, images]);
 
   const imageIndicator = useMemo(
