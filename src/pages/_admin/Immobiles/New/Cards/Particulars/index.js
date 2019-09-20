@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
-import { Card } from '../../styles';
+import { Card } from '../styles';
 import Input from '~/components/Input';
 import Select from '~/components/Select';
 import Radio from '~/components/Radio';

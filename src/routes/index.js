@@ -6,6 +6,7 @@ import Route from './Route';
 import Main from '~/pages/Main';
 import Immobiles from '~/pages/Immobiles';
 import ImmobileDetails from '~/pages/ImmobileDetails';
+import Contact from '~/pages/Contact';
 
 import AdminSignIn from '~/pages/_admin/SignIn';
 import AdminDashboard from '~/pages/_admin/Dashboard';
@@ -23,6 +24,7 @@ const Routes = () => {
         component={ImmobileDetails}
         simple
       />
+      <Route path="/contato" exact simple component={Contact} />
 
       <Route path="/login" exact component={AdminSignIn} onlyComponent />
       <Route path="/portal" exact component={AdminDashboard} isPrivate />

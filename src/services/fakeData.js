@@ -40,9 +40,12 @@ export const links = [
     },
   },
   { title: 'Anunciar meu imóvel' },
-  // { title: 'Área do cliente' },
-  { title: 'Quem somos' },
-  { title: 'Contato' },
+  {
+    title: 'Contato',
+    onClick: ({ history }) => {
+      history.push('/contato');
+    },
+  },
 ];
 
 export const optionsLocale = [

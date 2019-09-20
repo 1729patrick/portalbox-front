@@ -4,14 +4,12 @@ export const Images = styled.aside`
   padding: 245px 60px 60px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  grid-template-rows: repeat(2, 1fr);
   overflow-y: hidden;
   grid-gap: 15px;
   z-index: 1;
 
   > div {
     min-width: 260px;
-    max-width: 360px;
     width: 100%;
     border-radius: 8px;
     overflow: hidden;

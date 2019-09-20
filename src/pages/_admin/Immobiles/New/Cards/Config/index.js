@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import Checkbox from '~/components/Checkbox';
 import { sessionsImmobiles } from '~/services/fakeData';
 import { Configuration } from './styles';
-import { Card } from '../../styles';
+import { Card } from '../styles';
 
 export default function Config({ values, setFieldValue }) {
   const path = useMemo(() => values.config, [values.config]);

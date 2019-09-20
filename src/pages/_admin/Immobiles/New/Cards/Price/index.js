@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 
 import InputMask from '~/components/InputMask';
-import { Card } from '../../styles';
+import { Card } from '../styles';
 
 export default function Price({ onOpenPicker, values, setFieldValue }) {
   const path = useMemo(() => values.price, [values.price]);

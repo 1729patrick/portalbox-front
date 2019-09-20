@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 
 import Input from '~/components/Input';
-import { Card } from '../../styles';
+import { Card } from '../styles';
 
 export default function Owner({ values, setFieldValue }) {
   const path = useMemo(() => values.owner, [values.owner]);

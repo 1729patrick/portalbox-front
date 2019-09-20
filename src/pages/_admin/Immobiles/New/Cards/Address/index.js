@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import Input from '~/components/Input';
 import Select from '~/components/Select';
 
-import { Card } from '../../styles';
+import { Card } from '../styles';
 
 export default function Address({ values, setFieldValue, errors }) {
   const cities = useSelector(state => state.core.cities);
