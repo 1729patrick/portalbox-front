@@ -5,13 +5,18 @@ import Input from '~/components/Input';
 import { Card } from '../../styles';
 
 export default function Map({ values, setFieldValue }) {
-  const openGoogleMaps = () => {
-    // https://www.google.com/maps/place/R.+1%C2%BA+de+Maio,+1425,+Bandeirante+-+SC,+89905-000
-    // const address =
-    window.open(`https://www.google.com/maps/place/`, '_blank');
-  };
-
   const path = useMemo(() => values.map, [values.map]);
+
+  const openGoogleMaps = () => {
+    const { address } = values;
+    const { city = {} } = address;
+
+    const link = encodeURI(
+      `${address.street},${address.number},${city.name}+-+SC,+89905-000`
+    );
+
+    window.open(`https://www.google.com/maps/place/${link}`, '_blank');
+  };
 
   return (
     <Card>

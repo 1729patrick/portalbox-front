@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useDrop } from 'react-dnd';
 import update from 'immutability-helper';
 
@@ -44,3 +45,10 @@ export default function DragAndDrop({
 
   return <Images ref={drop}>{cards.map(image => renderImage(image))}</Images>;
 }
+
+DragAndDrop.propTypes = {
+  cards: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  setCards: PropTypes.func.isRequired,
+  handleDescriptionChange: PropTypes.func.isRequired,
+  handleFileRemove: PropTypes.func.isRequired,
+};

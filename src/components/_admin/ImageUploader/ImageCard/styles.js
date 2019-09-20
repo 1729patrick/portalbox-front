@@ -9,6 +9,12 @@ export const Card = styled.div`
   &:hover {
     border-color: rgb(239, 108, 0);
   }
+
+  span {
+    textarea {
+      font-weight: 500;
+    }
+  }
 `;
 
 export const Image = styled.div`

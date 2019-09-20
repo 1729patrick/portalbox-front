@@ -16,12 +16,20 @@ export const LeftAside = styled.aside`
     flex-direction: column;
     margin-top: 25px;
   }
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const RigthAside = styled.aside`
   margin-left: auto;
   width: 75%;
   padding-top: 58px;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const Title = styled.h2`

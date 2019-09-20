@@ -1,13 +1,13 @@
 import React from 'react';
-import { withTheme } from 'styled-components';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import MaterialSwitch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-import { styles } from './styles';
+import { styles, Container } from './styles';
 
 const CustomSwitch = withStyles(styles)(
-  ({ classes, value, onChange, theme, ...props }) => {
+  ({ classes, value, onChange, ...props }) => {
     return (
       <MaterialSwitch
         focusVisibleClassName={classes.focusVisible}
@@ -27,14 +27,26 @@ const CustomSwitch = withStyles(styles)(
   }
 );
 
-const Switch = ({ title, value, setValue, theme }) => {
+const Switch = ({ title, value, setValue }) => {
   return (
-    <FormControlLabel
-      control={<CustomSwitch value={value} onChange={setValue} theme={theme} />}
-      label={title}
-      labelPlacement="start"
-    />
+    <Container>
+      <FormControlLabel
+        control={<CustomSwitch value={value} onChange={setValue} />}
+        label={title}
+        labelPlacement="start"
+      />
+    </Container>
   );
 };
 
-export default withTheme(Switch);
+Switch.propTypes = {
+  title: PropTypes.string.isRequired,
+  value: PropTypes.bool,
+  setValue: PropTypes.func.isRequired,
+};
+
+Switch.defaultProps = {
+  value: false,
+};
+
+export default Switch;

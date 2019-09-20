@@ -1,6 +1,6 @@
-export const createImmobilesRequest = (immobile, images) => ({
+export const createImmobilesRequest = immobile => ({
   type: '@immobile/CREATE_IMMOBILES_REQUEST',
-  payload: { immobile, images },
+  payload: { immobile },
 });
 
 export const createImmobilesSuccess = () => ({

@@ -4,6 +4,10 @@ export const Options = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-left: -18px;
+  padding-left: 9px;
+  overflow-y: hidden;
+  overflow-x: auto;
 `;
 
 export const Clear = styled.p`

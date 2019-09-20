@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import ImagesUploader from '~/components/_admin/ImageUploader';
-import { Card } from '../../styles';
 
-const Images = () => {
-  const [_, setImages] = useState([]);
+import { CardImages } from './styles';
 
+const Images = ({ values, setFieldValue, errors }) => {
   return (
-    <Card>
+    <CardImages>
       <div>
         <h1>Fotos</h1>
+
+        <span>{errors.images}</span>
       </div>
 
-      <ImagesUploader name="images" onSave={setImages} />
-    </Card>
+      <ImagesUploader
+        images={values.images}
+        setImages={images => setFieldValue('images', images)}
+      />
+    </CardImages>
   );
 };
 

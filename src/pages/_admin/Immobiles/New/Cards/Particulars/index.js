@@ -8,7 +8,12 @@ import Radio from '~/components/Radio';
 
 import { optionsParticulars } from '~/services/fakeData';
 
-export default function Particulars({ onOpenPicker, values, setFieldValue }) {
+export default function Particulars({
+  onOpenPicker,
+  values,
+  setFieldValue,
+  errors,
+}) {
   const types = useSelector(state => state.core.types);
 
   const path = useMemo(() => values.particulars, [values.particulars]);
@@ -24,8 +29,9 @@ export default function Particulars({ onOpenPicker, values, setFieldValue }) {
         options={types}
         label="Tipo"
         multiple={false}
-        selected={path.type}
-        setSelected={value => setFieldValue('particulars.type', value)}
+        selected={values.type}
+        setSelected={value => setFieldValue('type', value)}
+        error={errors.type}
       />
 
       <Radio

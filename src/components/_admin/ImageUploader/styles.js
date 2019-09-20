@@ -18,7 +18,7 @@ export const DragAndDrop1 = styled.section`
 
   header {
     background: #fff;
-    padding: 20px calc(60px + 0.5%) 20px;
+    padding: 20px calc(60px + 0.5%);
     position: fixed;
     width: 100%;
     z-index: 3;
@@ -51,6 +51,12 @@ export const DragAndDrop1 = styled.section`
       button {
         margin-left: auto;
       }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    header {
+      padding: 20px;
     }
   }
 `;
@@ -130,6 +136,7 @@ export const Dropzone = styled.div`
   > p {
     font-weight: 500;
     font-size: 15px;
+    text-align: center;
   }
 
   &:hover {

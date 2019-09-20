@@ -1,3 +1,5 @@
+import styled from 'styled-components';
+
 export const styles = theme => ({
   root: {
     width: 42,
@@ -35,3 +37,10 @@ export const styles = theme => ({
   checked: {},
   focusVisible: {},
 });
+
+export const Container = styled.div`
+  .MuiFormControlLabel-root {
+    display: flex;
+    justify-content: space-between;
+  }
+`;

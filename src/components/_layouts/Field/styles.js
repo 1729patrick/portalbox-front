@@ -21,6 +21,19 @@ export const Label = styled.div`
   }
 
   > span {
+    font-size: 14px !important;
     color: #d50000;
+  }
+`;
+
+export const Clear = styled.p`
+  margin-left: 20px;
+  cursor: pointer;
+  opacity: 0.6;
+  font-weight: 500;
+  font-size: 14px;
+
+  &:hover {
+    opacity: 1;
   }
 `;

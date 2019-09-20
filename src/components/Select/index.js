@@ -3,9 +3,11 @@ import React, { useRef, useEffect, useMemo } from 'react';
 import Select from 'react-select';
 import PropTypes from 'prop-types';
 
-import styles, { Label, Container, GroupLabel } from './styles';
+import FieldLayout from '~/components/_layouts/Field';
+import styles, { GroupLabel } from './styles';
 
 export default function ReactSelect({
+  error,
   selected,
   setSelected,
   options,
@@ -34,18 +36,7 @@ export default function ReactSelect({
   }, [options]);
 
   return (
-    <Container>
-      <Label>
-        {label && (
-          <label>
-            {label}
-            {optional && <span>(Opcional)</span>}
-          </label>
-        )}
-
-        {/* {error && <span>{error}</span>} */}
-      </Label>
-
+    <FieldLayout label={label} optional={optional} error={error}>
       <Select
         styles={styles}
         name={name}
@@ -58,7 +49,7 @@ export default function ReactSelect({
         formatGroupLabel={formatGroupLabel}
         {...rest}
       />
-    </Container>
+    </FieldLayout>
   );
 }
 

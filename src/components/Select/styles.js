@@ -52,10 +52,10 @@ const styles = {
       ...provided,
       borderBottom: '1px solid #f1f1f1',
       // color: state.isSelected ? theme.select.color : '#333',
-      color: state.isSelected ? '#333' : '#333',
+      color: state.isSelected ? '#fff' : '#333',
       backgroundColor: state.isSelected
         ? // ? theme.select.backgroundColor
-          '#eee'
+          'rgb(239,108,0)'
         : state.isFocused
         ? '#f1f1f1'
         : 'transparent',
@@ -64,7 +64,7 @@ const styles = {
       fontWeight: 500,
 
       '&:active': {
-        background: state.isSelected ? '#eee' : '#fff',
+        background: state.isSelected ? 'rgb(239,108,0)' : '#fff',
       },
     };
   },

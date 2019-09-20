@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useDrag, useDrop } from 'react-dnd';
 import { MdModeEdit, MdRemoveCircle } from 'react-icons/md';
 
@@ -38,12 +39,13 @@ export default function ImageCard({
         onClick={() => handleFileRemove(id)}
       />
 
-      <Image source={image.preview} />
+      <Image source={image.file} />
 
       <span>
         <p>
           <MdModeEdit color="#333" size={15} /> Descrição
         </p>
+
         <textarea
           value={image.description}
           onChange={e => handleDescriptionChange(e, id)}
@@ -52,3 +54,12 @@ export default function ImageCard({
     </Card>
   );
 }
+
+ImageCard.propTypes = {
+  id: PropTypes.string.isRequired,
+  image: PropTypes.shape().isRequired,
+  handleFileRemove: PropTypes.func.isRequired,
+  handleDescriptionChange: PropTypes.func.isRequired,
+  moveCard: PropTypes.func.isRequired,
+  findCard: PropTypes.func.isRequired,
+};

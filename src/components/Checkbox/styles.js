@@ -4,11 +4,12 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
 
-  & + div {
-    margin-top: 5px;
-  }
   .MuiCheckbox-root {
     margin-left: -10px;
+  }
+
+  label + label {
+    margin-top: 5px;
   }
 
   .MuiIconButton-label {

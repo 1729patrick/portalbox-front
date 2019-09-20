@@ -24,7 +24,12 @@ const CreateImmobileSchema = Yup.object().shape({
     sale: Yup.numberNullable(),
     rent: Yup.numberNullable(),
   }),
-  images: Yup.number().min(1, 'Adicione ao menos uma foto'),
+  images: Yup.array(
+    Yup.object().shape({
+      image: Yup.mixed(),
+      description: Yup.string(),
+    })
+  ).required('Adicione ao menos uma foto'),
   owner: Yup.object().shape({
     name: Yup.string(),
     whatsapp: Yup.string(),
@@ -32,7 +37,13 @@ const CreateImmobileSchema = Yup.object().shape({
     annotation: Yup.string(),
   }),
   config: Yup.object().shape({
-    sessions: Yup.array(Yup.number()),
+    sessions: Yup.array(
+      Yup.object().shape({
+        _id: Yup.number().required(),
+        name: Yup.string(),
+        key: Yup.string(),
+      })
+    ),
   }),
   rates: Yup.object().shape({
     iptu: Yup.numberNullable(),

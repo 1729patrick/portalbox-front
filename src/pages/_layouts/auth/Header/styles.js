@@ -34,6 +34,7 @@ export const Container = styled.header`
 
       div {
         margin-right: 50px;
+        overflow-y: auto;
 
         a {
           color: #333;
@@ -55,6 +56,16 @@ export const Container = styled.header`
 
       svg {
         cursor: pointer;
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 0 20px;
+
+    aside {
+      div {
+        display: none;
       }
     }
   }

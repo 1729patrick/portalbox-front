@@ -24,7 +24,9 @@ const Checkbox = ({ label, value, list, checkeds, setCheckeds }) => {
           key={item[value]}
           control={
             <MaterialCheckbox
-              checked={checkeds.find(checked => checked[value] === item[value])}
+              checked={
+                !!checkeds.find(checked => checked[value] === item[value])
+              }
               onChange={() => handleChange(item)}
               value={item[value]}
             />

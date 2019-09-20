@@ -1,7 +1,7 @@
-import React, { useState, useMemo, useEffect, useRef } from 'react';
+import React, { useState, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import { useDropzone } from 'react-dropzone';
 import { MdClose } from 'react-icons/md';
-import { useField } from '@rocketseat/unform';
 import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
@@ -16,86 +16,81 @@ import {
 
 import DragAndDrop from './DragAndDrop';
 
-export default function ImageUploader({ name, onSave }) {
-  const ref = useRef(null);
-  const { fieldName, registerField, defaultValue, error } = useField(name);
-
+export default function ImageUploader({ images, setImages }) {
   const [uploaderOpen, setUploaderOpen] = useState(false);
-  const [images, setImages] = useState(defaultValue || []);
-  const [imagesSaved, setImagesSaved] = useState(defaultValue || []);
-
-  useEffect(() => setImages(imagesSaved), [imagesSaved, uploaderOpen]);
-
-  useEffect(() => {
-    registerField({
-      name: fieldName,
-      ref: ref.current,
-      path: 'dataset.images',
-    });
-  }, [ref.current, fieldName]); // eslint-disable-line
+  const [imagesLocal, setImagesLocal] = useState(images);
 
   const imagesSize = useMemo(() => {
-    const { length } = images;
+    const { length } = imagesLocal;
 
     if (!length) {
       return null;
     }
 
     return length > 1 ? `${length} fotos` : `${length} foto`;
-  }, [images]);
+  }, [imagesLocal]);
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/*',
     onDrop: acceptedimages => {
       setUploaderOpen(true);
 
-      const newimages = acceptedimages.map(file => {
-        let [, ...description] = file.name.split('.').reverse();
+      const newimages = acceptedimages.map(image => {
+        let [, ...description] = image.name.split('.').reverse();
         description = description.reverse().join('.');
 
         return {
-          ...file,
+          ...image,
           description,
-          preview: URL.createObjectURL(file),
+          file: URL.createObjectURL(image),
           id: (Math.random() * 10000).toFixed(0),
-          file,
+          image,
         };
       });
-      setImages([...images, ...newimages]);
+
+      setImagesLocal([...imagesLocal, ...newimages]);
     },
   });
 
   const handleDescriptionChange = (e, id) => {
     const description = e.target.value;
 
-    setImages(
-      images.map(image => (image.id === id ? { ...image, description } : image))
+    setImagesLocal(
+      imagesLocal.map(image =>
+        image.id === id ? { ...image, description } : image
+      )
     );
   };
 
   const handleFileRemove = id => {
-    setImages(images.filter(image => image.id !== id));
+    setImagesLocal(imagesLocal.filter(image => image.id !== id));
   };
 
   const handleSave = () => {
-    setImagesSaved(images);
     setUploaderOpen(false);
 
-    onSave(images);
+    setImages(imagesLocal);
   };
 
-  const getContent = () =>
-    imagesSaved.length ? (
-      <Images onClick={() => setUploaderOpen(true)}>
-        {imagesSaved.map((image, index) => (
-          <ImageSmall key={index} source={image.preview}>
-            <div />
+  const handleClose = () => {
+    setUploaderOpen(false);
+    setImagesLocal(images);
+  };
 
-            <h3>{image.description}</h3>
-          </ImageSmall>
-        ))}
-      </Images>
-    ) : (
+  const getContent = () => {
+    if (images.length)
+      return (
+        <Images onClick={() => setUploaderOpen(true)}>
+          {images.map((image, index) => (
+            <ImageSmall key={index} source={image.file}>
+              <div />
+              <h3>{image.description}</h3>
+            </ImageSmall>
+          ))}
+        </Images>
+      );
+
+    return (
       <Images>
         <Dropzone {...getRootProps({ className: 'dropzone' })}>
           <input {...getInputProps()} />
@@ -103,16 +98,10 @@ export default function ImageUploader({ name, onSave }) {
         </Dropzone>
       </Images>
     );
+  };
 
   if (!uploaderOpen) {
-    return (
-      <>
-        <input ref={ref} hidden data-images={imagesSaved.length} />
-        {error}
-
-        {getContent()}
-      </>
-    );
+    return getContent();
   }
 
   return (
@@ -121,11 +110,7 @@ export default function ImageUploader({ name, onSave }) {
         <header>
           <section>
             <h1>Fotos do imóvel</h1>
-            <MdClose
-              color="#555"
-              size={35}
-              onClick={() => setUploaderOpen(false)}
-            />
+            <MdClose color="#555" size={35} onClick={handleClose} />
           </section>
 
           <Dropzone {...getRootProps({ className: 'dropzone' })}>
@@ -143,8 +128,8 @@ export default function ImageUploader({ name, onSave }) {
 
         <DndProvider backend={HTML5Backend}>
           <DragAndDrop
-            cards={images}
-            setCards={setImages}
+            cards={imagesLocal}
+            setCards={setImagesLocal}
             handleDescriptionChange={handleDescriptionChange}
             handleFileRemove={handleFileRemove}
           />
@@ -153,3 +138,8 @@ export default function ImageUploader({ name, onSave }) {
     </Container>
   );
 }
+
+ImageUploader.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  setImages: PropTypes.func.isRequired,
+};

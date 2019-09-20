@@ -61,6 +61,10 @@ export const Card = styled.div`
   & + div {
     margin-top: 30px;
   }
+
+  @media screen and (max-width: 768px) {
+    padding: 30px 20px;
+  }
 `;
 
 export const SubmitButton = styled(DefaultButton).attrs({
@@ -69,6 +73,6 @@ export const SubmitButton = styled(DefaultButton).attrs({
 })`
   display: flex;
   justify-content: center;
-  margin: 20px 0 20px auto;
+  margin: 25px 0 25px auto;
   width: 150px;
 `;

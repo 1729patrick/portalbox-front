@@ -8,86 +8,95 @@ import { sessionsImmobiles } from '~/services/fakeData';
 import { loadSessionImmobilesSuccess } from './actions';
 
 export function* createImmobile({ payload }) {
-  const { immobile, images } = payload;
-
-  const data = new FormData();
-  images.forEach(({ _id, file }) => {
-    if (!_id) {
-      data.append('files', file);
-    }
-  });
-
-  const responseImages = yield call(api.post, 'files', data);
-
-  const imagesMerged = [responseImages.data, images].reduce((a, b) =>
-    a.map((c, i) => Object.assign({}, c, b[i]))
-  );
-
-  const {
-    address,
-    type,
-    particulars,
-    allParticulars,
-    map,
-    price,
-    owner,
-    sessions,
-    rates,
-  } = immobile;
-
-  const particularsComplete = Object.assign(particulars, allParticulars);
-
-  const particularsFormatted = Object.keys(particularsComplete)
-    .map(k => {
-      try {
-        return {
-          title: k,
-          value: JSON.parse(particularsComplete[k]),
-        };
-      } catch (e) {
-        return {
-          title: k,
-          value: particularsComplete[k],
-        };
+  try {
+    const { immobile } = payload;
+    const { images } = immobile;
+    console.log(JSON.stringify(immobile), immobile);
+    const data = new FormData();
+    images.forEach(({ _id, image }) => {
+      if (!_id) {
+        data.append('files', image);
       }
-    })
-    .filter(({ value }) => value);
+    });
 
-  const ratesFormatted = Object.keys(rates)
-    .map(k => {
-      try {
-        return {
-          title: k,
-          value: JSON.parse(rates[k]),
-        };
-      } catch (e) {
-        return {
-          title: k,
-          value: rates[k],
-        };
-      }
-    })
-    .filter(({ value }) => value);
+    const responseImages = yield call(api.post, 'files', data);
 
-  const imagesMergedFormatted = imagesMerged.map(
-    ({ _id, url, description }) => ({ file: _id, url, description })
-  );
+    const imagesMerged = [responseImages.data, images].reduce((a, b) =>
+      a.map((c, i) => Object.assign({}, c, b[i]))
+    );
 
-  const immobileClean = {
-    address,
-    map,
-    price,
-    owner,
-    type,
-    config: { sessions },
-    particulars: particularsFormatted,
-    images: imagesMergedFormatted,
-    rates: ratesFormatted,
-  };
+    const {
+      address,
+      type,
+      particulars,
+      allParticulars,
+      map,
+      price,
+      owner,
+      config,
+      rates,
+    } = immobile;
 
-  yield call(api.post, 'immobiles', immobileClean);
+    const particularsComplete = Object.assign(particulars, allParticulars);
 
-  toast.success('Imóvel cadastrado com sucesso');
+    const particularsFormatted = Object.keys(particularsComplete)
+      .map(k => {
+        try {
+          return {
+            title: k,
+            value: JSON.parse(particularsComplete[k]),
+          };
+        } catch (e) {
+          return {
+            title: k,
+            value: particularsComplete[k],
+          };
+        }
+      })
+      .filter(({ value }) => value);
+
+    const ratesFormatted = Object.keys(rates)
+      .map(k => {
+        try {
+          return {
+            title: k,
+            value: JSON.parse(rates[k]),
+          };
+        } catch (e) {
+          return {
+            title: k,
+            value: rates[k],
+          };
+        }
+      })
+      .filter(({ value }) => value);
+
+    const imagesMergedFormatted = imagesMerged.map(
+      ({ _id, url, description }) => ({ file: _id, url, description })
+    );
+
+    const sessionsFormatted = config.sessions.map(({ _id }) => _id);
+
+    const immobileClean = {
+      address,
+      map,
+      price,
+      owner,
+      type,
+      config: { sessions: sessionsFormatted },
+      particulars: particularsFormatted,
+      images: imagesMergedFormatted,
+      rates: ratesFormatted,
+    };
+
+    yield call(api.post, 'immobiles', immobileClean);
+
+    toast.success('Imóvel cadastrado com sucesso');
+  } catch (e) {
+    toast.error(
+      'Confira os dados e tente novamente. Aconteceu algum erro ao criar o imóvel.'
+    );
+  }
 }
 
 export function* loadSession({ payload }) {
