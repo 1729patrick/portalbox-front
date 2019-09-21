@@ -29,13 +29,15 @@ export const Container = styled.header`
       cursor: pointer;
     }
 
-    ul {
+    div {
       display: flex;
       flex-direction: row;
       overflow-x: auto;
 
-      li {
+      button {
         white-space: nowrap;
+        background: transparent;
+        border: none;
 
         ${props =>
           props.contranstLight
@@ -56,12 +58,18 @@ export const Container = styled.header`
                 }
               `};
 
+              &.active {
+                padding-bottom: 5.5px;
+                border-bottom: solid 1.5px ${props => props.theme.header.color};
+              }
+
+
         font-weight: 500;
         font-size: 14px;
         cursor: pointer;
         padding: 7px 0;
 
-        & + li {
+        & + button {
           margin-left: 25px;
         }
       }
@@ -95,7 +103,7 @@ export const Search = styled.div`
 
   input {
     height: 100%
-    flex: 1;
+    width: 70%;
     padding: 0 45px 0 20px;
     border-radius: 30px;
     background: ${props => props.theme.header.search.backgroundColor};

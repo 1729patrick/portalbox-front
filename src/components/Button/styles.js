@@ -12,6 +12,9 @@ export const Container = styled.button`
   transition: background 0.3s;
   min-height: 44px;
   height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     background: ${props => props.background && darken(0.06, props.background)};

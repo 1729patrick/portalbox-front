@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { DefaultInput } from './styles';
+import { DefaultInput, TextArea } from './styles';
 
 import FieldLayout from '~/components/_layouts/Field';
 
@@ -10,15 +10,24 @@ export default function Input({
   error,
   value,
   setValue,
+  textarea,
   ...rest
 }) {
   return (
     <FieldLayout label={label} optional={optional} error={error}>
-      <DefaultInput
-        {...rest}
-        value={value}
-        onChange={e => setValue(e.target.value)}
-      />
+      {textarea ? (
+        <TextArea
+          {...rest}
+          value={value}
+          onChange={e => setValue(e.target.value)}
+        />
+      ) : (
+        <DefaultInput
+          {...rest}
+          value={value}
+          onChange={e => setValue(e.target.value)}
+        />
+      )}
     </FieldLayout>
   );
 }

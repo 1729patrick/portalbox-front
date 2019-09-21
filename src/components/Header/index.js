@@ -53,16 +53,20 @@ function Header({ simple, searchable, history, ...props }) {
           </Search>
         )}
 
-        <ul>
+        <div>
           {links.map(link => (
-            <li
+            <button
+              type="button"
+              className={
+                link.to === history.location.pathname ? link.activeClass : ''
+              }
               key={link.title}
               onClick={() => link.onClick({ dispatch, history })}
             >
               {link.title}
-            </li>
+            </button>
           ))}
-        </ul>
+        </div>
       </div>
 
       {!simple && (

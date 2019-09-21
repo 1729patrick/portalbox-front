@@ -15,18 +15,12 @@ export default function Header() {
 
         <aside>
           <div>
-            <NavLink to="/portal" exact activeClassName="active">
+            <NavLink to="/portal" exact>
               Inicio
             </NavLink>
-            <NavLink to="/portal/imoveis" activeClassName="active">
-              Imóveis
-            </NavLink>
-            <NavLink to="/portal/banners" activeClassName="active">
-              Banners
-            </NavLink>
-            <NavLink to="/portal/configuracoes" activeClassName="active">
-              Configurações
-            </NavLink>
+            <NavLink to="/portal/imoveis">Imóveis</NavLink>
+            <NavLink to="/portal/banners">Banners</NavLink>
+            <NavLink to="/portal/configuracoes">Configurações</NavLink>
           </div>
 
           <MdAccountCircle size={33} color="rgb(239, 108, 0)" />

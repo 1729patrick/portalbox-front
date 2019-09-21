@@ -14,6 +14,8 @@ import {
 export const links = [
   {
     title: 'Alugar imóvel',
+    to: '/imoveis',
+    activeClass: '',
     onClick: ({ dispatch, history }) => {
       if (history.location.pathname !== '/imoveis') {
         history.push('/imoveis');
@@ -28,6 +30,8 @@ export const links = [
 
   {
     title: 'Comprar imóvel',
+    to: '/imoveis',
+    activeClass: '',
     onClick: ({ dispatch, history }) => {
       if (history.location.pathname !== '/imoveis') {
         history.push('/imoveis');
@@ -39,9 +43,16 @@ export const links = [
       dispatch(saveFilterRequest());
     },
   },
-  { title: 'Anunciar meu imóvel' },
+  {
+    title: 'Anunciar meu Imóvel',
+    to: '',
+    activeClass: 'active',
+    onClick: () => {},
+  },
   {
     title: 'Contato',
+    to: '/contato',
+    activeClass: 'active',
     onClick: ({ history }) => {
       history.push('/contato');
     },
