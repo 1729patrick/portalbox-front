@@ -51,7 +51,9 @@ const styles = {
     return {
       ...provided,
       borderBottom: '1px solid #f1f1f1',
-      // color: state.isSelected ? theme.select.color : '#333',
+      borderLeft: 'none',
+      // borderRight: '1px solid #bbb',
+      borderRight: 'none',
       color: state.isSelected ? '#fff' : '#333',
       backgroundColor: state.isSelected
         ? // ? theme.select.backgroundColor
@@ -72,9 +74,10 @@ const styles = {
   menu: (provided, state) => ({
     ...provided,
     marginTop: 0,
-    border: 'none',
-    boxShadow: '0 0 30px 6px rgba(31, 51, 73, 0.1)',
-    borderRadius: state.selectProps.menuIsOpen ? '0 0 6px 6px' : 6,
+    border: '1px solid #bbb',
+    boxShadow: 'none',
+    borderRadius: state.selectProps.menuIsOpen ? '0 0 4px 4px' : 4,
+    borderTop: 'none',
   }),
 
   indicatorSeparator: provided => ({
@@ -85,14 +88,16 @@ const styles = {
     ...provided,
     margin: 0,
     padding: 0,
-    borderRadius: state.selectProps.menuIsOpen ? '0 0 6px 6px' : 6,
+    borderRadius: state.selectProps.menuIsOpen ? '0 0 4px 4px' : 4,
   }),
 
   control: (_, state) => ({
     height: 39,
     display: 'flex',
-    border: '1px solid #ddd',
-    borderRadius: state.selectProps.menuIsOpen ? '6px 6px 0 0' : 6,
+    border: state.selectProps.menuIsOpen ? '1px solid #bbb' : '1px solid #ddd',
+    borderBottomColor: '#ddd',
+    borderRadius: state.selectProps.menuIsOpen ? '4px 4px 0 0' : 4,
+
     cursor: 'pointer',
     fontWeight: 500,
   }),

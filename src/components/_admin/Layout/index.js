@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink as Link } from 'react-router-dom';
 
 export const Container = styled.div`
   display: flex;
@@ -37,7 +37,7 @@ export const Title = styled.h2`
   font-weight: 600;
 `;
 
-export const Route = styled(NavLink)`
+export const NavLink = styled(Link)`
   border: none;
   background: transparent;
   font-weight: 500;

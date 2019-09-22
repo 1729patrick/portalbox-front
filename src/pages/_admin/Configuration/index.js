@@ -5,9 +5,12 @@ import {
   LeftAside,
   RigthAside,
   Title,
-  Route,
-  Card,
+  NavLink,
 } from '~/components/_admin/Layout';
+
+import Route from '~/routes/Route';
+
+import Company from './Company';
 
 export default function Configuration() {
   return (
@@ -16,16 +19,22 @@ export default function Configuration() {
         <Title>Configurações</Title>
 
         <div>
-          <Route to="/portal/configuracoes">Minha empresa</Route>
-          <Route to="/portal/configuracoes/endereco">Endereço</Route>
-          <Route to="/portal/configuracoes/contato">Contato</Route>
-          <Route to="/portal/configuracoes/personalizacao">
+          <NavLink to="/portal/configuracoes">Empresa</NavLink>
+          <NavLink to="/portal/configuracoes/bairros">Bairros</NavLink>
+          <NavLink to="/portal/configuracoes/bairros">Redes Sociais</NavLink>
+          <NavLink to="/portal/configuracoes/personalizacao">
             Personalização do PORTAL
-          </Route>
+          </NavLink>
         </div>
       </LeftAside>
       <RigthAside>
-        <Card>x</Card>
+        <Route
+          path="/portal/configuracoes"
+          exact
+          component={Company}
+          isPrivate
+          onlyComponent
+        />
       </RigthAside>
     </Container>
   );

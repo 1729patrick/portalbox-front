@@ -4,8 +4,8 @@ export const Options = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-left: -18px;
-  padding-left: 9px;
+  margin: -10px -18px;
+  padding: 10px 9px;
   overflow-y: hidden;
   overflow-x: auto;
 `;

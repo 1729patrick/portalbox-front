@@ -24,16 +24,6 @@ export default function Locale({ onClick }) {
     );
   }, [dispatch, selecteds]);
 
-  const handleChange = type => {
-    const selected = selecteds.find(({ _id }) => _id === type._id);
-
-    if (!selected) {
-      setSelecteds([...selecteds, type]);
-    } else {
-      setSelecteds(selecteds.filter(({ _id }) => _id !== type._id));
-    }
-  };
-
   return (
     <PopupLayout
       label="Em qual bairro?"
@@ -46,17 +36,13 @@ export default function Locale({ onClick }) {
           <div key={city._id}>
             <p>{city.name}</p>
             <span>
-              {city.neighborhoods.map(neighborhood => (
-                <Checkbox
-                  key={neighborhood._id}
-                  onChange={handleChange}
-                  value={neighborhood}
-                  label={neighborhood.name}
-                  checked={
-                    !!selecteds.find(({ _id }) => _id === neighborhood._id)
-                  }
-                />
-              ))}
+              <Checkbox
+                list={city.neighborhoods}
+                checkeds={selecteds}
+                setCheckeds={setSelecteds}
+                label="name"
+                value="_id"
+              />
             </span>
           </div>
         ))}

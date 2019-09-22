@@ -58,11 +58,10 @@ export const Container = styled.header`
                 }
               `};
 
-              &.active {
-                padding-bottom: 5.5px;
-                border-bottom: solid 1.5px ${props => props.theme.header.color};
-              }
-
+        &.active {
+          padding-bottom: 5.5px;
+          border-bottom: solid 1.5px ${props => props.theme.header.color};
+        }
 
         font-weight: 500;
         font-size: 14px;
@@ -82,15 +81,14 @@ export const Container = styled.header`
     ul {
       padding-left: 10px;
 
-      li  + li {
-          margin-left: 15px !important;
-        }
+      li + li {
+        margin-left: 15px !important;
       }
     }
+  }
 
-    > div img {
-      max-width: 90px;
-    }
+  > div img {
+    max-width: 90px;
   }
 `;
 
@@ -102,7 +100,7 @@ export const Search = styled.div`
   padding: 0 50px;
 
   input {
-    height: 100%
+    height: 100%;
     width: 70%;
     padding: 0 45px 0 20px;
     border-radius: 30px;
@@ -123,6 +121,6 @@ export const Search = styled.div`
   }
 
   @media screen and (max-width: 768px) {
-      display: none;
+    display: none !important;
   }
 `;

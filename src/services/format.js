@@ -5,6 +5,7 @@ export const formatPrice = valueFloat => {
 };
 
 export const formatTitleImmobile = immobile => {
+  console.log(immobile);
   // secondParticular = getParticular({
   //   title: secondParticular.title,
   //   pos: secondParticular.value > 1,
@@ -40,6 +41,20 @@ export const formatTitleImmobile = immobile => {
   //     })}`
   //   : '';
   // return `${immobile.type.name} com ${firstParticular}, ${secondParticular},${areaFormatted}${rentFormatted}${saleFormatted}`;
+  const {
+    type,
+    address: { neighborhood },
+    price,
+  } = immobile;
 
-  return 'Apartartamento incrível á um minuto do centro';
+  const finality =
+    price.rent >= 0 && price.sale >= 0
+      ? ' para Venda e Locação'
+      : price.sale >= 0
+      ? ' para Venda'
+      : price.rent >= 0
+      ? ' para Locação'
+      : '';
+
+  return `${type.name}${finality} no bairro ${neighborhood.name}`;
 };

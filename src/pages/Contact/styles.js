@@ -2,9 +2,6 @@ import styled from 'styled-components';
 import Button from '~/components/Button';
 
 export const Container = styled.section`
-  align-items: stretch;
-  margin: 0 auto;
-  background: #fff;
   padding: 75px 0 0 0 !important;
 
   > div {
@@ -14,24 +11,45 @@ export const Container = styled.section`
     > div {
       flex: 1;
       padding: 0 30px;
+      text-align: center;
+
+      form {
+        > div {
+          margin-bottom: 15px;
+
+          input,
+          textarea {
+            background: #e1e3e4;
+            border: none;
+            font-weight: 500;
+
+            &::placeholder {
+              color: #777;
+              font-weight: 500;
+            }
+          }
+        }
+      }
     }
   }
 
-  form {
+  @media screen and (max-width: 768px) {
     > div {
-      margin-bottom: 15px;
+      flex-direction: column-reverse;
+      padding: 0 30px 20px;
 
-      input,
-      textarea {
-        background: #f1f3f4;
-        border: none;
-        font-weight: 500;
+      > div {
+        padding: 0;
 
-        &::placeholder {
-          color: #666;
-          font-weight: 500;
+        > h1 {
+          font-size: 32px;
         }
       }
+    }
+
+    > h1 {
+      padding: 30px 30px 10px;
+      font-size: 23px;
     }
   }
 `;
@@ -44,7 +62,9 @@ export const Title = styled.h1`
 `;
 
 export const Info = styled.div`
-    span {
+    margin-top: 18px;
+
+    div {
       display: block;
       font-size: 14px;
       line-height: 24px;
@@ -67,7 +87,7 @@ export const Info = styled.div`
 
     div {
       p {
-        color: #162962;
+        color: #333;
         font-weight: 500;
         line-height: 24px;
         font-size: 14.5px;
@@ -88,12 +108,9 @@ export const SubmitButton = styled(Button).attrs({
 export const Header = styled.div`
   height: 300px;
   padding: 0 !important;
-  /* background: linear-gradient(130deg, #3c91e7 0, #162962 100%); */
   background: ${props => `url("${props.banner}") center no-repeat`};
   background-size: cover;
-
   width: 100%;
-
   box-shadow: 0 0 30px 6px rgba(31, 51, 73, 0.1);
 
   div {

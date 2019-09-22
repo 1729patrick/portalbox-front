@@ -61,27 +61,23 @@ const Contact = () => {
         </div>
 
         <Info>
-          <span>
-            Rua Primeiro de Maio, 1425, Centro, Bandeirante-SC, 89905-000 -{' '}
-            <button>VER NO MAPA</button>
-          </span>
-
           <div>
-            <span>
-              {company.phones.map(phone => (
-                <p key={phone.number}>{phone.number}</p>
-              ))}
+            Atendimento de Segunda à Sexta das 08h às 12h e das 13h às 18h
+          </div>
+          <div>
+            {company.phones.map(phone => (
+              <p key={phone.number}>{phone.number}</p>
+            ))}
 
-              {company.emails.map(email => (
-                <p key={email}>{email}</p>
-              ))}
-            </span>
-            <span>
-              Atendimento de Segunda à Sexta das 08h às 12h e das 13h às 18h.
-            </span>
+            {company.emails.map(email => (
+              <p key={email}>{email}</p>
+            ))}
           </div>
 
-          <span>
+          <div>
+            Rua Primeiro de Maio, 1425, Centro, Bandeirante-SC, 89905-000
+          </div>
+          <div>
             <button>
               <TiSocialFacebook color="#162962" size={25} />
             </button>
@@ -97,9 +93,7 @@ const Contact = () => {
             <button>
               <FaInstagram color="#162962" size={25} />
             </button>
-          </span>
-
-          {/* <p>CRECI 126-DS-952</p> */}
+          </div>
         </Info>
       </div>
     </Container>

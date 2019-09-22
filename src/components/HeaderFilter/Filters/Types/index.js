@@ -19,16 +19,6 @@ export default function Types({ onClick }) {
     dispatch(setTypesFilter({ types: selecteds }));
   }, [dispatch, selecteds]);
 
-  const handleChange = type => {
-    const selected = selecteds.find(({ _id }) => _id === type._id);
-
-    if (!selected) {
-      setSelecteds([...selecteds, type]);
-    } else {
-      setSelecteds(selecteds.filter(({ _id }) => _id !== type._id));
-    }
-  };
-
   return (
     <PopupLayout
       label="Qual tipo?"
@@ -37,15 +27,13 @@ export default function Types({ onClick }) {
       showClear={!!(selecteds.length > 0)}
     >
       <Content>
-        {types.map(type => (
-          <Checkbox
-            key={type._id}
-            onChange={handleChange}
-            value={type}
-            label={type.name}
-            checked={!!selecteds.find(({ _id }) => _id === type._id)}
-          />
-        ))}
+        <Checkbox
+          list={types}
+          checkeds={selecteds}
+          setCheckeds={setSelecteds}
+          label="name"
+          value="_id"
+        />
       </Content>
     </PopupLayout>
   );

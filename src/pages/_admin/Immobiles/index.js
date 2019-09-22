@@ -5,10 +5,12 @@ import {
   LeftAside,
   RigthAside,
   Title,
-  Route,
+  NavLink,
 } from '~/components/_admin/Layout';
 
+import Route from '~/routes/Route';
 import New from './New';
+import List from './List';
 
 export default function Immobiles() {
   return (
@@ -17,14 +19,29 @@ export default function Immobiles() {
         <Title>Imóveis</Title>
 
         <div>
-          <Route to="/portal/imoveis">Novo imóvel</Route>
-          <Route to="/portal/imoveis/listar">Lista de imóveis</Route>
-          <Route to="/portal/imoveis/destaque">Imóveis em destaque</Route>
-          <Route to="/portal/imoveis/automatizacao">Automatização</Route>
+          <NavLink to="/portal/imoveis" exact>
+            Novo imóvel
+          </NavLink>
+          <NavLink to="/portal/imoveis/lista">Lista de imóveis</NavLink>
+          <NavLink to="/portal/imoveis/sessoes">Sessões</NavLink>
+          <NavLink to="/portal/imoveis/automatizacoes">Automatizações</NavLink>
         </div>
       </LeftAside>
       <RigthAside>
-        <New />
+        <Route
+          path="/portal/imoveis"
+          exact
+          component={New}
+          isPrivate
+          onlyComponent
+        />
+        <Route
+          path="/portal/imoveis/lista"
+          exact
+          component={List}
+          isPrivate
+          onlyComponent
+        />
       </RigthAside>
     </Container>
   );

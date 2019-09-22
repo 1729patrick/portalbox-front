@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 
 import Input from '~/components/Input';
 
-import { Card } from '../styles';
+import Card from '~/components/_admin/Card';
 
 export default function Map({ values, setFieldValue }) {
   const path = useMemo(() => values.map, [values.map]);

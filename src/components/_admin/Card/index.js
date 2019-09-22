@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Card = styled.div`
+export default styled.div`
   border-radius: 8px;
   background: #fff;
   box-shadow: 0 0 30px 6px rgba(31, 51, 73, 0.1);

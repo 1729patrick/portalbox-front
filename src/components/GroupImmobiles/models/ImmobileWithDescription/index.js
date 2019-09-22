@@ -41,8 +41,8 @@ export default function ImmobileWithDescription({ immobile, openDetails }) {
   }, [immobile.price.sale]);
 
   const title = useMemo(() => {
-    return formatTitleImmobile();
-  }, []);
+    return formatTitleImmobile(immobile);
+  }, [immobile]);
 
   return (
     <Container onClick={() => openDetails(immobile._id, address)}>

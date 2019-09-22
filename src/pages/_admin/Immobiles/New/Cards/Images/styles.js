@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Card } from '../styles';
+import Card from '~/components/_admin/Card';
 
 export const CardImages = styled(Card)`
   > div {

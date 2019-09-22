@@ -121,7 +121,6 @@ export default function New() {
         validationSchema={CreateImmobileSchema}
         render={({ values, setFieldValue, errors }) => (
           <Form>
-            {console.log(errors)}
             <Address
               values={values}
               setFieldValue={setFieldValue}
