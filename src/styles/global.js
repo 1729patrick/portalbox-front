@@ -64,10 +64,11 @@ body {
     font: 14px "Google Sans",Roboto,Arial,Helvetica,sans-serif;
     line-height: 1.71429;
     font-style: normal;
-    font-weight: 300;
-    line-height: 1.444;
+    font-weight: 500;
     overflow-wrap: break-word;
     word-wrap: break-word;
+    color: #808080;
+
   }
 
   a {
@@ -80,6 +81,8 @@ body {
 
   button {
     cursor: pointer;
+    background: transparent;
+    border: none;
   }
 
 

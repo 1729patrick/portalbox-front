@@ -31,7 +31,6 @@ export function* signInVisitor() {
     }
 
     api.defaults.headers.Authorization = `Bearer ${token}`;
-
     yield put(signInVisitorSuccess(company, token));
   } catch {
     yield put(signInFailure());

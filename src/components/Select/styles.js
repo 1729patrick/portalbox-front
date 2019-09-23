@@ -51,9 +51,6 @@ const styles = {
     return {
       ...provided,
       borderBottom: '1px solid #f1f1f1',
-      borderLeft: 'none',
-      // borderRight: '1px solid #bbb',
-      borderRight: 'none',
       color: state.isSelected ? '#fff' : '#333',
       backgroundColor: state.isSelected
         ? // ? theme.select.backgroundColor
@@ -100,6 +97,7 @@ const styles = {
 
     cursor: 'pointer',
     fontWeight: 500,
+    whiteSpace: 'nowrap',
   }),
 
   singleValue: (provided, state) => {

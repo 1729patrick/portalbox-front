@@ -11,7 +11,6 @@ export function* createImmobile({ payload }) {
   try {
     const { immobile } = payload;
     const { images } = immobile;
-    console.log(JSON.stringify(immobile), immobile);
     const data = new FormData();
     images.forEach(({ _id, image }) => {
       if (!_id) {

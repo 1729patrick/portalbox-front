@@ -618,3 +618,15 @@ export const getRate = title => {
 
   return rates[title];
 };
+
+export const typesPhone = [
+  { _id: 'whatsapp', name: 'WhatsApp' },
+  { _id: 'smartphone', name: 'Celular' },
+  { _id: 'fixed', name: 'Fixo' },
+];
+
+export const typesEmail = [
+  { _id: 'general', name: 'Geral' },
+  { _id: 'rent', name: 'Locação' },
+  { _id: 'sale', name: 'Venda' },
+];

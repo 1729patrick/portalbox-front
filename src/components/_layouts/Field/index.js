@@ -26,7 +26,7 @@ const Field = ({ children, label, optional, error, showClear, onClear }) => {
 
 Field.propTypes = {
   children: PropTypes.node.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   optional: PropTypes.bool,
   error: PropTypes.string,
   showClear: PropTypes.bool,
@@ -36,6 +36,7 @@ Field.propTypes = {
 Field.defaultProps = {
   optional: false,
   error: '',
+  label: '',
   showClear: false,
   onClear: () => console.log('limpou'),
 };

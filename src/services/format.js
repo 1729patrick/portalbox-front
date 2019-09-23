@@ -5,7 +5,6 @@ export const formatPrice = valueFloat => {
 };
 
 export const formatTitleImmobile = immobile => {
-  console.log(immobile);
   // secondParticular = getParticular({
   //   title: secondParticular.title,
   //   pos: secondParticular.value > 1,
