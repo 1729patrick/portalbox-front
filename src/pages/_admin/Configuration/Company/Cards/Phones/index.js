@@ -50,6 +50,13 @@ export default function Phones({ values, setFieldValue, errors }) {
     );
   };
 
+  const getError = (index, field) => {
+    if (!errors.phones) {
+      return '';
+    }
+    return errors.phones[index] ? errors.phones[index][field] : '';
+  };
+
   return (
     <Card>
       <div>
@@ -63,18 +70,21 @@ export default function Phones({ values, setFieldValue, errors }) {
             placeholder="Número do telefone"
             value={number}
             setValue={value => setValue(index, 'number', value)}
+            error={getError(index, 'number')}
           />
           <Input
             type="text"
             placeholder="Descrição do telefone"
             value={description}
             setValue={value => setValue(index, 'description', value)}
+            error={getError(index, 'description')}
           />
           <Select
             placeholder="Tipo do telefone"
             selected={type}
             setSelected={selected => setValue(index, 'type', selected)}
             options={typesPhone}
+            error={getError(index, 'type')}
           />
 
           <button type="button">

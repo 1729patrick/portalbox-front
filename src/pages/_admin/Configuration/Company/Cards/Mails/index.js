@@ -65,6 +65,13 @@ export default function Emails({ values, setFieldValue, errors }) {
     );
   };
 
+  const getError = (index, field) => {
+    if (!errors.emails) {
+      return '';
+    }
+    return errors.emails[index] ? errors.emails[index][field] : '';
+  };
+
   return (
     <Card>
       <div>
@@ -78,6 +85,7 @@ export default function Emails({ values, setFieldValue, errors }) {
             placeholder="Endereço de e-mail"
             value={email}
             setValue={value => setValue(index, 'email', value)}
+            error={getError(index, 'email')}
           />
 
           <div>
@@ -86,6 +94,7 @@ export default function Emails({ values, setFieldValue, errors }) {
               selected={type}
               setSelected={selected => setValue(index, 'type', selected)}
               options={typesEmail}
+              error={getError(index, 'type')}
             />
             <Select
               placeholder="Exibir no PORTAL?"
@@ -95,6 +104,7 @@ export default function Emails({ values, setFieldValue, errors }) {
                 setValue(index, 'showInPortal', selected)
               }
               options={showInPortalOptions}
+              error={getError(index, 'showInPortal')}
             />
           </div>
           <button type="button">

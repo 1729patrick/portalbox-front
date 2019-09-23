@@ -19,9 +19,13 @@ export default function Configuration() {
         <Title>Configurações</Title>
 
         <div>
-          <NavLink to="/portal/configuracoes">Empresa</NavLink>
+          <NavLink to="/portal/configuracoes" exact>
+            Empresa
+          </NavLink>
           <NavLink to="/portal/configuracoes/bairros">Bairros</NavLink>
-          <NavLink to="/portal/configuracoes/bairros">Redes Sociais</NavLink>
+          <NavLink to="/portal/configuracoes/redes-sociais">
+            Redes Sociais
+          </NavLink>
           <NavLink to="/portal/configuracoes/personalizacao">
             Personalização do PORTAL
           </NavLink>

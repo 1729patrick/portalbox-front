@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 
 const requiredMessage = 'Este campo precisa ser preenchido';
+
 Yup.numberNullable = () =>
   Yup.number()
     .transform(cv => (typeof cv === 'number' ? cv : null))

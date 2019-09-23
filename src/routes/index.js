@@ -31,7 +31,6 @@ const Routes = () => {
       <Route path="/portal/imoveis" component={AdminImmobiles} isPrivate />
       <Route
         path="/portal/configuracoes"
-        exact
         component={AdminConfiguration}
         isPrivate
       />

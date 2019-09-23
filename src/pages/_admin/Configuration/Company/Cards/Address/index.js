@@ -53,12 +53,12 @@ export default function Address({ values, setFieldValue, errors }) {
       />
 
       <Input
-        type="number"
+        type="text"
         label="CEP"
         placeholder="Digite o CEP"
-        error={getError('CEP')}
-        value={path.CEP}
-        setValue={value => setFieldValue('address.CEP', value)}
+        error={getError('cep')}
+        value={path.cep}
+        setValue={value => setFieldValue('address.cep', value)}
       />
 
       <Select

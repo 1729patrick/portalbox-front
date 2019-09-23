@@ -12,6 +12,8 @@ import Images from './Cards/Images';
 import Phones from './Cards/Phones';
 import Mails from './Cards/Mails';
 
+import UpdateCompanySchema from '~/schemas/UpdateCompanySchema';
+
 export default function Company() {
   const company = useSelector(state => {
     const { _id, ...company } = state.company;
@@ -23,8 +25,10 @@ export default function Company() {
       validateOnChange={false}
       initialValues={company}
       onSubmit={data => console.log(data, JSON.stringify(data))}
+      validationSchema={UpdateCompanySchema}
       render={({ values, setFieldValue, errors }) => (
         <Form>
+          {console.log(errors)}
           <MyCompany
             values={values}
             setFieldValue={setFieldValue}
@@ -35,7 +39,11 @@ export default function Company() {
             setFieldValue={setFieldValue}
             errors={errors}
           />
-          <Images />
+          <Images
+            values={values}
+            setFieldValue={setFieldValue}
+            errors={errors}
+          />
           <Phones
             values={values}
             setFieldValue={setFieldValue}

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Mail = styled.div`
   display: flex;
+  align-items: flex-end;
 
   > div {
     display: flex;
@@ -10,10 +11,10 @@ export const Mail = styled.div`
 
     & + div {
       margin-left: 15px;
+      align-items: flex-end;
     }
 
     > div {
-      justify-content: flex-end;
       flex: 1;
 
       & + div {

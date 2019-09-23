@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Phone = styled.div`
   display: flex;
+  align-items: flex-end;
 
   > div {
     flex: 1;

@@ -12,6 +12,7 @@ export const Label = styled.div`
   margin-bottom: 3px;
   justify-content: space-between;
   display: flex;
+  white-space: nowrap;
 
   label span {
     color: #777;
