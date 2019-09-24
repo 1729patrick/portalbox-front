@@ -56,7 +56,7 @@ export default function Emails({ values, setFieldValue, errors }) {
     setEmails(emails.filter((_, i) => i !== index));
   };
 
-  const setValue = (index, field, value) => {
+  const handleValueChange = (index, field, value) => {
     setEmails(
       emails.map((p, i) => {
         if (i === index) return { ...p, [field]: value };
@@ -84,7 +84,7 @@ export default function Emails({ values, setFieldValue, errors }) {
             type="text"
             placeholder="Endereço de e-mail"
             value={email}
-            setValue={value => setValue(index, 'email', value)}
+            setValue={value => handleValueChange(index, 'email', value)}
             error={getError(index, 'email')}
           />
 
@@ -92,7 +92,9 @@ export default function Emails({ values, setFieldValue, errors }) {
             <Select
               placeholder="Tipo do telefone"
               selected={type}
-              setSelected={selected => setValue(index, 'type', selected)}
+              setSelected={selected =>
+                handleValueChange(index, 'type', selected)
+              }
               options={typesEmail}
               error={getError(index, 'type')}
             />
@@ -101,7 +103,7 @@ export default function Emails({ values, setFieldValue, errors }) {
               label="Exibir no PORTAL?"
               value={showInPortal}
               setSelected={selected =>
-                setValue(index, 'showInPortal', selected)
+                handleValueChange(index, 'showInPortal', selected)
               }
               options={showInPortalOptions}
               error={getError(index, 'showInPortal')}

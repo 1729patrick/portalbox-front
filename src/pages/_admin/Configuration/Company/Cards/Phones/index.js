@@ -41,7 +41,7 @@ export default function Phones({ values, setFieldValue, errors }) {
     setPhones(phones.filter((_, i) => i !== index));
   };
 
-  const setValue = (index, field, value) => {
+  const handleValueChange = (index, field, value) => {
     setPhones(
       phones.map((p, i) => {
         if (i === index) return { ...p, [field]: value };
@@ -69,20 +69,20 @@ export default function Phones({ values, setFieldValue, errors }) {
             type="number"
             placeholder="Número do telefone"
             value={number}
-            setValue={value => setValue(index, 'number', value)}
+            setValue={value => handleValueChange(index, 'number', value)}
             error={getError(index, 'number')}
           />
           <Input
             type="text"
             placeholder="Descrição do telefone"
             value={description}
-            setValue={value => setValue(index, 'description', value)}
+            setValue={value => handleValueChange(index, 'description', value)}
             error={getError(index, 'description')}
           />
           <Select
             placeholder="Tipo do telefone"
             selected={type}
-            setSelected={selected => setValue(index, 'type', selected)}
+            setSelected={selected => handleValueChange(index, 'type', selected)}
             options={typesPhone}
             error={getError(index, 'type')}
           />

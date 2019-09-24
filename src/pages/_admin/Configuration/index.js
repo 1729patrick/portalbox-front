@@ -11,6 +11,7 @@ import {
 import Route from '~/routes/Route';
 
 import Company from './Company';
+import Cities from './Cities';
 
 export default function Configuration() {
   return (
@@ -22,7 +23,9 @@ export default function Configuration() {
           <NavLink to="/portal/configuracoes" exact>
             Empresa
           </NavLink>
-          <NavLink to="/portal/configuracoes/bairros">Bairros</NavLink>
+          <NavLink to="/portal/configuracoes/cidades-bairros">
+            Cidades e Bairros
+          </NavLink>
           <NavLink to="/portal/configuracoes/redes-sociais">
             Redes Sociais
           </NavLink>
@@ -36,6 +39,13 @@ export default function Configuration() {
           path="/portal/configuracoes"
           exact
           component={Company}
+          isPrivate
+          onlyComponent
+        />
+        <Route
+          path="/portal/configuracoes/cidades-bairros"
+          exact
+          component={Cities}
           isPrivate
           onlyComponent
         />

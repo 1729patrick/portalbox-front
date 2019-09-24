@@ -23,6 +23,10 @@ export const Mail = styled.div`
     }
   }
 
+  & + div {
+    margin-top: 15px !important;
+  }
+
   button {
     margin-top: 0;
     margin-left: 15px;
@@ -33,10 +37,6 @@ export const Mail = styled.div`
     p {
       display: none;
     }
-  }
-
-  & + div {
-    margin-top: 15px !important;
   }
 
   @media screen and (max-width: 768px) {

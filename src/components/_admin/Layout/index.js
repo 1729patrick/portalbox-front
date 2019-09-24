@@ -53,6 +53,10 @@ export const NavLink = styled(Link)`
     width: 75%;
     border-radius: 4px 50px 50px 4px;
   }
+
+  &:hover {
+    color: rgb(239, 108, 0);
+  }
 `;
 
 export const Card = styled.div`

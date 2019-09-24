@@ -6,18 +6,20 @@ import { Container, Label, Clear } from './styles';
 const Field = ({ children, label, optional, error, showClear, onClear }) => {
   return (
     <Container>
-      <Label>
-        {label && (
-          <label>
-            {label}
-            {optional && <span>(Opcional)</span>}
-          </label>
-        )}
+      {(label || showClear || error) && (
+        <Label>
+          {label && (
+            <label>
+              {label}
+              {optional && <span>(Opcional)</span>}
+            </label>
+          )}
 
-        {showClear && <Clear onClick={onClear}>Limpar</Clear>}
+          {showClear && <Clear onClick={onClear}>Limpar</Clear>}
 
-        {error && <span>{error}</span>}
-      </Label>
+          {error && <span>{error}</span>}
+        </Label>
+      )}
 
       {children}
     </Container>

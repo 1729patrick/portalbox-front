@@ -5,9 +5,12 @@ export default styled.div`
   background: #fff;
   box-shadow: 0 0 30px 6px rgba(31, 51, 73, 0.1);
   padding: 60px;
-  margin-bottom: 30px;
   display: flex;
   flex-direction: column;
+
+  & + div {
+    margin-top: 30px;
+  }
 
   > div {
     & + div {
@@ -51,10 +54,6 @@ export default styled.div`
     &:hover {
       border-color: rgb(239, 108, 0);
     }
-  }
-
-  & + div {
-    margin-top: 30px;
   }
 
   @media screen and (max-width: 768px) {

@@ -9,7 +9,7 @@ import { Container, Label } from './styles';
 
 import { optionsParticulars, allParticulars } from '~/services/fakeData';
 
-import Picker from '..';
+import Picker from '~/components/_admin/Picker';
 
 export default function Particulars({ onClose, open, values, setFieldValue }) {
   const path = useMemo(() => values.allParticulars, [values.allParticulars]);

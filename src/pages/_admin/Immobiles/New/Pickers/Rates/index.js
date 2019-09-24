@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-import Picker from '..';
+import Picker from '~/components/_admin/Picker';
 import InputMask from '~/components/InputMask';
 
 import { Container } from './styles';

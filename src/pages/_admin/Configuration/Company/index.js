@@ -28,7 +28,6 @@ export default function Company() {
       validationSchema={UpdateCompanySchema}
       render={({ values, setFieldValue, errors }) => (
         <Form>
-          {console.log(errors)}
           <MyCompany
             values={values}
             setFieldValue={setFieldValue}
