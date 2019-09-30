@@ -20,7 +20,7 @@ export const Title = styled.div`
 `;
 
 export const City = styled.div`
-  background: #f5f5f5;
+  background: #eee;
   padding: 15px;
   border-radius: 4px;
 
@@ -68,7 +68,7 @@ export const City = styled.div`
   }
 
   div div input {
-    background: #eaeaea;
+    background: #fff;
     border: none;
   }
 `;

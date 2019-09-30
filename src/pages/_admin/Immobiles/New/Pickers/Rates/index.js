@@ -12,7 +12,7 @@ export default function Rates({ onClose, open, values, setFieldValue }) {
   if (!open) return null;
 
   return (
-    <Picker title="Adicionar taxas" onClose={onClose} path={path}>
+    <Picker title="Adicionar taxas" onClose={onClose}>
       <Container>
         <div>
           <InputMask

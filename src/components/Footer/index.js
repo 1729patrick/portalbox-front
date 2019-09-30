@@ -18,6 +18,8 @@ const Footer = ({ history }) => {
   const dispatch = useDispatch();
   const company = useSelector(state => state.company);
 
+  return null;
+
   return (
     <FooterWrapper>
       <Container>
