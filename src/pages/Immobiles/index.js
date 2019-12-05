@@ -90,10 +90,9 @@ export default function Immobiles() {
         textButton="Ver apartamentos"
         onClick={() =>
           handleClickType({
-            image:
-              'http://localhost:3333/static/files/f503a939f6cfbcc08e42f1eaac63e0f2.jpg',
+            image: '',
             name: 'Apartamento',
-            _id: '5d744dab68634c086bd78a22',
+            _id: '5ddfd1c309817c0d7393a958',
           })
         }
       />

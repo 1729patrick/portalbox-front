@@ -1,7 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { IoIosFlag } from 'react-icons/io';
 
 import Checkbox from '~/components/Checkbox';
 import { Container, MapWrapper, MarkerList } from './styles';
@@ -10,7 +8,9 @@ import MapContainer from './MapContainer';
 
 import { places } from '~/services/fakeData';
 
-export default function Map({ location }) {
+export default function Map({ location, address }) {
+  const [selecteds, setSelecteds] = useState([]);
+
   return (
     <Container>
       <MapWrapper>
@@ -22,28 +22,17 @@ export default function Map({ location }) {
           <p>
             Locais próximos <span>(750m)</span>
           </p>
-          {places.map(place => (
-            <FormControlLabel
-              key={place.id}
-              control={
-                <Checkbox
-                  checked={false}
-                  onChange={() => console.log('eee')}
-                  value="checkedG"
-                />
-              }
-              labelPlacement="start"
-              label={
-                <>
-                  <IoIosFlag size={22} color={place.color} />
-                  {place.title}
-                </>
-              }
-            />
-          ))}
+
+          <Checkbox
+            list={places}
+            checkeds={selecteds}
+            setCheckeds={setSelecteds}
+            label="title"
+            value="id"
+          />
         </div>
 
-        <h4>Rua Maria Lúcia da Paz - Gleba Fazenda Palhano, Londrina - PR</h4>
+        <h4>{address}</h4>
       </MarkerList>
     </Container>
   );

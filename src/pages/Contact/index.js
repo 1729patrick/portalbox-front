@@ -2,7 +2,12 @@ import React from 'react';
 import { Formik, Form } from 'formik';
 import { IoLogoTwitter } from 'react-icons/io';
 import { FaInstagram, FaWhatsapp } from 'react-icons/fa';
-import { TiSocialFacebook, TiSocialLinkedin } from 'react-icons/ti';
+import {
+  TiSocialFacebook,
+  TiSocialLinkedin,
+  TiPhoneOutline,
+  TiMail,
+} from 'react-icons/ti';
 import { useSelector } from 'react-redux';
 
 import Input from '~/components/Input';
@@ -64,18 +69,28 @@ const Contact = () => {
           <div>
             Atendimento de Segunda à Sexta das 08h às 12h e das 13h às 18h
           </div>
+
           <div>
             {company.phones.map(phone => (
-              <p key={phone.number}>{phone.number}</p>
+              <p key={phone.number}>
+                <TiPhoneOutline size={20} color="#162962" />
+                {phone.number} - {phone.description}
+              </p>
             ))}
 
-            {company.emails.map(email => (
-              <p key={email}>{email}</p>
+            {company.emails.map(({ email, type }) => (
+              <p key={email}>
+                <TiMail size={20} color="#162962" />
+                {email} - {type.name}
+              </p>
             ))}
           </div>
 
           <div>
-            Rua Primeiro de Maio, 1425, Centro, Bandeirante-SC, 89905-000
+            {company.address.street},{' '}
+            {company.address.number ? `${company.address.number}, ` : ''}
+            {company.address.neighborhood.name}, {company.address.city.name}
+            -PT, {company.address.cep}
           </div>
           <div>
             <button>

@@ -1,23 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-import CircularProgress from '@material-ui/core/CircularProgress';
+// import CircularProgress from '@material-ui/core/CircularProgress';
 // import LinearProgress from '@material-ui/core/LinearProgress';
-import { useSelector } from 'react-redux';
-// import loadingGif from '~/assets/loading.gif';
+import loadingGif from '~/assets/loading.gif';
 
 import { Container } from './styles';
 
 export default function Loading() {
-  const loading = useSelector(state => state.filter.loading);
+  const [points, setPoints] = useState([]);
 
-  if (!loading) return null;
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPoints(p => {
+        if (p.length === 3) {
+          return [];
+        }
+
+        return [...p, p.length];
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <Container>
-      {/* <img src={loadingGif} alt="gif" />
-      <LinearProgress /> */}
+      {/* <CircularProgress /> */}
+      <img src={loadingGif} alt="" />
 
-      <CircularProgress />
+      <p>
+        Carregando
+        {points.map(point => (
+          <span key={point}>.</span>
+        ))}
+      </p>
     </Container>
   );
 }

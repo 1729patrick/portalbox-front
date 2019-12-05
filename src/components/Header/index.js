@@ -41,10 +41,20 @@ function Header({ simple, searchable, history, ...props }) {
     return () => document.removeEventListener('click', handleClick);
   }, [handleClick]);
 
+  const onClickLogo = () => {
+    const { pathname } = history.location;
+
+    if (pathname === '/imoveis') {
+      return history.push('/');
+    }
+
+    return history.push('/imoveis');
+  };
+
   return (
     <Container ref={node} {...props} onClickCapture={() => setPopup(-1)}>
       <div>
-        <img onClick={history.goBack} src={logo} alt="Logo" />
+        <img onClick={onClickLogo} src={logo} alt="Logo" />
 
         {searchable && (
           <Search>

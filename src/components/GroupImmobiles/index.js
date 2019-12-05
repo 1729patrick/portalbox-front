@@ -11,7 +11,7 @@ function GroupImmobiles({ title, style, showSize, immobiles, count, history }) {
   };
 
   return (
-    <Container style={style}>
+    <Container style={style} count={count}>
       {title && <h1>{title}</h1>}
 
       {immobiles.length > 0 && (

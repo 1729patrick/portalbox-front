@@ -12,6 +12,7 @@ export const Container = styled.div`
   justify-content: center;
   display: flex;
   flex-direction: column;
+  user-select: none;
 
   img {
     width: 300px;
@@ -20,6 +21,10 @@ export const Container = styled.div`
   > div {
     width: 300px;
     color: #ef6c00;
+  }
+
+  p {
+    font-size: 16px;
   }
 
   .MuiLinearProgress-bar1Indeterminate,

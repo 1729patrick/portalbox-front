@@ -4,23 +4,11 @@ import { Container, Particulars } from './styles';
 
 import { getParticular } from '~/services/fakeData';
 
-export default function Details({ openPreview, immobile }) {
+export default function Details({ openPreview, immobile, address }) {
   const particularsSpotlight = useMemo(() => immobile.particulars.slice(0, 4), [
     immobile,
   ]);
   const particulars = useMemo(() => immobile.particulars.splice(4), [immobile]);
-
-  const address = useMemo(() => {
-    const { address } = immobile;
-
-    const number = address.number ? `, ${address.number}` : '';
-    const neighborhood = address.neighborhood
-      ? `, ${address.neighborhood.name}`
-      : '';
-    const city = address.city ? `${address.city.name} - ` : '';
-
-    return `${address.street}${neighborhood}${number} - ${city}SC`;
-  }, [immobile]);
 
   const title = useMemo(() => {
     let [firstParticular, secondParticular] = particularsSpotlight;

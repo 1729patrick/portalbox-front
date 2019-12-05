@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import React, { useState, useEffect, useMemo } from 'react';
+
 import { Container, Infos, ImagesWrapper } from './styles';
 
 import Price from './Price';
@@ -7,12 +7,13 @@ import Maps from './Maps';
 import Images from './Images';
 import Financing from './Financing';
 import Details from './Details';
+import Loading from '~/components/Loading';
 
 import Preview from './Preview';
 
 import api from '~/services/api';
 
-export default function PlaceDetails({ match }) {
+export default function ImmobileDetails({ match }) {
   const [preview, setPreview] = useState({});
   const [immobile, setImmobile] = useState({});
   const [loading, setLoading] = useState(true);
@@ -31,6 +32,18 @@ export default function PlaceDetails({ match }) {
     loadImmobile();
   }, [match]);
 
+  const address = useMemo(() => {
+    const { address = {} } = immobile;
+
+    const number = address.number ? `, ${address.number}` : '';
+    const neighborhood = address.neighborhood
+      ? `, ${address.neighborhood.name}`
+      : '';
+    const city = address.city ? `${address.city.name} - ` : '';
+
+    return `${address.street}${neighborhood}${number} - ${city}SC`;
+  }, [immobile]);
+
   const handlePreviewOpen = (page, args) => {
     setPreview({
       isOpen: true,
@@ -39,45 +52,29 @@ export default function PlaceDetails({ match }) {
     });
   };
 
-  const openImage = imageIndex => {
-    const defaultArgs = { location: immobile.map, images: immobile.images };
+  const getArgsPreview = () => {
+    return {
+      location: immobile.map,
+      images: immobile.images,
+      address,
+    };
+  };
 
+  const openImage = imageIndex => {
     handlePreviewOpen(
       'images',
       typeof imageIndex === 'number'
         ? {
-            ...defaultArgs,
+            ...getArgsPreview(),
             initialImage: imageIndex,
           }
-        : defaultArgs
+        : getArgsPreview()
     );
   };
 
-  const openMap = () =>
-    handlePreviewOpen('map', {
-      location: immobile.map,
-      images: immobile.images,
-    });
+  const openMap = () => handlePreviewOpen('map', getArgsPreview());
 
-  if (loading)
-    return (
-      <div
-        style={{
-          zIndex: 3,
-          position: 'absolute',
-          top: 0,
-          bottom: 0,
-          left: 0,
-          right: 0,
-          background: '#fff',
-          alignItems: 'center',
-          justifyContent: 'center',
-          display: 'flex',
-        }}
-      >
-        <CircularProgress style={{ color: '#ef6c00' }} />
-      </div>
-    );
+  if (loading) return <Loading />;
 
   return (
     <Container scrollDisabled={preview.isOpen}>
@@ -86,11 +83,11 @@ export default function PlaceDetails({ match }) {
       </ImagesWrapper>
 
       <Infos>
-        <Details openPreview={openMap} immobile={immobile} />
+        <Details openPreview={openMap} immobile={immobile} address={address} />
         <Price immobile={immobile} />
       </Infos>
 
-      <Maps openPreview={openMap} immobile={immobile} />
+      <Maps openPreview={openMap} address={address} />
 
       <Financing immobile={immobile} />
 

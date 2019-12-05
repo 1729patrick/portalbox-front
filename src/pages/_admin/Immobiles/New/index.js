@@ -41,7 +41,7 @@ export default function New() {
       <Formik
         validateOnChange={false}
         initialValues={initialData}
-        onSubmit={data => console.log(data, JSON.stringify(data))}
+        onSubmit={data => dispatch(createImmobilesRequest(data))}
         validationSchema={CreateImmobileSchema}
         render={({ values, setFieldValue, errors }) => (
           <Form>

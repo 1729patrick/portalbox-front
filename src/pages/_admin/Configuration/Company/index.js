@@ -24,7 +24,7 @@ export default function Company() {
     <Formik
       validateOnChange={false}
       initialValues={company}
-      onSubmit={data => console.log(data, JSON.stringify(data))}
+      // onSubmit={data => console.log(data, JSON.stringify(data))}
       validationSchema={UpdateCompanySchema}
       render={({ values, setFieldValue, errors }) => (
         <Form>

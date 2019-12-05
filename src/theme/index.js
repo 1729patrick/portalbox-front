@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '~/styles/global';
 
+import Loading from '~/components/Loading';
+
 import { signInVisitorRequest } from '~/store/modules/auth/actions';
 
 export default function Theme({ children }) {
@@ -15,7 +17,7 @@ export default function Theme({ children }) {
   }, [dispatch]);
 
   if (!colors) {
-    return <div>carregando...</div>;
+    return <Loading />;
   }
 
   return (
@@ -30,4 +32,4 @@ export default function Theme({ children }) {
 
 Theme.propTypes = {
   children: PropTypes.node.isRequired,
-}
+};

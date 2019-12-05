@@ -18,8 +18,6 @@ const Footer = ({ history }) => {
   const dispatch = useDispatch();
   const company = useSelector(state => state.company);
 
-  return null;
-
   return (
     <FooterWrapper>
       <Container>
@@ -56,14 +54,14 @@ const Footer = ({ history }) => {
               {company.phones.map(phone => (
                 <p key={phone.number}>
                   <TiPhoneOutline size={20} color="#162962" />
-                  {phone.number}
+                  {phone.number} - {phone.description}
                 </p>
               ))}
 
-              {company.emails.map(email => (
+              {company.emails.map(({ email, type }) => (
                 <p key={email}>
                   <TiMail size={20} color="#162962" />
-                  {email}
+                  {email} - {type.name}
                 </p>
               ))}
             </div>
@@ -71,8 +69,8 @@ const Footer = ({ history }) => {
               <p>
                 {company.address.street},{' '}
                 {company.address.number ? `${company.address.number}, ` : ''}
-                {company.address.neighborhood}, {company.address.city}-SC,{' '}
-                {company.address.cep}
+                {company.address.neighborhood.name}, {company.address.city.name}
+                -PT, {company.address.cep}
               </p>
             </div>
           </div>

@@ -86,9 +86,9 @@ const Main = ({ history }) => {
           onClick={() =>
             handleClickType({
               image:
-                'http://localhost:3333/static/files/f503a939f6cfbcc08e42f1eaac63e0f2.jpg',
+                'http://34.90.128.164/static/files/ea7fd4cc1c238bd09f02e10a475d2551.jpg',
               name: 'Apartamento',
-              _id: '5d744dab68634c086bd78a22',
+              _id: '5ddfd1c309817c0d7393a958',
             })
           }
         />

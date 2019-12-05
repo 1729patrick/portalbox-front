@@ -35,7 +35,7 @@ export default function Cities() {
       />
 
       <Formik
-        onSubmit={data => console.log(data)}
+        // onSubmit={data => console.log(data)}
         initialValues={{ name: '', neighborhoods: [] }}
         render={({ values, setFieldValue, errors, setValues }) => (
           <Form>

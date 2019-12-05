@@ -167,7 +167,7 @@ export const listImmobiles = [
   {
     id: 3,
     images:
-      'https://resources.aluguetemporada.com.br/info/files/live/sites/br/files/contributed/shared/marketing/imagens/Owner%20Marketing/Posts_Blog_Owner/Novidades_AT/luxury-rentals-big--ts-2015-09-21T16%3A28%3A20_773-05%3A00.jpg',
+      'http://media-room5.trivago.com/wp-content/uploads/2018/02/09112455/hoteis-fazenda-sc-curucaca-bom-retiro-area-externa.jpg',
     type: 'Apartamento',
     priceFormatted: 'R$ 1720,00/mês',
     address: 'Rua Maria Lúcia da Paz - Gleba Fazenda Palhano, Londrina - PR',
@@ -252,7 +252,7 @@ export const images = [
   },
   {
     source:
-      'https://resources.aluguetemporada.com.br/info/files/live/sites/br/files/contributed/shared/marketing/imagens/Owner%20Marketing/Posts_Blog_Owner/Novidades_AT/luxury-rentals-big--ts-2015-09-21T16%3A28%3A20_773-05%3A00.jpg',
+      'http://media-room5.trivago.com/wp-content/uploads/2018/02/09112455/hoteis-fazenda-sc-curucaca-bom-retiro-area-externa.jpg',
     description: 'Sala de jantar',
   },
   {

@@ -24,7 +24,7 @@ export const Container = styled.section`
             font-weight: 500;
 
             &::placeholder {
-              color: #777;
+              color: #444;
               font-weight: 500;
             }
           }
@@ -62,37 +62,40 @@ export const Title = styled.h1`
 `;
 
 export const Info = styled.div`
-    margin-top: 18px;
+  margin-top: 18px;
 
-    div {
-      display: block;
-      font-size: 14px;
-      line-height: 24px;
-      text-align: justify;
-      color: #333;
-      font-weight: 500;
-      margin-bottom: 7px;
-      padding-bottom: 7px;
+  div {
+    display: block;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: justify;
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 7px;
+    padding-bottom: 7px;
 
-      button {
-        border: none;
-        background: transparent;
-        font-weight: 600;
-      }
+    button {
+      border: none;
+      background: transparent;
+      font-weight: 600;
 
       svg {
         margin-right: 23px;
       }
     }
+  }
 
-    div {
-      p {
-        color: #333;
-        font-weight: 500;
-        line-height: 24px;
-        font-size: 14.5px;
-        cursor: pointer;
-      }
+  div p {
+    align-items: center;
+    display: flex;
+    color: #333;
+    font-weight: 500;
+    line-height: 24px;
+    font-size: 14.5px;
+    cursor: pointer;
+
+    > svg {
+      margin-right: 5px;
     }
   }
 `;

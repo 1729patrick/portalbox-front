@@ -31,8 +31,8 @@ const INITIAL_STATE = {
       titleDefault: 'Preço',
       value: {},
       valueDefault: {
-        min: 300,
-        max: 13000,
+        min: 700,
+        max: 40000000,
       },
       saved: {},
     },

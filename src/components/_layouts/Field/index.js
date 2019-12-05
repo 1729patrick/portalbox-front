@@ -40,6 +40,6 @@ Field.defaultProps = {
   error: '',
   label: '',
   showClear: false,
-  onClear: () => console.log('limpou'),
+  onClear: () => {},
 };
 export default Field;

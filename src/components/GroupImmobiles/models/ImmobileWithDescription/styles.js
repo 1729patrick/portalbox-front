@@ -1,13 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  min-width: 260px;
   overflow: hidden;
   user-select: none;
   cursor: pointer;
   transition: 0.3s;
-  /* background: #fff; */
-  /* box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2); */
 `;
 
 export const Image = styled.div`
@@ -63,6 +60,7 @@ export const Details = styled.div`
         font-size: 15px;
         color: ${props => props.theme.cards.immobile.price.color};
         font-weight: 500;
+        white-space: nowrap;
       }
 
       & + div {

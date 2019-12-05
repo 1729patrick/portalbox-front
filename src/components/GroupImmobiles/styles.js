@@ -8,7 +8,11 @@ export const Container = styled.div`
 
   > div {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: ${props =>
+      props.count < 3
+        ? 'repeat(3, minmax(260px, 1fr))'
+        : 'repeat(auto-fit, minmax(260px, 1fr))'};
+
     overflow-y: hidden;
     grid-gap: 13px;
     z-index: 1;

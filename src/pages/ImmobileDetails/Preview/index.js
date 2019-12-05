@@ -22,13 +22,16 @@ export default function Preview({ page: pageDefaul, onClose, args }) {
           >
             Fotos
           </Button>
-          <Button
-            selected={page === 'map'}
-            type="button"
-            onClick={() => setPage('map')}
-          >
-            Mapa
-          </Button>
+          
+          {args.location && (
+            <Button
+              selected={page === 'map'}
+              type="button"
+              onClick={() => setPage('map')}
+            >
+              Mapa
+            </Button>
+          )}
         </span>
 
         <FiX color="#666" size={40} onClick={onClose} />
