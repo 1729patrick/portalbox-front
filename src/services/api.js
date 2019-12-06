@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://34.90.128.164/',
+  baseURL: 'https://portalbox.tech/',
   'Content-Type': 'application/json',
 });
 

@@ -86,7 +86,7 @@ const Main = ({ history }) => {
           onClick={() =>
             handleClickType({
               image:
-                'http://34.90.128.164/static/files/ea7fd4cc1c238bd09f02e10a475d2551.jpg',
+                'https://portalbox.tech/static/files/ea7fd4cc1c238bd09f02e10a475d2551.jpg',
               name: 'Apartamento',
               _id: '5ddfd1c309817c0d7393a958',
             })

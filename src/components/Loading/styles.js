@@ -25,6 +25,7 @@ export const Container = styled.div`
 
   p {
     font-size: 16px;
+    font-family: 'Google Sans';
   }
 
   .MuiLinearProgress-bar1Indeterminate,
