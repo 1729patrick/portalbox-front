@@ -10,7 +10,7 @@ import {
 
 export function* loadTypes() {
   try {
-    const response = yield call(api.get, 'types');
+    const response = yield call(api.get, 'public/types');
 
     yield put(loadTypesSuccess(response.data));
   } catch {
@@ -20,7 +20,7 @@ export function* loadTypes() {
 
 export function* loadCities() {
   try {
-    const response = yield call(api.get, 'cities');
+    const response = yield call(api.get, 'public/cities');
 
     yield put(loadCitiesSuccess(response.data));
   } catch {

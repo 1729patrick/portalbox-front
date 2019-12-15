@@ -82,7 +82,7 @@ function* save() {
     ? JSON.stringify(particularsFormatted)
     : null;
 
-  const response = yield call(api.get, 'immobiles', {
+  const response = yield call(api.get, 'public/immobiles', {
     params: {
       finality: finalityFormatted,
       types: typesFormatted,
@@ -276,7 +276,7 @@ function* searchImmobiles({ payload }) {
       throw new Error();
     }
 
-    const response = yield call(api.get, 'immobiles', {
+    const response = yield call(api.get, 'public/immobiles', {
       params: {
         finality: finality.value,
         types: typesFormatted,

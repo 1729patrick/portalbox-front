@@ -22,7 +22,7 @@ export default function ImmobileDetails({ match }) {
     const loadImmobile = async () => {
       const { _id } = match.params;
 
-      const response = await api.get(`immobiles/${_id}/details`);
+      const response = await api.get(`public/immobiles/${_id}/details`);
 
       setImmobile(response.data);
 

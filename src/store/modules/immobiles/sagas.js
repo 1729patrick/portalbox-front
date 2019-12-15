@@ -112,7 +112,7 @@ export function* loadSession({ payload }) {
   //   );
   // }
 
-  const response = yield call(api.get, 'immobiles', {
+  const response = yield call(api.get, 'public/immobiles', {
     params: {
       sessions: JSON.stringify([session]),
       limit: 8,
