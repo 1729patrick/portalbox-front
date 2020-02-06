@@ -18,6 +18,10 @@ export const Container = styled.div`
     z-index: 1;
     margin: 7px -13px -13px;
     padding: 13px;
+
+    @media screen and (max-width: 575px) {
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
   }
 
   > p {
