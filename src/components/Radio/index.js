@@ -14,6 +14,9 @@ export default function Radio({
   setChecked,
   checked,
   error,
+  setTouched,
+  touched,
+  formSubmitted,
 }) {
   return (
     <FieldLayout
@@ -23,6 +26,8 @@ export default function Radio({
       error={error}
       showClear={showClear}
       onClear={() => setChecked(null)}
+      touched={touched}
+      formSubmitted={formSubmitted}
     >
       <Options>
         {options.map(option => (
@@ -35,6 +40,7 @@ export default function Radio({
                 checked={checked == option.value}
                 onChange={() => setChecked(option.value)}
                 value={option.value}
+                onBlur={setTouched}
               />
             }
             label={option.label}
@@ -58,6 +64,9 @@ Radio.propTypes = {
   checked: PropTypes.number,
   setChecked: PropTypes.func.isRequired,
   error: PropTypes.string,
+  setTouched: PropTypes.func.isRequired,
+  touched: PropTypes.bool,
+  formSubmitted: PropTypes.bool,
 };
 
 Radio.defaultProps = {
@@ -65,4 +74,6 @@ Radio.defaultProps = {
   optional: false,
   showClear: false,
   checked: null,
+  touched: false,
+  formSubmitted: false,
 };

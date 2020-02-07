@@ -41,9 +41,9 @@ const INITIAL_STATE = {
       titleDefault: 'Características',
       value: {},
       valueDefault: {
-        bathroom: 1,
-        bedroom: 1,
-        garage: 1,
+        bathroom: 0,
+        bedroom: 0,
+        garage: 0,
         furnished: false,
         garden: false,
       },

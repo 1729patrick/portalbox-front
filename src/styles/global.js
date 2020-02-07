@@ -143,4 +143,11 @@ body {
     }
    }
 
+   .Toastify__toast {
+    border-radius: 6px !important;
+    font-family: "Google Sans" !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+   }
+
 `;

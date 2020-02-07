@@ -39,23 +39,37 @@ export default function New() {
   return (
     <Container>
       <Formik
-        validateOnChange={false}
+        validateOnChange
         initialValues={initialData}
         onSubmit={data => dispatch(createImmobilesRequest(data))}
         validationSchema={CreateImmobileSchema}
-        render={({ values, setFieldValue, errors }) => (
+        render={({
+          values,
+          setFieldValue,
+          errors,
+          setFieldTouched,
+          touched,
+          isValid,
+          submitCount,
+        }) => (
           <Form>
             <Address
               values={values}
               setFieldValue={setFieldValue}
+              setFieldTouched={setFieldTouched}
               errors={errors}
+              touched={touched}
+              formSubmitted={submitCount > 0}
             />
 
             <Particulars
               onOpenPicker={() => setShowPicker('particularsPicker')}
               values={values}
               setFieldValue={setFieldValue}
+              setFieldTouched={setFieldTouched}
               errors={errors}
+              touched={touched}
+              formSubmitted={submitCount > 0}
             />
 
             <Map values={values} setFieldValue={setFieldValue} />

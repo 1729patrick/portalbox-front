@@ -5,8 +5,6 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 10px;
-  overflow-y: auto;
-  max-height: 25em;
 `;
 
 export const Checkbox = styled(CheckboxDefault)`

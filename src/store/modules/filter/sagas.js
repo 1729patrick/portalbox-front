@@ -22,7 +22,6 @@ import {
 
 function* save() {
   const filters = yield select(state => state.filter.filters);
-
   const filterChanged = Object.keys(filters).some(filter => {
     return !_.isEqual(filters[filter].saved, filters[filter].value);
   });

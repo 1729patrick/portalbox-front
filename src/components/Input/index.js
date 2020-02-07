@@ -11,21 +11,33 @@ export default function Input({
   value,
   setValue,
   textarea,
+  setTouched,
+  touched,
+  formSubmitted,
   ...rest
 }) {
   return (
-    <FieldLayout label={label} value={value} optional={optional} error={error}>
+    <FieldLayout
+      label={label}
+      value={value}
+      optional={optional}
+      error={error}
+      touched={touched}
+      formSubmitted={formSubmitted}
+    >
       {textarea ? (
         <TextArea
           {...rest}
           value={value}
           onChange={e => setValue(e.target.value)}
+          onBlur={setTouched}
         />
       ) : (
         <DefaultInput
           {...rest}
           value={value}
           onChange={e => setValue(e.target.value)}
+          onBlur={setTouched}
         />
       )}
     </FieldLayout>

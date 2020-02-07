@@ -11,6 +11,8 @@ const FieldLayout = ({
   showClear,
   onClear,
   value,
+  touched,
+  formSubmitted,
 }) => {
   return (
     <Container>
@@ -25,7 +27,7 @@ const FieldLayout = ({
 
           {showClear && value && <Clear onClick={onClear}>Limpar</Clear>}
 
-          {error && <span>{error}</span>}
+          {error && (touched || formSubmitted) && <span>{error}</span>}
         </Label>
       )}
 
@@ -42,6 +44,8 @@ FieldLayout.propTypes = {
   showClear: PropTypes.bool,
   onClear: PropTypes.func,
   value: PropTypes.any,
+  touched: PropTypes.bool,
+  formSubmitted: PropTypes.bool,
 };
 
 FieldLayout.defaultProps = {
@@ -51,5 +55,7 @@ FieldLayout.defaultProps = {
   showClear: false,
   onClear: () => {},
   value: null,
+  touched: false,
+  formSubmitted:false,
 };
 export default FieldLayout;

@@ -6,13 +6,24 @@ import Select from '~/components/Select';
 
 import Card from '~/components/_admin/Card';
 
-export default function Address({ values, setFieldValue, errors }) {
+export default function Address({
+  values,
+  setFieldValue,
+  errors,
+  setFieldTouched,
+  touched,
+  formSubmitted,
+}) {
   const cities = useSelector(state => state.core.cities);
 
   const path = useMemo(() => values.address, [values.address]);
 
   const getError = field => {
     return errors.address ? errors.address[field] : null;
+  };
+
+  const getTouched = field => {
+    return touched.address ? touched.address[field] : null;
   };
 
   const handleNeighborhoodSelected = value => {
@@ -32,7 +43,6 @@ export default function Address({ values, setFieldValue, errors }) {
       <div>
         <h1>Endereço</h1>
       </div>
-
       <Input
         type="text"
         label="Rua"
@@ -40,6 +50,9 @@ export default function Address({ values, setFieldValue, errors }) {
         error={getError('street')}
         value={path.street}
         setValue={value => setFieldValue('address.street', value)}
+        setTouched={() => setFieldTouched('address.street')}
+        touched={getTouched('street')}
+        formSubmitted={formSubmitted}
       />
 
       <Input
@@ -50,6 +63,9 @@ export default function Address({ values, setFieldValue, errors }) {
         error={getError('number')}
         value={path.number}
         setValue={value => setFieldValue('address.number', value)}
+        setTouched={() => setFieldTouched('address.number')}
+        touched={getTouched('number')}
+        formSubmitted={formSubmitted}
       />
 
       <Select
@@ -60,6 +76,9 @@ export default function Address({ values, setFieldValue, errors }) {
         error={getError('city')}
         selected={path.city}
         setSelected={value => setFieldValue('address.city', value)}
+        setTouched={() => setFieldTouched('address.city')}
+        touched={getTouched('city')}
+        formSubmitted={formSubmitted}
       />
 
       <Select
@@ -77,6 +96,9 @@ export default function Address({ values, setFieldValue, errors }) {
         error={getError('neighborhood')}
         selected={path.neighborhood}
         setSelected={handleNeighborhoodSelected}
+        setTouched={() => setFieldTouched('address.neighborhood')}
+        touched={getTouched('neighborhood')}
+        formSubmitted={formSubmitted}
       />
     </Card>
   );

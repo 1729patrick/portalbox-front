@@ -1,4 +1,5 @@
 import { all, takeLatest, put, call, select } from 'redux-saga/effects';
+import { toast } from 'react-toastify';
 import api from '~/services/api';
 
 import { signInSuccess, signInVisitorSuccess, signInFailure } from './actions';
@@ -15,6 +16,7 @@ export function* signIn({ payload }) {
 
     yield put(signInSuccess(company, token));
   } catch {
+    toast.error('Usuário ou Senha inválidos 🙁', { closeButton: false });
     yield put(signInFailure());
   }
 }

@@ -1,5 +1,4 @@
 import { all, takeLatest, call, put } from 'redux-saga/effects';
-import { toast } from 'react-toastify';
 import api from '~/services/api';
 import { uploadImagesImmobileSuccess } from './actions';
 
@@ -19,7 +18,6 @@ function* uploadImagesImmobile({ payload }) {
     a.map((c, i) => Object.assign({}, c, b[i]))
   );
 
-  // toast.success('Fotos salvas com sucesso');
   yield put(uploadImagesImmobileSuccess(imagesMerged));
 }
 

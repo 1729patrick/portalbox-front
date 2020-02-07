@@ -7,7 +7,7 @@ import { Container, Round } from './styles';
 
 function IncreaseDecrease({ title, value, setValue, theme }) {
   const increase = () => {
-    if (value === 1) {
+    if (value === 0) {
       return;
     }
 

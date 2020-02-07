@@ -14,6 +14,9 @@ export default function ReactSelect({
   label,
   optional,
   groupedData,
+  setTouched,
+  touched,
+  formSubmitted,
   keys,
   ...rest
 }) {
@@ -41,6 +44,8 @@ export default function ReactSelect({
       value={selected}
       optional={optional}
       error={error}
+      touched={touched}
+      formSubmitted={formSubmitted}
     >
       <Select
         styles={styles}
@@ -52,6 +57,7 @@ export default function ReactSelect({
         getOptionLabel={option => option.name}
         noOptionsMessage={() => 'Nenhuma opção'}
         formatGroupLabel={formatGroupLabel}
+        onBlur={setTouched}
         {...rest}
       />
     </FieldLayout>

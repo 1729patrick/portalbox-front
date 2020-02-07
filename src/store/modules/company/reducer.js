@@ -8,16 +8,6 @@ const company = (state = INITIAL_STATE, action) => {
     case '@auth/SIGN_IN_VISITOR_SUCCESS': {
       return action.payload.company;
     }
-    // case '@company/LOAD_COMPANY_REQUEST': {
-    //   break;
-    // }
-    // case '@company/LOAD_COMPANY_SUCCESS': {
-    //   break;
-    // }
-    // case '@company/LOAD_COMPANY_FAILURE': {
-    //   break;
-    // }
-
     default:
       return state;
   }

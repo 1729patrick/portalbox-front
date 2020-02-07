@@ -13,10 +13,16 @@ export default function Particulars({
   values,
   setFieldValue,
   errors,
+  setFieldTouched,
+  touched,
+  formSubmitted,
 }) {
   const types = useSelector(state => state.core.types);
 
-  const path = useMemo(() => values.particulars, [values.particulars]);
+  const pathValues = useMemo(() => values.particulars, [values.particulars]);
+  const pathTouched = useMemo(() => touched.particulars || {}, [
+    touched.particulars,
+  ]);
 
   return (
     <Card>
@@ -32,30 +38,42 @@ export default function Particulars({
         selected={values.type}
         setSelected={value => setFieldValue('type', value)}
         error={errors.type}
+        setTouched={() => setFieldTouched('type')}
+        touched={touched.type}
+        formSubmitted={formSubmitted}
       />
 
       <Radio
         label="Quartos"
         options={optionsParticulars}
         optional
-        checked={path.bedroom}
+        checked={pathValues.bedroom}
         setChecked={value => setFieldValue('particulars.bedroom', value)}
+        setTouched={() => setFieldTouched('particulars.bedroom')}
+        touched={pathTouched.bedroom}
+        formSubmitted={formSubmitted}
       />
 
       <Radio
         label="Banheiros"
         options={optionsParticulars}
         optional
-        checked={path.bathroom}
+        checked={pathValues.bathroom}
         setChecked={value => setFieldValue('particulars.bathroom', value)}
+        setTouched={() => setFieldTouched('particulars.bathroom')}
+        touched={pathTouched.bathroom}
+        formSubmitted={formSubmitted}
       />
 
       <Radio
         label="Garagens"
         optional
         options={optionsParticulars}
-        checked={path.garage}
+        checked={pathValues.garage}
         setChecked={value => setFieldValue('particulars.garage', value)}
+        setTouched={() => setFieldTouched('particulars.garage')}
+        touched={pathTouched.garage}
+        formSubmitted={formSubmitted}
       />
 
       <Input
@@ -63,8 +81,11 @@ export default function Particulars({
         label="Área total"
         placeholder="Digite o tamanho do terreno"
         optional
-        value={path.totalArea}
+        value={pathValues.totalArea}
         setValue={value => setFieldValue('particulars.totalArea', value)}
+        setTouched={() => setFieldTouched('particulars.totalArea')}
+        touched={pathTouched.totalArea}
+        formSubmitted={formSubmitted}
       />
 
       <button type="button" onClick={onOpenPicker}>
