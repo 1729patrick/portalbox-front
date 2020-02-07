@@ -36,7 +36,12 @@ export default function ReactSelect({
   }, [options]);
 
   return (
-    <FieldLayout label={label} optional={optional} error={error}>
+    <FieldLayout
+      label={label}
+      value={selected}
+      optional={optional}
+      error={error}
+    >
       <Select
         styles={styles}
         name={name}

@@ -2,8 +2,6 @@ import React from 'react';
 import { Form, Input } from '@rocketseat/unform';
 import { useDispatch } from 'react-redux';
 
-import box from '~/assets/box.png';
-
 import { Container, SubmitButton } from './styles';
 import { signInRequest } from '~/store/modules/auth/actions';
 
@@ -13,8 +11,7 @@ export default function SignIn() {
   return (
     <Container>
       <div>
-        <h1>portal</h1>
-        <img src={box} alt="logo_portalbox" />
+        <h1>portalbox</h1>
       </div>
       <Form onSubmit={data => dispatch(signInRequest(data))}>
         <Input

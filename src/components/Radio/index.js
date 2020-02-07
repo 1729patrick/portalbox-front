@@ -18,6 +18,7 @@ export default function Radio({
   return (
     <FieldLayout
       label={label}
+      value={checked}
       optional={optional}
       error={error}
       showClear={showClear}
@@ -32,7 +33,7 @@ export default function Radio({
               <MaterialRadio
                 // eslint-disable-next-line eqeqeq
                 checked={checked == option.value}
-                onChange={e => setChecked(option.value)}
+                onChange={() => setChecked(option.value)}
                 value={option.value}
               />
             }
@@ -41,7 +42,9 @@ export default function Radio({
           />
         ))}
 
-        {optional && <Clear onClick={() => setChecked(null)}>Limpar</Clear>}
+        {optional && checked && (
+          <Clear onClick={() => setChecked(null)}>Limpar</Clear>
+        )}
       </Options>
     </FieldLayout>
   );

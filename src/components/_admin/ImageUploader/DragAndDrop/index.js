@@ -24,7 +24,10 @@ export default function DragAndDrop({
     const { card, index } = findCard(id);
     setCards(
       update(cards, {
-        $splice: [[index, 1], [atIndex, 0, card]],
+        $splice: [
+          [index, 1],
+          [atIndex, 0, card],
+        ],
       })
     );
   };
@@ -43,7 +46,11 @@ export default function DragAndDrop({
     />
   );
 
-  return <Images ref={drop}>{cards.map(image => renderImage(image))}</Images>;
+  return (
+    <Images ref={drop} count={cards.length}>
+      {cards.map(image => renderImage(image))}
+    </Images>
+  );
 }
 
 DragAndDrop.propTypes = {

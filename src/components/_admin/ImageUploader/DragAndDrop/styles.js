@@ -3,10 +3,17 @@ import styled from 'styled-components';
 export const Images = styled.aside`
   padding: 245px 60px 60px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: ${props =>
+    props.count < 3
+      ? 'repeat(3, minmax(260px, 1fr))'
+      : 'repeat(auto-fit, minmax(260px, 1fr))'};
   overflow-y: hidden;
   grid-gap: 15px;
   z-index: 1;
+
+  @media screen and (max-width: 575px) {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
 
   > div {
     min-width: 260px;
@@ -62,5 +69,9 @@ export const Images = styled.aside`
 
   @media screen and (max-width: 768px) {
     padding: 245px 20px 20px;
+  }
+
+  @media screen and (max-width: 365px) {
+    padding: 263px 20px 20px;
   }
 `;

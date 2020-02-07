@@ -14,7 +14,7 @@ export default function Input({
   ...rest
 }) {
   return (
-    <FieldLayout label={label} optional={optional} error={error}>
+    <FieldLayout label={label} value={value} optional={optional} error={error}>
       {textarea ? (
         <TextArea
           {...rest}
