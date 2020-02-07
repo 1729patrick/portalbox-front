@@ -20,12 +20,14 @@ export default function Price({ onOpenPicker, values, setFieldValue }) {
         label="Preço para venda"
         placeholder="Digite o preço para venda"
         value={path.sale}
+        type="number"
         setValue={value => setFieldValue('price.sale', value)}
       />
       <InputMask
         label="Preço para locação"
         placeholder="Digite o preço para locação"
         value={path.rent}
+        type="number"
         setValue={value => setFieldValue('price.rent', value)}
       />
       <button type="button" onClick={onOpenPicker}>

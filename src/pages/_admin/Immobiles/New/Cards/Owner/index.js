@@ -22,7 +22,7 @@ export default function Owner({ values, setFieldValue }) {
       />
 
       <Input
-        type="text"
+        type="number"
         label="Whatsapp"
         placeholder="Digite o número de Whatsapp"
         value={path.whatsapp}
@@ -30,7 +30,7 @@ export default function Owner({ values, setFieldValue }) {
       />
 
       <Input
-        type="text"
+        type="number"
         label="CPF"
         placeholder="Digite o número do CPF"
         value={path.cpf}
