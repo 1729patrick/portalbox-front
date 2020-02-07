@@ -9,6 +9,12 @@ export default function Button({ text, ...rest }) {
 
 Button.propTypes = {
   text: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
   background: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
+};
+
+Button.defaultProps = {
+  disabled: false,
 };

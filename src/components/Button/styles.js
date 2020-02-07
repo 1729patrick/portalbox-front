@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { darken } from 'polished';
+import styled, { css } from 'styled-components';
+import { darken, lighten } from 'polished';
 
 export const Container = styled.button`
   width: 100px;
@@ -16,7 +16,17 @@ export const Container = styled.button`
   align-items: center;
   justify-content: center;
 
-  &:hover {
-    background: ${props => props.background && darken(0.06, props.background)};
-  }
+  ${props =>
+    props.disabled
+      ? css`
+          cursor: no-drop;
+          background: ${props =>
+            props.background && lighten(0.16, props.background)};
+        `
+      : css`
+          &:hover {
+            background: ${props =>
+              props.background && darken(0.06, props.background)};
+          }
+        `}
 `;

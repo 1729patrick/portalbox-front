@@ -95,7 +95,11 @@ export default function New() {
 
             <Config values={values} setFieldValue={setFieldValue} />
 
-            <SubmitButton text="Criar imóvel" type="submit" />
+            <SubmitButton
+              text="Criar imóvel"
+              type="submit"
+              disabled={!isValid}
+            />
 
             <ParticularsPicker
               onClose={() => setShowPicker(null)}
