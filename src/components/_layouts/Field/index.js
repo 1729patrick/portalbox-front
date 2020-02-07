@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Container, Label, Clear } from './styles';
 
-const Field = ({
+const FieldLayout = ({
   children,
   label,
   optional,
@@ -34,7 +34,7 @@ const Field = ({
   );
 };
 
-Field.propTypes = {
+FieldLayout.propTypes = {
   children: PropTypes.node.isRequired,
   label: PropTypes.string,
   optional: PropTypes.bool,
@@ -44,7 +44,7 @@ Field.propTypes = {
   value: PropTypes.any,
 };
 
-Field.defaultProps = {
+FieldLayout.defaultProps = {
   optional: false,
   error: '',
   label: '',
@@ -52,4 +52,4 @@ Field.defaultProps = {
   onClear: () => {},
   value: null,
 };
-export default Field;
+export default FieldLayout;

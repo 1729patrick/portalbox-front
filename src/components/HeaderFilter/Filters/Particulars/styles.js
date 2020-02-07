@@ -4,6 +4,8 @@ import IncreaseDecreaseDefault from '~/components/IncreaseDecrease';
 
 export const Content = styled.div`
   margin-top: 15px;
+  overflow-y: auto;
+  max-height: 25em;
 
   > label {
     margin-top: 10px;

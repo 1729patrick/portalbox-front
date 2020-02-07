@@ -4,14 +4,7 @@ import PropTypes from 'prop-types';
 
 import { Container } from './styles';
 
-import {
-  Types,
-  Finality,
-  Locale,
-  Price,
-  Particulars,
-  // Advanced,
-} from './Filters';
+import { Types, Finality, Locale, Price, Particulars } from './Filters';
 
 import Option from './_layouts/Option';
 
@@ -21,7 +14,6 @@ const optionsFilter = [
   { component: Locale, filter: 'neighborhoods' },
   { component: Price, filter: 'price', width: '325px' },
   { component: Particulars, filter: 'particulars' },
-  // { component: Advanced, title: 'Mais filtros' },
 ];
 
 export default function HeaderFilter({ popupOpen, setPopupOpen }) {

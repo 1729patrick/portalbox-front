@@ -2,6 +2,9 @@ import styled from 'styled-components';
 import NumberFormat from 'react-number-format';
 
 export const Content = styled.div`
+  overflow-y: auto;
+  max-height: 25em;
+
   > span {
     display: flex;
     align-items: center;
