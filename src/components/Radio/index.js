@@ -48,9 +48,9 @@ export default function Radio({
           />
         ))}
 
-        {optional && checked && (
+        {optional && checked ? (
           <Clear onClick={() => setChecked(null)}>Limpar</Clear>
-        )}
+        ) : null}
       </Options>
     </FieldLayout>
   );
@@ -64,7 +64,7 @@ Radio.propTypes = {
   checked: PropTypes.number,
   setChecked: PropTypes.func.isRequired,
   error: PropTypes.string,
-  setTouched: PropTypes.func.isRequired,
+  setTouched: PropTypes.func,
   touched: PropTypes.bool,
   formSubmitted: PropTypes.bool,
 };
@@ -74,6 +74,7 @@ Radio.defaultProps = {
   optional: false,
   showClear: false,
   checked: null,
+  setTouched: () => console.log('setTouched'),
   touched: false,
   formSubmitted: false,
 };

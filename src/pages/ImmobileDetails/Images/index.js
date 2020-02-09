@@ -3,7 +3,10 @@ import React, { useMemo } from 'react';
 import { Container, Button, Img } from './styles';
 
 export default function Images({ openPreview, immobile }) {
-  const images = useMemo(() => immobile.images.slice(0, 4), [immobile.images]);
+  const images = useMemo(
+    () => immobile.images.slice(0, window.innerWidth < 768 ? 3 : 4),
+    [immobile.images]
+  );
 
   return (
     <Container imagesLength={images.length}>
@@ -19,7 +22,7 @@ export default function Images({ openPreview, immobile }) {
         </Img>
       ))}
 
-      {immobile.images.length > 4 && (
+      {immobile.images.length > 4000 && (
         <Button text="Ver fotos" onClick={() => openPreview()} />
       )}
     </Container>

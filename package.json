@@ -1,7 +1,13 @@
 {
-  "name": "locador-locatario",
-  "version": "0.1.0",
+  "name": "portalbox",
+  "version": "1.0.0",
   "private": true,
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@material-ui/core": "^4.3.1",
     "@material-ui/styles": "^4.3.0",
@@ -42,12 +48,6 @@
     "slick-carousel": "^1.8.1",
     "styled-components": "^4.3.2",
     "yup": "^0.27.0"
-  },
-  "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [

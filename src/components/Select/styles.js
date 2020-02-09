@@ -94,7 +94,6 @@ const styles = {
     border: state.selectProps.menuIsOpen ? '1px solid #bbb' : '1px solid #ddd',
     borderBottomColor: '#ddd',
     borderRadius: state.selectProps.menuIsOpen ? '4px 4px 0 0' : 4,
-
     cursor: 'pointer',
     fontWeight: 500,
     whiteSpace: 'nowrap',

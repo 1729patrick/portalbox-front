@@ -8,6 +8,12 @@ export const Options = styled.div`
   padding: 10px 9px;
   overflow-y: hidden;
   overflow-x: auto;
+
+  .MuiIconButton-label {
+    input {
+      z-index: 0;
+    }
+  }
 `;
 
 export const Clear = styled.p`

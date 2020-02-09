@@ -90,10 +90,10 @@ export function* createImmobile({ payload }) {
 
     yield call(api.post, 'immobiles', immobileClean);
 
-    toast.success('Imóvel cadastrado com sucesso');
+    toast.success('Imóvel cadastrado com sucesso 🥳');
   } catch (e) {
     toast.error(
-      'Confira os dados e tente novamente. Aconteceu algum erro ao criar o imóvel.'
+      'Confira os dados e tente novamente. Aconteceu algum erro ao criar o imóvel 😢'
     );
   }
 }

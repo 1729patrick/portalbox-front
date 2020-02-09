@@ -27,6 +27,7 @@ export const Container = styled.div`
   }
 
   form {
+    z-index: 1;
     background: #fff;
     padding: 30px;
     border-radius: 4px;

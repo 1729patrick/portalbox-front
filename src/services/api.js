@@ -1,10 +1,11 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://portalbox.tech',
+  baseURL:
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3333'
+      : 'https://portalbox.tech',
   'Content-Type': 'application/json',
 });
 
 export default api;
-// https://portalbox.tech
-// http://localhost:3333

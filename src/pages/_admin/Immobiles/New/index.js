@@ -20,15 +20,12 @@ import Owner from './Cards/Owner';
 import Config from './Cards/Config';
 
 const initialData = {
-  address: {
-    street: '',
-    number: '',
-  },
-  particulars: { bedroom: 0, bathroom: 0, garage: 0, totalArea: '' },
-  map: { lat: '', lng: '' },
-  price: { sale: '', rent: '' },
-  owner: { name: '', whatsapp: '', cpf: '', annotations: '' },
-  config: { sessions: [] },
+  address: {},
+  particulars: {},
+  map: {},
+  price: {},
+  owner: {},
+  config: {},
   allParticulars: {},
   rates: {},
   images: [],
