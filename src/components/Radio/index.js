@@ -74,7 +74,7 @@ Radio.defaultProps = {
   optional: false,
   showClear: false,
   checked: null,
-  setTouched: () => console.log('setTouched'),
+  setTouched: () => {},
   touched: false,
   formSubmitted: false,
 };

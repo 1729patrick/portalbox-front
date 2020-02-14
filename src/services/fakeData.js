@@ -22,7 +22,7 @@ export const links = [
       }
 
       dispatch(
-        setFinalityFilter({ finality: { value: 'rend', title: 'Alugar' } })
+        setFinalityFilter({ finality: { value: 'rent', title: 'Alugar' } })
       );
       dispatch(saveFilterRequest());
     },
