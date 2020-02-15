@@ -38,9 +38,11 @@ const UpdateCompanySchema = Yup.object().shape({
   }),
   logo: Yup.object().shape({
     url: Yup.string().required(requiredMessage),
+    file: Yup.mixed(),
   }),
   banner: Yup.object().shape({
     url: Yup.string().required(requiredMessage),
+    file: Yup.mixed(),
   }),
   phones: Yup.array(
     Yup.object().shape({

@@ -7,14 +7,35 @@ export function* signInVisitor() {}
 
 export function* updateCompany({ payload }) {
   try {
-    const { company } = payload;
+    let { company } = payload;
+
+    const data = new FormData();
+    if (company.logo.file) {
+      data.append('files', company.logo.file);
+    }
+
+    if (company.banner.file) {
+      data.append('files', company.banner.file);
+    }
+
+    if ([...data.entries()].length) {
+      const responseImages = yield call(api.post, 'files', data);
+
+      const images = responseImages.data;
+      images.forEach(image => {
+        if (image.name === company.banner.file?.name)
+          company = { ...company, banner: image };
+        else if (image.name === company.logo?.file?.name)
+          company = { ...company, logo: image };
+      });
+    }
 
     yield call(api.put, 'companies', company);
 
     toast.success('Empresa atualizada com sucesso 🥳');
   } catch (e) {
     toast.error(
-      e.response?.dat1a?.err2or?.message ||
+      e.response?.data?.error?.message ||
         'Confira os dados e tente novamente. Aconteceu algum erro ao atualizar os dados empresa 😢'
     );
   }

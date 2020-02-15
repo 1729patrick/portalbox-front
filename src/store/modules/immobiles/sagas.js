@@ -39,7 +39,6 @@ export function* createImmobile({ payload }) {
     } = immobile;
 
     const particularsComplete = Object.assign(particulars, allParticulars);
-    // console.log('particularsComplete', Object.entries(particularsComplete));
 
     const particularsFormatted = Object.entries(particularsComplete)
       .map(([title, value]) => ({
@@ -47,7 +46,6 @@ export function* createImmobile({ payload }) {
         value: isNaN(+value) ? value : +value,
       }))
       .filter(({ value }) => value);
-    // console.log('particularsFormatted', particularsFormatted);
 
     const ratesFormatted = Object.entries(rates)
       .map(([title, value]) => ({
@@ -55,23 +53,15 @@ export function* createImmobile({ payload }) {
         value,
       }))
       .filter(({ value }) => value);
-    // console.log('ratesFormatted', ratesFormatted);
 
     const imagesMergedFormatted = imagesMerged.map(
       ({ _id, url, description }) => ({ file: _id, url, description })
     );
-    // console.log('imagesMergedFormatted', imagesMergedFormatted);
-    // console.log('config.sessions',config.sessions);
+
     const sessionsFormatted = config.sessions
       ? config.sessions.map(({ _id }) => _id)
       : [];
-    // console.log('sessionsFormatted', sessionsFormatted);
 
-    // console.log('address', address);
-    // console.log('map', map);
-    // console.log('price', price);
-    // console.log('owner', owner);
-    // console.log('type', type);
     const immobileClean = {
       address,
       map,
@@ -98,16 +88,6 @@ export function* createImmobile({ payload }) {
 export function* loadSession({ payload }) {
   const { session } = payload;
   const { key } = sessionsImmobiles.find(({ _id }) => _id === session);
-
-  // const { sessionLoaded } = select(state => state.immobiles[key]);
-
-  // if (sessionLoaded.count) {
-  //   const { immobiles } = sessionLoaded;
-
-  //   return yield put(
-  //     loadSessionImmobilesSuccess({ sessionKey: key, immobiles })
-  //   );
-  // }
 
   const response = yield call(api.get, 'public/immobiles', {
     params: {

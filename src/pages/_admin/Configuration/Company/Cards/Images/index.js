@@ -7,8 +7,13 @@ import SingleImageUploader from '~/components/_admin/SingleImageUploader';
 
 const Images = ({ values, setFieldValue, errors }) => {
   const uploadFile = (path, { files }) => {
+    if (!files.length) {
+      return;
+    }
+
     setFieldValue(path, {
       url: URL.createObjectURL(files[0]),
+      file: files[0],
     });
   };
 
@@ -41,8 +46,8 @@ const Images = ({ values, setFieldValue, errors }) => {
 
 Images.propTypes = {
   values: PropTypes.shape({
-    banner: PropTypes.shape({ url: PropTypes.string }),
-    logo: PropTypes.shape({ url: PropTypes.string }),
+    banner: PropTypes.shape({ url: PropTypes.string, file: PropTypes.shape() }),
+    logo: PropTypes.shape({ url: PropTypes.string, file: PropTypes.shape() }),
   }).isRequired,
   setFieldValue: PropTypes.func.isRequired,
   errors: PropTypes.shape({
