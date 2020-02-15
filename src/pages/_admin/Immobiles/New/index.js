@@ -104,6 +104,7 @@ export default function New() {
   return (
     <Container>
       <Formik
+        validateOnChange
         initialValues={initialData}
         onSubmit={data => dispatch(createImmobilesRequest(data))}
         validationSchema={CreateImmobileSchema}

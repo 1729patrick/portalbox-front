@@ -1,31 +1,54 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import Card from '~/components/_admin/Card';
-import Input from '~/components/Input';
+import { CardImages } from './styles';
 
-export default function Images({ values, setFieldValue, errors }) {
+import SingleImageUploader from '~/components/_admin/SingleImageUploader';
+
+const Images = ({ values, setFieldValue, errors }) => {
+  const uploadFile = (path, { files }) => {
+    setFieldValue(path, {
+      url: URL.createObjectURL(files[0]),
+    });
+  };
+
   return (
-    <Card>
+    <CardImages>
       <div>
         <h1>Fotos</h1>
+
+        <span>{errors.logo?.url || errors.banner?.url}</span>
       </div>
 
-      <Input
-        type="text"
+      <SingleImageUploader
+        maxWidthImage="90px"
         label="Logo"
-        placeholder="Selecione o logo da empresa"
-        error={errors.logo}
-        // value={path.street}
-        // setValue={value => setFieldValue('address.street', value)}
+        buttonText="Selecionar Logo"
+        setImage={({ target }) => uploadFile('logo', target)}
+        image={values.logo?.url}
       />
-      <Input
-        type="text"
+
+      <SingleImageUploader
+        maxWidthImage="100%"
         label="Banner"
-        placeholder="Selecione o banner da empresa"
-        error={errors.banner}
-        // value={path.street}
-        // setValue={value => setFieldValue('address.street', value)}
+        buttonText="Selecionar Banner"
+        setImage={({ target }) => uploadFile('banner', target)}
+        image={values.banner?.url}
       />
-    </Card>
+    </CardImages>
   );
-}
+};
+
+Images.propTypes = {
+  values: PropTypes.shape({
+    banner: PropTypes.shape({ url: PropTypes.string }),
+    logo: PropTypes.shape({ url: PropTypes.string }),
+  }).isRequired,
+  setFieldValue: PropTypes.func.isRequired,
+  errors: PropTypes.shape({
+    banner: PropTypes.shape({ url: PropTypes.string }),
+    logo: PropTypes.shape({ url: PropTypes.string }),
+  }).isRequired,
+};
+
+export default Images;

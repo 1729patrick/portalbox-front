@@ -19,7 +19,7 @@ const Contact = () => {
 
   return (
     <Container>
-      <Header banner={company.banner}>
+      <Header banner={company.banner?.url}>
         <div>
           <h1>Fale agora mesmo com o Portalbox Corretor de Imóveis</h1>
         </div>

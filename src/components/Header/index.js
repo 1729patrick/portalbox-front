@@ -14,7 +14,7 @@ import { setPopupOpen } from '~/store/modules/popup/actions';
 function Header({ simple, searchable, history, ...props }) {
   const dispatch = useDispatch();
 
-  const logo = useSelector(state => state.company.logo);
+  const logo = useSelector(state => state.company.logo?.url);
   const popupOpen = useSelector(state => state.popup);
 
   const node = useRef();

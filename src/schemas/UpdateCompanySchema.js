@@ -30,8 +30,12 @@ const UpdateCompanySchema = Yup.object().shape({
       .typeError(requiredMessage)
       .required(requiredMessage),
   }),
-  logo: Yup.mixed().required(requiredMessage),
-  banner: Yup.mixed().required(requiredMessage),
+  logo: Yup.object().shape({
+    url: Yup.string().required(requiredMessage),
+  }),
+  banner: Yup.object().shape({
+    url: Yup.string().required(requiredMessage),
+  }),
   phones: Yup.array(
     Yup.object().shape({
       type: Yup.string().required(requiredMessage),

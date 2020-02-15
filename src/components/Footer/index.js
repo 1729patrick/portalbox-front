@@ -23,7 +23,7 @@ const Footer = ({ history }) => {
       <Container>
         <div>
           <Socials>
-            <img src={company.logo} alt="Logo" />
+            <img src={company.logo?.url} alt="Logo" />
 
             <div>
               <button>

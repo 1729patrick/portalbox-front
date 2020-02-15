@@ -23,6 +23,7 @@ export default function Company() {
 
   return (
     <Formik
+      validateOnChange
       initialValues={company}
       validationSchema={UpdateCompanySchema}
       onSubmit={values => console.log(JSON.stringify(values))}

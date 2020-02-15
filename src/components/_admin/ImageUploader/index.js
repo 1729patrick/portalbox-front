@@ -38,7 +38,6 @@ export default function ImageUploader({ images, setImages }) {
       const newimages = acceptedimages.map(image => {
         let [, ...description] = image.name.split('.').reverse();
         description = description.reverse().join('.');
-
         return {
           ...image,
           description,

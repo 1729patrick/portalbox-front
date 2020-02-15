@@ -27,7 +27,7 @@ import {
 const Main = ({ history }) => {
   const dispatch = useDispatch();
 
-  const banner = useSelector(state => state.company.banner);
+  const banner = useSelector(state => state.company.banner?.url);
   const types = useSelector(state => state.core.types);
 
   const saleHighlights = useSelector(state => state.immobiles.saleHighlights);
