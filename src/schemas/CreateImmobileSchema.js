@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 const requiredMessage = 'Este campo precisa ser preenchido';
 
-Yup.numberNullable = () =>
+const numberNullable = () =>
   Yup.number()
     .transform(cv => (cv >= 0 && typeof cv === 'number' ? cv : null))
     .nullable();
@@ -21,20 +21,20 @@ const CreateImmobileSchema = Yup.object().shape({
   // address
   address: Yup.object().shape({
     street: Yup.string().required(requiredMessage),
-    number: Yup.numberNullable(),
+    number: numberNullable(),
     city: Yup.string().required(requiredMessage),
     neighborhood: Yup.string().required(requiredMessage),
   }),
   particulars: Yup.mixed(),
   type: Yup.string().required(requiredMessage),
   map: Yup.object().shape({
-    lat: Yup.numberNullable(),
-    lng: Yup.numberNullable(),
+    lat: numberNullable(),
+    lng: numberNullable(),
   }),
   price: Yup.object()
     .shape({
-      sale: Yup.numberNullable(),
-      rent: Yup.numberNullable(),
+      sale: numberNullable(),
+      rent: numberNullable(),
     })
     .atLeastOneOf(['sale', 'rent']),
   images: Yup.array(
@@ -45,7 +45,7 @@ const CreateImmobileSchema = Yup.object().shape({
   ).required(''),
   owner: Yup.object().shape({
     name: Yup.string(),
-    whatsapp: Yup.numberNullable(),
+    whatsapp: numberNullable(),
     cpf: Yup.string(),
     annotation: Yup.string(),
   }),
@@ -59,9 +59,9 @@ const CreateImmobileSchema = Yup.object().shape({
     ),
   }),
   rates: Yup.object().shape({
-    iptu: Yup.numberNullable(),
-    condominium: Yup.numberNullable(),
-    fireInsurance: Yup.numberNullable(),
+    iptu: numberNullable(),
+    condominium: numberNullable(),
+    fireInsurance: numberNullable(),
   }),
 });
 

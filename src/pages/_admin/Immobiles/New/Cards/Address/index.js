@@ -32,7 +32,6 @@ export default function Address({
         city.neighborhoods.find(neighborhood => neighborhood._id === value._id)
       );
 
-      setFieldTouched('address.city');
       setFieldValue('address.city', city);
     }
 

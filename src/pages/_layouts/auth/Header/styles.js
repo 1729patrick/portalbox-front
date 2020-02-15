@@ -24,7 +24,6 @@ export const Container = styled.header`
         color: rgb(239, 108, 0);
         margin-right: 2px;
         font-size: 30px;
-        margin-top: 8px;
       }
     }
 

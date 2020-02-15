@@ -17,7 +17,7 @@ export default function Owner({ values, setFieldValue }) {
         type="text"
         label="Nome"
         placeholder="Digite o nome do proprietário"
-        value={path.name}
+        value={path?.name}
         setValue={value => setFieldValue('owner.name', value)}
       />
 
@@ -25,7 +25,7 @@ export default function Owner({ values, setFieldValue }) {
         type="number"
         label="Whatsapp"
         placeholder="Digite o número de Whatsapp"
-        value={path.whatsapp}
+        value={path?.whatsapp}
         setValue={value => setFieldValue('owner.whatsapp', value)}
       />
 
@@ -33,7 +33,7 @@ export default function Owner({ values, setFieldValue }) {
         type="number"
         label="CPF"
         placeholder="Digite o número do CPF"
-        value={path.cpf}
+        value={path?.cpf}
         setValue={value => setFieldValue('owner.cpf', value)}
       />
 
@@ -42,7 +42,7 @@ export default function Owner({ values, setFieldValue }) {
         label="Anotações"
         multiline
         placeholder="Digite algo sobre o responsável"
-        value={path.annotation}
+        value={path?.annotation}
         setValue={value => setFieldValue('owner.annotation', value)}
       />
     </Card>

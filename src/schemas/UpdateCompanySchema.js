@@ -2,11 +2,9 @@ import * as Yup from 'yup';
 
 const requiredMessage = 'Este campo precisa ser preenchido';
 
-Yup.numberNullable = () =>
+const numberNullable = () =>
   Yup.number()
-    .transform(cv => {
-      return typeof cv === 'number' && !isNaN(cv) ? cv : null;
-    })
+    .transform(cv => (cv >= 0 && typeof cv === 'number' ? cv : null))
     .nullable();
 
 const UpdateCompanySchema = Yup.object().shape({
@@ -16,22 +14,20 @@ const UpdateCompanySchema = Yup.object().shape({
   description: Yup.string().required(requiredMessage),
   address: Yup.object().shape({
     street: Yup.string().required(requiredMessage),
-    number: Yup.numberNullable(),
+    number: numberNullable(),
     cep: Yup.string().required(requiredMessage),
     city: Yup.object()
       .shape({
-        _id: Yup.number().required(),
+        _id: Yup.string().required(),
         name: Yup.string(),
       })
-      .typeError(requiredMessage)
       .required(requiredMessage),
 
     neighborhood: Yup.object()
       .shape({
-        _id: Yup.number().required(),
+        _id: Yup.string().required(),
         name: Yup.string(),
       })
-      .typeError(requiredMessage)
       .required(requiredMessage),
   }),
   logo: Yup.mixed().required(requiredMessage),
@@ -39,9 +35,7 @@ const UpdateCompanySchema = Yup.object().shape({
   phones: Yup.array(
     Yup.object().shape({
       type: Yup.string().required(requiredMessage),
-      number: Yup.number()
-        .typeError(requiredMessage)
-        .required(requiredMessage),
+      number: Yup.number().required(requiredMessage),
       description: Yup.string().required(requiredMessage),
     })
   ),
@@ -52,6 +46,7 @@ const UpdateCompanySchema = Yup.object().shape({
       showInPortal: Yup.bool().required(requiredMessage),
     })
   ),
+  password: Yup.string().required(requiredMessage),
 });
 
 export default UpdateCompanySchema;

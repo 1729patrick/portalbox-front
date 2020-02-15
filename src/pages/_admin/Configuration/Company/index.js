@@ -11,13 +11,14 @@ import Address from './Cards/Address';
 import Images from './Cards/Images';
 import Phones from './Cards/Phones';
 import Mails from './Cards/Mails';
+import Password from './Cards/Password';
 
 import UpdateCompanySchema from '~/schemas/UpdateCompanySchema';
 
 export default function Company() {
   const company = useSelector(state => {
     const { _id, ...company } = state.company;
-    return company;
+    return { ...company, password: '' };
   });
 
   return (
@@ -25,8 +26,18 @@ export default function Company() {
       validateOnChange={false}
       initialValues={company}
       validationSchema={UpdateCompanySchema}
-      render={({ values, setFieldValue, errors }) => (
+      onSubmit={values => console.log(JSON.stringify(values))}
+      render={({
+        values,
+        setFieldValue,
+        errors,
+        setFieldTouched,
+        touched,
+        isValid,
+        submitCount,
+      }) => (
         <Form>
+          {console.log(errors)}
           <MyCompany
             values={values}
             setFieldValue={setFieldValue}
@@ -52,8 +63,13 @@ export default function Company() {
             setFieldValue={setFieldValue}
             errors={errors}
           />
+          <Password
+            values={values}
+            setFieldValue={setFieldValue}
+            errors={errors}
+          />
 
-          <SubmitButton text="Salvar" type="submit" />
+          <SubmitButton text="Salvar" type="submit" disabled={!isValid} />
         </Form>
       )}
     />
