@@ -104,7 +104,6 @@ export default function New() {
   return (
     <Container>
       <Formik
-        validateOnChange
         initialValues={initialData}
         onSubmit={data => dispatch(createImmobilesRequest(data))}
         validationSchema={CreateImmobileSchema}
@@ -121,8 +120,8 @@ export default function New() {
             <Address
               values={values}
               setFieldValue={setFieldValue}
-              setFieldTouched={setFieldTouched}
               errors={errors}
+              setFieldTouched={setFieldTouched}
               touched={touched}
               formSubmitted={submitCount > 0}
             />
@@ -131,21 +130,22 @@ export default function New() {
               onOpenPicker={() => setShowPicker('particularsPicker')}
               values={values}
               setFieldValue={setFieldValue}
-              setFieldTouched={setFieldTouched}
               errors={errors}
+              setFieldTouched={setFieldTouched}
               touched={touched}
               formSubmitted={submitCount > 0}
             />
 
             <Map values={values} setFieldValue={setFieldValue} />
+
             <Price
               onOpenPicker={() => setShowPicker('ratesPicker')}
               onClosePicker={() => setShowPicker(null)}
               openPicker={showPicker === 'ratesPicker'}
               values={values}
               setFieldValue={setFieldValue}
-              setFieldTouched={setFieldTouched}
               errors={errors}
+              setFieldTouched={setFieldTouched}
               touched={touched}
               formSubmitted={submitCount > 0}
             />

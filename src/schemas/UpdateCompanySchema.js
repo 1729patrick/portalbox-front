@@ -18,16 +18,16 @@ const UpdateCompanySchema = Yup.object().shape({
     cep: Yup.string().required(requiredMessage),
     city: Yup.object()
       .shape({
-        _id: Yup.string().required(),
-        name: Yup.string(),
+        _id: Yup.string().required(requiredMessage),
       })
+      .typeError(requiredMessage)
       .required(requiredMessage),
 
     neighborhood: Yup.object()
       .shape({
-        _id: Yup.string().required(),
-        name: Yup.string(),
+        _id: Yup.string().required(requiredMessage),
       })
+      .typeError(requiredMessage)
       .required(requiredMessage),
   }),
   logo: Yup.mixed().required(requiredMessage),

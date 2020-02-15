@@ -23,7 +23,6 @@ export default function Company() {
 
   return (
     <Formik
-      validateOnChange={false}
       initialValues={company}
       validationSchema={UpdateCompanySchema}
       onSubmit={values => console.log(JSON.stringify(values))}
@@ -37,36 +36,53 @@ export default function Company() {
         submitCount,
       }) => (
         <Form>
-          {console.log(errors)}
           <MyCompany
             values={values}
             setFieldValue={setFieldValue}
             errors={errors}
+            setFieldTouched={setFieldTouched}
+            touched={touched}
+            formSubmitted={submitCount > 0}
           />
           <Address
             values={values}
             setFieldValue={setFieldValue}
             errors={errors}
+            setFieldTouched={setFieldTouched}
+            touched={touched}
+            formSubmitted={submitCount > 0}
           />
           <Images
             values={values}
             setFieldValue={setFieldValue}
             errors={errors}
+            setFieldTouched={setFieldTouched}
+            touched={touched}
+            formSubmitted={submitCount > 0}
           />
           <Phones
             values={values}
             setFieldValue={setFieldValue}
             errors={errors}
+            setFieldTouched={setFieldTouched}
+            touched={touched}
+            formSubmitted={submitCount > 0}
           />
           <Mails
             values={values}
             setFieldValue={setFieldValue}
             errors={errors}
+            setFieldTouched={setFieldTouched}
+            touched={touched}
+            formSubmitted={submitCount > 0}
           />
           <Password
             values={values}
             setFieldValue={setFieldValue}
             errors={errors}
+            setFieldTouched={setFieldTouched}
+            touched={touched}
+            formSubmitted={submitCount > 0}
           />
 
           <SubmitButton text="Salvar" type="submit" disabled={!isValid} />
