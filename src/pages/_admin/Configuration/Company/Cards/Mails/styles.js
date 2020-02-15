@@ -38,7 +38,7 @@ export const Mail = styled.span`
     }
   }
 
-  & + div {
+  & + span {
     margin-top: 15px !important;
   }
 
