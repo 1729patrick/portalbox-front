@@ -23,7 +23,7 @@ export const Phone = styled.div`
     height: 42px;
     margin-top: auto;
 
-    p {
+    span {
       display: none;
     }
   }
@@ -42,7 +42,7 @@ export const Phone = styled.div`
     button {
       margin: 5px auto 0;
 
-      p {
+      span {
         display: block;
         color: #d50000;
         font-weight: 500;

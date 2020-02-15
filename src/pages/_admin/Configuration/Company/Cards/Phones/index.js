@@ -1,4 +1,7 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { FiX } from 'react-icons/fi';
 
 import Card from '~/components/_admin/Card';
@@ -8,7 +11,7 @@ import Select from '~/components/Select';
 import { Phone } from './styles';
 import { typesPhone } from '~/services/fakeData';
 
-export default function Phones({ values, setFieldValue, errors }) {
+const Phones = ({ values, setFieldValue, errors }) => {
   const [phones, setPhones] = useState(values.phones);
 
   useEffect(() => {
@@ -21,8 +24,8 @@ export default function Phones({ values, setFieldValue, errors }) {
       number = '',
       description = '',
     }) => {
-      setPhones(phones => [
-        ...phones,
+      setPhones(p => [
+        ...p,
         {
           type,
           number,
@@ -64,7 +67,7 @@ export default function Phones({ values, setFieldValue, errors }) {
       </div>
 
       {phones.map(({ type, number, description }, index) => (
-        <Phone key={index}>
+        <Phone key={String(index)}>
           <Input
             type="number"
             placeholder="Número do telefone"
@@ -89,7 +92,7 @@ export default function Phones({ values, setFieldValue, errors }) {
 
           <button type="button">
             <FiX color="#666" size={25} onClick={() => removePhone(index)} />
-            <p onClick={() => removePhone(index)}>Excluir</p>
+            <span onClick={() => removePhone(index)}>Excluir</span>
           </button>
         </Phone>
       ))}
@@ -99,4 +102,49 @@ export default function Phones({ values, setFieldValue, errors }) {
       </button>
     </Card>
   );
-}
+};
+
+Phones.propTypes = {
+  values: PropTypes.shape({
+    phones: PropTypes.arrayOf(
+      PropTypes.shape({
+        type: PropTypes.shape({
+          _id: PropTypes.string,
+          name: PropTypes.string,
+        }),
+        number: ({ number }, propName, componentName) => {
+          if (+number >= 0) {
+            return true;
+          }
+
+          return new Error(
+            `Invalid prop ${propName} passed to ${componentName}. Expected a number and receive a isNaN.`
+          );
+        },
+        description: PropTypes.string,
+      })
+    ).isRequired,
+  }).isRequired,
+  setFieldValue: PropTypes.func.isRequired,
+  errors: PropTypes.shape({
+    phones: PropTypes.arrayOf(
+      PropTypes.shape({
+        type: PropTypes.string,
+        number: PropTypes.string,
+        description: PropTypes.string,
+      })
+    ),
+  }),
+};
+
+Phones.defaultProps = {
+  errors: {
+    phones: {
+      type: '',
+      number: '',
+      description: '',
+    },
+  },
+};
+
+export default Phones;
