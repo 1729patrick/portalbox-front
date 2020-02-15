@@ -10,3 +10,8 @@ export const loadCompanySuccess = company => ({
 export const loadCompanyFailure = () => ({
   type: '@company/LOAD_COMPANY_FAILURE',
 });
+
+export const updateCompanyRequest = company => ({
+  type: '@company/UPDATE_COMPANY_REQUEST',
+  payload: { company },
+});

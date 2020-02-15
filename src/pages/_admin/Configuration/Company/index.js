@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { Formik, Form } from 'formik';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { SubmitButton } from './styles';
 
@@ -14,8 +14,10 @@ import Mails from './Cards/Mails';
 import Password from './Cards/Password';
 
 import UpdateCompanySchema from '~/schemas/UpdateCompanySchema';
+import { updateCompanyRequest } from '~/store/modules/company/actions';
 
 export default function Company() {
+  const dispatch = useDispatch();
   const company = useSelector(state => {
     const { _id, ...company } = state.company;
     return { ...company, password: '' };
@@ -26,7 +28,7 @@ export default function Company() {
       validateOnChange
       initialValues={company}
       validationSchema={UpdateCompanySchema}
-      onSubmit={values => console.log(JSON.stringify(values))}
+      onSubmit={data => dispatch(updateCompanyRequest(data))}
       render={({
         values,
         setFieldValue,

@@ -23,7 +23,7 @@ export function* createImmobile({ payload }) {
     const responseImages = yield call(api.post, 'files', data);
 
     const imagesMerged = [responseImages.data, images].reduce((a, b) =>
-      a.map((c, i) => Object.assign({}, c, b[i]))
+      a.map((c, i) => ({ ...c, ...b[i] }))
     );
 
     const {
@@ -89,7 +89,8 @@ export function* createImmobile({ payload }) {
     toast.success('Imóvel cadastrado com sucesso 🥳');
   } catch (e) {
     toast.error(
-      'Confira os dados e tente novamente. Aconteceu algum erro ao criar o imóvel 😢'
+      e.response?.data?.error?.message ||
+        'Confira os dados e tente novamente. Aconteceu algum erro ao criar o imóvel 😢'
     );
   }
 }
