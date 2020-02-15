@@ -1,6 +1,21 @@
 import styled from 'styled-components';
+import Card from '~/components/_admin/Card';
 
-export const Mail = styled.div`
+export const CardMails = styled(Card)`
+  > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    > span {
+      color: #d50000;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+`;
+
+export const Mail = styled.span`
   display: flex;
   align-items: flex-end;
 
@@ -34,7 +49,7 @@ export const Mail = styled.div`
     height: 42px;
     margin-top: auto;
 
-    p {
+    span {
       display: none;
     }
   }
@@ -67,7 +82,7 @@ export const Mail = styled.div`
     button {
       margin: 5px auto 0;
 
-      p {
+      span {
         display: block;
         color: #d50000;
         font-weight: 500;

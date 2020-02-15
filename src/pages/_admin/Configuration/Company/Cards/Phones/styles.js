@@ -1,6 +1,21 @@
 import styled from 'styled-components';
+import Card from '~/components/_admin/Card';
 
-export const Phone = styled.div`
+export const CardPhones = styled(Card)`
+  > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    > span {
+      color: #d50000;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+`;
+
+export const Phone = styled.span`
   display: flex;
   align-items: flex-end;
 
@@ -12,7 +27,7 @@ export const Phone = styled.div`
     }
   }
 
-  & + div {
+  & + span {
     margin-top: 15px !important;
   }
 

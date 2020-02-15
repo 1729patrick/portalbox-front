@@ -1,11 +1,13 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { FiX } from 'react-icons/fi';
 
-import Card from '~/components/_admin/Card';
 import Input from '~/components/Input';
 import Select from '~/components/Select';
 
-import { Mail } from './styles';
+import { CardMails, Mail } from './styles';
 import { typesEmail } from '~/services/fakeData';
 
 const showInPortalOptions = [
@@ -13,7 +15,14 @@ const showInPortalOptions = [
   { _id: false, name: 'Não' },
 ];
 
-export default function Emails({ values, setFieldValue, errors }) {
+const Mails = ({
+  values,
+  setFieldValue,
+  errors,
+  setFieldTouched,
+  touched,
+  formSubmitted,
+}) => {
   const [emails, setEmails] = useState(
     values.emails.map(email => ({
       ...email,
@@ -36,8 +45,8 @@ export default function Emails({ values, setFieldValue, errors }) {
       email = '',
       showInPortal = { _id: false, name: 'Não' },
     }) => {
-      setEmails(emails => [
-        ...emails,
+      setEmails(e => [
+        ...e,
         {
           type,
           email,
@@ -65,27 +74,37 @@ export default function Emails({ values, setFieldValue, errors }) {
     );
   };
 
-  const getError = (index, field) => {
-    if (!errors.emails) {
-      return '';
+  const getStatus = (list, index, field) => {
+    if (!list.emails) {
+      return null;
     }
-    return errors.emails[index] ? errors.emails[index][field] : '';
+    return list.emails[index] ? list.emails[index][field] : null;
   };
 
+  const getError = () =>
+    typeof errors.emails === 'string' ? errors.emails : '';
+
   return (
-    <Card>
+    <CardMails>
       <div>
         <h1>E-mails</h1>
+
+        <span>{getError()}</span>
       </div>
 
       {emails.map(({ email, type, showInPortal }, index) => (
-        <Mail key={index}>
+        <Mail key={String(index)}>
           <Input
             type="text"
             placeholder="Endereço de e-mail"
             value={email}
             setValue={value => handleValueChange(index, 'email', value)}
-            error={getError(index, 'email')}
+            error={getStatus(errors, index, 'email')}
+            setTouched={() => {
+              setFieldTouched(String(`emails[${index}].email`));
+            }}
+            touched
+            formSubmitted={formSubmitted}
           />
 
           <div>
@@ -96,7 +115,12 @@ export default function Emails({ values, setFieldValue, errors }) {
                 handleValueChange(index, 'type', selected)
               }
               options={typesEmail}
-              error={getError(index, 'type')}
+              error={getStatus(errors, index, 'type')}
+              setTouched={() => {
+                setFieldTouched(String(`emails[${index}].type`));
+              }}
+              touched
+              formSubmitted={formSubmitted}
             />
             <Select
               placeholder="Exibir no PORTAL?"
@@ -106,12 +130,17 @@ export default function Emails({ values, setFieldValue, errors }) {
                 handleValueChange(index, 'showInPortal', selected)
               }
               options={showInPortalOptions}
-              error={getError(index, 'showInPortal')}
+              error={getStatus(errors, index, 'showInPortal')}
+              setTouched={() => {
+                setFieldTouched(String(`emails[${index}].showInPortal`));
+              }}
+              touched
+              formSubmitted={formSubmitted}
             />
           </div>
           <button type="button">
             <FiX color="#666" size={25} onClick={() => removeEmail(index)} />
-            <p onClick={() => removeEmail(index)}>Excluir</p>
+            <span onClick={() => removeEmail(index)}>Excluir</span>
           </button>
         </Mail>
       ))}
@@ -119,6 +148,57 @@ export default function Emails({ values, setFieldValue, errors }) {
       <button type="button" onClick={() => addEmail({})}>
         + Adicionar e-mail
       </button>
-    </Card>
+    </CardMails>
   );
-}
+};
+
+Mails.propTypes = {
+  values: PropTypes.shape({
+    emails: PropTypes.arrayOf(
+      PropTypes.shape({
+        type: PropTypes.shape({
+          _id: PropTypes.string,
+          name: PropTypes.string,
+        }),
+        showInPortal: PropTypes.bool,
+        email: PropTypes.string,
+      })
+    ).isRequired,
+  }).isRequired,
+  setFieldValue: PropTypes.func.isRequired,
+  errors: PropTypes.shape({
+    emails: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.arrayOf(
+        PropTypes.shape({
+          type: PropTypes.string,
+          showInPortal: PropTypes.string,
+          email: PropTypes.string,
+        })
+      ),
+    ]),
+  }),
+  setFieldTouched: PropTypes.func.isRequired,
+  touched: PropTypes.shape({
+    emails: PropTypes.arrayOf(
+      PropTypes.shape({
+        type: PropTypes.bool,
+        showInPortal: PropTypes.bool,
+        email: PropTypes.bool,
+      })
+    ),
+  }).isRequired,
+  formSubmitted: PropTypes.bool.isRequired,
+};
+
+Mails.defaultProps = {
+  errors: {
+    emails: {
+      type: '',
+      showInPortal: '',
+      email: '',
+    },
+  },
+};
+
+export default Mails;

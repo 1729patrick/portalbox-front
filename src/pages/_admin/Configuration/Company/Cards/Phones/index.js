@@ -4,14 +4,20 @@ import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { FiX } from 'react-icons/fi';
 
-import Card from '~/components/_admin/Card';
 import Input from '~/components/Input';
 import Select from '~/components/Select';
 
-import { Phone } from './styles';
+import { CardPhones, Phone } from './styles';
 import { typesPhone } from '~/services/fakeData';
 
-const Phones = ({ values, setFieldValue, errors }) => {
+const Phones = ({
+  values,
+  setFieldValue,
+  errors,
+  setFieldTouched,
+  touched,
+  formSubmitted,
+}) => {
   const [phones, setPhones] = useState(values.phones);
 
   useEffect(() => {
@@ -46,24 +52,26 @@ const Phones = ({ values, setFieldValue, errors }) => {
 
   const handleValueChange = (index, field, value) => {
     setPhones(
-      phones.map((p, i) => {
-        if (i === index) return { ...p, [field]: value };
-        return p;
-      })
+      phones.map((p, i) => (i === index ? { ...p, [field]: value } : p))
     );
   };
 
-  const getError = (index, field) => {
-    if (!errors.phones) {
-      return '';
+  const getStatus = (list, index, field) => {
+    if (!list.phones) {
+      return null;
     }
-    return errors.phones[index] ? errors.phones[index][field] : '';
+    return list.phones[index] ? list.phones[index][field] : null;
   };
 
+  const getError = () =>
+    typeof errors.phones === 'string' ? errors.phones : '';
+
   return (
-    <Card>
+    <CardPhones>
       <div>
         <h1>Telefones</h1>
+
+        <span>{getError()}</span>
       </div>
 
       {phones.map(({ type, number, description }, index) => (
@@ -73,21 +81,36 @@ const Phones = ({ values, setFieldValue, errors }) => {
             placeholder="Número do telefone"
             value={number}
             setValue={value => handleValueChange(index, 'number', value)}
-            error={getError(index, 'number')}
+            error={getStatus(errors, index, 'number')}
+            setTouched={() => {
+              setFieldTouched(String(`phones[${index}].number`));
+            }}
+            touched
+            formSubmitted={formSubmitted}
           />
           <Input
             type="text"
             placeholder="Descrição do telefone"
             value={description}
             setValue={value => handleValueChange(index, 'description', value)}
-            error={getError(index, 'description')}
+            error={getStatus(errors, index, 'description')}
+            setTouched={() => {
+              setFieldTouched(String(`phones[${index}].description`));
+            }}
+            touched
+            formSubmitted={formSubmitted}
           />
           <Select
             placeholder="Tipo do telefone"
             selected={type}
             setSelected={selected => handleValueChange(index, 'type', selected)}
             options={typesPhone}
-            error={getError(index, 'type')}
+            error={getStatus(errors, index, 'type')}
+            setTouched={() => {
+              setFieldTouched(String(`phones[${index}].type`));
+            }}
+            touched
+            formSubmitted={formSubmitted}
           />
 
           <button type="button">
@@ -100,7 +123,7 @@ const Phones = ({ values, setFieldValue, errors }) => {
       <button type="button" onClick={() => addPhone({})}>
         + Adicionar telefone
       </button>
-    </Card>
+    </CardPhones>
   );
 };
 
@@ -127,14 +150,28 @@ Phones.propTypes = {
   }).isRequired,
   setFieldValue: PropTypes.func.isRequired,
   errors: PropTypes.shape({
+    phones: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.arrayOf(
+        PropTypes.shape({
+          type: PropTypes.string,
+          number: PropTypes.string,
+          description: PropTypes.string,
+        })
+      ),
+    ]),
+  }),
+  setFieldTouched: PropTypes.func.isRequired,
+  touched: PropTypes.shape({
     phones: PropTypes.arrayOf(
       PropTypes.shape({
-        type: PropTypes.string,
-        number: PropTypes.string,
-        description: PropTypes.string,
+        type: PropTypes.bool,
+        number: PropTypes.bool,
+        description: PropTypes.bool,
       })
     ),
-  }),
+  }).isRequired,
+  formSubmitted: PropTypes.bool.isRequired,
 };
 
 Phones.defaultProps = {

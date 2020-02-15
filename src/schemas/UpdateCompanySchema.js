@@ -7,6 +7,12 @@ const numberNullable = () =>
     .transform(cv => (cv >= 0 && typeof cv === 'number' ? cv : null))
     .nullable();
 
+Yup.addMethod(Yup.array, 'unique', function(message, mapper = a => a) {
+  return this.test('unique', message, function(list) {
+    return list.length === new Set(list.map(mapper)).size;
+  });
+});
+
 const UpdateCompanySchema = Yup.object().shape({
   name: Yup.string().required(requiredMessage),
   creci: Yup.string().required(requiredMessage),
@@ -39,17 +45,21 @@ const UpdateCompanySchema = Yup.object().shape({
   phones: Yup.array(
     Yup.object().shape({
       type: Yup.string().required(requiredMessage),
-      number: Yup.number().required(requiredMessage),
+      number: Yup.number()
+        .required(requiredMessage)
+        .typeError(requiredMessage),
       description: Yup.string().required(requiredMessage),
     })
-  ),
+  ).unique('Telefones duplicados', phone => phone.number),
   emails: Yup.array(
     Yup.object().shape({
-      email: Yup.string().required(requiredMessage),
+      email: Yup.string()
+        .email('E-mail inválido')
+        .required(requiredMessage),
       type: Yup.string().required(requiredMessage),
       showInPortal: Yup.bool().required(requiredMessage),
     })
-  ),
+  ).unique('E-mails duplicados', email => email.email),
   password: Yup.string().required(requiredMessage),
 });
 
