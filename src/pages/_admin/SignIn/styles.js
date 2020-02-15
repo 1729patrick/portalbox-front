@@ -14,7 +14,7 @@ export const Container = styled.div`
   div {
     position: absolute;
     top: 40px;
-    left: 60px;
+
     display: flex;
     align-items: center;
 
@@ -23,6 +23,10 @@ export const Container = styled.div`
       margin-right: 2px;
       font-size: 30px;
       margin-top: 8px;
+    }
+
+    @media screen and (min-width: 768px) {
+      left: 60px;
     }
   }
 
