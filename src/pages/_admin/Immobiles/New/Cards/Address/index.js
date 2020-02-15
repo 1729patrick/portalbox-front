@@ -38,6 +38,15 @@ export default function Address({
     setFieldValue('address.neighborhood', value);
   };
 
+  const handleCitySelected = value => {
+    if (path.city === value) {
+      return;
+    }
+
+    setFieldValue('address.city', value);
+    setFieldValue('address.neighborhood', '');
+  };
+
   return (
     <Card>
       <div>
@@ -75,7 +84,7 @@ export default function Address({
         multiple={false}
         error={getError('city')}
         selected={path.city}
-        setSelected={value => setFieldValue('address.city', value)}
+        setSelected={handleCitySelected}
         setTouched={() => setFieldTouched('address.city')}
         touched={getTouched('city')}
         formSubmitted={formSubmitted}

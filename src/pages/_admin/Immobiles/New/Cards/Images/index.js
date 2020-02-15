@@ -10,7 +10,7 @@ const Images = ({ values, setFieldValue, errors }) => {
       <div>
         <h1>Fotos</h1>
 
-        <span>{errors.images}</span>
+        <p>Adicione ao menos uma foto</p>
       </div>
 
       <ImagesUploader

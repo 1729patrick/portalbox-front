@@ -29,6 +29,7 @@ export const RigthAside = styled.aside`
 
   @media screen and (max-width: 768px) {
     width: 100%;
+    padding-top: 0;
   }
 `;
 

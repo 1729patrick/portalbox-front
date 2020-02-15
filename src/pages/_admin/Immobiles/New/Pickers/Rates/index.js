@@ -16,6 +16,7 @@ export default function Rates({ onClose, open, values, setFieldValue }) {
       <Container>
         <div>
           <InputMask
+            type="number"
             label="Condomínio"
             placeholder="Digite o valor do condominio"
             value={path.condominium}
@@ -24,6 +25,7 @@ export default function Rates({ onClose, open, values, setFieldValue }) {
         </div>
         <div>
           <InputMask
+            type="number"
             label="IPTU"
             placeholder="Digite o valor do IPTU"
             value={path.iptu}
@@ -32,6 +34,7 @@ export default function Rates({ onClose, open, values, setFieldValue }) {
         </div>
         <div>
           <InputMask
+            type="number"
             label="Seguro de incêndio"
             placeholder="Digite o valor do seguro de incêndio"
             value={path.fireInsurance}

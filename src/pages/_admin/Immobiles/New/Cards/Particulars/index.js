@@ -20,9 +20,10 @@ export default function Particulars({
   const types = useSelector(state => state.core.types);
 
   const pathValues = useMemo(() => values.particulars, [values.particulars]);
-  const pathTouched = useMemo(() => touched.particulars || {}, [
-    touched.particulars,
-  ]);
+
+  const getTouched = field => {
+    return touched.particulars ? touched.particulars[field] : null;
+  };
 
   return (
     <Card>
@@ -39,7 +40,7 @@ export default function Particulars({
         setSelected={value => setFieldValue('type', value)}
         error={errors.type}
         setTouched={() => setFieldTouched('type')}
-        touched={touched.type}
+        touched={getTouched('type')}
         formSubmitted={formSubmitted}
       />
 
@@ -50,7 +51,7 @@ export default function Particulars({
         checked={pathValues.bedroom}
         setChecked={value => setFieldValue('particulars.bedroom', value)}
         setTouched={() => setFieldTouched('particulars.bedroom')}
-        touched={pathTouched.bedroom}
+        touched={getTouched('bedroom')}
         formSubmitted={formSubmitted}
       />
 
@@ -61,7 +62,7 @@ export default function Particulars({
         checked={pathValues.bathroom}
         setChecked={value => setFieldValue('particulars.bathroom', value)}
         setTouched={() => setFieldTouched('particulars.bathroom')}
-        touched={pathTouched.bathroom}
+        touched={getTouched('bathroom')}
         formSubmitted={formSubmitted}
       />
 
@@ -72,7 +73,7 @@ export default function Particulars({
         checked={pathValues.garage}
         setChecked={value => setFieldValue('particulars.garage', value)}
         setTouched={() => setFieldTouched('particulars.garage')}
-        touched={pathTouched.garage}
+        touched={getTouched('garage')}
         formSubmitted={formSubmitted}
       />
 
@@ -84,7 +85,7 @@ export default function Particulars({
         value={pathValues.totalArea}
         setValue={value => setFieldValue('particulars.totalArea', value)}
         setTouched={() => setFieldTouched('particulars.totalArea')}
-        touched={pathTouched.totalArea}
+        touched={getTouched('totalArea')}
         formSubmitted={formSubmitted}
       />
 

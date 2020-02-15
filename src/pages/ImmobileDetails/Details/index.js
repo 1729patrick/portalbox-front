@@ -8,22 +8,28 @@ export default function Details({ openPreview, immobile, address }) {
   const particularsSpotlight = useMemo(() => immobile.particulars.slice(0, 4), [
     immobile,
   ]);
+
   const particulars = useMemo(() => immobile.particulars.splice(4), [immobile]);
 
   const title = useMemo(() => {
     let [firstParticular, secondParticular] = particularsSpotlight;
 
-    firstParticular = getParticular({
-      title: firstParticular.title,
-      pos: firstParticular.value > 1,
-      value: firstParticular.value,
-    });
+    let particular = '';
+    if (firstParticular) {
+      firstParticular = getParticular({
+        title: firstParticular.title,
+        pos: firstParticular.value > 1,
+        value: firstParticular.value,
+      });
 
-    secondParticular = getParticular({
-      title: secondParticular.title,
-      pos: secondParticular.value > 1,
-      value: secondParticular.value,
-    });
+      secondParticular = getParticular({
+        title: secondParticular.title,
+        pos: secondParticular.value > 1,
+        value: secondParticular.value,
+      });
+
+      particular = ` com ${firstParticular}, ${secondParticular},`;
+    }
 
     const { rent, sale } = immobile.price;
     const priceRent = rent
@@ -60,7 +66,7 @@ export default function Details({ openPreview, immobile, address }) {
         })}`
       : '';
 
-    return `${immobile.type.name} com ${firstParticular}, ${secondParticular},${areaFormatted}${rentFormatted}${saleFormatted}`;
+    return `${immobile.type.name}${particular}${areaFormatted}${rentFormatted}${saleFormatted}`;
 
     // return 'Apartamento com 3 quartos para Alugar, 153 m² por R$ 6.000/Mês';
   }, [immobile, particulars, particularsSpotlight]);

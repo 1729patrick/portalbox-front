@@ -42,8 +42,8 @@ export default function Owner({ values, setFieldValue }) {
         label="Anotações"
         multiline
         placeholder="Digite algo sobre o responsável"
-        value={path.annotations}
-        setValue={value => setFieldValue('owner.annotations', value)}
+        value={path.annotation}
+        setValue={value => setFieldValue('owner.annotation', value)}
       />
     </Card>
   );

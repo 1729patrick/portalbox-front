@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import { all, takeLatest, call, put, takeEvery } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 
@@ -11,6 +12,7 @@ export function* createImmobile({ payload }) {
   try {
     const { immobile } = payload;
     const { images } = immobile;
+
     const data = new FormData();
     images.forEach(({ _id, image }) => {
       if (!_id) {
@@ -37,45 +39,39 @@ export function* createImmobile({ payload }) {
     } = immobile;
 
     const particularsComplete = Object.assign(particulars, allParticulars);
+    // console.log('particularsComplete', Object.entries(particularsComplete));
 
-    const particularsFormatted = Object.keys(particularsComplete)
-      .map(k => {
-        try {
-          return {
-            title: k,
-            value: JSON.parse(particularsComplete[k]),
-          };
-        } catch (e) {
-          return {
-            title: k,
-            value: particularsComplete[k],
-          };
-        }
-      })
+    const particularsFormatted = Object.entries(particularsComplete)
+      .map(([title, value]) => ({
+        title,
+        value: isNaN(+value) ? value : +value,
+      }))
       .filter(({ value }) => value);
+    // console.log('particularsFormatted', particularsFormatted);
 
-    const ratesFormatted = Object.keys(rates)
-      .map(k => {
-        try {
-          return {
-            title: k,
-            value: JSON.parse(rates[k]),
-          };
-        } catch (e) {
-          return {
-            title: k,
-            value: rates[k],
-          };
-        }
-      })
+    const ratesFormatted = Object.entries(rates)
+      .map(([title, value]) => ({
+        title,
+        value,
+      }))
       .filter(({ value }) => value);
+    // console.log('ratesFormatted', ratesFormatted);
 
     const imagesMergedFormatted = imagesMerged.map(
       ({ _id, url, description }) => ({ file: _id, url, description })
     );
+    // console.log('imagesMergedFormatted', imagesMergedFormatted);
+    // console.log('config.sessions',config.sessions);
+    const sessionsFormatted = config.sessions
+      ? config.sessions.map(({ _id }) => _id)
+      : [];
+    // console.log('sessionsFormatted', sessionsFormatted);
 
-    const sessionsFormatted = config.sessions.map(({ _id }) => _id);
-
+    // console.log('address', address);
+    // console.log('map', map);
+    // console.log('price', price);
+    // console.log('owner', owner);
+    // console.log('type', type);
     const immobileClean = {
       address,
       map,

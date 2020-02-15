@@ -25,13 +25,13 @@ export default function Map({ values, setFieldValue }) {
           Mapa <p>(Opcional)</p>
         </h1>
         <p>
-          Se as coordenadas estiverem vazias não será possível exibir o imóvel
-          no mapa do PORTAL
+          Se as coordenadas estiverem vazias não será possível localizar o
+          imóvel no mapa do PORTAL
         </p>
       </div>
 
       <Input
-        type="text"
+        type="number"
         label="Latitude"
         placeholder="Digite a latidode da localização"
         value={path.lat}
@@ -39,7 +39,7 @@ export default function Map({ values, setFieldValue }) {
       />
 
       <Input
-        type="text"
+        type="number"
         label="Longitude"
         placeholder="Digite a longitude da localização"
         value={path.lng}
