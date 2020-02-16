@@ -18,9 +18,9 @@ const Address = ({
   const cities = useSelector(state => state.core.cities);
 
   useEffect(() => {
-    const city = cities.find(c => c._id === values.address.city._id);
+    const city = cities.find(c => c._id === values.address?.city?._id);
     setFieldValue('address.city', city);
-  }, [cities, setFieldValue, values.address.city._id]);
+  }, [cities, setFieldValue, values.address]);
 
   const handleNeighborhoodSelected = value => {
     if (!values.address?.city) {
@@ -34,7 +34,7 @@ const Address = ({
     setFieldValue('address.neighborhood', value);
   };
 
-  const handleCitySelected = value => {
+  const handleCitySelected = (value = {}) => {
     if (values.address?.city === value) {
       return;
     }
@@ -88,13 +88,14 @@ const Address = ({
         options={cities}
         label="Cidade"
         multiple={false}
-        error={errors.address?.city}
+        error={errors.address?.city?._id}
         selected={values.address?.city}
         setSelected={handleCitySelected}
         setTouched={() => setFieldTouched('address.city')}
         touched={touched.address?.city}
         formSubmitted={formSubmitted}
       />
+
       <Select
         placeholder="Selecione o bairro"
         options={values.address?.city ? [values.address?.city] : cities}
@@ -135,9 +136,12 @@ Address.propTypes = {
     address: PropTypes.shape({
       street: PropTypes.string,
       number: PropTypes.string,
-      city: PropTypes.shape({ _id: PropTypes.string }),
+      city: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.shape({ _id: PropTypes.string }),
+      ]),
       neighborhood: PropTypes.oneOfType([
-        () => null,
+        PropTypes.string,
         PropTypes.shape({ _id: PropTypes.string }),
       ]),
     }),
@@ -147,8 +151,8 @@ Address.propTypes = {
     address: PropTypes.shape({
       street: PropTypes.bool,
       number: PropTypes.bool,
-      city: PropTypes.bool,
-      neighborhood: PropTypes.bool,
+      city: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+      neighborhood: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     }),
   }).isRequired,
   formSubmitted: PropTypes.bool.isRequired,

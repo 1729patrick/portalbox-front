@@ -105,6 +105,7 @@ const Mails = ({
             }}
             touched
             formSubmitted={formSubmitted}
+            label=""
           />
 
           <div>
@@ -182,7 +183,7 @@ Mails.propTypes = {
   touched: PropTypes.shape({
     emails: PropTypes.arrayOf(
       PropTypes.shape({
-        type: PropTypes.bool,
+        type: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
         showInPortal: PropTypes.bool,
         email: PropTypes.bool,
       })

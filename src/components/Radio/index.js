@@ -65,7 +65,7 @@ Radio.propTypes = {
   setChecked: PropTypes.func.isRequired,
   error: PropTypes.string,
   setTouched: PropTypes.func,
-  touched: PropTypes.bool,
+  touched: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   formSubmitted: PropTypes.bool,
 };
 

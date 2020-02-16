@@ -123,6 +123,7 @@ export default function New({
           {values.neighborhoods.map((neighborhood, index) => (
             <div key={String(index)}>
               <Input
+                label=""
                 placeholder="Digite o nome do bairro"
                 value={neighborhood.name}
                 setValue={value => handleValueChange(index, value)}

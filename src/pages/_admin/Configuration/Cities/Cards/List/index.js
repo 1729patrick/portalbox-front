@@ -34,6 +34,8 @@ const List = ({ cities, handleNewCityClick, handleEditCityClick }) => {
                 disabled
                 placeholder="Digite o nome do bairro"
                 value={neighborhood.name}
+                setValue={() => {}}
+                label=""
               />
             ))}
           </Neighborhoods>

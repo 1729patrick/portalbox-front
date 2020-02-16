@@ -87,6 +87,7 @@ const Phones = ({
             }}
             touched
             formSubmitted={formSubmitted}
+            label=""
           />
           <Input
             type="text"
@@ -99,6 +100,7 @@ const Phones = ({
             }}
             touched
             formSubmitted={formSubmitted}
+            label=""
           />
           <Select
             placeholder="Tipo do telefone"
@@ -165,7 +167,7 @@ Phones.propTypes = {
   touched: PropTypes.shape({
     phones: PropTypes.arrayOf(
       PropTypes.shape({
-        type: PropTypes.bool,
+        type: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
         number: PropTypes.bool,
         description: PropTypes.bool,
       })

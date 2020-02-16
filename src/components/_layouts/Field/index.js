@@ -45,7 +45,7 @@ FieldLayout.propTypes = {
   onClear: PropTypes.func,
   // eslint-disable-next-line react/forbid-prop-types
   value: PropTypes.any,
-  touched: PropTypes.bool,
+  touched: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   formSubmitted: PropTypes.bool,
 };
 
