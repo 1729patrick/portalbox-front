@@ -1,15 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Title, City, Neighborhoods } from './styles';
 
 import Card from '~/components/_admin/Card';
 import Input from '~/components/Input';
 
-export default function List({
-  cities,
-  handleNewCityClick,
-  handleEditCityClick,
-}) {
+const List = ({ cities, handleNewCityClick, handleEditCityClick }) => {
   return (
     <Card>
       <Title>
@@ -44,4 +41,23 @@ export default function List({
       ))}
     </Card>
   );
-}
+};
+
+List.propTypes = {
+  cities: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      neighborhoods: PropTypes.arrayOf(
+        PropTypes.shape({
+          _id: PropTypes.string.isRequired,
+          name: PropTypes.string.isRequired,
+        })
+      ),
+    })
+  ).isRequired,
+  handleNewCityClick: PropTypes.func.isRequired,
+  handleEditCityClick: PropTypes.func.isRequired,
+};
+
+export default List;

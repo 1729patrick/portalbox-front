@@ -8,7 +8,13 @@ import {
   SubmitButton,
 } from './styles';
 
-export default function Picker({ onClose, title, children }) {
+export default function Picker({
+  onClose,
+  onConfirm,
+  title,
+  children,
+  disabledConfirm,
+}) {
   return (
     <Container>
       <header>
@@ -20,7 +26,12 @@ export default function Picker({ onClose, title, children }) {
       <Content>{children}</Content>
 
       <SubmitButtonWrapper>
-        <SubmitButton text="Confirmar" type="submit" onClick={onClose} />
+        <SubmitButton
+          disabled={disabledConfirm}
+          text="Confirmar"
+          type="submit"
+          onClick={onConfirm || onClose}
+        />
       </SubmitButtonWrapper>
     </Container>
   );

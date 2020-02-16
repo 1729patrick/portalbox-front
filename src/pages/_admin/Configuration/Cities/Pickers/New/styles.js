@@ -29,14 +29,25 @@ export const Container = styled.div`
 `;
 
 export const Neighborhoods = styled.div`
-  label {
-    display: block;
-    font-weight: 500;
-    color: #333;
-    font-size: 15px;
-    margin-bottom: 3px;
-  }
+  > span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
+    label {
+      display: block;
+      font-weight: 500;
+      color: #333;
+      font-size: 15px;
+      margin-bottom: 3px;
+    }
+
+    p {
+      color: #d50000;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
   div {
     display: flex;
     flex: 1;
@@ -47,7 +58,7 @@ export const Neighborhoods = styled.div`
 
     button {
       display: flex;
-      margin-left: 15px;
+      margin: auto 0 6px 15px;
     }
   }
 `;
