@@ -80,7 +80,7 @@ export function* createImmobile({ payload }) {
   } catch (e) {
     toast.error(
       e.response?.data?.error?.message ||
-        'Confira os dados e tente novamente. Aconteceu algum erro ao criar o imóvel 😢'
+        'Confira os dados e tente novamente. Aconteceu algum erro ao cadastrar o imóvel 😢'
     );
   }
 }

@@ -5,10 +5,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import UpdateCitySchema from '~/schemas/UpdateCitySchema';
 import CreateCitySchema from '~/schemas/CreateCitySchema';
 
+import {
+  createCityRequest,
+  updateCityRequest,
+} from '~/store/modules/core/actions';
+
 import { Container } from './styles';
 
 import NewPicker from './Pickers/New';
 import List from './Cards/List';
+
+const initialValues = { name: '', neighborhoods: [] };
 
 export default function Cities() {
   const dispatch = useDispatch();
@@ -16,18 +23,29 @@ export default function Cities() {
   const [pickerOpen, setPickerOpen] = useState('');
   const [valuesForm, setValuesForm] = useState(undefined);
 
-  const handleClosePicker = () => {
+  const handleClosePicker = ({ setValues }) => {
+    setValues(initialValues);
     setPickerOpen('');
     setValuesForm(undefined);
   };
 
-  const handleConfirmPicker = ({ values, setFieldError }) => {
+  const handleConfirmPicker = ({ values, cityDuplicated, closePicker }) => {
     const checkCities = cities.filter(({ name }) => name === values.name);
+    const checkCityChanged = valuesForm && valuesForm.name === values.name;
 
-    if (checkCities.length) {
-      setFieldError('name', 'Cidade duplicada');
+    if (checkCities.length && !checkCityChanged) {
+      return cityDuplicated();
     }
-    console.log(values);
+
+    closePicker();
+
+    if (pickerOpen === 'new') {
+      return dispatch(createCityRequest(values));
+    }
+
+    if (pickerOpen === 'edit') {
+      return dispatch(updateCityRequest(values));
+    }
   };
 
   const handleEditCityClick = city => {
@@ -52,16 +70,19 @@ export default function Cities() {
       />
 
       <Formik
-        initialValues={{ name: '', neighborhoods: [] }}
+        initialValues={initialValues}
         validationSchema={getSchema()}
         render={({
           values,
           setFieldValue,
           errors,
           setValues,
+          setTouched,
+          setErrors,
           isValid,
           touched,
           setFieldError,
+          setFieldTouched,
         }) => (
           <Form>
             <NewPicker
@@ -77,6 +98,9 @@ export default function Cities() {
               isValid={isValid}
               touched={touched}
               setFieldError={setFieldError}
+              setFieldTouched={setFieldTouched}
+              setTouched={setTouched}
+              setErrors={setErrors}
             />
           </Form>
         )}

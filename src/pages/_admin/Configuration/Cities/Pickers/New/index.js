@@ -21,6 +21,9 @@ export default function New({
   isValid,
   touched,
   setFieldError,
+  setFieldTouched,
+  setErrors,
+  setTouched,
 }) {
   const title = useMemo(() => {
     if (pickerType === 'new') {
@@ -29,6 +32,11 @@ export default function New({
 
     return 'Editar cidade';
   }, [pickerType]);
+
+  useEffect(() => {
+    setTouched({});
+    setErrors({});
+  }, [setErrors, setTouched, pickerType]);
 
   const addNeighborhod = useCallback(
     () =>
@@ -74,22 +82,24 @@ export default function New({
   };
 
   const getTouched = ({ index, field }) => {
-    if (pickerType === 'edit') return true;
-
     const { name, neighborhoods } = touched;
 
-    if (!index) return name;
+    if (index === undefined) return name;
 
     return neighborhoods && neighborhoods[index]
       ? neighborhoods[index][field]
       : null;
   };
 
+  const closePicker = () => onClose({ setValues });
+
+  const cityDuplicated = () => setFieldError('name', 'Cidade duplicada');
+
   return (
     <Picker
       title={title}
-      onClose={onClose}
-      onConfirm={() => onConfirm({ values, setFieldError })}
+      onClose={closePicker}
+      onConfirm={() => onConfirm({ values, cityDuplicated, closePicker })}
       disabledConfirm={!isValid}
     >
       <Container>
@@ -100,6 +110,7 @@ export default function New({
           error={errors.name}
           setValue={value => setFieldValue('name', value)}
           touched={getTouched({ field: 'name' })}
+          setTouched={() => setFieldTouched('name')}
         />
 
         <Neighborhoods>
@@ -117,6 +128,9 @@ export default function New({
                 setValue={value => handleValueChange(index, value)}
                 error={getError('name', index)}
                 touched={getTouched({ index, field: 'name' })}
+                setTouched={() =>
+                  setFieldTouched(`neighborhoods[${index}].name`)
+                }
               />
               <button type="button">
                 <FiX
@@ -152,6 +166,9 @@ New.propTypes = {
   }),
   setFieldValue: PropTypes.func.isRequired,
   setFieldError: PropTypes.func.isRequired,
+  setFieldTouched: PropTypes.func.isRequired,
+  setErrors: PropTypes.func.isRequired,
+  setTouched: PropTypes.func.isRequired,
   valuesForm: PropTypes.shape({
     name: PropTypes.string,
     neighborhoods: PropTypes.arrayOf(

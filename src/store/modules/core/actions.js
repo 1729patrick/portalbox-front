@@ -15,3 +15,17 @@ export const loadCitiesSuccess = cities => ({
 });
 
 export const loadCitiesFailure = () => ({ type: '@core/LOAD_CITIES_SUCCESS' });
+
+export const createCityRequest = city => ({
+  type: '@core/CREATE_CITY_REQUEST',
+  payload: { city },
+});
+
+export const createCitySuccess = () => ({ type: '@core/CREATE_CITY_SUCCESS' });
+
+export const updateCityRequest = city => ({
+  type: '@core/UPDATE_CITY_REQUEST',
+  payload: { city },
+});
+
+export const updateCitySuccess = () => ({ type: '@core/UPDATE_CITY_SUCCESS' });

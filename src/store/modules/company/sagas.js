@@ -36,7 +36,7 @@ export function* updateCompany({ payload }) {
   } catch (e) {
     toast.error(
       e.response?.data?.error?.message ||
-        'Confira os dados e tente novamente. Aconteceu algum erro ao atualizar os dados empresa 😢'
+        'Confira os dados e tente novamente. Aconteceu algum erro ao atualizar os dados da empresa 😢'
     );
   }
 }
