@@ -30,7 +30,15 @@ export default function Cities() {
   };
 
   const handleConfirmPicker = ({ values, cityDuplicated, closePicker }) => {
-    const checkCities = cities.filter(({ name }) => name === values.name);
+    const normalize = string =>
+      string
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase();
+
+    const checkCities = cities.filter(
+      ({ name }) => normalize(name) === normalize(values.name)
+    );
     const checkCityChanged = valuesForm && valuesForm.name === values.name;
 
     if (checkCities.length && !checkCityChanged) {
