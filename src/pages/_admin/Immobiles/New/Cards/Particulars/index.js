@@ -40,7 +40,7 @@ export default function Particulars({
         setSelected={value => setFieldValue('type', value)}
         error={errors.type}
         setTouched={() => setFieldTouched('type')}
-        touched={getTouched('type')}
+        touched={touched.type}
         formSubmitted={formSubmitted}
       />
 

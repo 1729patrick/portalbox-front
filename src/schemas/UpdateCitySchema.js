@@ -1,12 +1,4 @@
-import * as Yup from 'yup';
-
-const requiredMessage = 'Este campo precisa ser preenchido';
-
-Yup.addMethod(Yup.array, 'unique', function(message, mapper = a => a) {
-  return this.test('unique', message, function(list) {
-    return list.length === new Set(list.map(mapper)).size;
-  });
-});
+import Yup, { requiredMessage } from '~/lib/yup';
 
 const UpdateCitySchema = Yup.object().shape({
   name: Yup.string().required(requiredMessage),

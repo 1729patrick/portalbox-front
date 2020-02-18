@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import Input from '~/components/Input';
@@ -18,34 +18,28 @@ export default function Address({
 
   const path = useMemo(() => values.address, [values.address]);
 
-  const getError = field => {
-    return errors.address ? errors.address[field] : null;
-  };
-
-  const getTouched = field => {
-    return touched.address ? touched.address[field] : null;
-  };
-
-  const handleNeighborhoodSelected = value => {
-    if (!path.city) {
-      const city = cities.find(city =>
-        city.neighborhoods.find(neighborhood => neighborhood._id === value._id)
+  useEffect(() => {
+    if (path.city) {
+      const existNeighborhoodInCity = path.city.neighborhoods.some(
+        neighborhood => neighborhood._id === path.neighborhood?._id
       );
 
+      if (!existNeighborhoodInCity) {
+        setFieldValue('address.neighborhood', '');
+      }
+    }
+  }, [cities, path.city, path.neighborhood, setFieldValue]);
+
+  useEffect(() => {
+    if (!path.city && path.neighborhood) {
+      const city = cities.find(c =>
+        c.neighborhoods.some(
+          neighborhood => neighborhood._id === path.neighborhood?._id
+        )
+      );
       setFieldValue('address.city', city);
     }
-
-    setFieldValue('address.neighborhood', value);
-  };
-
-  const handleCitySelected = value => {
-    if (path.city === value) {
-      return;
-    }
-
-    setFieldValue('address.city', value);
-    setFieldValue('address.neighborhood', '');
-  };
+  }, [cities, path.city, path.neighborhood, setFieldValue]);
 
   return (
     <Card>
@@ -56,11 +50,11 @@ export default function Address({
         type="text"
         label="Rua"
         placeholder="Digite o nome da rua"
-        error={getError('street')}
+        error={errors.address?.street}
         value={path.street}
         setValue={value => setFieldValue('address.street', value)}
         setTouched={() => setFieldTouched('address.street')}
-        touched={getTouched('street')}
+        touched={touched.address?.street}
         formSubmitted={formSubmitted}
       />
 
@@ -69,11 +63,11 @@ export default function Address({
         label="Número"
         placeholder="Digite o número"
         optional
-        error={getError('number')}
+        error={errors.address?.number}
         value={path.number}
         setValue={value => setFieldValue('address.number', value)}
         setTouched={() => setFieldTouched('address.number')}
-        touched={getTouched('number')}
+        touched={touched.address?.number}
         formSubmitted={formSubmitted}
       />
 
@@ -82,14 +76,13 @@ export default function Address({
         options={cities}
         label="Cidade"
         multiple={false}
-        error={getError('city')}
+        error={errors.address?.city?._id}
         selected={path.city}
-        setSelected={handleCitySelected}
+        setSelected={value => setFieldValue('address.city', value)}
         setTouched={() => setFieldTouched('address.city')}
-        touched={!!getTouched('city')}
+        touched={touched.address?.city}
         formSubmitted={formSubmitted}
       />
-
       <Select
         placeholder="Selecione o bairro"
         options={path.city ? [path.city] : cities}
@@ -102,11 +95,11 @@ export default function Address({
           option: 'name',
           value: '_id',
         }}
-        error={getError('neighborhood')}
+        error={errors.address?.neighborhood?._id}
         selected={path.neighborhood}
-        setSelected={handleNeighborhoodSelected}
+        setSelected={value => setFieldValue('address.neighborhood', value)}
         setTouched={() => setFieldTouched('address.neighborhood')}
-        touched={getTouched('neighborhood')}
+        touched={touched.address?.neighborhood}
         formSubmitted={formSubmitted}
       />
     </Card>
