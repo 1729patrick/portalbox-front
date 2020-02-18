@@ -14,6 +14,12 @@ import Input from '~/components/Input';
 
 import { Header, Container, Info, SubmitButton, Title } from './styles';
 
+const initialValues = {
+  name: '',
+  phone: '',
+  email: '',
+  message: '',
+};
 const Contact = () => {
   const company = useSelector(state => state.company);
 
@@ -30,6 +36,7 @@ const Contact = () => {
       <div>
         <div>
           <Formik
+            initialValues={initialValues}
             render={({ values, setFieldValue }) => (
               <Form>
                 <Input
