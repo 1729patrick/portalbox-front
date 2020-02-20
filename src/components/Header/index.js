@@ -36,12 +36,10 @@ function Header({ simple, searchable, history, ...props }) {
   );
 
   useEffect(() => {
-    if (popupOpen !== -1) {
-      return document.addEventListener('click', handleClick);
-    }
+    document.addEventListener('click', handleClick);
 
-    return document.removeEventListener('click', handleClick);
-  }, [handleClick, popupOpen]);
+    return () => document.removeEventListener('click', handleClick);
+  }, [handleClick]);
 
   const onClickLogo = () => {
     const { pathname } = history.location;
