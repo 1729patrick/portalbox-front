@@ -6,6 +6,8 @@ import GroupImmobiles from '~/components/GroupImmobiles';
 import GroupCards from '~/components/GroupCards';
 import Loading from './Loading';
 
+import { formatImmobileAvaliableCount } from '~/services/format';
+
 import {
   AdImageBackground,
   AdVerticalBackground,
@@ -41,11 +43,7 @@ export default function Immobiles() {
   }, [dispatch]);
 
   const titleResultFilter = useMemo(() => {
-    return resultFilter.count
-      ? resultFilter.count > 1
-        ? `${resultFilter.count} imóveis disponíveis`
-        : `${resultFilter.count} imóvel disponível`
-      : 'Desculpe, não encontramos imóveis com os critérios da busca.';
+    return formatImmobileAvaliableCount(resultFilter.count);
   }, [resultFilter.count]);
 
   const handleClickType = type => {
@@ -115,13 +113,6 @@ export default function Immobiles() {
           handleClickFinality({ value: 'sale', title: 'Comprar' })
         }
       />
-
-      {/* <GroupImmobiles
-        title="Nossos imóveis"
-        style={{ marginTop: 50 }}
-        list={listImmobiles}
-        showSize={false}
-      /> */}
 
       {loading && <Loading />}
     </Container>

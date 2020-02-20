@@ -22,3 +22,11 @@ export const formatTitleImmobile = immobile => {
 
   return `${type.name}${finality} no bairro ${neighborhood.name}`;
 };
+
+export const formatImmobileAvaliableCount = count => {
+  return count
+    ? count > 1
+      ? `${count} imóveis disponíveis`
+      : `${count} imóvel disponível`
+    : 'Desculpe, não encontramos imóveis com os critérios da busca.';
+};

@@ -2,14 +2,14 @@ import React, { useState, useEffect, useMemo } from 'react';
 
 import { Container, Infos, ImagesWrapper } from './styles';
 
-import Price from './Price';
-import Maps from './Maps';
-import Images from './Images';
-import Financing from './Financing';
-import Details from './Details';
-import Loading from '~/components/Loading';
+import Price from './components/Price';
+import Maps from './components/Maps';
+import Images from './components/Images';
+import Financing from './components/Financing';
+import Details from './components/Details';
+import Preview from './components/Preview';
 
-import Preview from './Preview';
+import Loading from '~/components/Loading';
 
 import api from '~/services/api';
 
