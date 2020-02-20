@@ -10,7 +10,6 @@ export default function Header() {
       <div>
         <div>
           <h1>portalbox</h1>
-          {/* <img src={box} alt="" /> */}
         </div>
 
         <aside>

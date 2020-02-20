@@ -10,7 +10,7 @@ import { Container, SubmitButton } from './styles';
 import {
   searchImmobilesRequest,
   setFinalityFilter,
-  setNeighborhoodsFilterRequest,
+  setNeighborhoodsFilter,
   setTypesFilter,
 } from '~/store/modules/filter/actions';
 
@@ -30,7 +30,7 @@ function Filter() {
 
     dispatch(setFinalityFilter(search));
     dispatch(setTypesFilter(search));
-    dispatch(setNeighborhoodsFilterRequest(search));
+    dispatch(setNeighborhoodsFilter(search));
     dispatch(searchImmobilesRequest(search));
   };
 

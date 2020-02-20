@@ -6,7 +6,7 @@ import Checkbox from '~/components/Checkbox';
 
 import PopupLayout from '../../_layouts/Popup';
 
-import { setNeighborhoodsFilterRequest } from '~/store/modules/filter/actions';
+import { setNeighborhoodsFilter } from '~/store/modules/filter/actions';
 
 export default function Locale({ onClick }) {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ export default function Locale({ onClick }) {
 
   useEffect(() => {
     dispatch(
-      setNeighborhoodsFilterRequest({
+      setNeighborhoodsFilter({
         neighborhoods: selecteds,
       })
     );

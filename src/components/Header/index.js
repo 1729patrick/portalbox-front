@@ -28,7 +28,7 @@ function Header({ simple, searchable, history, ...props }) {
 
   const handleClick = useCallback(
     e => {
-      if (!node.current.contains(e.target) && popupOpen !== -1) {
+      if (!node?.current?.contains(e.target) && popupOpen !== -1) {
         dispatch(saveFilterRequest());
       }
     },
@@ -36,10 +36,12 @@ function Header({ simple, searchable, history, ...props }) {
   );
 
   useEffect(() => {
-    document.addEventListener('click', handleClick);
+    if (popupOpen !== -1) {
+      return document.addEventListener('click', handleClick);
+    }
 
-    return () => document.removeEventListener('click', handleClick);
-  }, [handleClick]);
+    return document.removeEventListener('click', handleClick);
+  }, [handleClick, popupOpen]);
 
   const onClickLogo = () => {
     const { pathname } = history.location;

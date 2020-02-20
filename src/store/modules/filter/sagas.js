@@ -154,6 +154,7 @@ function* setNeighborhoods({ payload }) {
       neighborhoods.length === 1
         ? neighborhoods[0].name
         : `${neighborhoods.length} bairros`;
+
     yield put(
       setFilterSuccess({ filter: 'neighborhoods', title, value: neighborhoods })
     );

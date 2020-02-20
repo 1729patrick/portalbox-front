@@ -89,6 +89,7 @@ const filter = (state = INITIAL_STATE, action) => {
         draft.result = { count, immobiles };
         break;
       }
+
       case '@filter/LOAD_IMMOBILES_FAILURE': {
         draft.loading = false;
 

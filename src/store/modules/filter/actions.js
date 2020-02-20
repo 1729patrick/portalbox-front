@@ -12,7 +12,7 @@ export const setFinalityFilter = ({ finality }) => ({
   payload: { finality },
 });
 
-export const setNeighborhoodsFilterRequest = ({ neighborhoods }) => ({
+export const setNeighborhoodsFilter = ({ neighborhoods }) => ({
   type: '@filter/SET_NEIGHBORHOODS_FILTER',
   payload: { neighborhoods },
 });

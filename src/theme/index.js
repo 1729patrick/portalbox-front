@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
@@ -22,10 +22,10 @@ export default function Theme({ children }) {
 
   return (
     <ThemeProvider theme={colors}>
-      <Fragment>
+      <>
         {children}
         <GlobalStyle />
-      </Fragment>
+      </>
     </ThemeProvider>
   );
 }

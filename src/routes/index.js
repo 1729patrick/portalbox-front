@@ -28,6 +28,12 @@ const Routes = () => {
 
       <Route path="/login" exact component={AdminSignIn} onlyComponent />
       <Route path="/portal" exact component={AdminDashboard} isPrivate />
+      <Route
+        path="/portal/banners"
+        exact
+        component={AdminDashboard}
+        isPrivate
+      />
       <Route path="/portal/imoveis" component={AdminImmobiles} isPrivate />
       <Route
         path="/portal/configuracoes"
